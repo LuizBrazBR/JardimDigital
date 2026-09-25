@@ -7,7 +7,7 @@ tags:
 verificado: 2026-09-25
 ---
 
-Passo a passo genérico para começar qualquer projeto front-end com **React + TypeScript**, usando **Vite** como [[glossario/bundler|bundler]]/[[glossario/dev-server|dev server]].
+Passo a passo genérico para começar qualquer projeto front-end com **[[glossario/react|React]] + [[glossario/typescript|TypeScript]]**, usando **[[glossario/vite|Vite]]** como [[glossario/bundler|bundler]]/[[glossario/dev-server|dev server]].
 
 > Ferramentas de front-end mudam rápido. O conteúdo abaixo foi conferido rodando `npm create vite@latest` de verdade em 2026-09-25 — se você ler isso daqui a um ano, vale rodar de novo e comparar.
 
