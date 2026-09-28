@@ -7,7 +7,7 @@ configuration:
   analytics:
     provider: null
   locale: pt-BR
-  baseUrl: meujardim.pages.dev
+  baseUrl: luizbrazbr.github.io/JardimDigital
   ignorePatterns:
     - private
     - templates
