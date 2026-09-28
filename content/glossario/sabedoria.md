@@ -16,7 +16,7 @@ Em hebraico, [[glossario/chokhmah|chokhmah]] também quer dizer **habilidade té
 
 No hebraico, *ki hi chokhmatkhem* diz literalmente "ela **é** a vossa sabedoria". A lei não é só um caminho para a sabedoria. Guardá-la *já é* sabedoria. E ela está ao alcance de qualquer pessoa: "o testemunho do Senhor é fiel, e **dá sabedoria aos simples**" (Sl 19:7).
 
-### 2. Temer a Deus e cumprir
+### 2. [[glossario/temor-de-deus|Temer a Deus]] e cumprir
 
 > [!quote] Salmo 111:10
 > "O temor do Senhor é o princípio da sabedoria; **têm bom entendimento todos os que cumprem os seus preceitos**."
