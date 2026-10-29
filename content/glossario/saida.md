@@ -5,7 +5,7 @@ title: Saída
 > [!abstract] Definição
 > **O resultado que o programa entrega depois de processar a [[glossario/entrada|entrada]].** Pode ser um texto na tela, um som, uma vibração, um arquivo salvo ou uma mensagem para outro programa.
 
-É a última parte do ciclo [[programacao/logica-de-programacao/entrada-processamento-saida|entrada, processamento e saída]]. Em inglês, **output**. No curso de Lógica de Programação, a saída aparece quase sempre no [[glossario/console|console]].
+É a última parte do ciclo [[programacao/logica-de-programacao/03-entrada-processamento-saida|entrada, processamento e saída]]. Em inglês, **output**. No curso de Lógica de Programação, a saída aparece quase sempre no [[glossario/console|console]].
 
 ## De onde vem a palavra
 

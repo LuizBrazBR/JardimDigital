@@ -1,11 +1,13 @@
 ---
-title: Entrada, processamento e saída
+title: 3. Entrada, processamento e saída
+aliases:
+  - programacao/logica-de-programacao/entrada-processamento-saida
 tags:
   - logica-de-programacao
   - entrada-processamento-saida
 ---
 
-Terceira aula do curso. Já se viu o que é um [[glossario/algoritmo|algoritmo]] e [[programacao/logica-de-programacao/pensando-como-programador|como quebrar um problema em partes]]. Agora, o formato que quase todo programa tem: **recebe algo, trabalha em cima disso e devolve um resultado**.
+Terceira aula do curso. Já se viu o que é um [[glossario/algoritmo|algoritmo]] e [[programacao/logica-de-programacao/02-pensando-como-programador|como quebrar um problema em partes]]. Agora, o formato que quase todo programa tem: **recebe algo, trabalha em cima disso e devolve um resultado**.
 
 ```mermaid
 flowchart LR

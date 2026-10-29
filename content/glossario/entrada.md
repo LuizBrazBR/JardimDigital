@@ -3,7 +3,7 @@ title: Entrada
 ---
 
 > [!abstract] Definição
-> **A informação que um programa recebe para trabalhar.** É a primeira parte do ciclo [[programacao/logica-de-programacao/entrada-processamento-saida|entrada, processamento e saída]].
+> **A informação que um programa recebe para trabalhar.** É a primeira parte do ciclo [[programacao/logica-de-programacao/03-entrada-processamento-saida|entrada, processamento e saída]].
 
 Pode vir de uma pessoa (o que ela digita, toca ou fala) ou de outra fonte: um arquivo, um sensor, outro programa. No jargão de programador, em inglês, é o **input**.
 
