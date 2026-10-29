@@ -7,7 +7,7 @@ tags:
 
 Segunda aula do curso. A [[programacao/logica-de-programacao/o-que-e-programar-e-algoritmo|primeira]] mostrou o que é um [[glossario/algoritmo|algoritmo]]. Esta responde à pergunta seguinte: **como se chega aos passos** quando o problema parece grande demais?
 
-A resposta tem nome: **pensamento computacional**. Seymour Papert usou a expressão em 1980, e Jeannette Wing a popularizou em 2006. Não precisa de computador nem de código. É um jeito de olhar para problemas, e se treina com a prática. Ele se apoia em três ideias:
+A resposta tem nome: **[[glossario/pensamento-computacional|pensamento computacional]]**. Seymour Papert usou a expressão em 1980, e Jeannette Wing a popularizou em 2006. Não precisa de computador nem de código. É um jeito de olhar para problemas, e se treina com a prática. Ele se apoia em três ideias:
 
 | Ideia | Pergunta que ela faz | Em uma frase |
 |---|---|---|
