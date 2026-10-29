@@ -1,3 +1,9 @@
 @use "./variables.scss" as *;
 
 // put your custom CSS here!
+
+// Pastas com lista própria (ex.: cursos, em ordem de aula) escondem a listagem automática,
+// que ordena por data e poria a aula mais nova primeiro
+article.sem-listagem ~ .page-listing {
+  display: none;
+}

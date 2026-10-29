@@ -1,5 +1,7 @@
 ---
 title: Lógica de Programação
+cssclasses:
+  - sem-listagem
 ---
 
 Resumos das aulas do curso de Lógica de Programação, na ordem em que foram estudadas.
