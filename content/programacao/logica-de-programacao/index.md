@@ -11,3 +11,4 @@ Resumos das aulas do curso de Lógica de Programação, na ordem em que foram es
 3. [[programacao/logica-de-programacao/03-entrada-processamento-saida|Entrada, processamento e saída]]
 4. [[programacao/logica-de-programacao/04-seu-primeiro-codigo-console-log|Seu primeiro código: console.log]]
 5. [[programacao/logica-de-programacao/05-variaveis-let-e-const|Variáveis: guardando valores com let e const]]
+6. [[programacao/logica-de-programacao/06-tipos-de-dados|Tipos de dados: número, texto e booleano]]

@@ -5,7 +5,7 @@ title: String
 > [!abstract] Definição
 > **Texto, no jargão de programação: uma sequência de caracteres (letras, números, espaços, símbolos).** Em JavaScript, a string fica entre aspas: `"Olá, mundo!"`.
 
-Dentro das aspas, nada é calculado. `"2 + 3"` é um texto de cinco caracteres, e não o número 5. Aspas duplas e simples dão no mesmo: `"oi"` e `'oi'` são a mesma string.
+Dentro das aspas, nada é calculado. `"2 + 3"` é um texto de cinco caracteres, e não o número 5. Aspas duplas e simples dão no mesmo: `"oi"` e `'oi'` são a mesma string. Com crase, vira uma [[glossario/template-string|template string]], que aceita lacunas para encaixar valores.
 
 ## De onde vem a palavra
 
