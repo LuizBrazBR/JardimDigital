@@ -269,7 +269,7 @@ if (a > b) {
 
 E se os dois forem iguais? Com `a = 10` e `b = 10`, `10 > 10` dá `false`, e aparece "10 é o maior". Não chega a estar errado, mas não conta a verdade: nenhum dos dois é o maior. O `else` engoliu o empate.
 
-O problema é que aqui há **três** respostas (a é maior, b é maior, empate), e o `if`/`else` só tem duas saídas. Para três ou mais caminhos, existe o `else if`, que é o assunto da aula 3.3.
+O problema é que aqui há **três** respostas (a é maior, b é maior, empate), e o `if`/`else` só tem duas saídas. Para três ou mais caminhos, existe o `else if`, que é o assunto da [[programacao/logica-de-programacao/modulo-3/03-else-if-varias-condicoes-em-cadeia|aula 3.3]].
 
 ## E o `&&`?
 

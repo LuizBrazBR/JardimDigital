@@ -15,6 +15,8 @@ if (saldo >= preco) {
 
 Com `if` e `else` juntos, roda sempre exatamente um dos dois blocos: o do `if` quando a condição dá `true`, e o do `else` quando dá `false`. O `else` não tem condição própria, porque quer dizer "em qualquer outro caso". E é opcional: sem ele, quando a condição dá `false`, o programa só segue em frente.
 
+Depois do `else`, pode vir outro `if`. É o [[glossario/senao-se|senão se]] (`else if`), que encadeia quantas condições forem necessárias.
+
 Ver a aula [[programacao/logica-de-programacao/modulo-3/02-if-else-o-outro-caminho|if/else: o outro caminho]].
 
 ## De onde vêm as palavras

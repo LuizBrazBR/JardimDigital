@@ -8,6 +8,6 @@ Aqui o programa deixa de andar em linha reta e passa a escolher o caminho, confo
 
 1. [[programacao/logica-de-programacao/modulo-3/01-tomando-decisoes-com-if|Tomando decisões com if]]
 2. [[programacao/logica-de-programacao/modulo-3/02-if-else-o-outro-caminho|if/else: o outro caminho]]
-3. else if: várias condições em cadeia
+3. [[programacao/logica-de-programacao/modulo-3/03-else-if-varias-condicoes-em-cadeia|else if: várias condições em cadeia]]
 4. Condições compostas com e, ou, não
 5. switch: escolhendo entre muitos casos
