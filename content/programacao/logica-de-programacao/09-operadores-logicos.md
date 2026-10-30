@@ -76,12 +76,28 @@ Uma estudante de 70 anos cumpre as duas condições e paga meia, claro. O `||` q
 
 ### O "não", e como evitá-lo
 
-O `!` inverte a resposta. Funciona bem com variáveis booleanas, e a frase fica natural:
+O `!` inverte a resposta. Mas ele inverte a **pergunta**, e não o tempo lá fora:
 
 ```js
-const chovendo = false;
-console.log(!chovendo); // true → "não está chovendo"
+const chovendo = false;  // "está chovendo?" → não
+console.log(!chovendo);  // true  → "NÃO está chovendo?" → sim, é verdade
+console.log(chovendo);   // false → a variável continua igual: segue sem chover
 ```
+
+O jeito de não se confundir é ler `true` como **"é verdade"** e `false` como **"é mentira"**, sempre a respeito da frase escrita:
+
+| Escrito | A frase | Resposta | Quer dizer |
+|---|---|---|---|
+| `chovendo` | "está chovendo" | `false` | é mentira que está chovendo |
+| `!chovendo` | "**não** está chovendo" | `true` | é verdade que não está chovendo |
+
+As duas linhas dizem a mesma coisa sobre o tempo: não chove. O `true` não quer dizer "chuva". Ele confirma a frase que foi perguntada, e a frase agora tem um "não".
+
+> [!example] Como numa conversa
+> — Está chovendo? — Não. *(isso é o `chovendo`: `false`)*
+> — Então não está chovendo? — Exato, não está. *(isso é o `!chovendo`: `true`)*
+>
+> A segunda resposta é um "sim" para a pergunta, embora fale de algo que não acontece.
 
 Com comparações, quase sempre existe um jeito mais simples do que pôr `!` na frente: usar a comparação contrária.
 
