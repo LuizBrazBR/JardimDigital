@@ -1,12 +1,14 @@
 ---
-title: "4. Seu primeiro código: console.log"
+title: "1.5 Seu primeiro código: console.log"
+aliases:
+  - programacao/logica-de-programacao/04-seu-primeiro-codigo-console-log
 tags:
   - logica-de-programacao
   - javascript
   - console
 ---
 
-Quarta aula do curso. Até aqui, os algoritmos ficaram no papel ou em comentários. Agora o [[glossario/codigo|código]] roda de verdade.
+Última aula do módulo 1. Até aqui, os algoritmos ficaram no papel ou em comentários. Agora o [[glossario/codigo|código]] roda de verdade.
 
 A aula ensina um comando só, o `console.log`. Só que, no caminho, aparecem várias peças que ela usa sem explicar: o ponto, os parênteses, as aspas, o ponto e vírgula, os `//`, o "erro de sintaxe" e onde, afinal, o código roda. Este resumo abre cada uma delas.
 
@@ -46,7 +48,7 @@ No Node, o `undefined` não aparece. Ele mostra só o que o `console.log` escrev
 
 ## O que é o console
 
-É uma tela só de texto, feita para quem programa. Quem usa um site ou aplicativo nunca a vê. Na [[programacao/logica-de-programacao/03-entrada-processamento-saida|aula anterior]], o console foi apresentado como o lugar onde a **saída** dos programas vai aparecer, e é para isso que serve o `console.log`.
+É uma tela só de texto, feita para quem programa. Quem usa um site ou aplicativo nunca a vê. Na [[programacao/logica-de-programacao/modulo-1/03-entrada-processamento-saida|aula anterior]], o console foi apresentado como o lugar onde a **saída** dos programas vai aparecer, e é para isso que serve o `console.log`.
 
 Programadores vivem nele: para testar um trecho, para ver quanto vale alguma coisa no meio do programa, para descobrir por que algo não funciona.
 

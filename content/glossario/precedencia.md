@@ -7,7 +7,7 @@ title: Precedência
 
 `2 + 3 * 4` dá `14`, e não `20`, porque a multiplicação tem precedência sobre a soma. Para mudar a ordem, parênteses: `(2 + 3) * 4` dá `20`.
 
-Esquecer a precedência é a origem de um erro clássico, a média sem parênteses: `nota1 + nota2 / 2` divide só a segunda nota. Ver a aula [[programacao/logica-de-programacao/07-operadores-aritmeticos|Operadores aritméticos e o resto com %]].
+Esquecer a precedência é a origem de um erro clássico, a média sem parênteses: `nota1 + nota2 / 2` divide só a segunda nota. Ver a aula [[programacao/logica-de-programacao/modulo-2/03-operadores-aritmeticos|Operadores aritméticos e o resto com %]].
 
 ## De onde vem a palavra
 

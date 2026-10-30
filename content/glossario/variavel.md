@@ -5,7 +5,7 @@ title: Variável
 > [!abstract] Definição
 > **Um nome que guarda um valor para ser usado depois.** Em JavaScript, cria-se com `let` (o valor pode mudar) ou `const` (o valor fica fixo).
 
-É a primeira peça da lógica de programação: sem variáveis, o programa não tem onde guardar o que recebe nem o que calcula. Mais em [[programacao/logica-de-programacao/05-variaveis-let-e-const|Variáveis: guardando valores com let e const]].
+É a primeira peça da lógica de programação: sem variáveis, o programa não tem onde guardar o que recebe nem o que calcula. Mais em [[programacao/logica-de-programacao/modulo-2/01-variaveis-let-e-const|Variáveis: guardando valores com let e const]].
 
 ## De onde vem a palavra
 

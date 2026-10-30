@@ -1,14 +1,16 @@
 ---
-title: "8. Comparações: = x === e os sinais de comparação"
+title: "2.4 Comparações: = x === e os sinais de comparação"
+aliases:
+  - programacao/logica-de-programacao/08-comparacoes
 tags:
   - logica-de-programacao
   - javascript
   - operadores
 ---
 
-Oitava aula do curso. Na [[programacao/logica-de-programacao/07-operadores-aritmeticos|aula anterior]], os operadores faziam contas e devolviam números. Agora entram os que fazem **perguntas** e devolvem `true` ou `false`: os operadores de **[[glossario/comparacao|comparação]]**.
+Quarta aula do módulo 2. Na [[programacao/logica-de-programacao/modulo-2/03-operadores-aritmeticos|aula anterior]], os operadores faziam contas e devolviam números. Agora entram os que fazem **perguntas** e devolvem `true` ou `false`: os operadores de **[[glossario/comparacao|comparação]]**.
 
-O booleano já tinha aparecido assim na [[programacao/logica-de-programacao/06-tipos-de-dados|aula 6]]: toda comparação devolve um [[glossario/booleano|booleano]]. Uma comparação é uma conta como outra qualquer, só que o resultado é uma resposta de sim ou não. Assim como `2 + 3` vira `5`, `5 > 3` vira `true`.
+O booleano já tinha aparecido assim na [[programacao/logica-de-programacao/modulo-2/02-tipos-de-dados|aula 2.2]]: toda comparação devolve um [[glossario/booleano|booleano]]. Uma comparação é uma conta como outra qualquer, só que o resultado é uma resposta de sim ou não. Assim como `2 + 3` vira `5`, `5 > 3` vira `true`.
 
 ## Os seis sinais
 
@@ -84,7 +86,7 @@ console.log(idade);      // 18 → os 30 se perderam
 
 A intenção era perguntar "a idade é 18?". O que aconteceu foi a idade virar 18.
 
-Com `const`, o mesmo engano dá `TypeError: Assignment to constant variable.`, e o erro aparece na hora em vez de passar despercebido. É mais um motivo para preferir `const`, como na [[programacao/logica-de-programacao/05-variaveis-let-e-const|aula 5]].
+Com `const`, o mesmo engano dá `TypeError: Assignment to constant variable.`, e o erro aparece na hora em vez de passar despercebido. É mais um motivo para preferir `const`, como na [[programacao/logica-de-programacao/modulo-2/01-variaveis-let-e-const|aula 2.1]].
 
 ### Por que evitar o `==`
 
@@ -103,7 +105,7 @@ Repare nas três do meio. Com `==`, o 0 é igual ao texto vazio, e o 0 é igual 
 O `===` não converte nada: tipos diferentes já dão `false`. É uma regra só, fácil de prever. O mesmo vale para o par `!=` e `!==`: prefira o `!==`.
 
 > [!tip] Quando o número chega como texto
-> Lembra que tudo o que se digita num formulário chega como texto? Se alguém digitar 5, chega `"5"`, e `"5" === 5` dá `false`. A saída não é trocar para `==`, e sim converter antes, com o `Number()` da aula 6: `Number("5") === 5` dá `true`.
+> Lembra que tudo o que se digita num formulário chega como texto? Se alguém digitar 5, chega `"5"`, e `"5" === 5` dá `false`. A saída não é trocar para `==`, e sim converter antes, com o `Number()` da aula 2.2: `Number("5") === 5` dá `true`.
 
 > [!info]- De onde vem a confusão entre `=` e `===` (clique para abrir)
 > - **1557**: o galês Robert Recorde inventa o sinal `=`, num livro de álgebra. Para não escrever "é igual a" toda hora, desenhou duas linhas paralelas do mesmo tamanho, porque, segundo ele, não existem duas coisas mais iguais do que essas.
@@ -114,7 +116,7 @@ O `===` não converte nada: tipos diferentes já dão `false`. É uma regra só,
 
 ## Juntando com a aula passada: par ou ímpar
 
-Na aula 7, o `%` dava `0` ou `1`, e a decisão ficava de cabeça. Agora o código responde sozinho:
+Na aula 2.3, o `%` dava `0` ou `1`, e a decisão ficava de cabeça. Agora o código responde sozinho:
 
 ```js
 const numero = 7;
@@ -168,7 +170,7 @@ Comparar é lógica pura, e toda linguagem compara. O que muda é o símbolo, e 
 
 > [!info]- Esquisitices (clique para abrir)
 > - **`NaN === NaN` dá `false`.** O `NaN` não é igual a nada, nem a ele mesmo. Para saber se um valor é `NaN`, existe o `Number.isNaN()`.
-> - **`0.1 + 0.2 === 0.3` dá `false`.** É a conta da aula 6, que dá `0.30000000000000004`. Comparar números com casas decimais com `===` pode falhar por causa dessa diferença minúscula.
+> - **`0.1 + 0.2 === 0.3` dá `false`.** É a conta da aula 2.2, que dá `0.30000000000000004`. Comparar números com casas decimais com `===` pode falhar por causa dessa diferença minúscula.
 > - **`true == 1` dá `true`**, porque o `==` transforma o `true` em `1`. Com `===`, dá `false`.
 
 ## Treine

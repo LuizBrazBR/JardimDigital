@@ -15,7 +15,7 @@ if (saldo >= preco) {
 
 Sem as chaves, o `if` fica só com a primeira instrução depois dele. Por isso, a regra é pôr chaves sempre. O recuo, os espaços no começo da linha, não conta para o JavaScript: é só para quem lê. No Python é o contrário: não há chaves, e o próprio recuo forma o bloco.
 
-Ver a aula [[programacao/logica-de-programacao/10-tomando-decisoes-com-if|Tomando decisões com if]].
+Ver a aula [[programacao/logica-de-programacao/modulo-3/01-tomando-decisoes-com-if|Tomando decisões com if]].
 
 ## De onde vem a palavra
 

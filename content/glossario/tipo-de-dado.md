@@ -5,7 +5,7 @@ title: Tipo de dado
 > [!abstract] Definição
 > **A categoria de um valor, que decide o que dá para fazer com ele.** Número dá para somar, texto dá para juntar, e verdadeiro ou falso serve para decidir. Os três tipos básicos do JavaScript são `number`, `string` e `boolean`, e o [[glossario/operador|operador]] `typeof` diz o tipo de um valor.
 
-Mais em [[programacao/logica-de-programacao/06-tipos-de-dados|Tipos de dados: número, texto e booleano]].
+Mais em [[programacao/logica-de-programacao/modulo-2/02-tipos-de-dados|Tipos de dados: número, texto e booleano]].
 
 ## De onde vêm as palavras
 

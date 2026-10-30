@@ -1,12 +1,14 @@
 ---
-title: "5. Variáveis: guardando valores com let e const"
+title: "2.1 Variáveis: guardando valores com let e const"
+aliases:
+  - programacao/logica-de-programacao/05-variaveis-let-e-const
 tags:
   - logica-de-programacao
   - javascript
   - variaveis
 ---
 
-Quinta aula do curso. Na [[programacao/logica-de-programacao/04-seu-primeiro-codigo-console-log|aula anterior]], `console.log(Olá)` dava `ReferenceError: Olá is not defined`: o JavaScript procurava um nome que ninguém tinha criado. Esta aula ensina a criar esses nomes, que se chamam **[[glossario/variavel|variáveis]]**.
+Primeira aula do módulo 2. Na [[programacao/logica-de-programacao/modulo-1/05-seu-primeiro-codigo-console-log|aula anterior]], `console.log(Olá)` dava `ReferenceError: Olá is not defined`: o JavaScript procurava um nome que ninguém tinha criado. Esta aula ensina a criar esses nomes, que se chamam **[[glossario/variavel|variáveis]]**.
 
 ## Variável: um nome para um valor
 
@@ -148,7 +150,7 @@ E maiúsculas contam: `idade` e `Idade` são duas variáveis diferentes.
 
 ## Juntando tudo: a média, agora de verdade
 
-Na [[programacao/logica-de-programacao/03-entrada-processamento-saida|aula 3]], o programa da média de duas notas ficou só em comentários. Agora ele roda:
+Na [[programacao/logica-de-programacao/modulo-1/03-entrada-processamento-saida|aula 1.3]], o programa da média de duas notas ficou só em comentários. Agora ele roda:
 
 ```js
 // Entrada

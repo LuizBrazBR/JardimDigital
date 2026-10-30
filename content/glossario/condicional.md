@@ -13,7 +13,7 @@ if (saldo >= preco) {
 }
 ```
 
-É com as condicionais que um programa deixa de andar em linha reta e passa a tomar decisões. Ver a aula [[programacao/logica-de-programacao/10-tomando-decisoes-com-if|Tomando decisões com if]].
+É com as condicionais que um programa deixa de andar em linha reta e passa a tomar decisões. Ver a aula [[programacao/logica-de-programacao/modulo-3/01-tomando-decisoes-com-if|Tomando decisões com if]].
 
 ## De onde vem a palavra
 

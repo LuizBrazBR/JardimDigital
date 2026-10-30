@@ -1,12 +1,14 @@
 ---
-title: "9. Operadores lógicos: e, ou, não"
+title: "2.5 Operadores lógicos: e, ou, não"
+aliases:
+  - programacao/logica-de-programacao/09-operadores-logicos
 tags:
   - logica-de-programacao
   - javascript
   - operadores
 ---
 
-Nona aula do curso. Na [[programacao/logica-de-programacao/08-comparacoes|aula anterior]], cada comparação fazia uma pergunta e devolvia `true` ou `false`. Só que muitas regras da vida real juntam várias perguntas: "tem 18 anos **e** tem carteira?", "comprou acima de 100 **ou** tem cupom?". Os operadores **[[glossario/logica|lógicos]]** juntam respostas assim, ou invertem uma resposta.
+Quinta e última aula do módulo 2. Na [[programacao/logica-de-programacao/modulo-2/04-comparacoes|aula anterior]], cada comparação fazia uma pergunta e devolvia `true` ou `false`. Só que muitas regras da vida real juntam várias perguntas: "tem 18 anos **e** tem carteira?", "comprou acima de 100 **ou** tem cupom?". Os operadores **[[glossario/logica|lógicos]]** juntam respostas assim, ou invertem uma resposta.
 
 ## Os três operadores
 
@@ -23,7 +25,7 @@ O `&&` e o `||` ficam entre dois valores, como o `+`. O `!` fica grudado na fren
 > - `|` (a "barra vertical", que em programação se chama *pipe*): no teclado brasileiro (ABNT2), na tecla entre o Shift da esquerda e o Z, com **Shift**. Em alguns notebooks, ela muda de lugar.
 
 > [!warning] São dois sinais, e não um
-> `&` e `|` sozinhos também existem, mas fazem outra coisa: uma conta com os bits do número, como o `^` da [[programacao/logica-de-programacao/07-operadores-aritmeticos|aula 7]]. `true & false` dá `0`, um número, e não um booleano. Para "e" e "ou", é sempre `&&` e `||`.
+> `&` e `|` sozinhos também existem, mas fazem outra coisa: uma conta com os bits do número, como o `^` da [[programacao/logica-de-programacao/modulo-2/03-operadores-aritmeticos|aula 2.3]]. `true & false` dá `0`, um número, e não um booleano. Para "e" e "ou", é sempre `&&` e `||`.
 
 ## A tabela-verdade
 
@@ -183,7 +185,7 @@ const podeEntrar2 = temConvite && (estaNaLista || ehAmigo);
 São duas regras diferentes. Um amigo do organizador sem convite entra na primeira festa, mas fica de fora da segunda. Sem parênteses, `temConvite && estaNaLista || ehAmigo` vira a primeira regra, porque o `&&` vai antes. Funciona, mas quem lê precisa saber disso de cabeça.
 
 > [!tip] Misturou `&&` com `||`? Ponha parênteses
-> Como na média da aula 7: parêntese a mais não faz mal, e deixa claro qual regra se quis escrever.
+> Como na média da aula 2.3: parêntese a mais não faz mal, e deixa claro qual regra se quis escrever.
 
 > [!info]- O JavaScript é preguiçoso (clique para abrir)
 > O JavaScript resolve o `&&` e o `||` da esquerda para a direita, e para assim que já sabe a resposta:

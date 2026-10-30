@@ -16,7 +16,7 @@ A do `&&` (e) e do `||` (ou), com dois valores:
 
 Com dois valores, são 4 linhas. Cada valor novo dobra a tabela: com três, são 8 linhas, e com quatro, 16. Em JavaScript, `2 ** n`.
 
-Ver a aula [[programacao/logica-de-programacao/09-operadores-logicos|Operadores lógicos: e, ou, não]].
+Ver a aula [[programacao/logica-de-programacao/modulo-2/05-operadores-logicos|Operadores lógicos: e, ou, não]].
 
 ## De onde vem a ideia
 

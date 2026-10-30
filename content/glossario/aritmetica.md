@@ -5,7 +5,7 @@ title: Aritmética
 > [!abstract] Definição
 > **A parte da matemática que cuida das contas com números: somar, subtrair, multiplicar, dividir.** Em programação, os **operadores aritméticos** são os que fazem essas contas. Em JavaScript: `+`, `-`, `*` (vezes), `/` (dividido), `%` ([[glossario/resto|resto]]) e `**` (potência).
 
-Ver a aula [[programacao/logica-de-programacao/07-operadores-aritmeticos|Operadores aritméticos e o resto com %]].
+Ver a aula [[programacao/logica-de-programacao/modulo-2/03-operadores-aritmeticos|Operadores aritméticos e o resto com %]].
 
 ## De onde vem a palavra
 

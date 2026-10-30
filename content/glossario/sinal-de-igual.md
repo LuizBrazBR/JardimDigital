@@ -8,7 +8,7 @@ title: "Sinal de igual (=, == e ===)"
 > - `===` é a igualdade estrita: pergunta se os dois lados são iguais, em valor e em tipo. `"5" === 5` dá `false`.
 > - `==` é a igualdade solta: converte os tipos antes de comparar. `"5" == 5` dá `true`. As regras da conversão são cheias de surpresas, por isso se prefere o `===`.
 
-Trocar `===` por `=` é um erro clássico, e perigoso porque muitas vezes não dá erro nenhum: em vez de perguntar se a variável vale 18, o programa passa a guardar 18 nela. Ver a aula [[programacao/logica-de-programacao/08-comparacoes|Comparações]].
+Trocar `===` por `=` é um erro clássico, e perigoso porque muitas vezes não dá erro nenhum: em vez de perguntar se a variável vale 18, o programa passa a guardar 18 nela. Ver a aula [[programacao/logica-de-programacao/modulo-2/04-comparacoes|Comparações]].
 
 ## De onde vem a palavra
 

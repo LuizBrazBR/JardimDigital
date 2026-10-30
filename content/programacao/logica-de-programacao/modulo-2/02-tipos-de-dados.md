@@ -1,12 +1,14 @@
 ---
-title: "6. Tipos de dados: número, texto e booleano"
+title: "2.2 Tipos de dados: número, texto e booleano"
+aliases:
+  - programacao/logica-de-programacao/06-tipos-de-dados
 tags:
   - logica-de-programacao
   - javascript
   - tipos-de-dados
 ---
 
-Sexta aula do curso. Na [[programacao/logica-de-programacao/05-variaveis-let-e-const|aula anterior]], as variáveis guardaram valores. Esta mostra que todo valor tem um **[[glossario/tipo-de-dado|tipo]]**, e o tipo decide o que dá para fazer com ele.
+Segunda aula do módulo 2. Na [[programacao/logica-de-programacao/modulo-2/01-variaveis-let-e-const|aula anterior]], as variáveis guardaram valores. Esta mostra que todo valor tem um **[[glossario/tipo-de-dado|tipo]]**, e o tipo decide o que dá para fazer com ele.
 
 > [!example] No caixa do mercado
 > - O preço do pão é um **número**: dá para somar com o preço do leite.

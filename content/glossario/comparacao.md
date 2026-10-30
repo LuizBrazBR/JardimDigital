@@ -7,7 +7,7 @@ title: Comparação
 
 Lê-se da esquerda para a direita, como uma frase: `idade >= 18` é "a idade é maior ou igual a 18?". Nos sinais de maior e menor, a ordem dos lados muda a resposta. No `===` e no `!==`, não muda.
 
-Não confundir o `===`, que pergunta, com o `=`, que guarda um valor (a [[glossario/atribuicao|atribuição]]). Ver o [[glossario/sinal-de-igual|sinal de igual]] e a aula [[programacao/logica-de-programacao/08-comparacoes|Comparações]].
+Não confundir o `===`, que pergunta, com o `=`, que guarda um valor (a [[glossario/atribuicao|atribuição]]). Ver o [[glossario/sinal-de-igual|sinal de igual]] e a aula [[programacao/logica-de-programacao/modulo-2/04-comparacoes|Comparações]].
 
 ## De onde vem a palavra
 

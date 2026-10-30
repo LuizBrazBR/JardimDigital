@@ -1,12 +1,14 @@
 ---
-title: "7. Operadores aritméticos e o resto com %"
+title: "2.3 Operadores aritméticos e o resto com %"
+aliases:
+  - programacao/logica-de-programacao/07-operadores-aritmeticos
 tags:
   - logica-de-programacao
   - javascript
   - operadores
 ---
 
-Sétima aula do curso. Na [[programacao/logica-de-programacao/06-tipos-de-dados|aula anterior]], o `+` apareceu fazendo dois trabalhos, somar e juntar texto. Agora entram todos os **[[glossario/operador|operadores]] [[glossario/aritmetica|aritméticos]]**, os que fazem conta, e um deles quase ninguém conhece da escola: o `%`, que dá o **[[glossario/resto|resto]]** de uma divisão.
+Terceira aula do módulo 2. Na [[programacao/logica-de-programacao/modulo-2/02-tipos-de-dados|aula anterior]], o `+` apareceu fazendo dois trabalhos, somar e juntar texto. Agora entram todos os **[[glossario/operador|operadores]] [[glossario/aritmetica|aritméticos]]**, os que fazem conta, e um deles quase ninguém conhece da escola: o `%`, que dá o **[[glossario/resto|resto]]** de uma divisão.
 
 ## Os cinco operadores
 
@@ -138,7 +140,7 @@ console.log(10 - 4 - 3); // 3  → primeiro 10 - 4 = 6, depois 6 - 3
 
 ### O erro clássico: a média
 
-Lembra da média das [[programacao/logica-de-programacao/03-entrada-processamento-saida|aulas 3]] e [[programacao/logica-de-programacao/05-variaveis-let-e-const|5]]? Ela tinha parênteses por um motivo:
+Lembra da média das [[programacao/logica-de-programacao/modulo-1/03-entrada-processamento-saida|aulas 1.3]] e [[programacao/logica-de-programacao/modulo-2/01-variaveis-let-e-const|2.1]]? Ela tinha parênteses por um motivo:
 
 ```js
 const nota1 = 8;

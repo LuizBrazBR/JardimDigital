@@ -5,7 +5,7 @@ title: Console
 > [!abstract] Definição
 > **Área de texto onde um programa escreve mensagens.** No JavaScript, é ali que aparece o que o código manda mostrar. No curso de Lógica de Programação, é a principal forma de ver a [[glossario/saida|saída]] dos programas.
 
-Nos navegadores, o console fica nas ferramentas de desenvolvedor, que na maioria deles abrem com a tecla F12. No Chrome e no Edge, **Ctrl+Shift+J** abre direto no console. O passo a passo está em [[programacao/logica-de-programacao/04-seu-primeiro-codigo-console-log|Seu primeiro código: console.log]].
+Nos navegadores, o console fica nas ferramentas de desenvolvedor, que na maioria deles abrem com a tecla F12. No Chrome e no Edge, **Ctrl+Shift+J** abre direto no console. O passo a passo está em [[programacao/logica-de-programacao/modulo-1/05-seu-primeiro-codigo-console-log|Seu primeiro código: console.log]].
 
 ## De onde vem a palavra
 

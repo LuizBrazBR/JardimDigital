@@ -13,7 +13,7 @@ false && console.log("oi"); // não mostra nada
 true && console.log("oi");  // mostra oi
 ```
 
-Por isso, `condição && ação()` funciona como um `if` disfarçado. Para agir, porém, o melhor é o `if` mesmo. Ver as aulas [[programacao/logica-de-programacao/09-operadores-logicos|Operadores lógicos]] e [[programacao/logica-de-programacao/10-tomando-decisoes-com-if|Tomando decisões com if]].
+Por isso, `condição && ação()` funciona como um `if` disfarçado. Para agir, porém, o melhor é o `if` mesmo. Ver as aulas [[programacao/logica-de-programacao/modulo-2/05-operadores-logicos|Operadores lógicos]] e [[programacao/logica-de-programacao/modulo-3/01-tomando-decisoes-com-if|Tomando decisões com if]].
 
 ## De onde vem a palavra
 

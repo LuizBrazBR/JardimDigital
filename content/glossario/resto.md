@@ -5,7 +5,7 @@ title: Resto
 > [!abstract] Definição
 > **O que sobra quando uma divisão não é exata.** Em JavaScript, quem calcula o resto é o operador `%`: `10 % 3` dá `1`, porque o 3 cabe três vezes no 10 (dá 9) e sobra 1. Também se chama **módulo**, ou *mod*.
 
-O resto é sempre menor que o divisor: qualquer número `% 7` dá algo de 0 a 6. Por isso o `%` serve para contas que dão a volta, como horas e dias da semana, para saber se um número é par (`n % 2` dá `0`) e para fazer algo a cada N vezes. Exemplos na aula [[programacao/logica-de-programacao/07-operadores-aritmeticos|Operadores aritméticos e o resto com %]].
+O resto é sempre menor que o divisor: qualquer número `% 7` dá algo de 0 a 6. Por isso o `%` serve para contas que dão a volta, como horas e dias da semana, para saber se um número é par (`n % 2` dá `0`) e para fazer algo a cada N vezes. Exemplos na aula [[programacao/logica-de-programacao/modulo-2/03-operadores-aritmeticos|Operadores aritméticos e o resto com %]].
 
 > [!warning] Não é porcentagem
 > `50 % 10` não é "50 por cento de 10": é o resto de 50 dividido por 10, que dá `0`.

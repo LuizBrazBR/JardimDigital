@@ -3,7 +3,7 @@ title: Processamento
 ---
 
 > [!abstract] Definição
-> **O trabalho que o programa faz com a [[glossario/entrada|entrada]] para chegar à [[glossario/saida|saída]]: calcular, comparar, ordenar, filtrar, decidir.** É o meio do ciclo [[programacao/logica-de-programacao/03-entrada-processamento-saida|entrada, processamento e saída]].
+> **O trabalho que o programa faz com a [[glossario/entrada|entrada]] para chegar à [[glossario/saida|saída]]: calcular, comparar, ordenar, filtrar, decidir.** É o meio do ciclo [[programacao/logica-de-programacao/modulo-1/03-entrada-processamento-saida|entrada, processamento e saída]].
 
 Quem usa o programa quase nunca vê o processamento, só o que entrou e o que saiu. É nessa parte escondida que fica o [[glossario/algoritmo|algoritmo]].
 

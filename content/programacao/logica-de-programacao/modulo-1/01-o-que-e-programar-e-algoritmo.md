@@ -1,7 +1,8 @@
 ---
-title: 1. O que é programar e o que é um algoritmo
+title: 1.1 O que é programar e o que é um algoritmo
 aliases:
   - programacao/logica-de-programacao/o-que-e-programar-e-algoritmo
+  - programacao/logica-de-programacao/01-o-que-e-programar-e-algoritmo
 tags:
   - logica-de-programacao
   - algoritmo

@@ -7,7 +7,7 @@ title: Lógica
 > - **Lógica de programação**: o raciocínio por trás de um programa, que vale para qualquer linguagem. É a ideia, e não a escrita.
 > - **Operadores lógicos**: as peças que combinam respostas de verdadeiro ou falso. Em JavaScript, `&&` (e), `||` (ou) e `!` (não).
 
-O tipo de dado que só aceita verdadeiro ou falso se chama, no pseudocódigo, tipo **lógico**. Em JavaScript, é o [[glossario/booleano|booleano]]. Ver as aulas [[programacao/logica-de-programacao/06-tipos-de-dados|Tipos de dados]] e [[programacao/logica-de-programacao/09-operadores-logicos|Operadores lógicos]].
+O tipo de dado que só aceita verdadeiro ou falso se chama, no pseudocódigo, tipo **lógico**. Em JavaScript, é o [[glossario/booleano|booleano]]. Ver as aulas [[programacao/logica-de-programacao/modulo-2/02-tipos-de-dados|Tipos de dados]] e [[programacao/logica-de-programacao/modulo-2/05-operadores-logicos|Operadores lógicos]].
 
 ## De onde vem a palavra
 

@@ -1,14 +1,16 @@
 ---
-title: "10. Tomando decisões com if"
+title: "3.1 Tomando decisões com if"
+aliases:
+  - programacao/logica-de-programacao/10-tomando-decisoes-com-if
 tags:
   - logica-de-programacao
   - javascript
   - condicionais
 ---
 
-Décima aula do curso. Até aqui, todo programa andava em linha reta: começava na primeira linha e ia até a última, sem pular nada. Só que quase todo programa útil precisa **escolher**. O caixa só aprova a compra se houver saldo, o site só mostra o perfil para quem entrou na conta, e o jogo só anuncia a vitória se a pontuação bater a meta.
+Primeira aula do módulo 3, o das decisões no código. Até aqui, todo programa andava em linha reta: começava na primeira linha e ia até a última, sem pular nada. Só que quase todo programa útil precisa **escolher**. O caixa só aprova a compra se houver saldo, o site só mostra o perfil para quem entrou na conta, e o jogo só anuncia a vitória se a pontuação bater a meta.
 
-As peças para fazer as perguntas já estão prontas. As [[programacao/logica-de-programacao/08-comparacoes|comparações]] respondem `true` ou `false`, e os [[programacao/logica-de-programacao/09-operadores-logicos|operadores lógicos]] juntam essas respostas. Faltava o que **fazer** com a resposta. Esse é o trabalho do `if`.
+As peças para fazer as perguntas já estão prontas. As [[programacao/logica-de-programacao/modulo-2/04-comparacoes|comparações]] respondem `true` ou `false`, e os [[programacao/logica-de-programacao/modulo-2/05-operadores-logicos|operadores lógicos]] juntam essas respostas. Faltava o que **fazer** com a resposta. Esse é o trabalho do `if`.
 
 ## Se chover, leve o guarda-chuva
 
@@ -76,7 +78,7 @@ Num fluxograma, a pergunta é um losango: entra um caminho e saem dois. Repare q
 
 ## O que vai nos parênteses
 
-Qualquer coisa que dê `true` ou `false`. Tudo o que apareceu nas aulas 8 e 9 serve:
+Qualquer coisa que dê `true` ou `false`. Tudo o que apareceu nas aulas 2.4 e 2.5 serve:
 
 ```js
 // uma comparação
@@ -95,10 +97,10 @@ if (!estaLogado) {
 }
 ```
 
-A aula 9 tinha avisado que, com as decisões, o `!` ia aparecer o tempo todo. Aí está: "se **não** estiver logado, peça para entrar" vira `if (!estaLogado)`.
+A aula 2.5 tinha avisado que, com as decisões, o `!` ia aparecer o tempo todo. Aí está: "se **não** estiver logado, peça para entrar" vira `if (!estaLogado)`.
 
 > [!tip] Não precisa de `=== true`
-> `if (temEstoque === true)` funciona, mas pergunta duas vezes: `temEstoque` já é `true` ou `false`. Basta `if (temEstoque)`, que se lê "se tem estoque". É por isso que vale dar nome de pergunta às variáveis booleanas, como na aula 8.
+> `if (temEstoque === true)` funciona, mas pergunta duas vezes: `temEstoque` já é `true` ou `false`. Basta `if (temEstoque)`, que se lê "se tem estoque". É por isso que vale dar nome de pergunta às variáveis booleanas, como na aula 2.4.
 
 ## Sempre com chaves
 
@@ -143,7 +145,7 @@ Com chaves sempre, mesmo quando o bloco tem uma linha só, não há como errar: 
 
 ## Cuidado com o `=` dentro do `if`
 
-A [[programacao/logica-de-programacao/08-comparacoes|aula 8]] mostrou que o `=` guarda e o `===` pergunta. Dentro de um `if`, a troca faz dois estragos de uma vez:
+A [[programacao/logica-de-programacao/modulo-2/04-comparacoes|aula 2.4]] mostrou que o `=` guarda e o `===` pergunta. Dentro de um `if`, a troca faz dois estragos de uma vez:
 
 ```js
 let idade = 15;
@@ -160,7 +162,7 @@ console.log(idade);
 ```
 
 1. O `=` não perguntou nada: **guardou** 18 em `idade`, e os 15 se perderam.
-2. O `if` recebeu o valor guardado, 18, no lugar de uma resposta. Como na aula 9 com o `!15`, um número diferente de zero conta como verdadeiro. Então o bloco rodou.
+2. O `if` recebeu o valor guardado, 18, no lugar de uma resposta. Como na aula 2.5 com o `!15`, um número diferente de zero conta como verdadeiro. Então o bloco rodou.
 
 O engano também funciona ao contrário. Com zero, o bloco **nunca** roda:
 
@@ -184,7 +186,7 @@ Nada disso dá erro, e o programa segue com o valor errado. Três defesas:
 
 ## `if` ou `&&`?
 
-Na aula 9, no [[glossario/curto-circuito|curto-circuito]], o `&&` já decidia se uma coisa rodava ou não:
+Na aula 2.5, no [[glossario/curto-circuito|curto-circuito]], o `&&` já decidia se uma coisa rodava ou não:
 
 ```js
 false && console.log("oi"); // não mostra nada
@@ -206,7 +208,7 @@ Para que serve o `if`, então? Os dois foram feitos para coisas diferentes:
 - O `&&` é um **operador**, como o `+`: ele **calcula** um valor. O lugar dele é onde se precisa de uma resposta, para guardar numa variável, mostrar no console ou pôr nos parênteses de um `if`.
 - O `if` é uma **instrução**: não calcula nada. Ele **decide** se um bloco roda ou não.
 
-É parecido com a divisão da aula 8, em que o `=` manda e o `===` pergunta. Aqui, o `&&` **responde** e o `if` **age**.
+É parecido com a divisão da aula 2.4, em que o `=` manda e o `===` pergunta. Aqui, o `&&` **responde** e o `if` **age**.
 
 | Você quer... | Use | Exemplo |
 |---|---|---|
@@ -239,7 +241,7 @@ Em resumo: **para perguntar, `&&`. Para agir, `if`.**
 > {temMensagens && <p>Você tem mensagens novas</p>}
 > ```
 >
-> Entre as chaves do JSX vai um **valor**, e o `if`, que não é um valor, não cabe ali. Já o `&&` calcula um valor, com um detalhe que a aula 9 não contou: ele não devolve só `true` ou `false`, e sim **um dos dois lados**. Se o esquerdo contar como falso, devolve o esquerdo. Se não, devolve o direito. Com `temMensagens` verdadeiro, o resultado é o parágrafo, que aparece na tela. Com `false`, o React não desenha nada.
+> Entre as chaves do JSX vai um **valor**, e o `if`, que não é um valor, não cabe ali. Já o `&&` calcula um valor, com um detalhe que a aula 2.5 não contou: ele não devolve só `true` ou `false`, e sim **um dos dois lados**. Se o esquerdo contar como falso, devolve o esquerdo. Se não, devolve o direito. Com `temMensagens` verdadeiro, o resultado é o parágrafo, que aparece na tela. Com `false`, o React não desenha nada.
 >
 > A armadilha é pôr um número na esquerda. Em `quantidade && <p>...</p>`, se `quantidade` valer 0, o `&&` devolve o 0, e o React mostra um "0" na tela. A saída é comparar: `quantidade > 0 && <p>...</p>`.
 >
@@ -296,7 +298,7 @@ A linha recuada é do `if`. A que voltou para a margem não é. Por isso, a arma
 ## De onde vêm as palavras
 
 - **if**: vem do inglês antigo *ġif*, que soava mais ou menos como "yif", e antes do protogermânico *\*jabai*, "quando, se". O *g* do começo se perdeu pelo caminho. Primos: o alemão *ob* ("se", como em "não sei se...") e o holandês *of* ("ou", "se").
-- **[[glossario/condicional|Condição]]**: do latim *condiciō*, de *condīcere*, "combinar, acertar", que é *con-* ("junto") + *dīcere* ("dizer"). A condição nasceu como um **acordo falado**, os termos que duas partes combinaram. O sentido continua em "aceito, **com a condição de** que...". Um `if` é um trato desses: se isso for verdade, faço aquilo. *Dīcere* é o nosso **dizer**, e também está em **ditado**, **dicionário**, **contradizer** e no **veredicto** da aula 9.
+- **[[glossario/condicional|Condição]]**: do latim *condiciō*, de *condīcere*, "combinar, acertar", que é *con-* ("junto") + *dīcere* ("dizer"). A condição nasceu como um **acordo falado**, os termos que duas partes combinaram. O sentido continua em "aceito, **com a condição de** que...". Um `if` é um trato desses: se isso for verdade, faço aquilo. *Dīcere* é o nosso **dizer**, e também está em **ditado**, **dicionário**, **contradizer** e no **veredicto** da aula 2.5.
 - **Decisão**: do latim *dēcīdere*, *dē-* ("fora") + *caedere* ("cortar"). Em latim, a palavra queria dizer primeiro "cortar fora, aparar", e só depois "resolver, pôr fim". Decidir é **cortar fora**: das opções, uma fica, e as outras são cortadas. O mesmo *caedere* está em **preciso** (de *praecīdere*, "cortar na frente": o que foi aparado na medida), **conciso** (de *concīdere*, "cortar em pedaços": o texto que foi cortado curto) e **incisão**. O `if` decide no sentido mais literal: corta um caminho fora.
 - **[[glossario/bloco|Bloco]]**: do francês *bloc*, do holandês médio *blok*, "tronco de árvore". No francês antigo, *bloc* era uma **tora**. É a mesma imagem do [[glossario/log|log]], que em inglês também é uma tora: duas palavras da programação que nasceram como um pedaço de madeira.
 - **[[glossario/curto-circuito|Curto-circuito]]**: *circuito* vem do latim *circuitus*, "volta", de *circum* ("em volta") + *īre* ("ir"). Um circuito é um caminho que dá a volta e retorna ao começo, como a corrente que sai da pilha, passa pela lâmpada e volta. No curto-circuito, do inglês *short circuit*, a corrente acha um caminho mais **curto** e pula a lâmpada. O `&&` faz igual: quando o lado esquerdo já decide a resposta, ele pega o atalho e pula o direito.
