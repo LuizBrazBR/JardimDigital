@@ -260,7 +260,7 @@ if (idade >= 18 && temCarteira) {
 O atalho `condição && ação()` funciona, mas sai perdendo:
 
 - **Cabe uma ação só.** No bloco do `if`, cabem quantas linhas forem necessárias.
-- **Não tem "senão".** O `if` pode ganhar um `else` ("senão"), para fazer outra coisa quando a resposta é `false`. O `&&` não tem isso.
+- **Não tem "senão".** O `if` pode ganhar um `else` ("senão"), para fazer outra coisa quando a resposta é `false`. É o assunto da [[programacao/logica-de-programacao/modulo-3/02-if-else-o-outro-caminho|aula 3.2]]. O `&&` não tem isso.
 - **Lê pior.** `if (estaLogado)` se lê "se estiver logado". A linha com `&&` parece uma pergunta cuja resposta foi jogada fora, e é isso mesmo: o `&&` calcula um valor que ninguém guarda.
 - **Linters reclamam.** O ESLint tem a regra `no-unused-expressions` ("sem expressões cujo resultado não é usado"). Quando ligada, ela aponta `a && b()` como erro.
 
