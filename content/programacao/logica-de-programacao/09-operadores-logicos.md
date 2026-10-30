@@ -74,7 +74,7 @@ console.log(ehEstudante || idadeCliente >= 60); // true
 
 Uma estudante de 70 anos cumpre as duas condições e paga meia, claro. O `||` quer dizer "pelo menos um".
 
-### O "não", e como evitá-lo
+### O "não"
 
 O `!` inverte a resposta. Mas ele inverte a **pergunta**, e não o tempo lá fora:
 
@@ -98,6 +98,28 @@ As duas linhas dizem a mesma coisa sobre o tempo: não chove. O `true` não quer
 > — Então não está chovendo? — Exato, não está. *(isso é o `!chovendo`: `true`)*
 >
 > A segunda resposta é um "sim" para a pergunta, embora fale de algo que não acontece.
+
+#### Para que serve o `!`
+
+O `!` aparece quando o programa precisa agir justamente quando algo **não** acontece:
+
+- Mostrar o botão "Entrar" só para quem **não** está logado: `const mostrarBotaoEntrar = !estaLogado;`
+- Mostrar o aviso "esgotado" quando o produto **não** tem estoque: `const mostrarEsgotado = !temEstoque;`
+- Fazer um botão de liga e desliga, em que cada clique troca o valor:
+
+```js
+let somLigado = true;
+somLigado = !somLigado; // clicou no botão de mudo
+console.log(somLigado); // false
+somLigado = !somLigado; // clicou de novo
+console.log(somLigado); // true
+```
+
+A linha `somLigado = !somLigado` não precisa saber se o som estava ligado ou desligado: ela sempre troca para o outro. Botões de mudo, de tema escuro e de favoritar seguem essa ideia.
+
+Mais para a frente, com as decisões do tipo "se isso, faça aquilo", o `!` aparece o tempo todo: "se **não** estiver logado, mostre a tela de login".
+
+#### Com comparações, troque o `!` pelo contrário
 
 Com comparações, quase sempre existe um jeito mais simples do que pôr `!` na frente: usar a comparação contrária.
 

@@ -7,3 +7,9 @@
 article.sem-listagem ~ .page-listing {
   display: none;
 }
+
+// O conteúdo do callout é um grid. Sem limitar a coluna, um bloco de código com linha longa
+// alarga a coluna além da caixa, e texto e código ficam cortados, sem rolagem, em telas estreitas
+.callout > .callout-content {
+  grid-template-columns: minmax(0, 1fr);
+}
