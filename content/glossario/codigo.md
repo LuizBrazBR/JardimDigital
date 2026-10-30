@@ -22,7 +22,7 @@ Do latim *cōdex*, forma popular de *caudex*: **tronco de árvore**. O caminho a
 
 **Códice**, o nome dos livros manuscritos antigos, é a mesma palavra latina, emprestada de novo séculos depois.
 
-> [!tip] Madeira dos dois lados
-> *Log*, como em `console.log`, também é madeira: em inglês, é uma tora. Veja [[glossario/log|log]].
+> [!tip] Mais madeira
+> *Log*, como em `console.log`, também é madeira: em inglês, é uma tora. E [[glossario/bloco|bloco]] vem do holandês *blok*, tronco de árvore. Veja [[glossario/log|log]].
 
 Fontes: Wiktionary: [cōdex](https://en.wiktionary.org/wiki/codex), [code](https://en.wiktionary.org/wiki/code)

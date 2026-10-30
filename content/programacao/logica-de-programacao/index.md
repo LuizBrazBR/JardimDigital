@@ -11,7 +11,7 @@ Resumos das aulas do curso de Lógica de Programação, divididos em módulos co
 1. [[programacao/logica-de-programacao/modulo-1/01-o-que-e-programar-e-algoritmo|O que é programar e o que é um algoritmo]]
 2. [[programacao/logica-de-programacao/modulo-1/02-pensando-como-programador|Pensando como programador]]
 3. [[programacao/logica-de-programacao/modulo-1/03-entrada-processamento-saida|Entrada, processamento e saída]]
-4. Do pseudocódigo ao fluxograma *(ainda sem resumo)*
+4. [[programacao/logica-de-programacao/modulo-1/04-do-pseudocodigo-ao-fluxograma|Do pseudocódigo ao fluxograma]]
 5. [[programacao/logica-de-programacao/modulo-1/05-seu-primeiro-codigo-console-log|Seu primeiro código: console.log]]
 
 ## [[programacao/logica-de-programacao/modulo-2/index|Módulo 2 – Variáveis, tipos e operadores]]

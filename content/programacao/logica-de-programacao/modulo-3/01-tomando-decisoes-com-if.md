@@ -74,7 +74,7 @@ flowchart TD
     A --> O
 ```
 
-Num fluxograma, a pergunta é um losango: entra um caminho e saem dois. Repare que os dois caminhos se juntam de novo logo depois. O `if` é um desvio, e não uma estrada nova: quem passa pelo bloco volta para o mesmo lugar de quem pulou.
+Num [[glossario/fluxograma|fluxograma]], a pergunta é um losango: entra um caminho e saem dois. Repare que os dois caminhos se juntam de novo logo depois. O `if` é um desvio, e não uma estrada nova: quem passa pelo bloco volta para o mesmo lugar de quem pulou.
 
 ## O que vai nos parênteses
 
@@ -300,7 +300,7 @@ A linha recuada é do `if`. A que voltou para a margem não é. Por isso, a arma
 - **if**: vem do inglês antigo *ġif*, que soava mais ou menos como "yif", e antes do protogermânico *\*jabai*, "quando, se". O *g* do começo se perdeu pelo caminho. Primos: o alemão *ob* ("se", como em "não sei se...") e o holandês *of* ("ou", "se").
 - **[[glossario/condicional|Condição]]**: do latim *condiciō*, de *condīcere*, "combinar, acertar", que é *con-* ("junto") + *dīcere* ("dizer"). A condição nasceu como um **acordo falado**, os termos que duas partes combinaram. O sentido continua em "aceito, **com a condição de** que...". Um `if` é um trato desses: se isso for verdade, faço aquilo. *Dīcere* é o nosso **dizer**, e também está em **ditado**, **dicionário**, **contradizer** e no **veredicto** da aula 2.5.
 - **Decisão**: do latim *dēcīdere*, *dē-* ("fora") + *caedere* ("cortar"). Em latim, a palavra queria dizer primeiro "cortar fora, aparar", e só depois "resolver, pôr fim". Decidir é **cortar fora**: das opções, uma fica, e as outras são cortadas. O mesmo *caedere* está em **preciso** (de *praecīdere*, "cortar na frente": o que foi aparado na medida), **conciso** (de *concīdere*, "cortar em pedaços": o texto que foi cortado curto) e **incisão**. O `if` decide no sentido mais literal: corta um caminho fora.
-- **[[glossario/bloco|Bloco]]**: do francês *bloc*, do holandês médio *blok*, "tronco de árvore". No francês antigo, *bloc* era uma **tora**. É a mesma imagem do [[glossario/log|log]], que em inglês também é uma tora: duas palavras da programação que nasceram como um pedaço de madeira.
+- **[[glossario/bloco|Bloco]]**: do francês *bloc*, do holandês médio *blok*, "tronco de árvore". No francês antigo, *bloc* era uma **tora**. É a mesma imagem do [[glossario/log|log]], que em inglês também é uma tora, e do [[glossario/codigo|código]], do latim *cōdex*, tronco de árvore: três palavras da programação que nasceram como madeira.
 - **[[glossario/curto-circuito|Curto-circuito]]**: *circuito* vem do latim *circuitus*, "volta", de *circum* ("em volta") + *īre* ("ir"). Um circuito é um caminho que dá a volta e retorna ao começo, como a corrente que sai da pilha, passa pela lâmpada e volta. No curto-circuito, do inglês *short circuit*, a corrente acha um caminho mais **curto** e pula a lâmpada. O `&&` faz igual: quando o lado esquerdo já decide a resposta, ele pega o atalho e pula o direito.
 
 > [!tip] Para guardar

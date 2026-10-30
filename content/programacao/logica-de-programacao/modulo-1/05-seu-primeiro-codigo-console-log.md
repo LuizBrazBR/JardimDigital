@@ -8,7 +8,7 @@ tags:
   - console
 ---
 
-Última aula do módulo 1. Até aqui, os algoritmos ficaram no papel ou em comentários. Agora o [[glossario/codigo|código]] roda de verdade.
+Última aula do módulo 1. Até aqui, os algoritmos ficaram no [[programacao/logica-de-programacao/modulo-1/04-do-pseudocodigo-ao-fluxograma|papel]] ou em comentários. Agora o [[glossario/codigo|código]] roda de verdade.
 
 A aula ensina um comando só, o `console.log`. Só que, no caminho, aparecem várias peças que ela usa sem explicar: o ponto, os parênteses, as aspas, o ponto e vírgula, os `//`, o "erro de sintaxe" e onde, afinal, o código roda. Este resumo abre cada uma delas.
 
