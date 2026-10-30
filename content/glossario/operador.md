@@ -9,6 +9,8 @@ O mesmo operador pode mudar de trabalho conforme o [[glossario/tipo-de-dado|tipo
 
 Os operadores que fazem contas se chamam **[[glossario/aritmetica|aritméticos]]**. Entre eles está o `%`, que dá o [[glossario/resto|resto]] de uma divisão. Quando vários aparecem na mesma conta, a [[glossario/precedencia|precedência]] decide quem vai primeiro.
 
+Os que fazem perguntas, como `>` e `===`, são os operadores de [[glossario/comparacao|comparação]], e devolvem `true` ou `false`. Os que juntam essas respostas, `&&` (e), `||` (ou) e `!` (não), são os operadores [[glossario/logica|lógicos]].
+
 ## De onde vem a palavra
 
 Do latim *operātor*, "trabalhador", de *operārī*, "trabalhar", que vem de *opus*, "obra". O operador é **quem faz o trabalho**: pega os valores e entrega o resultado.

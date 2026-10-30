@@ -14,3 +14,4 @@ Resumos das aulas do curso de Lógica de Programação, na ordem em que foram es
 6. [[programacao/logica-de-programacao/06-tipos-de-dados|Tipos de dados: número, texto e booleano]]
 7. [[programacao/logica-de-programacao/07-operadores-aritmeticos|Operadores aritméticos e o resto com %]]
 8. [[programacao/logica-de-programacao/08-comparacoes|Comparações: = x === e os sinais de comparação]]
+9. [[programacao/logica-de-programacao/09-operadores-logicos|Operadores lógicos: e, ou, não]]
