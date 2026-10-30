@@ -100,7 +100,20 @@ Nem precisa. Se a idade não é maior ou igual a 18, só pode ser menor. A pergu
 > // Saldo insuficiente
 > ```
 >
-> Quando a linha acaba depois do `(saldo < preco)`, o JavaScript entende que a instrução do `else` terminou ali. O `else` fica com uma pergunta solta, cuja resposta ninguém usa, e o bloco de baixo vira um bloco avulso, que não pertence a ninguém e roda sempre. É o mesmo tipo de armadilha do *goto fail* da aula 3.1: parece estar dentro, mas não está. A regra `no-unused-expressions` do ESLint aponta a pergunta solta.
+> Nas quebras de linha, o JavaScript segue uma regra que põe um `;` no fim de certas linhas. É ela que deixa você não escrever o ponto e vírgula. Aqui, o `;` vai parar depois da pergunta, e o código passa a ser lido assim:
+>
+> ```js
+> } else (saldo < preco);   // o ; foi posto pelo JavaScript
+> {
+>   console.log("Saldo insuficiente");
+> }
+> ```
+>
+> Agora são duas instruções, e as duas são válidas. O `else` fica com uma pergunta solta, cuja resposta ninguém usa. E o `{ ... }` vira um **bloco solto**, sem dono.
+>
+> Bloco solto também é JavaScript válido. Até aqui, as instruções vinham soltas, sem chaves. Mas as chaves só juntam instruções: elas não são uma peça do `if`, e o que está dentro roda como se estivesse fora. Quem decide se um bloco roda é o `if` ou o `else` que vem antes dele. Sem nenhum dos dois, o bloco roda sempre. Mais no verbete [[glossario/bloco|Bloco]].
+>
+> Na mesma linha, o JavaScript não consegue ler o código e avisa com um erro. Com a quebra de linha, consegue, só que com outro sentido, e roda sem avisar. É o mesmo tipo de armadilha do *goto fail* da aula 3.1: parece estar dentro, mas não está. A regra `no-unused-expressions` do ESLint aponta a pergunta solta.
 
 ### Logo depois do `if`
 
