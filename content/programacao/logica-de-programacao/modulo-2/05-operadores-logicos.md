@@ -207,6 +207,8 @@ São duas regras diferentes. Um amigo do organizador sem convite entra na primei
 > Em palavras: fica de fora da festa quem **não** tem (convite **e** nome na lista). Ou seja, quem não tem convite **ou** não está na lista. Basta faltar uma das duas coisas.
 >
 > São as **leis de De Morgan**, do matemático inglês Augustus De Morgan (1806–1871). Ele era amigo de George Boole: em 1847, os dois publicaram livros de lógica no mesmo dia. De Morgan também foi professor de Ada Lovelace.
+>
+> Na [[programacao/logica-de-programacao/modulo-3/04-condicoes-compostas-e-ou-nao|aula 3.4]], elas aparecem na prática: o `else` de um `if` com "e" recebe quem falhou em pelo menos uma das perguntas, ou seja, um "ou".
 
 ## Lógica ou JavaScript?
 

@@ -13,7 +13,7 @@ if (saldo >= preco) {
 }
 ```
 
-Quando a condição dá falso, o bloco é pulado. Para fazer outra coisa nesse caso, a condicional ganha um segundo caminho, o [[glossario/senao|senão]] (`else`). Para mais de dois caminhos, as condições se encadeiam com o [[glossario/senao-se|senão se]] (`else if`).
+Quando a condição dá falso, o bloco é pulado. Para fazer outra coisa nesse caso, a condicional ganha um segundo caminho, o [[glossario/senao|senão]] (`else`). Para mais de dois caminhos, as condições se encadeiam com o [[glossario/senao-se|senão se]] (`else if`). E uma condição pode juntar várias perguntas com `&&`, `||` e `!`: é a [[glossario/condicao-composta|condição composta]].
 
 É com as condicionais que um programa deixa de andar em linha reta e passa a tomar decisões. Ver as aulas [[programacao/logica-de-programacao/modulo-3/01-tomando-decisoes-com-if|Tomando decisões com if]] e [[programacao/logica-de-programacao/modulo-3/02-if-else-o-outro-caminho|if/else: o outro caminho]].
 
