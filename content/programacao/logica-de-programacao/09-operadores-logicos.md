@@ -195,7 +195,7 @@ São duas regras diferentes. Um amigo do organizador sem convite entra na primei
 > true && console.log("oi");  // mostra oi
 > ```
 >
-> Isso se chama **curto-circuito**, de novo uma palavra de circuito elétrico. Vai ser útil mais para a frente, para pôr do lado esquerdo uma verificação que protege o lado direito.
+> Isso se chama **[[glossario/curto-circuito|curto-circuito]]**, de novo uma palavra de circuito elétrico. Vai ser útil mais para a frente, para pôr do lado esquerdo uma verificação que protege o lado direito.
 
 > [!info]- Para ir além: as leis de De Morgan (clique para abrir)
 > Como se nega uma regra com E ou com OU? Trocando um pelo outro:

@@ -15,3 +15,4 @@ Resumos das aulas do curso de Lógica de Programação, na ordem em que foram es
 7. [[programacao/logica-de-programacao/07-operadores-aritmeticos|Operadores aritméticos e o resto com %]]
 8. [[programacao/logica-de-programacao/08-comparacoes|Comparações: = x === e os sinais de comparação]]
 9. [[programacao/logica-de-programacao/09-operadores-logicos|Operadores lógicos: e, ou, não]]
+10. [[programacao/logica-de-programacao/10-tomando-decisoes-com-if|Tomando decisões com if]]
