@@ -5,7 +5,7 @@ title: Booleano
 > [!abstract] Definição
 > **Tipo de valor que só tem duas possibilidades: verdadeiro ou falso.** Em JavaScript, `true` ou `false`, sem aspas e em minúsculas. Em pseudocódigo, costuma se chamar tipo **lógico**.
 
-Toda comparação devolve um booleano: `10 > 5` dá `true`. É com essas respostas que um programa decide qual caminho seguir.
+Toda [[glossario/comparacao|comparação]] devolve um booleano: `10 > 5` dá `true`. É com essas respostas que um programa decide qual caminho seguir.
 
 ## De onde vem a palavra
 

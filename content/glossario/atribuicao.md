@@ -7,6 +7,9 @@ title: Atribuição
 
 O `=` da atribuição não é o "igual" da matemática. É uma ordem: calcule o lado direito e guarde o resultado no esquerdo. Por isso `idade = idade + 1` faz sentido: pega o valor atual, soma 1 e guarda de volta. Muitos livros de lógica escrevem a atribuição com uma seta, `idade ← idade + 1`, para deixar a direção clara.
 
+> [!warning] `=` não é `===`
+> O `=` guarda um valor. Para perguntar se dois valores são iguais, o JavaScript usa o `===`. Ver [[glossario/sinal-de-igual|sinal de igual]].
+
 ## De onde vem a palavra
 
 Do latim *attribuere*:
