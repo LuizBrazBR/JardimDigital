@@ -17,7 +17,7 @@ if (temperatura >= 30) {
 
 O JavaScript testa as condições de cima para baixo e para na primeira que der `true`. As de baixo nem são testadas. Por isso, a ordem muda a resposta: com `>=`, as perguntas vão do valor maior para o menor.
 
-O `else if` não é uma palavra nova. É um [[glossario/senao|senão]] (`else`) seguido de um `if`. O `else` manda numa instrução só, e o `if` seguinte, com tudo o que vem com ele, é essa instrução. Não existe `elseif`, tudo junto. No Python, a mesma ideia se escreve `elif`.
+O `else if` não é uma palavra nova. É um `if` **aninhado**, posto dentro de um [[glossario/senao|senão]] (`else`), só que sem as chaves. O JavaScript não obriga as chaves quando há uma instrução só, e o `if` seguinte, com tudo o que vem com ele, é essa instrução. Não existe `elseif`, tudo junto. No Python, a mesma ideia se escreve `elif`.
 
 Ver a aula [[programacao/logica-de-programacao/modulo-3/03-else-if-varias-condicoes-em-cadeia|else if: várias condições em cadeia]].
 

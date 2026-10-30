@@ -59,7 +59,9 @@ No [[glossario/fluxograma|fluxograma]], cada "não" leva ao losango seguinte, e 
 
 ## O `else if` não é uma palavra nova
 
-O `else if` não é um comando novo. É um `else` e um `if`, um depois do outro. Dá para chegar nele em três passos, só com o que as aulas 3.1 e 3.2 já mostraram. Para ficar curto, o exemplo tem três caminhos: calor, agradável e frio.
+Em uma frase: o JavaScript não obriga as chaves quando há **uma instrução só**, e o `else if` se aproveita disso. Ele não é um comando novo, e sim um `if` **aninhado** no `else`, quer dizer, posto dentro dele, só que escrito sem as chaves.
+
+Dá para chegar nele em três passos, só com o que as aulas 3.1 e 3.2 já mostraram. Para ficar curto, o exemplo tem três caminhos: calor, agradável e frio.
 
 **Passo 1: um `if` dentro do `else`.** Dentro do bloco do `else` pode ir qualquer instrução, e isso inclui outro `if` com outro `else`:
 
@@ -391,6 +393,7 @@ E na planilha, o encaixe fica à vista. Cada `SE` novo entra no lugar do "valor 
 - **[[glossario/senao-se|Encadear]]**: de *cadeia*, do latim *catēna*, "corrente". Encadear é pôr em cadeia, ligar um elo no outro, como cada `else if` se liga ao anterior. Da mesma *catēna* vêm **concatenar**, que é juntar textos na programação (ver [[glossario/string|string]]), e o inglês **chain**, "corrente", que veio pelo francês antigo *chaeine*.
 - **Escada** e **escala**: as duas vêm do latim *scāla*, "escada de mão" e, no plural, "escadaria". *Escada* chegou pela fala, pelo latim vulgar *\*scālāta*. *Escala* foi tirada do latim mais tarde, direto dos livros. É a escala do termômetro: os risquinhos, um acima do outro, são uma escada de números.
 - **Degrau** e **grau**: as duas vêm do latim *gradus*, que queria dizer passo, degrau e também grau. *Degrau* veio do latim vulgar *\*dēgradus*. Os graus do termômetro são, ao pé da letra, os degraus da escala, e a escada de `else if` do termômetro sobe e desce em graus.
+- **Aninhado**: de *aninhar*, que é *a-* + *ninho* + *-ar*: pôr no ninho. *Ninho* vem do latim *nīdus*, de uma raiz indo-europeia, *\*nisdós*, que juntava *\*ní*, "para baixo", e *\*sed-*, "sentar". O ninho era, ao pé da letra, **onde a ave se senta**. O inglês *nest*, de onde vem o *nested* ("aninhado") dos programadores, vem da mesma raiz. As duas línguas usam a mesma imagem, um `if` acomodado dentro do outro, com palavras da mesma origem.
 - **Ordem**: do latim *ōrdō*, *ōrdinis*, "fileira, série, arrumação". Em latim, a ordem era também uma **fila**: coisas postas uma atrás da outra. É o que a escada de `else if` é, e por isso a ordem dela muda a resposta. Da mesma família vêm **ordenar** e **ordinal**, como em primeiro, segundo e terceiro, e mais adiante a **ordenação**, da aula 7.3.
 
 > [!tip] Para guardar
@@ -398,7 +401,7 @@ E na planilha, o encaixe fica à vista. Cada `SE` novo entra no lugar do "valor 
 > - Roda no máximo um bloco. Com o `else` no fim, roda sempre exatamente um.
 > - A ordem é parte da lógica. Com `>=`, do maior para o menor. Com `<`, do menor para o maior. Fora de ordem, há degraus que nunca rodam, e o JavaScript não avisa.
 > - Cada degrau já sabe o "não" dos de cima. Não repita a faixa com `&&`, porque é por aí que aparecem os buracos.
-> - O `else if` é só um `else` com um `if` dentro, escrito em uma linha. Não existe `elseif`.
+> - O `else if` é um `if` aninhado no `else`, sem as chaves: o JavaScript não obriga chaves quando há uma instrução só. Não existe `elseif`.
 > - Teste as bordas de cada faixa.
 
-Fontes: MDN: [if...else](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) · Python: [Tutorial, if Statements](https://docs.python.org/3/tutorial/controlflow.html#if-statements) · Wiktionary: [cadeia](https://en.wiktionary.org/wiki/cadeia), [concatenate](https://en.wiktionary.org/wiki/concatenate), [chain](https://en.wiktionary.org/wiki/chain), [escada](https://en.wiktionary.org/wiki/escada), [escala](https://en.wiktionary.org/wiki/escala), [scala](https://en.wiktionary.org/wiki/scala), [degrau](https://en.wiktionary.org/wiki/degrau), [grau](https://en.wiktionary.org/wiki/grau), [gradus](https://en.wiktionary.org/wiki/gradus), [ordem](https://en.wiktionary.org/wiki/ordem), [ordo](https://en.wiktionary.org/wiki/ordo)
+Fontes: MDN: [if...else](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) · Python: [Tutorial, if Statements](https://docs.python.org/3/tutorial/controlflow.html#if-statements) · Wiktionary: [cadeia](https://en.wiktionary.org/wiki/cadeia), [concatenate](https://en.wiktionary.org/wiki/concatenate), [chain](https://en.wiktionary.org/wiki/chain), [escada](https://en.wiktionary.org/wiki/escada), [escala](https://en.wiktionary.org/wiki/escala), [scala](https://en.wiktionary.org/wiki/scala), [degrau](https://en.wiktionary.org/wiki/degrau), [grau](https://en.wiktionary.org/wiki/grau), [gradus](https://en.wiktionary.org/wiki/gradus), [ordem](https://en.wiktionary.org/wiki/ordem), [ordo](https://en.wiktionary.org/wiki/ordo), [aninhar](https://en.wiktionary.org/wiki/aninhar), [ninho](https://en.wiktionary.org/wiki/ninho), [nidus](https://en.wiktionary.org/wiki/nidus), [nest](https://en.wiktionary.org/wiki/nest), [\*nisdós](https://en.wiktionary.org/wiki/Reconstruction:Proto-Indo-European/nisd%C3%B3s)
