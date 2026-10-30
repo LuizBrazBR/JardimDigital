@@ -59,9 +59,9 @@ No [[glossario/fluxograma|fluxograma]], cada "não" leva ao losango seguinte, e 
 
 ## O `else if` não é uma palavra nova
 
-Ele é só um `else` seguido de um `if`. A aula 3.2 mostrou que o `else` manda numa instrução só, e que essa instrução costuma ser um [[glossario/bloco|bloco]]. Mas pode ser outra coisa, e um `if` inteiro, com os blocos dele e o `else` dele, também é uma instrução só.
+O `else if` não é um comando novo. É um `else` e um `if`, um depois do outro. Dá para chegar nele em três passos, só com o que as aulas 3.1 e 3.2 já mostraram. Para ficar curto, o exemplo tem três caminhos: calor, agradável e frio.
 
-Com todas as chaves, o mesmo código fica assim:
+**Passo 1: um `if` dentro do `else`.** Dentro do bloco do `else` pode ir qualquer instrução, e isso inclui outro `if` com outro `else`:
 
 ```js
 if (temperatura >= 30) {
@@ -70,20 +70,72 @@ if (temperatura >= 30) {
   if (temperatura >= 20) {
     console.log("Agradável");
   } else {
-    if (temperatura >= 10) {
-      console.log("Frio");
-    } else {
-      console.log("Muito frio");
-    }
+    console.log("Frio");
   }
 }
 ```
 
-Roda igual. Cada `else` carrega um `if` novo dentro, que carrega outro `else`, e assim por diante. Com quatro caminhos, já fica uma escada torta para a direita. Com dez, ninguém mais lê. Escrever `else if` na mesma linha só tira as chaves de cada `else`. A escada é a mesma, mas o código fica reto.
+Lê-se assim: "se fizer 30 ou mais, calor. Senão, faça isto: *se fizer 20 ou mais, agradável; senão, frio*". Isso já funciona, e não tem nada de novo.
 
-É o único lugar em que o costume dispensa as chaves do `else`. Não há perigo: o que vem depois do `else` é um `if` inteiro, e não uma linha solta que parece estar dentro.
+**Passo 2: tirar as chaves do `else` de fora.** Repare no que ficou entre essas chaves: uma coisa só, o `if`/`else` de dentro. Um `if` com o seu `else` conta como **uma** instrução, mesmo ocupando várias linhas. E as chaves servem para juntar **várias** instruções num [[glossario/bloco|bloco]]. Com uma só lá dentro, dá para tirar:
 
-Por isso não existe `elseif`, tudo junto, em JavaScript. Escrito assim, dá erro, porque o JavaScript lê `elseif` como um nome qualquer e não entende o `{` que vem depois:
+```js
+if (temperatura >= 30) {
+  console.log("Calor");
+} else
+  if (temperatura >= 20) {
+    console.log("Agradável");
+  } else {
+    console.log("Frio");
+  }
+```
+
+**Passo 3: subir o `if` para a linha do `else`.** A quebra de linha e o recuo aqui não mudam nada para o JavaScript. Então dá para puxar o `if` para cima e alinhar tudo:
+
+```js
+if (temperatura >= 30) {
+  console.log("Calor");
+} else if (temperatura >= 20) {
+  console.log("Agradável");
+} else {
+  console.log("Frio");
+}
+```
+
+Pronto: é o `else if`. Os três códigos rodam igual, e o último é só o primeiro escrito de um jeito mais curto.
+
+### Por que escrever assim
+
+Com três caminhos, o código do passo 1 ainda se lê bem. Mas cada caminho a mais põe um `if` dentro de mais um `else`, e o código vai andando para a direita. O `else if` deixa tudo na mesma margem, com quantos caminhos forem.
+
+> [!example]- A escada torta, com quatro caminhos (clique para abrir)
+> O termômetro do começo da aula, escrito à moda do passo 1:
+>
+> ```js
+> if (temperatura >= 30) {
+>   console.log("Calor");
+> } else {
+>   if (temperatura >= 20) {
+>     console.log("Agradável");
+>   } else {
+>     if (temperatura >= 10) {
+>       console.log("Frio");
+>     } else {
+>       console.log("Muito frio");
+>     }
+>   }
+> }
+> ```
+>
+> Com dez caminhos, seriam dez níveis de recuo.
+
+### E as chaves que saíram?
+
+A aula 3.1 recomendou chaves sempre. O perigo, lá, era uma segunda linha que **parece** estar dentro do `if`, mas não está. Aqui isso não acontece: o que vem depois do `else` é um `if` inteiro, com as chaves dele. Não sobra linha solta. É o único caso em que o costume dispensa as chaves do `else`.
+
+### Por que `elseif` dá erro
+
+O `else if` são duas [[glossario/palavra-reservada|palavras reservadas]], uma depois da outra. Grudadas, viram `elseif`, uma palavra que o JavaScript não conhece. Ele a trata como um nome qualquer, como o de uma variável, e aí o `{` que vem depois não faz sentido:
 
 ```js
 if (nota >= 9) {
