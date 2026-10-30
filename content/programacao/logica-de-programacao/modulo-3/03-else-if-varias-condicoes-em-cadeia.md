@@ -222,8 +222,37 @@ if (nota >= 9) {
 
 O 8,95 não é maior ou igual a 9, nem menor ou igual a 8,9. Ele passa por todas as perguntas, cai num buraco entre duas faixas, e o programa não mostra nada. Na escada simples, `nota >= 9`, `nota >= 7`, `nota >= 5` e depois `else`, isso não acontece. Toda nota tem exatamente um lugar, sem buraco e sem sobra.
 
-> [!tip] Teste as bordas
-> Para conferir uma escada, não basta um valor do meio de cada faixa. Teste cada **limite** e um valor logo abaixo dele: 30 e 29,9; 20 e 19,9; 10 e 9,9. É nas bordas que se escondem os enganos entre `>=` e `>`, e os buracos.
+## Teste as bordas
+
+Depois de escrever uma escada, vale testar se ela funciona. O jeito mais óbvio é escolher um valor no meio de cada faixa, como 35, 25, 15 e 5. Só que esse teste deixa passar os erros mais comuns.
+
+Imagine que alguém escreveu `>` no lugar de `>=` no primeiro degrau:
+
+```js
+if (temperatura > 30) {   // engano: deveria ser >=
+  console.log("Calor");
+} else if (temperatura >= 20) {
+  console.log("Agradável");
+} else if (temperatura >= 10) {
+  console.log("Frio");
+} else {
+  console.log("Muito frio");
+}
+```
+
+| Temperatura | Resposta | Está certo? |
+|---|---|---|
+| 35 | Calor | sim |
+| 25 | Agradável | sim |
+| 15 | Frio | sim |
+| 5 | Muito frio | sim |
+| **30** | **Agradável** | **não: devia ser Calor** |
+
+Com os valores do meio, tudo parece certo. O erro só aparece no 30, o número exato em que a resposta passa de um degrau para o outro. Esse número é a **borda** da faixa, como a linha que separa dois terrenos.
+
+Por isso, o teste que pega os erros é o das bordas: cada limite (30, 20, 10) e um valor logo abaixo dele (29,9, 19,9, 9,9). No 30, a resposta tem de ser "Calor". No 29,9, já tem de ser "Agradável". Se a troca acontecer no lugar errado, o teste mostra.
+
+Os buracos também moram nas bordas. O 8,95 lá de cima escapou justamente no espaço entre o 8,9 e o 9. Um teste com 9,5, 8, 6 e 3 nunca o encontraria.
 
 ## Quantos blocos rodam
 
