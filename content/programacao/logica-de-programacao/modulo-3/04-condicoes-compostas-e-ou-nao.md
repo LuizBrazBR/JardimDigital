@@ -300,9 +300,9 @@ Na planilha, a montanha-russa fica assim:
 
 ## Treine
 
-> [!question] Tente
-> 1. O que aparece no console?
->
+Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
+
+> [!question] 1. O que aparece no console?
 > ```js
 > const altura = 150;
 > const idade = 12;
@@ -314,8 +314,10 @@ Na planilha, a montanha-russa fica assim:
 > }
 > ```
 >
-> 2. E aqui?
->
+> > [!success]- Resposta
+> > `Pode ir`: `150 >= 140` e `12 >= 10` dão `true`, e o `&&` recebe dois `true`.
+
+> [!question] 2. O que aparece no console?
 > ```js
 > const idade = 3;
 > const fazAniversarioHoje = false;
@@ -327,8 +329,10 @@ Na planilha, a montanha-russa fica assim:
 > }
 > ```
 >
-> 3. Este código dá erro. Por quê? Como consertar?
->
+> > [!success]- Resposta
+> > `Entrada grátis`: `3 < 5` dá `true`, e para o `||` isso basta.
+
+> [!question] 3. Este código dá erro. Por quê? Como consertar?
 > ```js
 > const nota = 6;
 >
@@ -337,8 +341,10 @@ Na planilha, a montanha-russa fica assim:
 > }
 > ```
 >
-> 4. Este código mostra "Fim de semana" numa terça. Por quê? Como consertar?
->
+> > [!success]- Resposta
+> > Depois do `&&` falta dizer **quem** é menor que 7. O JavaScript mostra `SyntaxError: Unexpected token '<'`. O certo é `if (nota >= 5 && nota < 7)`.
+
+> [!question] 4. Este código mostra "Fim de semana" numa terça. Por quê? Como consertar?
 > ```js
 > const dia = "terça";
 >
@@ -347,8 +353,10 @@ Na planilha, a montanha-russa fica assim:
 > }
 > ```
 >
-> 5. O que aparece no console? A resposta está certa?
->
+> > [!success]- Resposta
+> > O lado direito do `||` é só o texto `"domingo"`, que conta como verdadeiro por não estar vazio. Então o `||` sempre dá verdadeiro. O certo é `if (dia === "sábado" || dia === "domingo")`.
+
+> [!question] 5. O que aparece no console? A resposta está certa?
 > ```js
 > const a = 7;
 > const b = 7;
@@ -363,9 +371,24 @@ Na planilha, a montanha-russa fica assim:
 > }
 > ```
 >
-> 6. Um cinema dá meia-entrada para estudantes ou para quem tem 60 anos ou mais, sempre com documento. Escreva o `if`, com as variáveis `ehEstudante`, `idade` e `temDocumento`. Ele deve mostrar "Meia-entrada" ou "Inteira".
-> 7. Reescreva sem o `!`, trocando os blocos de lugar:
+> > [!success]- Resposta
+> > Aparece `3 é o maior`, e está errado. Com o empate, `7 > 7` dá `false` nas duas primeiras perguntas, e o `else` fica com o menor número. Trocando `>` por `>=`, aparece `7 é o maior`.
+
+> [!question] 6. Escreva o `if`
+> Um cinema dá meia-entrada para estudantes ou para quem tem 60 anos ou mais, sempre com documento. Escreva o `if`, com as variáveis `ehEstudante`, `idade` e `temDocumento`. Ele deve mostrar "Meia-entrada" ou "Inteira".
 >
+> > [!success]- Resposta
+> > Os parênteses são o ponto principal. Sem eles, o documento só seria exigido de quem tem 60 anos ou mais.
+> >
+> > ```js
+> > if ((ehEstudante || idade >= 60) && temDocumento) {
+> >   console.log("Meia-entrada");
+> > } else {
+> >   console.log("Inteira");
+> > }
+> > ```
+
+> [!question] 7. Reescreva sem o `!`, trocando os blocos de lugar
 > ```js
 > if (!estaLogado) {
 >   console.log("Faça login");
@@ -374,7 +397,19 @@ Na planilha, a montanha-russa fica assim:
 > }
 > ```
 >
-> 8. Quem cai no `else` deste código? Responda em português e depois com uma condição em JavaScript.
+> > [!success]- Resposta
+> > Os blocos trocam de lugar junto com a condição:
+> >
+> > ```js
+> > if (estaLogado) {
+> >   console.log("Bem-vindo!");
+> > } else {
+> >   console.log("Faça login");
+> > }
+> > ```
+
+> [!question] 8. Quem cai no `else`?
+> Responda em português e depois com uma condição em JavaScript.
 >
 > ```js
 > if (temIngresso && idade >= 18) {
@@ -383,34 +418,9 @@ Na planilha, a montanha-russa fica assim:
 >   console.log("Não pode entrar");
 > }
 > ```
-
-> [!success]- Respostas (clique para abrir)
-> 1. `Pode ir`: `150 >= 140` e `12 >= 10` dão `true`, e o `&&` recebe dois `true`.
-> 2. `Entrada grátis`: `3 < 5` dá `true`, e para o `||` isso basta.
-> 3. Depois do `&&` falta dizer **quem** é menor que 7. O JavaScript mostra `SyntaxError: Unexpected token '<'`. O certo é `if (nota >= 5 && nota < 7)`.
-> 4. O lado direito do `||` é só o texto `"domingo"`, que conta como verdadeiro por não estar vazio. Então o `||` sempre dá verdadeiro. O certo é `if (dia === "sábado" || dia === "domingo")`.
-> 5. Aparece `3 é o maior`, e está errado. Com o empate, `7 > 7` dá `false` nas duas primeiras perguntas, e o `else` fica com o menor número. Trocando `>` por `>=`, aparece `7 é o maior`.
-> 6. Os parênteses são o ponto principal. Sem eles, o documento só seria exigido de quem tem 60 anos ou mais.
 >
-> ```js
-> if ((ehEstudante || idade >= 60) && temDocumento) {
->   console.log("Meia-entrada");
-> } else {
->   console.log("Inteira");
-> }
-> ```
->
-> 7. Os blocos trocam de lugar junto com a condição:
->
-> ```js
-> if (estaLogado) {
->   console.log("Bem-vindo!");
-> } else {
->   console.log("Faça login");
-> }
-> ```
->
-> 8. Quem não tem ingresso, ou quem tem menos de 18 anos, ou as duas coisas. Em JavaScript: `!temIngresso || idade < 18`. O `else` de um "e" é um "ou", com cada pergunta invertida.
+> > [!success]- Resposta
+> > Quem não tem ingresso, ou quem tem menos de 18 anos, ou as duas coisas. Em JavaScript: `!temIngresso || idade < 18`. O `else` de um "e" é um "ou", com cada pergunta invertida.
 
 ## De onde vêm as palavras
 
