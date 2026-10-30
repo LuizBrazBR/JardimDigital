@@ -41,11 +41,41 @@ if (saldo >= preco) {
 }
 ```
 
-1. **A palavra `if`**.
-2. **A condição, entre parênteses**: `(saldo >= preco)`. É uma pergunta, e precisa dar `true` ou `false`.
+1. **A palavra `if`**, que é uma [[glossario/palavra-reservada|palavra reservada]] (logo abaixo).
+2. **A condição, entre parênteses**: `(saldo >= preco)`. É uma pergunta, e precisa dar `true` ou `false`. Os parênteses são obrigatórios: `if saldo >= preco {` dá `SyntaxError: Unexpected identifier 'saldo'`.
 3. **O [[glossario/bloco|bloco]], entre chaves** `{ }`: o que roda quando a resposta é `true`.
 
 Se a resposta for `false`, o JavaScript pula o bloco inteiro e continua na primeira linha depois do `}`.
+
+### O `if` é uma palavra reservada
+
+O `if` não é uma variável nem uma ferramenta pronta, como o `console.log`. Ele faz parte da própria linguagem. É uma **palavra reservada**: uma palavra que o JavaScript guardou para si. Por isso, não pode virar nome de variável:
+
+```js
+let if = 5;     // SyntaxError: Unexpected token 'if'
+const true = 1; // SyntaxError: Unexpected token 'true'
+let If = 5;     // funciona: com maiúscula, If é outra palavra
+```
+
+É como a mesa reservada num restaurante: está ali, vazia, mas não é para você sentar. O JavaScript tem algumas dezenas de palavras assim, cada uma com um papel fixo. Algumas já apareceram, e várias vêm nas próximas aulas do curso:
+
+| Palavras | Onde aparecem |
+|---|---|
+| `const` | aula 2.1 |
+| `true`, `false` | aula 2.2 |
+| `if`, `else`, `switch`, `case` | módulo 3 |
+| `while`, `for`, `break`, `continue` | módulo 4 |
+| `function`, `return` | módulo 5 |
+
+Já `console` e `log` **não** são reservadas. São nomes que o ambiente, o navegador ou o Node, deixa prontos para usar. O JavaScript até aceita `console` como nome de variável, mas aí o nome antigo some:
+
+```js
+let console = 5;
+console.log("oi"); // TypeError: console.log is not a function
+```
+
+> [!tip] Como reconhecer
+> Os editores de código pintam as palavras reservadas com uma cor própria. Repare nos trechos de código desta página: `if`, `const` e `let` saem todos da mesma cor, diferente da dos nomes de variáveis. O `true` e o `false` são exceção: costumam sair com a cor dos valores, como os números.
 
 ## Os dois caminhos
 
@@ -125,6 +155,8 @@ if (saldo >= preco) {
 }
 console.log("Produto enviado!");
 ```
+
+O motivo está na regra do `if`: ele controla **uma** instrução, a que vem logo depois dos parênteses. As chaves juntam várias instruções numa só, o bloco. Com chaves, a instrução do `if` é o bloco inteiro. Sem chaves, é só a primeira linha.
 
 Com chaves sempre, mesmo quando o bloco tem uma linha só, não há como errar: o que está entre as chaves é do `if`, e o que está fora não é.
 
@@ -302,12 +334,14 @@ A linha recuada é do `if`. A que voltou para a margem não é. Por isso, a arma
 - **Decisão**: do latim *dēcīdere*, *dē-* ("fora") + *caedere* ("cortar"). Em latim, a palavra queria dizer primeiro "cortar fora, aparar", e só depois "resolver, pôr fim". Decidir é **cortar fora**: das opções, uma fica, e as outras são cortadas. O mesmo *caedere* está em **preciso** (de *praecīdere*, "cortar na frente": o que foi aparado na medida), **conciso** (de *concīdere*, "cortar em pedaços": o texto que foi cortado curto) e **incisão**. O `if` decide no sentido mais literal: corta um caminho fora.
 - **[[glossario/bloco|Bloco]]**: do francês *bloc*, do holandês médio *blok*, "tronco de árvore". No francês antigo, *bloc* era uma **tora**. É a mesma imagem do [[glossario/log|log]], que em inglês também é uma tora, e do [[glossario/codigo|código]], do latim *cōdex*, tronco de árvore: três palavras da programação que nasceram como madeira.
 - **[[glossario/curto-circuito|Curto-circuito]]**: *circuito* vem do latim *circuitus*, "volta", de *circum* ("em volta") + *īre* ("ir"). Um circuito é um caminho que dá a volta e retorna ao começo, como a corrente que sai da pilha, passa pela lâmpada e volta. No curto-circuito, do inglês *short circuit*, a corrente acha um caminho mais **curto** e pula a lâmpada. O `&&` faz igual: quando o lado esquerdo já decide a resposta, ele pega o atalho e pula o direito.
+- **[[glossario/palavra-reservada|Reservar]]**: do latim *reservāre*, *re-* ("de volta, para trás") + *servāre* ("guardar, conservar"). Reservar é guardar à parte, para um uso só. É o mesmo *servāre* de **conservar**, **preservar** e **observar**.
 
 > [!tip] Para guardar
 > - `if (condição) { ... }`: o bloco só roda se a condição der `true`. Se der `false`, o programa pula o bloco e segue.
+> - O `if` é uma palavra reservada: faz parte da linguagem e não pode ser nome de variável.
 > - O que está fora das chaves roda sempre.
 > - Use chaves sempre, mesmo com uma linha só. O recuo engana, e as chaves não.
 > - Dentro da condição, use `===`, nunca `=`. O `=` estraga a variável e ainda faz o `if` rodar sempre, ou nunca.
 > - `&&` responde, `if` age. Use o `&&` para montar a pergunta e o `if` para fazer algo com a resposta.
 
-Fontes: MDN: [if...else](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else), [Truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) · ESLint: [no-cond-assign](https://eslint.org/docs/latest/rules/no-cond-assign), [no-unused-expressions](https://eslint.org/docs/latest/rules/no-unused-expressions) · React: [Conditional Rendering](https://react.dev/learn/conditional-rendering) · Wikipedia: [Unreachable code (goto fail bug)](https://en.wikipedia.org/wiki/Unreachable_code) · ImperialViolet: [Apple's SSL/TLS bug](https://www.imperialviolet.org/2014/02/22/applebug.html) · Wiktionary: [if](https://en.wiktionary.org/wiki/if), [condiciō](https://en.wiktionary.org/wiki/condicio), [dēcīdō](https://en.wiktionary.org/wiki/decido), [precise](https://en.wiktionary.org/wiki/precise), [concise](https://en.wiktionary.org/wiki/concise), [bloc](https://en.wiktionary.org/wiki/bloc), [circuit](https://en.wiktionary.org/wiki/circuit)
+Fontes: MDN: [if...else](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else), [Truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy), [Lexical grammar: reserved words](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#reserved_words) · ESLint: [no-cond-assign](https://eslint.org/docs/latest/rules/no-cond-assign), [no-unused-expressions](https://eslint.org/docs/latest/rules/no-unused-expressions) · React: [Conditional Rendering](https://react.dev/learn/conditional-rendering) · Wikipedia: [Unreachable code (goto fail bug)](https://en.wikipedia.org/wiki/Unreachable_code) · ImperialViolet: [Apple's SSL/TLS bug](https://www.imperialviolet.org/2014/02/22/applebug.html) · Wiktionary: [if](https://en.wiktionary.org/wiki/if), [condiciō](https://en.wiktionary.org/wiki/condicio), [dēcīdō](https://en.wiktionary.org/wiki/decido), [precise](https://en.wiktionary.org/wiki/precise), [concise](https://en.wiktionary.org/wiki/concise), [bloc](https://en.wiktionary.org/wiki/bloc), [circuit](https://en.wiktionary.org/wiki/circuit), [reservō](https://en.wiktionary.org/wiki/reservo), [servō](https://en.wiktionary.org/wiki/servo)
