@@ -6,7 +6,7 @@ tags:
   - lacos
 ---
 
-Quinta e última aula do módulo 4. Até aqui, todo laço ia do começo ao fim, e só parava quando a condição dava `false`. Esta aula dá mais controle sobre o que acontece lá dentro, com dois comandos: o **`break`**, que para o laço no meio, e o **`continue`**, que pula uma volta sem parar o resto. Depois vem o **laço dentro de laço**, para repetir uma repetição inteira.
+Quinta e última aula do módulo 4. Até aqui, todo laço ia do começo ao fim, e só parava quando a condição dava `false`. Esta aula dá mais controle sobre o que acontece lá dentro, com dois comandos: o **`break`**, que para o laço no meio, e o **`continue`**, que pula uma volta sem parar o resto. Depois vem o **laço dentro de laço**: um laço que roda inteiro, com todas as suas voltas, uma vez para cada volta de outro laço.
 
 ## `break`: parar no meio
 
@@ -141,7 +141,7 @@ while (i < 5) {
 
 ## Laço dentro de laço
 
-Um laço pode ter outro laço dentro do seu bloco. Isso se chama **[[glossario/laco-aninhado|laço aninhado]]** (em inglês, *nested loop*). Serve quando é preciso repetir uma repetição inteira: uma tabuada para cada número, uma linha de quadradinhos para cada linha de uma grade.
+Um laço pode ter outro laço dentro do seu bloco. Isso se chama **[[glossario/laco-aninhado|laço aninhado]]** (em inglês, *nested loop*). Serve quando um laço inteiro precisa rodar várias vezes. A tabuada do 1, por exemplo, já é um laço: `1 x 1`, `1 x 2`, `1 x 3`, três voltas. Para mostrar as tabuadas do 1, do 2 e do 3, esse laço tem de rodar três vezes, uma para cada número. Quem faz isso é um segundo laço, por fora:
 
 ```js
 for (let tabuada = 1; tabuada <= 3; tabuada++) {
