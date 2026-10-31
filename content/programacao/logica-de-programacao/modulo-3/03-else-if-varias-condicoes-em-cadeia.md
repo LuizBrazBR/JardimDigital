@@ -316,9 +316,9 @@ O `else` não precisa perguntar `a === b`. Se nenhum dos dois é maior, só sobr
 
 ## Lógica ou JavaScript?
 
-| | JavaScript | Python | Pseudocódigo | Planilha (Excel) |
-|---|---|---|---|---|
-| senão, se | `} else if (...) {` | `elif ...:` | `SENAO SE` | um `SE` dentro do outro |
+| | JavaScript | Python |
+|---|---|---|
+| senão, se | `} else if (...) {` | `elif ...:` |
 
 O Python tem uma palavra própria, `elif`, que junta *else* e *if*. A documentação do Python explica o motivo: evitar recuo demais. No Python, o recuo é o bloco, então um `else` com um `if` dentro teria de andar para a direita a cada degrau, como a escada torta lá de cima. O `elif` deixa tudo na mesma margem:
 
@@ -331,26 +331,6 @@ elif temperatura >= 10:
     print("Frio")
 else:
     print("Muito frio")
-```
-
-No pseudocódigo:
-
-```text
-SE temperatura >= 30 ENTAO
-  ESCREVER "Calor"
-SENAO SE temperatura >= 20 ENTAO
-  ESCREVER "Agradável"
-SENAO SE temperatura >= 10 ENTAO
-  ESCREVER "Frio"
-SENAO
-  ESCREVER "Muito frio"
-FIMSE
-```
-
-E na planilha, o encaixe fica à vista. Cada `SE` novo entra no lugar do "valor se falso" do anterior, como o `if` que entra no `else`:
-
-```text
-=SE(A1>=30; "Calor"; SE(A1>=20; "Agradável"; SE(A1>=10; "Frio"; "Muito frio")))
 ```
 
 ## Treine

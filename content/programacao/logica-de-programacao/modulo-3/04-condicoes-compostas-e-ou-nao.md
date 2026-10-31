@@ -283,7 +283,7 @@ if (bloqueado) {
 
 ## Lógica ou JavaScript?
 
-A tabela com os símbolos de cada linguagem está na aula 2.5: o Python escreve `and`, `or` e `not`, e a planilha usa `E()`, `OU()` e `NÃO()`. Uma diferença vale a pena aqui. A armadilha 2, `18 <= idade <= 60`, **funciona** no Python:
+A tabela com os símbolos de cada linguagem está na aula 2.5: o Python escreve `and`, `or` e `not`. Uma diferença vale a pena aqui. A armadilha 2, `18 <= idade <= 60`, **funciona** no Python:
 
 ```python
 idade = 70
@@ -291,12 +291,6 @@ print(18 <= idade <= 60)   # False
 ```
 
 O Python entende comparações em sequência como na matemática: `a < b <= c` quer dizer `a < b and b <= c`. O JavaScript não entende assim. Por isso, quem vem do Python cai nessa armadilha com facilidade.
-
-Na planilha, a montanha-russa fica assim:
-
-```text
-=SE(E(A1>=140; B1>=10); "Pode ir"; "Ainda não")
-```
 
 ## Treine
 

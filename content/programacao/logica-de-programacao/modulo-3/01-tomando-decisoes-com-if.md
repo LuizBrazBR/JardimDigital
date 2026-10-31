@@ -283,10 +283,10 @@ Em resumo: **para perguntar, `&&`. Para agir, `if`.**
 
 Toda linguagem tem um "se". Muda o jeito de marcar onde o bloco começa e termina:
 
-| A ideia | JavaScript | Python | Pseudocódigo | Planilha (Excel) |
-|---|---|---|---|---|
-| se | `if (idade >= 18) { ... }` | `if idade >= 18:` | `se idade >= 18 entao ... fimse` | `=SE(A1>=18; "Pode entrar"; "")` |
-| o bloco | entre `{` e `}` | as linhas recuadas | entre `entao` e `fimse` | (não tem bloco) |
+| A ideia | JavaScript | Python |
+|---|---|---|
+| se | `if (idade >= 18) { ... }` | `if idade >= 18:` |
+| o bloco | entre `{` e `}` | as linhas recuadas |
 
 O Python não usa chaves: **o recuo é o bloco**.
 

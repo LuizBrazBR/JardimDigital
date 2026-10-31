@@ -214,11 +214,11 @@ São duas regras diferentes. Um amigo do organizador sem convite entra na primei
 
 E, ou e não são o coração da lógica. Toda linguagem tem os três. Algumas usam símbolos, outras usam as próprias palavras:
 
-| A ideia | JavaScript | Python | Pseudocódigo | Planilha (Excel) |
-|---|---|---|---|---|
-| e | `a && b` | `a and b` | `a e b` | `=E(A1;B1)` |
-| ou | `a \|\| b` | `a or b` | `a ou b` | `=OU(A1;B1)` |
-| não | `!a` | `not a` | `nao a` | `=NÃO(A1)` |
+| A ideia | JavaScript | Python |
+|---|---|---|
+| e | `a && b` | `a and b` |
+| ou | `a \|\| b` | `a or b` |
+| não | `!a` | `not a` |
 
 O Python escreve em inglês o que o JavaScript escreve com símbolos: `idade >= 18 and tem_carteira` quase se lê em voz alta. Os símbolos `&&` e `||` são os mesmos do C, a linguagem de onde o JavaScript herdou tantos outros sinais.
 
@@ -291,7 +291,7 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 
 ## De onde vêm as palavras
 
-- **[[glossario/logica|Lógica]]**: do grego *logikḗ*, de *lógos*, "palavra, fala, razão". É a arte de raciocinar direito, que dá nome ao curso e ao tipo **lógico** do pseudocódigo.
+- **[[glossario/logica|Lógica]]**: do grego *logikḗ*, de *lógos*, "palavra, fala, razão". É a arte de raciocinar direito, que dá nome ao curso.
 - **Conjunção, disjunção e negação**: os nomes técnicos do E, do OU e do NÃO. *Conjunção* vem do latim *coniungere*, "unir junto", o mesmo verbo de **cônjuge**, a pessoa unida a outra no casamento. A conjunção só é verdadeira se os dois lados estiverem juntos. *Disjunção* é o contrário, "separar": basta um lado. *Negação* vem de *negāre*, "dizer não".
 - **&**: é a palavra latina *et*, "e", escrita às pressas. Já no século I, na escrita cursiva dos romanos, o E e o T às vezes saíam emendados num traço só, e com o tempo o desenho ficou irreconhecível. Em inglês, o sinal chegou a ser ensinado às crianças como a 27ª letra do alfabeto, recitada como *and per se and*, "e, sozinho, quer dizer *and*". De tanto ser recitado, isso virou o nome dele: *ampersand*.
 - **[[glossario/tabela-verdade|Verdade]]**: do latim *vēritās*, de *vērus*, "verdadeiro". Da mesma família vêm **verificar** (*vērificāre*, "tornar verdadeiro") e **veredicto** ("dito verdadeiro").

@@ -198,13 +198,11 @@ Em Portugal, também se diz **ciclo** para o laço: "um ciclo `for`".
 
 Toda linguagem tem um jeito de repetir. Muda a forma de escrever as três peças:
 
-| A ideia | JavaScript | Python | Pseudocódigo | Planilha (Excel) |
-|---|---|---|---|---|
-| contar de 1 a 5 | `for (let i = 1; i <= 5; i++) { ... }` | `for i in range(1, 6):` | `para i de 1 ate 5 faca ... fimpara` | `=SEQUÊNCIA(5)` |
+| A ideia | JavaScript | Python |
+|---|---|---|
+| contar de 1 a 5 | `for (let i = 1; i <= 5; i++) { ... }` | `for i in range(1, 6):` |
 
-- **No Python**, o `range(1, 6)` para **antes** do segundo número. Para chegar ao 5, é preciso escrever 6. Com `range(1, 5)`, a contagem vai só de 1 a 4.
-- **No pseudocódigo**, as três peças viram uma frase: "para `i` de 1 até 5, faça". A mudança, somar 1, fica subentendida.
-- **Na planilha**, as fórmulas não têm laço. O jeito antigo era digitar 1 e 2 em duas células e arrastar a alcinha do canto da seleção para baixo: o copiar e colar das planilhas. Nas versões mais novas do Excel (2021 e Microsoft 365), a função `SEQUÊNCIA(5)` preenche a coluna com 1, 2, 3, 4 e 5 sozinha.
+No Python, o `range(1, 6)` para **antes** do segundo número. Para chegar ao 5, é preciso escrever 6. Com `range(1, 5)`, a contagem vai só de 1 a 4.
 
 ## Treine
 
@@ -319,4 +317,4 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > - No código, `10.000` é dez. Para dez mil, escreva `10000` ou `10_000`.
 > - Cada volta é uma iteração. Iteração é repetir. Interação é outra coisa.
 
-Fontes: MDN: [Loops and iteration](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration), [for](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for), [Numeric separators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#numeric_separators) · Wikipedia: [Fortran](https://en.wikipedia.org/wiki/Fortran), [Structured program theorem](https://en.wikipedia.org/wiki/Structured_program_theorem) · Microsoft: [Função SEQUÊNCIA](https://support.microsoft.com/pt-br/office/fun%C3%A7%C3%A3o-sequ%C3%AAncia-57467a98-57e0-4817-9f14-2eb78519ca90) · Wiktionary: [laço](https://en.wiktionary.org/wiki/la%C3%A7o), [laqueus](https://en.wiktionary.org/wiki/laqueus), [lace](https://en.wiktionary.org/wiki/lace), [loop](https://en.wiktionary.org/wiki/loop), [repetō](https://en.wiktionary.org/wiki/repeto), [petō](https://en.wiktionary.org/wiki/peto), [iterō](https://en.wiktionary.org/wiki/itero), [iterum](https://en.wiktionary.org/wiki/iterum), [volta](https://en.wiktionary.org/wiki/volta), [volūmen](https://en.wiktionary.org/wiki/volumen), [ciclo](https://en.wiktionary.org/wiki/ciclo)
+Fontes: MDN: [Loops and iteration](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration), [for](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for), [Numeric separators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#numeric_separators) · Wikipedia: [Fortran](https://en.wikipedia.org/wiki/Fortran), [Structured program theorem](https://en.wikipedia.org/wiki/Structured_program_theorem) · Wiktionary: [laço](https://en.wiktionary.org/wiki/la%C3%A7o), [laqueus](https://en.wiktionary.org/wiki/laqueus), [lace](https://en.wiktionary.org/wiki/lace), [loop](https://en.wiktionary.org/wiki/loop), [repetō](https://en.wiktionary.org/wiki/repeto), [petō](https://en.wiktionary.org/wiki/peto), [iterō](https://en.wiktionary.org/wiki/itero), [iterum](https://en.wiktionary.org/wiki/iterum), [volta](https://en.wiktionary.org/wiki/volta), [volūmen](https://en.wiktionary.org/wiki/volumen), [ciclo](https://en.wiktionary.org/wiki/ciclo)

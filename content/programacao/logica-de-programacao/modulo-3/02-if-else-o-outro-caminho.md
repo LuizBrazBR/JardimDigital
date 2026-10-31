@@ -294,9 +294,9 @@ A aula 3.1 já tinha avisado que o `&&` não tem "senão", e o `if` tem. Mas o `
 
 O senão não é coisa só do JavaScript:
 
-| | JavaScript | Python | Pseudocódigo | Planilha (Excel) |
-|---|---|---|---|---|
-| senão | `} else {` | `else:` | `SENAO` | o terceiro valor do `SE` |
+| | JavaScript | Python |
+|---|---|---|
+| senão | `} else {` | `else:` |
 
 No Python, como na aula 3.1, o recuo marca os blocos, e o `else` volta para a margem do `if`:
 
@@ -306,24 +306,6 @@ if saldo >= preco:
 else:
     print("Saldo insuficiente")
 ```
-
-No pseudocódigo da aula 1.4:
-
-```text
-SE saldo >= preco ENTAO
-  ESCREVER "Compra aprovada!"
-SENAO
-  ESCREVER "Saldo insuficiente"
-FIMSE
-```
-
-A planilha sempre teve o senão. O `SE` tem três partes: o teste, o valor se for verdadeiro e o valor se for falso. Na aula 3.1, o terceiro era `""`, nada. Aqui, ganha uma mensagem:
-
-```text
-=SE(A1>=B1; "Compra aprovada!"; "Saldo insuficiente")
-```
-
-O `SE` da planilha calcula um valor, igual ao ternário, e não um bloco de instruções.
 
 ## Treine
 

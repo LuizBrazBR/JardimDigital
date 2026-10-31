@@ -150,16 +150,14 @@ console.log(`Ano que vem: ${idade + 1}`);
 
 Continuando a separação da aula passada: a ideia de tipo existe em toda linguagem, e só os nomes mudam.
 
-| A ideia | JavaScript | Python | Pseudocódigo |
-|---|---|---|---|
-| número inteiro | `number` | `int` | inteiro |
-| número com casas decimais | `number` | `float` | real |
-| texto | `string` | `str` | caractere, texto |
-| verdadeiro ou falso | `boolean` | `bool` | lógico |
+| A ideia | JavaScript | Python |
+|---|---|---|
+| número inteiro | `number` | `int` |
+| número com casas decimais | `number` | `float` |
+| texto | `string` | `str` |
+| verdadeiro ou falso | `boolean` | `bool` |
 
 O JavaScript junta inteiros e decimais num tipo só, e o Python separa. Em Python, o verdadeiro e o falso se escrevem com maiúscula: `True` e `False`.
-
-Repare no nome que o pseudocódigo dá ao verdadeiro ou falso: **lógico**. É o tipo da própria lógica.
 
 > [!info]- Duas esquisitices do number (clique para abrir)
 > - `let preco = 19.90;` e depois `console.log(preco)` mostra `19.9`. O número não guarda zeros que não mudam o valor. Para mostrar "R$ 19,90", é preciso formatar o texto, o que é assunto para outra hora.

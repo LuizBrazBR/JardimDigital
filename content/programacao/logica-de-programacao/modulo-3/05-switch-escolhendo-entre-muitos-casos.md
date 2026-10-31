@@ -348,9 +348,9 @@ Tudo o que um `switch` faz, um `else if` também faz. O contrário não vale. O 
 
 ## Lógica ou JavaScript?
 
-| | JavaScript | Python | Pseudocódigo | Planilha (Excel) |
-|---|---|---|---|---|
-| escolha | `switch` / `case` / `default` | `match` / `case` / `case _` | `ESCOLHA` / `CASO` / `OUTROCASO` | `ESCOLHER` |
+| | JavaScript | Python |
+|---|---|---|
+| escolha | `switch` / `case` / `default` | `match` / `case` / `case _` |
 
 O Python só ganhou o `match` na versão 3.10, de 2021. Antes, usava-se `if`/`elif`. E o `match` não tem `break` nem *fall-through*: só roda o primeiro caso que bate.
 
@@ -369,27 +369,6 @@ match opcao:
 ```
 
 O `_` é o "qualquer outra coisa", o `default` do Python.
-
-No pseudocódigo:
-
-```text
-ESCOLHA opcao
-  CASO 1
-    ESCREVER "Financeiro"
-  CASO 2
-    ESCREVER "Suporte técnico"
-  CASO 3
-    ESCREVER "Vendas"
-  OUTROCASO
-    ESCREVER "Opção inválida"
-FIMESCOLHA
-```
-
-Na planilha, a função `ESCOLHER` pega um valor de uma lista pela posição: com 1, devolve o primeiro, com 2, o segundo, e assim por diante. É perfeita para o dia da semana:
-
-```text
-=ESCOLHER(A1; "Domingo"; "Segunda-feira"; "Terça-feira"; "Quarta-feira"; "Quinta-feira"; "Sexta-feira"; "Sábado")
-```
 
 ## Treine
 
@@ -583,4 +562,4 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > - O `default` é o `else` do `switch`.
 > - Para faixas e condições compostas, use `else if`. O `switch` não sabe perguntar "é maior que?".
 
-Fontes: MDN: [switch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch) · Python: [Tutorial, match Statements](https://docs.python.org/3/tutorial/controlflow.html#match-statements), [What's New in Python 3.10](https://docs.python.org/3/whatsnew/3.10.html) · Microsoft: [Função ESCOLHER](https://support.microsoft.com/pt-br/office/escolher-fun%C3%A7%C3%A3o-escolher-fc5c184f-cb62-4ec7-a46e-38653b98f5bc) · Wiktionary: [switch](https://en.wiktionary.org/wiki/switch), [casus](https://en.wiktionary.org/wiki/casus), [caso](https://en.wiktionary.org/wiki/caso), [acaso](https://en.wiktionary.org/wiki/acaso), [ocaso](https://en.wiktionary.org/wiki/ocaso), [default](https://en.wiktionary.org/wiki/default), [fall-through](https://en.wiktionary.org/wiki/fall-through), [faixa](https://en.wiktionary.org/wiki/faixa), [fascia](https://en.wiktionary.org/wiki/fascia), [exato](https://en.wiktionary.org/wiki/exato), [exactus](https://en.wiktionary.org/wiki/exactus), [exigir](https://en.wiktionary.org/wiki/exigir)
+Fontes: MDN: [switch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch) · Python: [Tutorial, match Statements](https://docs.python.org/3/tutorial/controlflow.html#match-statements), [What's New in Python 3.10](https://docs.python.org/3/whatsnew/3.10.html) · Wiktionary: [switch](https://en.wiktionary.org/wiki/switch), [casus](https://en.wiktionary.org/wiki/casus), [caso](https://en.wiktionary.org/wiki/caso), [acaso](https://en.wiktionary.org/wiki/acaso), [ocaso](https://en.wiktionary.org/wiki/ocaso), [default](https://en.wiktionary.org/wiki/default), [fall-through](https://en.wiktionary.org/wiki/fall-through), [faixa](https://en.wiktionary.org/wiki/faixa), [fascia](https://en.wiktionary.org/wiki/fascia), [exato](https://en.wiktionary.org/wiki/exato), [exactus](https://en.wiktionary.org/wiki/exactus), [exigir](https://en.wiktionary.org/wiki/exigir)

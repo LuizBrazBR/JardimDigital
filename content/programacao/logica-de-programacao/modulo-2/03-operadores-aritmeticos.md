@@ -167,21 +167,19 @@ console.log(10 ** 2); // 100
 A potência vem antes até da multiplicação: `2 * 3 ** 2` dá `18`, porque primeiro faz 3² = 9.
 
 > [!warning] `^` não é potência em JavaScript
-> Em calculadora e em planilha, `2^3` é 2 elevado a 3. Em JavaScript, `2 ^ 3` dá `1`, sem erro nenhum. O `^` existe, mas faz outra coisa, uma operação com os bits do número, assunto bem mais avançado.
+> Na calculadora, `2^3` é 2 elevado a 3. Em JavaScript, `2 ^ 3` dá `1`, sem erro nenhum. O `^` existe, mas faz outra coisa, uma operação com os bits do número, assunto bem mais avançado.
 
 ## Lógica ou JavaScript?
 
 Somar, dividir e pegar o resto são ideias da lógica, que existem em qualquer linguagem. O que muda é o símbolo:
 
-| A ideia | JavaScript | Python | Pseudocódigo | Planilha (Excel) |
-|---|---|---|---|---|
-| resto | `10 % 3` | `10 % 3` | `10 mod 3` | `=MOD(10;3)` |
-| potência | `2 ** 3` | `2 ** 3` | `2 ^ 3` | `=2^3` |
-| divisão sem a parte quebrada | `Math.floor(9 / 2)` | `9 // 2` | `9 div 2` | `=QUOCIENTE(9;2)` |
+| A ideia | JavaScript | Python |
+|---|---|---|
+| resto | `10 % 3` | `10 % 3` |
+| potência | `2 ** 3` | `2 ** 3` |
+| divisão sem a parte quebrada | `Math.floor(9 / 2)` | `9 // 2` |
 
-O pseudocódigo muda um pouco de livro para livro, mas `mod` e `div` são as formas mais comuns.
-
-Repare que o `^` é potência na planilha, mas não em JavaScript. E que o Python tem um operador próprio para a divisão que joga fora as casas decimais (`9 // 2` dá `4`). O JavaScript não tem: é preciso o `Math.floor()`, uma ferramenta que arredonda para baixo.
+Repare que o Python tem um operador próprio para a divisão que joga fora as casas decimais (`9 // 2` dá `4`). O JavaScript não tem: é preciso o `Math.floor()`, uma ferramenta que arredonda para baixo.
 
 > [!info]- Esquisitices das contas (clique para abrir)
 > - **Dividir por zero não dá erro.** `10 / 0` dá `Infinity` (infinito), e `0 / 0` dá `NaN`. O resto por zero, `10 % 0`, também dá `NaN`. Em muitas linguagens, isso derrubaria o programa. Em JavaScript, o programa segue com um valor estranho.
@@ -257,7 +255,7 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 
 - **[[glossario/aritmetica|Aritmética]]**: do grego *arithmētikḗ (tékhnē)*, "a arte de contar", de *arithmós*, "número". O mesmo *arithmós* está no fim de **logaritmo**.
 - **[[glossario/resto|Resto]]**: de *restar*, do latim *restāre*, "ficar para trás, sobrar", de *re-* + *stāre*, "estar de pé, ficar". É o mesmo *stāre* de [[glossario/constante|constante]]. O resto é **o que fica** quando a divisão acaba.
-- **[[glossario/resto|Módulo]]**: outro nome do `%`, por isso o *mod* do pseudocódigo. Do latim *modulus*, "pequena medida". Foi Gauss, em 1801, quem organizou a matemática dos restos, hoje chamada aritmética modular.
+- **[[glossario/resto|Módulo]]**: outro nome do `%`. Do latim *modulus*, "pequena medida". Foi Gauss, em 1801, quem organizou a matemática dos restos, hoje chamada aritmética modular.
 - **[[glossario/precedencia|Precedência]]**: de *preceder*, do latim *praecēdere*, "ir na frente". A multiplicação tem precedência porque vai na frente da soma.
 - **Asterisco**: do grego *asterískos*, "estrelinha", de *astḗr*, "estrela". Da mesma família de **astro**, **astronomia** e **desastre**, que vem do italiano *disastro*, de *dis-* + *astro*: um acontecimento sob uma estrela ruim.
 - **O sinal %**: vem do italiano *per cento*, "por cem". Copistas medievais abreviavam como "p cento", depois como um "pc" com um laço, e o desenho foi se simplificando até virar `%`. O uso como resto veio da linguagem B, de Ken Thompson, antecessora do C, e o JavaScript herdou.

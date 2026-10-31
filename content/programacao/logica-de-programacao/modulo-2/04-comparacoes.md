@@ -157,16 +157,14 @@ O `<` e o `>` também funcionam com textos e comparam em ordem alfabética: `"ab
 
 Comparar é lógica pura, e toda linguagem compara. O que muda é o símbolo, e justamente o do "igual" é o que mais varia:
 
-| A ideia | JavaScript | Python | Pseudocódigo | Planilha (Excel) |
-|---|---|---|---|---|
-| guardar um valor | `x = 5` | `x = 5` | `x <- 5` | (escreve-se na célula) |
-| é igual? | `x === 5` | `x == 5` | `x = 5` | `=A1=5` |
-| é diferente? | `x !== 5` | `x != 5` | `x <> 5` | `=A1<>5` |
-| é maior ou igual? | `x >= 5` | `x >= 5` | `x >= 5` | `=A1>=5` |
+| A ideia | JavaScript | Python |
+|---|---|---|
+| guardar um valor | `x = 5` | `x = 5` |
+| é igual? | `x === 5` | `x == 5` |
+| é diferente? | `x !== 5` | `x != 5` |
+| é maior ou igual? | `x >= 5` | `x >= 5` |
 
-- No pseudocódigo, a atribuição é uma seta, e o `=` fica livre para comparar, como na matemática. A confusão entre mandar e perguntar praticamente não existe ali.
-- O `==` do Python não converte tipos: `"5" == 5` dá `False`. Ele se comporta como o `===` do JavaScript.
-- Na planilha, o primeiro `=` só avisa que começa uma fórmula, e o segundo compara. O resultado aparece como VERDADEIRO ou FALSO.
+O `==` do Python não converte tipos: `"5" == 5` dá `False`. Ele se comporta como o `===` do JavaScript.
 
 > [!info]- Esquisitices (clique para abrir)
 > - **`NaN === NaN` dá `false`.** O `NaN` não é igual a nada, nem a ele mesmo. Para saber se um valor é `NaN`, existe o `Number.isNaN()`.
