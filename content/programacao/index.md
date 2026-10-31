@@ -2,4 +2,4 @@
 title: Programação
 ---
 
-Anotações sobre programação: linguagens, ferramentas, arquitetura, boas práticas.
+Anotações sobre programação. Por enquanto, os resumos do curso de [[programacao/logica-de-programacao/index|Lógica de Programação]].
