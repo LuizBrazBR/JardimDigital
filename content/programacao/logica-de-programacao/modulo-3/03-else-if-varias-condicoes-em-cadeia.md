@@ -8,7 +8,7 @@ tags:
 
 Terceira aula do módulo 3. Até aqui, as decisões tinham no máximo dois caminhos. O `if` sozinho faz ou não faz, e o `if`/`else` escolhe entre um e outro. A [[programacao/logica-de-programacao/modulo-3/02-if-else-o-outro-caminho|aula 3.2]] terminou com um caso que não cabia nisso: no "maior de dois", o empate não tinha onde ficar, porque a pergunta tem três respostas.
 
-Muita pergunta do dia a dia tem três, quatro ou mais respostas: o tempo lá fora, o conceito de uma prova, a faixa de idade, o valor do frete. Para elas, o JavaScript permite encadear condições com `else if`, "senão, se".
+Muita pergunta do dia a dia tem três, quatro ou mais respostas: o tempo lá fora, o conceito de uma prova, a [[glossario/faixa|faixa]] de idade, o valor do frete. Para elas, o JavaScript permite encadear condições com `else if`, "senão, se".
 
 ## Senão, se...
 
@@ -202,7 +202,7 @@ Quando o JavaScript chega ao `else if (temperatura >= 20)`, ele já sabe que a t
 
 O `temperatura < 30` sempre dá `true` ali, então não acrescenta nada. Cada degrau herda o "não" de todos os que vêm antes. A faixa "de 20 a 29,9" fica implícita.
 
-Isso parece só economia, mas evita um erro. A aula descreve os conceitos de uma prova por faixas: de 9 a 10 é A, de 7 a 8,9 é B, de 5 a 6,9 é C e abaixo de 5 é D. Escrevendo as faixas ao pé da letra, aparecem buracos:
+Isso parece só economia, mas evita um erro. A aula descreve os conceitos de uma prova por faixas, isto é, por trechos de notas que vão de um limite até outro: de 9 a 10 é A, de 7 a 8,9 é B, de 5 a 6,9 é C e abaixo de 5 é D. Escrevendo as faixas ao pé da letra, aparecem buracos:
 
 ```js
 const nota = 8.95;
@@ -312,7 +312,7 @@ if (a > b) {
 O `else` não precisa perguntar `a === b`. Se nenhum dos dois é maior, só sobra o empate.
 
 > [!info] E o `switch`?
-> Quando todas as perguntas comparam **a mesma variável** com valores exatos, como "é 1? é 2? é 3?", existe outra forma, o `switch`, da aula 3.5. Para faixas, com `>=` e `<`, o caminho é o `else if`.
+> Quando todas as perguntas comparam **a mesma variável** com valores exatos, como "é 1? é 2? é 3?", existe outra forma, o `switch`, da [[programacao/logica-de-programacao/modulo-3/05-switch-escolhendo-entre-muitos-casos|aula 3.5]]. Para faixas, com `>=` e `<`, o caminho é o `else if`.
 
 ## Lógica ou JavaScript?
 

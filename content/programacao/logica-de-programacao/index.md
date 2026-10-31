@@ -28,7 +28,7 @@ Resumos das aulas do curso de Lógica de Programação, divididos em módulos co
 2. [[programacao/logica-de-programacao/modulo-3/02-if-else-o-outro-caminho|if/else: o outro caminho]]
 3. [[programacao/logica-de-programacao/modulo-3/03-else-if-varias-condicoes-em-cadeia|else if: várias condições em cadeia]]
 4. [[programacao/logica-de-programacao/modulo-3/04-condicoes-compostas-e-ou-nao|Condições compostas com e, ou, não]]
-5. switch: escolhendo entre muitos casos
+5. [[programacao/logica-de-programacao/modulo-3/05-switch-escolhendo-entre-muitos-casos|switch: escolhendo entre muitos casos]]
 
 ## Módulo 4 – Repetição: laços (loops)
 
