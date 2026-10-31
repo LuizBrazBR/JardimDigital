@@ -51,7 +51,7 @@ Essas três linhas mostram os números de 1 a 100. Para ir até 10.000, o códig
 1. O código não cresce com a tarefa.
 2. O 47 repetido não tem como acontecer, porque quem escreve os números é o computador.
 3. Para mostrar `Número 1`, `Número 2`..., basta mudar uma linha: `console.log("Número", i);`.
-4. Para o caso da senha, existe um laço que não precisa saber o número de voltas: o `while`, da aula 4.2.
+4. Para o caso da senha, existe um laço que não precisa saber o número de voltas: o `while`, da [[programacao/logica-de-programacao/modulo-4/02-while-repetindo-enquanto-for-verdade|aula 4.2]].
 
 > [!warning] Cuidado com o ponto nos números grandes
 > Em português, escrevemos 10.000 para dez mil. No código, o ponto separa as **casas decimais**, como se viu na aula 2.1. Então `10.000` é o número dez, com três zeros depois da vírgula:
@@ -74,7 +74,7 @@ Cada peça faz falta:
 
 - Sem o começo, não se sabe de onde contar.
 - Sem a condição, a contagem não tem hora para acabar.
-- Sem a mudança, a criança fala "1, 1, 1, 1..." para sempre. O número nunca chega ao 10, então a condição nunca deixa de valer. Isso se chama **laço infinito**, e é um dos assuntos da aula 4.2.
+- Sem a mudança, a criança fala "1, 1, 1, 1..." para sempre. O número nunca chega ao 10, então a condição nunca deixa de valer. Isso se chama **laço infinito**, e é um dos assuntos da [[programacao/logica-de-programacao/modulo-4/02-while-repetindo-enquanto-for-verdade|aula 4.2]].
 
 A mesma receita aparece em qualquer repetição do dia a dia:
 
@@ -180,7 +180,7 @@ O sinal é perceber que você vai "fazer a mesma coisa várias vezes". No enunci
   // 7 x 10 = 70
   ```
 
-- **Repetir até dar certo.** Pedir a senha até a pessoa acertar. O número de voltas é desconhecido, e é aí que entra o `while`, da aula 4.2.
+- **Repetir até dar certo.** Pedir a senha até a pessoa acertar. O número de voltas é desconhecido, e é aí que entra o `while`, da [[programacao/logica-de-programacao/modulo-4/02-while-repetindo-enquanto-for-verdade|aula 4.2]].
 - **Passar por uma lista, item por item.** Os nomes de uma turma, os produtos de um carrinho. É o assunto do módulo 6.
 
 E quando **não** é laço? Quando a ação acontece uma vez só, ou quando o problema é escolher entre caminhos. "Diga se a nota é de aprovado" é trabalho do `if`. Já "diga, para cada aluno da turma, se a nota é de aprovado" junta os dois: um laço que passa pelos alunos e, dentro dele, um `if`.
@@ -291,7 +291,7 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > (a) Mostrar "Bem-vindo!" quando o programa abre. (b) Mostrar os números de 1 a 20. (c) Perguntar a senha até a pessoa acertar. (d) Dizer se uma nota é de aprovado.
 >
 > > [!success]- Resposta
-> > (a) Não: acontece uma vez só. (b) Laço. (c) Laço, mesmo sem saber quantas vezes: é o caso do `while`, da aula 4.2. (d) Não: é uma escolha, trabalho do `if`.
+> > (a) Não: acontece uma vez só. (b) Laço. (c) Laço, mesmo sem saber quantas vezes: é o caso do `while`, da [[programacao/logica-de-programacao/modulo-4/02-while-repetindo-enquanto-for-verdade|aula 4.2]]. (d) Não: é uma escolha, trabalho do `if`.
 
 > [!question] 9. Onde estão as três peças?
 > "Enquanto houver prato sujo na pia, lave um prato." Qual é o começo, a condição e o que muda a cada volta? E o que aconteceria se a pessoa só molhasse o prato e o devolvesse à pia?
