@@ -110,6 +110,42 @@ Os dois-pontos funcionam como no português, em que anunciam o que vem a seguir:
 
 Por isso o sinal é diferente: as chaves de um `if` **fecham** um bloco, com começo e fim. Os dois-pontos só **marcam** um começo. O `switch` tem um bloco só, o das chaves de fora. Os `case` são marcações dentro dele, como os títulos de um cardápio. Nada nos dois-pontos diz onde o caso termina, e é por isso que o `break` é necessário (logo abaixo).
 
+#### Sem chaves, mas com quantas linhas quiser
+
+Não confunda com a regra da aula 3.1. Lá, um `if` sem chaves manda numa instrução só, porque o `if` **comanda** a instrução que vem depois dele. O `case` não comanda nada. Ele só marca um lugar, e por isso não tem limite de linhas:
+
+```js
+const opcao = 2;
+
+switch (opcao) {
+  case 1:
+    console.log("Financeiro");
+    break;
+  case 2:
+    console.log("Suporte técnico");
+    console.log("Aguarde um atendente");
+    console.log("Tempo de espera: 5 minutos");
+    break;
+  default:
+    console.log("Opção inválida");
+}
+
+// saída:
+// Suporte técnico
+// Aguarde um atendente
+// Tempo de espera: 5 minutos
+```
+
+O `switch` não escolhe um bloco. Ele escolhe um **ponto de partida** e pula para lá. Daí em diante, o código roda do jeito de sempre, de cima para baixo, linha por linha, até encontrar um `break` ou o `}` do fim do `switch`.
+
+| | `if` sem chaves | `case` |
+|---|---|---|
+| quantas instruções pega | só a primeira | todas, até parar |
+| onde para | logo depois da primeira instrução | no `break`, ou no `}` do `switch` |
+| o que ele é | um comando: decide se a instrução roda | uma marcação: diz onde começar |
+
+O jeito de escrever vem da linguagem C, de onde o JavaScript herdou também o `if` (aula 3.1).
+
 Trocar os dois-pontos por ponto e vírgula dá erro: `case 1;` mostra `SyntaxError: Unexpected token ';'`.
 
 > [!info]- E se eu puser chaves no `case`? (clique para abrir)
