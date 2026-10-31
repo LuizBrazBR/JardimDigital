@@ -30,9 +30,9 @@ Resumos das aulas do curso de Lógica de Programação, divididos em módulos co
 4. [[programacao/logica-de-programacao/modulo-3/04-condicoes-compostas-e-ou-nao|Condições compostas com e, ou, não]]
 5. [[programacao/logica-de-programacao/modulo-3/05-switch-escolhendo-entre-muitos-casos|switch: escolhendo entre muitos casos]]
 
-## Módulo 4 – Repetição: laços (loops)
+## [[programacao/logica-de-programacao/modulo-4/index|Módulo 4 – Repetição: laços (loops)]]
 
-1. Por que repetir: a ideia de laço
+1. [[programacao/logica-de-programacao/modulo-4/01-por-que-repetir-a-ideia-de-laco|Por que repetir: a ideia de laço]]
 2. while: repetindo enquanto for verdade (e o loop infinito)
 3. for: o laço contado
 4. Contador e acumulador: somando e contando

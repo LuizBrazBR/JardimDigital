@@ -64,7 +64,7 @@ let If = 5;     // funciona: com maiúscula, If é outra palavra
 | `const` | aula 2.1 |
 | `true`, `false` | aula 2.2 |
 | `if`, `else`, `switch`, `case`, `break`, `default` | módulo 3 |
-| `while`, `for`, `break`, `continue` | módulo 4 |
+| `while`, `for`, `break`, `continue` | [[programacao/logica-de-programacao/modulo-4/index\|módulo 4]] |
 | `function`, `return` | módulo 5 |
 
 Já `console` e `log` **não** são reservadas. São nomes que o ambiente, o navegador ou o Node, deixa prontos para usar. O JavaScript até aceita `console` como nome de variável, mas aí o nome antigo some:
