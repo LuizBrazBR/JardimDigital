@@ -98,6 +98,10 @@ console.log(texto); // "12345"
 | multiplicar | `1` | 7 × 1 = 7 |
 | juntar texto | `""` | `"abc" + ""` dá `"abc"` |
 
+Então o acumulador não serve só para somar. A ideia dele é **juntar**: guardar, de uma volta para a outra, o resultado do que já passou. Quem escolhe **como** juntar é a linha de dentro do laço, com `+`, `*` ou outra operação. O valor inicial só precisa ser o neutro dessa operação.
+
+Com o `+`, tem uma pegadinha: a linha de dentro pode ser exatamente a mesma, `x = x + i`, e o resultado mudar conforme o valor inicial. Começando em `0`, o `+` soma, e de 1 a 5 dá `15`. Começando em `""`, ele junta texto, como na aula 2.2, e dá `"12345"`. Aqui, é o valor inicial que decide o que o `+` faz.
+
 ## Contador: quantas vezes algo acontece
 
 Um **[[glossario/contador|contador]]** é um acumulador mais simples: em vez de somar valores diferentes, ele soma sempre **1**. Normalmente, só quando uma condição é verdadeira. É ele que responde perguntas como "quantos números pares existem de 1 a 10?":
