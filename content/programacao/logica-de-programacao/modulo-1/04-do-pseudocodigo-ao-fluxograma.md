@@ -127,12 +127,35 @@ Nenhuma das três formas é "mais certa". O algoritmo é o mesmo, e só muda a r
 
 ## Treine
 
-> [!question] Tente
-> 1. Escreva em pseudocódigo um algoritmo que lê o preço de um produto e a quantidade comprada, e mostra o total.
-> 2. Que forma o fluxograma usa para cada passo? (a) "Início" (b) "total = preco * quantidade" (c) "o total passa de 100?" (d) "Escrever total"
-> 3. Descreva, seta por seta, o fluxograma do item 1.
-> 4. Este pseudocódigo tem um problema de ordem. Qual é?
+Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
+
+> [!question] 1. O total da compra
+> Escreva em pseudocódigo um algoritmo que lê o preço de um produto e a quantidade comprada, e mostra o total.
 >
+> > [!success]- Resposta
+> > Uma resposta possível (o `*` é o "vezes" da programação, como se vê na aula 2.3):
+> >
+> > ```text
+> > INICIO
+> >   LER preco
+> >   LER quantidade
+> >   total = preco * quantidade
+> >   ESCREVER total
+> > FIM
+> > ```
+
+> [!question] 2. As formas do fluxograma
+> Que forma o fluxograma usa para cada passo? (a) "Início" (b) "total = preco * quantidade" (c) "o total passa de 100?" (d) "Escrever total"
+>
+> > [!success]- Resposta
+> > (a) oval; (b) retângulo; (c) losango; (d) paralelogramo, ou retângulo nos fluxogramas mais simples.
+
+> [!question] 3. Descreva, seta por seta, o fluxograma do item 1.
+>
+> > [!success]- Resposta
+> > Início → Ler preco → Ler quantidade → total = preco * quantidade → Escrever total → Fim.
+
+> [!question] 4. Este pseudocódigo tem um problema de ordem. Qual é?
 > ```text
 > INICIO
 >   ESCREVER area
@@ -141,22 +164,9 @@ Nenhuma das três formas é "mais certa". O algoritmo é o mesmo, e só muda a r
 >   area = largura * altura
 > FIM
 > ```
-
-> [!success]- Respostas (clique para abrir)
-> 1. Uma resposta possível (o `*` é o "vezes" da programação, como se vê na aula 2.3):
 >
-> ```text
-> INICIO
->   LER preco
->   LER quantidade
->   total = preco * quantidade
->   ESCREVER total
-> FIM
-> ```
->
-> 2. (a) oval; (b) retângulo; (c) losango; (d) paralelogramo, ou retângulo nos fluxogramas mais simples.
-> 3. Início → Ler preco → Ler quantidade → total = preco * quantidade → Escrever total → Fim.
-> 4. O `ESCREVER area` vem antes de a área ser calculada, e antes até de a largura e a altura serem lidas. Na hora de mostrar, não há nada para mostrar. Os passos estão certos, mas fora de ordem, e a [[programacao/logica-de-programacao/modulo-1/01-o-que-e-programar-e-algoritmo|aula 1.1]] já avisava: a ordem faz parte da solução. O `ESCREVER area` deve ser o último passo antes do `FIM`.
+> > [!success]- Resposta
+> > O `ESCREVER area` vem antes de a área ser calculada, e antes até de a largura e a altura serem lidas. Na hora de mostrar, não há nada para mostrar. Os passos estão certos, mas fora de ordem, e a [[programacao/logica-de-programacao/modulo-1/01-o-que-e-programar-e-algoritmo|aula 1.1]] já avisava: a ordem faz parte da solução. O `ESCREVER area` deve ser o último passo antes do `FIM`.
 
 ## De onde vêm as palavras
 

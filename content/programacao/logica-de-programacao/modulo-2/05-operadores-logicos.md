@@ -224,25 +224,70 @@ O Python escreve em inglês o que o JavaScript escreve com símbolos: `idade >= 
 
 ## Treine
 
-> [!question] O que aparece no console?
-> 1. `console.log(5 > 3 && 2 > 4);`
-> 2. `console.log(5 > 3 || 2 > 4);`
-> 3. `console.log(!(5 > 3));`
-> 4. `console.log(true && false || true);`
-> 5. `console.log(!true || !false);`
-> 6. `const n = 12; console.log(n % 2 === 0 && n > 10);`
-> 7. Reescreva sem o `!`: `!(nota >= 7)`.
-> 8. Uma loja dá frete grátis para compras acima de 200, ou para clientes VIP. Escreva a linha que guarda isso em `freteGratis`, usando as variáveis `total` e `ehVip`.
+Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 
-> [!success]- Respostas (clique para abrir)
-> 1. `false`: `5 > 3` é verdade, mas `2 > 4` não é, e o `&&` exige os dois.
-> 2. `true`: `5 > 3` já basta para o `||`.
-> 3. `false`: `5 > 3` dá `true`, e o `!` inverte.
-> 4. `true`: o `&&` vai primeiro. `true && false` dá `false`, e depois `false || true` dá `true`.
-> 5. `true`: os `!` vão primeiro. `!true` dá `false`, `!false` dá `true`, e `false || true` dá `true`.
-> 6. `true`: 12 é par (`12 % 2 === 0`) e é maior que 10.
-> 7. `nota < 7`.
-> 8. `const freteGratis = total > 200 || ehVip;`. Um cliente VIP com compra de 300 também ganha, porque o `||` aceita os dois lados verdadeiros.
+> [!question] 1. O que aparece no console?
+> ```js
+> console.log(5 > 3 && 2 > 4);
+> ```
+>
+> > [!success]- Resposta
+> > `false`: `5 > 3` é verdade, mas `2 > 4` não é, e o `&&` exige os dois.
+
+> [!question] 2. O que aparece no console?
+> ```js
+> console.log(5 > 3 || 2 > 4);
+> ```
+>
+> > [!success]- Resposta
+> > `true`: `5 > 3` já basta para o `||`.
+
+> [!question] 3. O que aparece no console?
+> ```js
+> console.log(!(5 > 3));
+> ```
+>
+> > [!success]- Resposta
+> > `false`: `5 > 3` dá `true`, e o `!` inverte.
+
+> [!question] 4. O que aparece no console?
+> ```js
+> console.log(true && false || true);
+> ```
+>
+> > [!success]- Resposta
+> > `true`: o `&&` vai primeiro. `true && false` dá `false`, e depois `false || true` dá `true`.
+
+> [!question] 5. O que aparece no console?
+> ```js
+> console.log(!true || !false);
+> ```
+>
+> > [!success]- Resposta
+> > `true`: os `!` vão primeiro. `!true` dá `false`, `!false` dá `true`, e `false || true` dá `true`.
+
+> [!question] 6. O que aparece no console?
+> ```js
+> const n = 12;
+> console.log(n % 2 === 0 && n > 10);
+> ```
+>
+> > [!success]- Resposta
+> > `true`: 12 é par (`12 % 2 === 0`) e é maior que 10.
+
+> [!question] 7. Reescreva sem o `!`:
+> ```js
+> !(nota >= 7)
+> ```
+>
+> > [!success]- Resposta
+> > `nota < 7`.
+
+> [!question] 8. Escreva a linha do frete
+> Uma loja dá frete grátis para compras acima de 200, ou para clientes VIP. Escreva a linha que guarda isso em `freteGratis`, usando as variáveis `total` e `ehVip`.
+>
+> > [!success]- Resposta
+> > `const freteGratis = total > 200 || ehVip;`. Um cliente VIP com compra de 300 também ganha, porque o `||` aceita os dois lados verdadeiros.
 
 ## De onde vêm as palavras
 

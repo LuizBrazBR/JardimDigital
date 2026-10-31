@@ -177,19 +177,55 @@ Dois detalhes:
 
 ## Treine
 
-> [!question] O que aparece no console?
-> 1. `let a = 5; a = a + 2; console.log(a);`
-> 2. `let cor = "azul"; console.log("cor");`
-> 3. `let x = 10; let y = x; x = 20; console.log(y);`
-> 4. `let nome; console.log(nome);`
-> 5. `const dias = 7; dias = 8;`
+Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 
-> [!success]- Respostas (clique para abrir)
-> 1. `7`: `a` recebe o valor atual dele (5) mais 2.
-> 2. `cor`: com aspas, é texto. Para ver `azul`, seria `console.log(cor)`.
-> 3. `10`: pegadinha. `y = x` copia o valor que `x` tinha **naquele momento**. Mudar `x` depois não mexe em `y`.
-> 4. `undefined`: a variável existe, mas está vazia.
-> 5. Erro: `TypeError: Assignment to constant variable.`, porque `dias` foi criada com `const`.
+> [!question] 1. O que aparece no console?
+> ```js
+> let a = 5;
+> a = a + 2;
+> console.log(a);
+> ```
+>
+> > [!success]- Resposta
+> > `7`: `a` recebe o valor atual dele (5) mais 2.
+
+> [!question] 2. O que aparece no console?
+> ```js
+> let cor = "azul";
+> console.log("cor");
+> ```
+>
+> > [!success]- Resposta
+> > `cor`: com aspas, é texto. Para ver `azul`, seria `console.log(cor)`.
+
+> [!question] 3. O que aparece no console?
+> ```js
+> let x = 10;
+> let y = x;
+> x = 20;
+> console.log(y);
+> ```
+>
+> > [!success]- Resposta
+> > `10`: pegadinha. `y = x` copia o valor que `x` tinha **naquele momento**. Mudar `x` depois não mexe em `y`.
+
+> [!question] 4. O que aparece no console?
+> ```js
+> let nome;
+> console.log(nome);
+> ```
+>
+> > [!success]- Resposta
+> > `undefined`: a variável existe, mas está vazia.
+
+> [!question] 5. O que aparece no console?
+> ```js
+> const dias = 7;
+> dias = 8;
+> ```
+>
+> > [!success]- Resposta
+> > Erro: `TypeError: Assignment to constant variable.`, porque `dias` foi criada com `const`.
 
 ## Isso ainda é lógica de programação?
 

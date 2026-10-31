@@ -54,16 +54,22 @@ Neste curso, a saída vai aparecer quase sempre no **[[glossario/console|console
 
 Repare na catraca e no caixa eletrônico: **o mesmo programa pode dar saídas diferentes**. Quem decide qual delas sai é o processamento, olhando para a entrada.
 
-> [!question] Treine
-> Encontre a entrada, o processamento e a saída:
-> 1. o tradutor do celular
-> 2. a luz do corredor que acende sozinha quando alguém passa
-> 3. a balança da padaria
+Treine: encontre a entrada, o processamento e a saída de cada caso. Tente responder antes de abrir a resposta.
 
-> [!success]- Respostas (clique para abrir)
-> 1. **Tradutor**: entra a frase em português, digitada ou falada. O processamento entende o sentido e monta a frase na outra língua. Sai a tradução, na tela ou em voz alta.
-> 2. **Luz do corredor**: entra o movimento captado pelo sensor. O processamento é a regra "tem alguém passando? então acende", e depois conta o tempo para apagar. Sai a luz acesa. Ninguém digitou nada: a entrada veio de um sensor.
-> 3. **Balança da padaria**: entram o peso do pão e o preço do quilo. O processamento multiplica um pelo outro. Sai a etiqueta com o valor.
+> [!question] 1. O tradutor do celular
+>
+> > [!success]- Resposta
+> > Entra a frase em português, digitada ou falada. O processamento entende o sentido e monta a frase na outra língua. Sai a tradução, na tela ou em voz alta.
+
+> [!question] 2. A luz do corredor que acende sozinha quando alguém passa
+>
+> > [!success]- Resposta
+> > Entra o movimento captado pelo sensor. O processamento é a regra "tem alguém passando? então acende", e depois conta o tempo para apagar. Sai a luz acesa. Ninguém digitou nada: a entrada veio de um sensor.
+
+> [!question] 3. A balança da padaria
+>
+> > [!success]- Resposta
+> > Entram o peso do pão e o preço do quilo. O processamento multiplica um pelo outro. Sai a etiqueta com o valor.
 
 ## Uma saída vira a entrada da próxima
 

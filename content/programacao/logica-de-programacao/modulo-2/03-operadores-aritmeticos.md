@@ -191,25 +191,67 @@ Repare que o `^` é potência na planilha, mas não em JavaScript. E que o Pytho
 
 ## Treine
 
-> [!question] O que aparece no console?
-> 1. `console.log(17 % 5);`
-> 2. `console.log(4 % 10);`
-> 3. `console.log(50 % 10);`
-> 4. `console.log(10 - 2 * 3);`
-> 5. `console.log((10 - 2) * 3);`
-> 6. `console.log(12 / 4 * 3);`
-> 7. Hoje é quarta-feira (3, contando de 0 = domingo). Que dia será daqui a 100 dias? Escreva a conta.
-> 8. Um filme tem 135 minutos. Escreva as contas que dão as horas e os minutos.
+Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 
-> [!success]- Respostas (clique para abrir)
-> 1. `2`: o 5 cabe 3 vezes no 17 (dá 15), e sobram 2.
-> 2. `4`: o 10 não cabe nenhuma vez no 4, então sobra tudo.
-> 3. `0`: 50 dividido por 10 é exato. Não é porcentagem.
-> 4. `4`: a multiplicação vem primeiro (2 × 3 = 6), depois 10 − 6.
-> 5. `24`: o parêntese força a subtração primeiro (8), depois 8 × 3.
-> 6. `9`: mesmo grupo, então da esquerda para a direita: 12 / 4 = 3, depois 3 × 3.
-> 7. `(3 + 100) % 7` dá `5`: sexta-feira.
-> 8. Minutos: `135 % 60` dá `15`. Horas: `(135 - 135 % 60) / 60` dá `2`. O filme tem 2h15.
+> [!question] 1. O que aparece no console?
+> ```js
+> console.log(17 % 5);
+> ```
+>
+> > [!success]- Resposta
+> > `2`: o 5 cabe 3 vezes no 17 (dá 15), e sobram 2.
+
+> [!question] 2. O que aparece no console?
+> ```js
+> console.log(4 % 10);
+> ```
+>
+> > [!success]- Resposta
+> > `4`: o 10 não cabe nenhuma vez no 4, então sobra tudo.
+
+> [!question] 3. O que aparece no console?
+> ```js
+> console.log(50 % 10);
+> ```
+>
+> > [!success]- Resposta
+> > `0`: 50 dividido por 10 é exato. Não é porcentagem.
+
+> [!question] 4. O que aparece no console?
+> ```js
+> console.log(10 - 2 * 3);
+> ```
+>
+> > [!success]- Resposta
+> > `4`: a multiplicação vem primeiro (2 × 3 = 6), depois 10 − 6.
+
+> [!question] 5. O que aparece no console?
+> ```js
+> console.log((10 - 2) * 3);
+> ```
+>
+> > [!success]- Resposta
+> > `24`: o parêntese força a subtração primeiro (8), depois 8 × 3.
+
+> [!question] 6. O que aparece no console?
+> ```js
+> console.log(12 / 4 * 3);
+> ```
+>
+> > [!success]- Resposta
+> > `9`: mesmo grupo, então da esquerda para a direita: 12 / 4 = 3, depois 3 × 3.
+
+> [!question] 7. Que dia da semana?
+> Hoje é quarta-feira (3, contando de 0 = domingo). Que dia será daqui a 100 dias? Escreva a conta.
+>
+> > [!success]- Resposta
+> > `(3 + 100) % 7` dá `5`: sexta-feira.
+
+> [!question] 8. Horas e minutos
+> Um filme tem 135 minutos. Escreva as contas que dão as horas e os minutos.
+>
+> > [!success]- Resposta
+> > Minutos: `135 % 60` dá `15`. Horas: `(135 - 135 % 60) / 60` dá `2`. O filme tem 2h15.
 
 ## De onde vêm as palavras
 

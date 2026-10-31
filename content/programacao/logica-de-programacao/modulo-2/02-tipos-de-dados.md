@@ -167,21 +167,56 @@ Repare no nome que o pseudocódigo dá ao verdadeiro ou falso: **lógico**. É o
 
 ## Treine
 
-> [!question] O que aparece no console?
-> 1. `console.log(typeof "42");`
-> 2. `console.log("7" + 3);`
-> 3. `console.log("7" - 3);`
-> 4. `console.log(1 + 2 + "3");`
-> 5. `console.log("1" + 2 + 3);`
-> 6. `const nome = "Ana"; console.log("Oi, ${nome}");`
+Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 
-> [!success]- Respostas (clique para abrir)
-> 1. `string`: tem aspas, então é texto, mesmo parecendo número.
-> 2. `73`: um lado é texto, e o `+` junta.
-> 3. `4`: o `-` só faz conta, então transforma `"7"` em 7.
-> 4. `33`: o JavaScript resolve da esquerda para a direita. `1 + 2` dá `3` (dois números, soma). Depois, `3 + "3"` junta e dá `"33"`.
-> 5. `123`: `"1" + 2` já dá o texto `"12"`. Daí em diante tudo é junção: `"12" + 3` dá `"123"`.
-> 6. `Oi, ${nome}`: com aspas comuns, a lacuna não funciona. Com crase, sairia `Oi, Ana`.
+> [!question] 1. O que aparece no console?
+> ```js
+> console.log(typeof "42");
+> ```
+>
+> > [!success]- Resposta
+> > `string`: tem aspas, então é texto, mesmo parecendo número.
+
+> [!question] 2. O que aparece no console?
+> ```js
+> console.log("7" + 3);
+> ```
+>
+> > [!success]- Resposta
+> > `73`: um lado é texto, e o `+` junta.
+
+> [!question] 3. O que aparece no console?
+> ```js
+> console.log("7" - 3);
+> ```
+>
+> > [!success]- Resposta
+> > `4`: o `-` só faz conta, então transforma `"7"` em 7.
+
+> [!question] 4. O que aparece no console?
+> ```js
+> console.log(1 + 2 + "3");
+> ```
+>
+> > [!success]- Resposta
+> > `33`: o JavaScript resolve da esquerda para a direita. `1 + 2` dá `3` (dois números, soma). Depois, `3 + "3"` junta e dá `"33"`.
+
+> [!question] 5. O que aparece no console?
+> ```js
+> console.log("1" + 2 + 3);
+> ```
+>
+> > [!success]- Resposta
+> > `123`: `"1" + 2` já dá o texto `"12"`. Daí em diante tudo é junção: `"12" + 3` dá `"123"`.
+
+> [!question] 6. O que aparece no console?
+> ```js
+> const nome = "Ana";
+> console.log("Oi, ${nome}");
+> ```
+>
+> > [!success]- Resposta
+> > `Oi, ${nome}`: com aspas comuns, a lacuna não funciona. Com crase, sairia `Oi, Ana`.
 
 ## De onde vêm as palavras
 

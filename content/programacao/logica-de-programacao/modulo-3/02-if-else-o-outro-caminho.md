@@ -327,13 +327,61 @@ O `SE` da planilha calcula um valor, igual ao ternário, e não um bloco de inst
 
 ## Treine
 
-> [!question] O que aparece no console?
-> 1. `const nota = 5; if (nota >= 7) { console.log("Aprovado"); } else { console.log("Recuperação"); }`
-> 2. `const numero = 0; if (numero % 2 === 0) { console.log("par"); } else { console.log("ímpar"); }`
-> 3. `const a = 5; const b = 5; if (a > b) { console.log("a é maior"); } else { console.log("b é maior"); }`
-> 4. Onde está o erro? `if (idade >= 18) { console.log("Pode votar"); } else (idade < 18) { console.log("Ainda não"); }`
-> 5. Troque os dois `if`s por um `if`/`else`:
+Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
+
+> [!question] 1. O que aparece no console?
+> ```js
+> const nota = 5;
+> if (nota >= 7) {
+>   console.log("Aprovado");
+> } else {
+>   console.log("Recuperação");
+> }
+> ```
 >
+> > [!success]- Resposta
+> > `Recuperação`: `5 >= 7` é `false`, então roda o bloco do `else`.
+
+> [!question] 2. O que aparece no console?
+> ```js
+> const numero = 0;
+> if (numero % 2 === 0) {
+>   console.log("par");
+> } else {
+>   console.log("ímpar");
+> }
+> ```
+>
+> > [!success]- Resposta
+> > `par`: `0 % 2` dá `0`, e `0 === 0` é `true`. Zero é par.
+
+> [!question] 3. O que aparece no console?
+> ```js
+> const a = 5;
+> const b = 5;
+> if (a > b) {
+>   console.log("a é maior");
+> } else {
+>   console.log("b é maior");
+> }
+> ```
+>
+> > [!success]- Resposta
+> > `b é maior`, mesmo com os dois iguais: `5 > 5` é `false`, e o `else` engole o empate. Para tratar o empate, só com a aula 3.3.
+
+> [!question] 4. Onde está o erro?
+> ```js
+> if (idade >= 18) {
+>   console.log("Pode votar");
+> } else (idade < 18) {
+>   console.log("Ainda não");
+> }
+> ```
+>
+> > [!success]- Resposta
+> > O `else` não tem condição. O certo é `} else {`. A pergunta `(idade < 18)` sobra: se a idade não é maior ou igual a 18, só pode ser menor.
+
+> [!question] 5. Troque os dois `if`s por um `if`/`else`:
 > ```js
 > if (temperatura > 30) {
 >   console.log("Calor");
@@ -343,26 +391,42 @@ O `SE` da planilha calcula um valor, igual ao ternário, e não um bloco de inst
 > }
 > ```
 >
-> 6. Reescreva sem o `!`: `if (!estaLogado) { console.log("Faça login"); } else { console.log("Bem-vindo!"); }`
-> 7. Quantos blocos podem rodar, no máximo e no mínimo, (a) num `if` sozinho e (b) num `if` com `else`?
+> > [!success]- Resposta
+> > O contrário de `> 30` já é `<= 30`, então basta:
+> >
+> > ```js
+> > if (temperatura > 30) {
+> >   console.log("Calor");
+> > } else {
+> >   console.log("Clima ameno");
+> > }
+> > ```
 
-> [!success]- Respostas (clique para abrir)
-> 1. `Recuperação`: `5 >= 7` é `false`, então roda o bloco do `else`.
-> 2. `par`: `0 % 2` dá `0`, e `0 === 0` é `true`. Zero é par.
-> 3. `b é maior`, mesmo com os dois iguais: `5 > 5` é `false`, e o `else` engole o empate. Para tratar o empate, só com a aula 3.3.
-> 4. O `else` não tem condição. O certo é `} else {`. A pergunta `(idade < 18)` sobra: se a idade não é maior ou igual a 18, só pode ser menor.
-> 5. O contrário de `> 30` já é `<= 30`, então basta:
->
+> [!question] 6. Reescreva sem o `!`:
 > ```js
-> if (temperatura > 30) {
->   console.log("Calor");
+> if (!estaLogado) {
+>   console.log("Faça login");
 > } else {
->   console.log("Clima ameno");
+>   console.log("Bem-vindo!");
 > }
 > ```
 >
-> 6. `if (estaLogado) { console.log("Bem-vindo!"); } else { console.log("Faça login"); }`. Os blocos trocam de lugar junto com a condição.
-> 7. (a) No máximo um, no mínimo nenhum. (b) Sempre exatamente um.
+> > [!success]- Resposta
+> > Os blocos trocam de lugar junto com a condição:
+> >
+> > ```js
+> > if (estaLogado) {
+> >   console.log("Bem-vindo!");
+> > } else {
+> >   console.log("Faça login");
+> > }
+> > ```
+
+> [!question] 7. Quantos blocos rodam?
+> Quantos blocos podem rodar, no máximo e no mínimo, (a) num `if` sozinho e (b) num `if` com `else`?
+>
+> > [!success]- Resposta
+> > (a) No máximo um, no mínimo nenhum. (b) Sempre exatamente um.
 
 ## De onde vêm as palavras
 

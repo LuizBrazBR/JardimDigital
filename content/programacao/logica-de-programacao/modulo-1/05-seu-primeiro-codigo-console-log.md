@@ -159,19 +159,47 @@ Os erros comuns da aula, com a mensagem de verdade (testadas no Node):
 
 ## Treine
 
-> [!question] O que aparece no console?
-> 1. `console.log("5 + 5");`
-> 2. `console.log(5 + 5);`
-> 3. `console.log("Resultado:", 5 + 5);`
-> 4. `console.log("5" + 5);`
-> 5. `console.log(oi);`
+Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 
-> [!success]- Respostas (clique para abrir)
-> 1. `5 + 5`: está entre aspas, então é texto e aparece igualzinho.
-> 2. `10`: sem aspas, é conta.
-> 3. `Resultado: 10`: dois argumentos, juntados com um espaço.
-> 4. `55`: pegadinha. Quando um dos lados do `+` é texto, o JavaScript **gruda** em vez de somar. O nome disso é *concatenar*.
-> 5. Erro: `ReferenceError: oi is not defined`. Sem aspas, `oi` é um nome que o JavaScript não conhece.
+> [!question] 1. O que aparece no console?
+> ```js
+> console.log("5 + 5");
+> ```
+>
+> > [!success]- Resposta
+> > `5 + 5`: está entre aspas, então é texto e aparece igualzinho.
+
+> [!question] 2. O que aparece no console?
+> ```js
+> console.log(5 + 5);
+> ```
+>
+> > [!success]- Resposta
+> > `10`: sem aspas, é conta.
+
+> [!question] 3. O que aparece no console?
+> ```js
+> console.log("Resultado:", 5 + 5);
+> ```
+>
+> > [!success]- Resposta
+> > `Resultado: 10`: dois argumentos, juntados com um espaço.
+
+> [!question] 4. O que aparece no console?
+> ```js
+> console.log("5" + 5);
+> ```
+>
+> > [!success]- Resposta
+> > `55`: pegadinha. Quando um dos lados do `+` é texto, o JavaScript **gruda** em vez de somar. O nome disso é *concatenar*.
+
+> [!question] 5. O que aparece no console?
+> ```js
+> console.log(oi);
+> ```
+>
+> > [!success]- Resposta
+> > Erro: `ReferenceError: oi is not defined`. Sem aspas, `oi` é um nome que o JavaScript não conhece.
 
 ## Por que "Olá, mundo!"?
 

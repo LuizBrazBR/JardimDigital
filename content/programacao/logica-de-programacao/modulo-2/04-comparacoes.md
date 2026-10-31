@@ -175,25 +175,70 @@ Comparar é lógica pura, e toda linguagem compara. O que muda é o símbolo, e 
 
 ## Treine
 
-> [!question] O que aparece no console?
-> 1. `console.log(10 >= 10);`
-> 2. `console.log(10 > 10);`
-> 3. `console.log("7" === 7);`
-> 4. `console.log("7" == 7);`
-> 5. `console.log(15 % 2 === 0);`
-> 6. `console.log("Brasil" === "brasil");`
-> 7. `let x = 3; console.log(x = 5);`
-> 8. Um filme é para maiores de 14 anos: quem tem 14 já pode ver. Escreva a comparação que guarda em `podeAssistir` se a pessoa pode entrar.
+Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 
-> [!success]- Respostas (clique para abrir)
-> 1. `true`: o `>=` inclui o próprio número.
-> 2. `false`: 10 não é maior que 10.
-> 3. `false`: um lado é texto e o outro é número, e o `===` não converte.
-> 4. `true`: o `==` converte o `"7"` em 7 antes de comparar. Funciona, mas é justamente o que se evita.
-> 5. `false`: `15 % 2` dá `1`, e `1 === 0` é falso. 15 é ímpar.
-> 6. `false`: maiúscula conta.
-> 7. `5`: isso é uma atribuição, não uma comparação. O `x` passou a valer 5.
-> 8. `const podeAssistir = idade >= 14;`. Com `idade > 14`, quem tem exatamente 14 ficaria de fora.
+> [!question] 1. O que aparece no console?
+> ```js
+> console.log(10 >= 10);
+> ```
+>
+> > [!success]- Resposta
+> > `true`: o `>=` inclui o próprio número.
+
+> [!question] 2. O que aparece no console?
+> ```js
+> console.log(10 > 10);
+> ```
+>
+> > [!success]- Resposta
+> > `false`: 10 não é maior que 10.
+
+> [!question] 3. O que aparece no console?
+> ```js
+> console.log("7" === 7);
+> ```
+>
+> > [!success]- Resposta
+> > `false`: um lado é texto e o outro é número, e o `===` não converte.
+
+> [!question] 4. O que aparece no console?
+> ```js
+> console.log("7" == 7);
+> ```
+>
+> > [!success]- Resposta
+> > `true`: o `==` converte o `"7"` em 7 antes de comparar. Funciona, mas é justamente o que se evita.
+
+> [!question] 5. O que aparece no console?
+> ```js
+> console.log(15 % 2 === 0);
+> ```
+>
+> > [!success]- Resposta
+> > `false`: `15 % 2` dá `1`, e `1 === 0` é falso. 15 é ímpar.
+
+> [!question] 6. O que aparece no console?
+> ```js
+> console.log("Brasil" === "brasil");
+> ```
+>
+> > [!success]- Resposta
+> > `false`: maiúscula conta.
+
+> [!question] 7. O que aparece no console?
+> ```js
+> let x = 3;
+> console.log(x = 5);
+> ```
+>
+> > [!success]- Resposta
+> > `5`: isso é uma atribuição, não uma comparação. O `x` passou a valer 5.
+
+> [!question] 8. Escreva a comparação
+> Um filme é para maiores de 14 anos: quem tem 14 já pode ver. Escreva a comparação que guarda em `podeAssistir` se a pessoa pode entrar.
+>
+> > [!success]- Resposta
+> > `const podeAssistir = idade >= 14;`. Com `idade > 14`, quem tem exatamente 14 ficaria de fora.
 
 ## De onde vêm as palavras
 

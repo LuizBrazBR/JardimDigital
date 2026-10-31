@@ -300,15 +300,89 @@ A linha recuada é do `if`. A que voltou para a margem não é. Por isso, a arma
 
 ## Treine
 
-> [!question] O que aparece no console?
-> 1. `const nota = 7; if (nota >= 7) { console.log("Aprovado"); } console.log("Fim");`
-> 2. O mesmo, mas com `const nota = 6.9;`.
-> 3. `const temEstoque = false; if (!temEstoque) { console.log("Esgotado"); }`
-> 4. `const idade = 20; const temCarteira = false; if (idade >= 18 && temCarteira) { console.log("Pode dirigir"); }`
-> 5. `let pontos = 0; if (pontos = 100) { console.log("Venceu!"); } console.log(pontos);`
-> 6. Reescreva com `if`: `ehVip && console.log("Frete grátis");`
-> 7. Operador ou `if`? (a) Guardar em `meiaEntrada` se a pessoa é estudante ou tem 60 anos ou mais. (b) Mostrar "Bem-vindo de volta!" para quem está logado.
-> 8. E este, sem chaves?
+Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
+
+> [!question] 1. O que aparece no console?
+> ```js
+> const nota = 7;
+> if (nota >= 7) {
+>   console.log("Aprovado");
+> }
+> console.log("Fim");
+> ```
+>
+> > [!success]- Resposta
+> > `Aprovado` e depois `Fim`: `7 >= 7` é `true`, porque o `>=` inclui o próprio 7.
+
+> [!question] 2. O que aparece no console?
+> É o código do item 1, só com outra nota:
+>
+> ```js
+> const nota = 6.9;
+> if (nota >= 7) {
+>   console.log("Aprovado");
+> }
+> console.log("Fim");
+> ```
+>
+> > [!success]- Resposta
+> > Só `Fim`: `6.9 >= 7` é `false`, e o bloco é pulado. O `console.log("Fim")` está fora dele, então roda.
+
+> [!question] 3. O que aparece no console?
+> ```js
+> const temEstoque = false;
+> if (!temEstoque) {
+>   console.log("Esgotado");
+> }
+> ```
+>
+> > [!success]- Resposta
+> > `Esgotado`: `temEstoque` é `false`, e `!false` é `true`.
+
+> [!question] 4. O que aparece no console?
+> ```js
+> const idade = 20;
+> const temCarteira = false;
+> if (idade >= 18 && temCarteira) {
+>   console.log("Pode dirigir");
+> }
+> ```
+>
+> > [!success]- Resposta
+> > Nada: o `&&` exige os dois lados, e falta a carteira.
+
+> [!question] 5. O que aparece no console?
+> ```js
+> let pontos = 0;
+> if (pontos = 100) {
+>   console.log("Venceu!");
+> }
+> console.log(pontos);
+> ```
+>
+> > [!success]- Resposta
+> > `Venceu!` e depois `100`. É o engano do `=`: em vez de perguntar, guardou 100 em `pontos`, e 100 conta como verdadeiro. O certo era `if (pontos === 100)`.
+
+> [!question] 6. Reescreva com `if`:
+> ```js
+> ehVip && console.log("Frete grátis");
+> ```
+>
+> > [!success]- Resposta
+> > ```js
+> > if (ehVip) {
+> >   console.log("Frete grátis");
+> > }
+> > ```
+
+> [!question] 7. Operador ou `if`?
+> (a) Guardar em `meiaEntrada` se a pessoa é estudante ou tem 60 anos ou mais. (b) Mostrar "Bem-vindo de volta!" para quem está logado.
+>
+> > [!success]- Resposta
+> > (a) Uma resposta, então operador: `const meiaEntrada = ehEstudante || idade >= 60;`. (b) Uma ação, então `if`: `if (estaLogado) { console.log("Bem-vindo de volta!"); }`.
+
+> [!question] 8. O que aparece no console?
+> Repare que este `if` está sem chaves:
 >
 > ```js
 > const chovendo = false;
@@ -316,16 +390,9 @@ A linha recuada é do `if`. A que voltou para a margem não é. Por isso, a arma
 >   console.log("Leve o guarda-chuva");
 >   console.log("Leve a capa de chuva");
 > ```
-
-> [!success]- Respostas (clique para abrir)
-> 1. `Aprovado` e depois `Fim`: `7 >= 7` é `true`, porque o `>=` inclui o próprio 7.
-> 2. Só `Fim`: `6.9 >= 7` é `false`, e o bloco é pulado. O `console.log("Fim")` está fora dele, então roda.
-> 3. `Esgotado`: `temEstoque` é `false`, e `!false` é `true`.
-> 4. Nada: o `&&` exige os dois lados, e falta a carteira.
-> 5. `Venceu!` e depois `100`. É o engano do `=`: em vez de perguntar, guardou 100 em `pontos`, e 100 conta como verdadeiro. O certo era `if (pontos === 100)`.
-> 6. `if (ehVip) { console.log("Frete grátis"); }`
-> 7. (a) Uma resposta, então operador: `const meiaEntrada = ehEstudante || idade >= 60;`. (b) Uma ação, então `if`: `if (estaLogado) { console.log("Bem-vindo de volta!"); }`.
-> 8. Só `Leve a capa de chuva`. Sem chaves, o `if` fica só com a primeira linha, e a segunda roda sempre, apesar do recuo. Não está chovendo, e o programa manda levar a capa.
+>
+> > [!success]- Resposta
+> > Só `Leve a capa de chuva`. Sem chaves, o `if` fica só com a primeira linha, e a segunda roda sempre, apesar do recuo. Não está chovendo, e o programa manda levar a capa.
 
 ## De onde vêm as palavras
 

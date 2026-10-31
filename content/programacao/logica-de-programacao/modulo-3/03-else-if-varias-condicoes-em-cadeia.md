@@ -355,9 +355,9 @@ E na planilha, o encaixe fica à vista. Cada `SE` novo entra no lugar do "valor 
 
 ## Treine
 
-> [!question] Tente
-> Os itens 1 e 2 usam esta escada:
->
+Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
+
+> [!question] 1. O que aparece com `const temperatura = 30;`?
 > ```js
 > if (temperatura >= 30) {
 >   console.log("Calor");
@@ -370,11 +370,26 @@ E na planilha, o encaixe fica à vista. Cada `SE` novo entra no lugar do "valor 
 > }
 > ```
 >
-> 1. O que aparece com `const temperatura = 30;`?
-> 2. E com `const temperatura = 9.9;`?
+> > [!success]- Resposta
+> > `Calor`: `30 >= 30` é `true`, porque o `>=` inclui o próprio 30.
+
+> [!question] 2. E com `const temperatura = 9.9;`?
+> ```js
+> if (temperatura >= 30) {
+>   console.log("Calor");
+> } else if (temperatura >= 20) {
+>   console.log("Agradável");
+> } else if (temperatura >= 10) {
+>   console.log("Frio");
+> } else {
+>   console.log("Muito frio");
+> }
+> ```
 >
-> O item 3 usa esta outra:
->
+> > [!success]- Resposta
+> > `Muito frio`: 9,9 não passa em nenhum degrau, e cai no `else`.
+
+> [!question] 3. O que aparece com `const idade = 13;`? E com `const idade = 60;`?
 > ```js
 > if (idade < 13) {
 >   console.log("Criança");
@@ -387,8 +402,11 @@ E na planilha, o encaixe fica à vista. Cada `SE` novo entra no lugar do "valor 
 > }
 > ```
 >
-> 3. O que aparece com `const idade = 13;`? E com `const idade = 60;`?
-> 4. Esta escada de idade tem um problema. O que aparece com `const idade = 8;`? Como consertar?
+> > [!success]- Resposta
+> > Com 13, `Adolescente`: `13 < 13` é `false`, e `13 < 18` é `true`. Com 60, `Idoso`: `60 < 60` é `false`, e o 60 cai no `else`.
+
+> [!question] 4. Esta escada tem um problema. O que aparece com `const idade = 8;`?
+> E como consertar?
 >
 > ```js
 > if (idade < 60) {
@@ -402,7 +420,11 @@ E na planilha, o encaixe fica à vista. Cada `SE` novo entra no lugar do "valor 
 > }
 > ```
 >
-> 5. Com `const pontos = 120;`, quantas mensagens aparecem? Reescreva com `else if` para aparecer só uma, a certa.
+> > [!success]- Resposta
+> > Aparece `Adulto`. O `idade < 60` vem primeiro e pega todo mundo abaixo de 60, crianças e adolescentes inclusive. Os degraus do "Adolescente" e da "Criança" nunca rodam. Com `<`, a ordem é do menor para o maior, que é a escada do item 3.
+
+> [!question] 5. Com `const pontos = 120;`, quantas mensagens aparecem?
+> Depois, reescreva com `else if` para aparecer só uma, a certa.
 >
 > ```js
 > if (pontos >= 100) { console.log("Ouro"); }
@@ -410,8 +432,20 @@ E na planilha, o encaixe fica à vista. Cada `SE` novo entra no lugar do "valor 
 > if (pontos >= 0) { console.log("Bronze"); }
 > ```
 >
-> 6. Nesta escada, um pedaço da condição do `else if` não serve para nada. Qual, e por quê?
->
+> > [!success]- Resposta
+> > Três: `Ouro`, `Prata` e `Bronze`, porque cada `if` pergunta sozinho. Com a escada, só `Ouro`:
+> >
+> > ```js
+> > if (pontos >= 100) {
+> >   console.log("Ouro");
+> > } else if (pontos >= 50) {
+> >   console.log("Prata");
+> > } else {
+> >   console.log("Bronze");
+> > }
+> > ```
+
+> [!question] 6. Um pedaço da condição do `else if` não serve para nada. Qual, e por quê?
 > ```js
 > if (nota >= 9) {
 >   console.log("Conceito A");
@@ -420,48 +454,38 @@ E na planilha, o encaixe fica à vista. Cada `SE` novo entra no lugar do "valor 
 > }
 > ```
 >
-> 7. Escreva a escada do frete, com uma variável `compra` que guarda o valor da compra em reais. Compras de 200 reais ou mais têm frete grátis. De 100 reais ou mais, o frete custa 10 reais. As outras pagam 20 reais de frete.
-> 8. Que valores de `compra` você usaria para testar a escada do item 7? Pense nas bordas.
+> > [!success]- Resposta
+> > O `nota < 9`. Para chegar ao `else if`, a nota já não passou no `nota >= 9`, então é menor que 9 com certeza. Basta `else if (nota >= 7)`.
 
-> [!success]- Respostas (clique para abrir)
-> 1. `Calor`: `30 >= 30` é `true`, porque o `>=` inclui o próprio 30.
-> 2. `Muito frio`: 9,9 não passa em nenhum degrau, e cai no `else`.
-> 3. Com 13, `Adolescente`: `13 < 13` é `false`, e `13 < 18` é `true`. Com 60, `Idoso`: `60 < 60` é `false`, e o 60 cai no `else`.
-> 4. Aparece `Adulto`. O `idade < 60` vem primeiro e pega todo mundo abaixo de 60, crianças e adolescentes inclusive. Os degraus do "Adolescente" e da "Criança" nunca rodam. Com `<`, a ordem é do menor para o maior, que é a escada do item 3.
-> 5. Três: `Ouro`, `Prata` e `Bronze`, porque cada `if` pergunta sozinho. Com a escada, só `Ouro`:
+> [!question] 7. Escreva a escada do frete
+> Use uma variável `compra`, que guarda o valor da compra em reais. Compras de 200 reais ou mais têm frete grátis. De 100 reais ou mais, o frete custa 10 reais. As outras pagam 20 reais de frete.
 >
-> ```js
-> if (pontos >= 100) {
->   console.log("Ouro");
-> } else if (pontos >= 50) {
->   console.log("Prata");
-> } else {
->   console.log("Bronze");
-> }
-> ```
+> > [!success]- Resposta
+> > Uma resposta possível:
+> >
+> > ```js
+> > if (compra >= 200) {
+> >   console.log("Frete grátis");
+> > } else if (compra >= 100) {
+> >   console.log("Frete: R$ 10");
+> > } else {
+> >   console.log("Frete: R$ 20");
+> > }
+> > ```
+
+> [!question] 8. Que valores de `compra` você usaria para testar a escada do item 7?
+> Pense nas bordas.
 >
-> 6. O `nota < 9`. Para chegar ao `else if`, a nota já não passou no `nota >= 9`, então é menor que 9 com certeza. Basta `else if (nota >= 7)`.
-> 7. Uma resposta possível:
->
-> ```js
-> if (compra >= 200) {
->   console.log("Frete grátis");
-> } else if (compra >= 100) {
->   console.log("Frete: R$ 10");
-> } else {
->   console.log("Frete: R$ 20");
-> }
-> ```
->
-> 8. As bordas, cada limite e um valor logo abaixo dele, e mais um valor bem acima:
->
-> | `compra` | Tem de aparecer |
-> |---|---|
-> | 250 | `Frete grátis` |
-> | 200 | `Frete grátis` |
-> | 199.99 | `Frete: R$ 10` |
-> | 100 | `Frete: R$ 10` |
-> | 99.99 | `Frete: R$ 20` |
+> > [!success]- Resposta
+> > Cada limite e um valor logo abaixo dele, e mais um valor bem acima:
+> >
+> > | `compra` | Tem de aparecer |
+> > |---|---|
+> > | 250 | `Frete grátis` |
+> > | 200 | `Frete grátis` |
+> > | 199.99 | `Frete: R$ 10` |
+> > | 100 | `Frete: R$ 10` |
+> > | 99.99 | `Frete: R$ 20` |
 
 ## De onde vêm as palavras
 
