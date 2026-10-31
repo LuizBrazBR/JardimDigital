@@ -102,7 +102,37 @@ As peças, uma por uma:
 | `break;` | "pare e saia" | pula para depois do `}` do `switch` |
 | `default:` | "se nenhum bateu" | é o `else` do `switch` |
 
-Dois detalhes de escrita: depois de cada `case` vem **dois-pontos**, e não chaves. E as linhas de cada caso ficam recuadas embaixo dele, sem `{ }` em volta.
+### Os dois-pontos do `case`
+
+Até aqui, toda decisão usava parênteses e chaves: `if (condição) { ... }`. O `switch` traz um sinal novo: depois de cada `case`, e também do `default`, vem **dois-pontos**, e não chaves. As linhas do caso ficam recuadas embaixo dele, sem `{ }` em volta.
+
+Os dois-pontos funcionam como no português, em que anunciam o que vem a seguir: "Opção 1: financeiro". Num cardápio, "Bebidas:" e "Sobremesas:" são títulos que marcam onde começa cada parte da lista. O `case 1:` é um título desses. Ele marca **onde começa** o caso 1 dentro do bloco do `switch`.
+
+Por isso o sinal é diferente: as chaves de um `if` **fecham** um bloco, com começo e fim. Os dois-pontos só **marcam** um começo. O `switch` tem um bloco só, o das chaves de fora. Os `case` são marcações dentro dele, como os títulos de um cardápio. Nada nos dois-pontos diz onde o caso termina, e é por isso que o `break` é necessário (logo abaixo).
+
+Trocar os dois-pontos por ponto e vírgula dá erro: `case 1;` mostra `SyntaxError: Unexpected token ';'`.
+
+> [!info]- E se eu puser chaves no `case`? (clique para abrir)
+> O JavaScript aceita `case 1: { ... }`, mas as chaves não mudam nada no que importa. A marcação continua sendo o `case 1:`, e as chaves são só um bloco solto dentro dele, como os da aula 3.2. O `break` continua necessário:
+>
+> ```js
+> const opcao = 1;
+>
+> switch (opcao) {
+>   case 1: {
+>     console.log("Financeiro");
+>   }
+>   case 2: {
+>     console.log("Suporte técnico");
+>   }
+> }
+>
+> // saída:
+> // Financeiro
+> // Suporte técnico
+> ```
+>
+> Mesmo com chaves, sem `break` a execução cai no caso de baixo.
 
 ### Passo a passo, com `opcao = 2`
 
