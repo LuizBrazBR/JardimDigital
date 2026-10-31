@@ -63,7 +63,7 @@ let If = 5;     // funciona: com maiúscula, If é outra palavra
 |---|---|
 | `const` | aula 2.1 |
 | `true`, `false` | aula 2.2 |
-| `if`, `else`, `switch`, `case` | módulo 3 |
+| `if`, `else`, `switch`, `case`, `break`, `default` | módulo 3 |
 | `while`, `for`, `break`, `continue` | módulo 4 |
 | `function`, `return` | módulo 5 |
 
