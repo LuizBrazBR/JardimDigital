@@ -101,6 +101,8 @@ Dentro dos parênteses do `for` estão as três peças, separadas por ponto e v�
 | mudança | `i++` | soma 1 ao `i` depois de cada volta |
 | o que se repete | `{ console.log(i); }` | o [[glossario/bloco\|bloco]], como no `if` |
 
+O `for` é uma [[glossario/palavra-reservada|palavra reservada]], como o `if` da aula 3.1: faz parte da própria linguagem e não pode virar nome de variável. `let for = 5;` dá `SyntaxError: Unexpected token 'for'`. Já o `i` não é reservado. É um nome de variável comum, escolhido por quem escreve o código.
+
 O `i++` é novidade. É um atalho para `i = i + 1`, aquela linha da aula 2.1 que seria absurda na matemática: pega o valor de `i`, soma 1 e guarda de volta no `i`. Os dois sinais de mais se leem "mais um".
 
 ```js
