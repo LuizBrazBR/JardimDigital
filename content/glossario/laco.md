@@ -23,7 +23,9 @@ O computador pergunta, roda o [[glossario/bloco|bloco]], muda o `i` e volta para
 
 Se nada mudar entre uma volta e outra, a condição nunca fica falsa, e o laço não termina: é o [[glossario/laco-infinito|laço infinito]].
 
-Ver as aulas [[programacao/logica-de-programacao/modulo-4/01-por-que-repetir-a-ideia-de-laco|Por que repetir: a ideia de laço]], [[programacao/logica-de-programacao/modulo-4/02-while-repetindo-enquanto-for-verdade|while: repetindo enquanto for verdade]] e [[programacao/logica-de-programacao/modulo-4/03-for-o-laco-contado|for: o laço contado]].
+Dentro de um laço, o [[glossario/interromper|break]] encerra o laço na hora, e o [[glossario/continuar|continue]] pula só a volta atual. Um laço dentro do bloco de outro é um [[glossario/laco-aninhado|laço aninhado]].
+
+Ver as aulas [[programacao/logica-de-programacao/modulo-4/01-por-que-repetir-a-ideia-de-laco|Por que repetir: a ideia de laço]], [[programacao/logica-de-programacao/modulo-4/02-while-repetindo-enquanto-for-verdade|while: repetindo enquanto for verdade]], [[programacao/logica-de-programacao/modulo-4/03-for-o-laco-contado|for: o laço contado]] e [[programacao/logica-de-programacao/modulo-4/05-break-continue-e-lacos-aninhados|break, continue e laços aninhados]].
 
 ## De onde vem a palavra
 

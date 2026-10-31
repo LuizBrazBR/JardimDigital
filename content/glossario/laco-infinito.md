@@ -24,7 +24,7 @@ Causas comuns:
 
 O que acontece: no navegador, a aba congela, e depois de um tempo o navegador oferece fechá-la. No terminal, o programa não termina, e **Ctrl+C** o interrompe.
 
-Alguns programas repetem para sempre de propósito, como um jogo ou um servidor, com `while (true)`. Esses têm uma saída planejada lá dentro, o `break`.
+Alguns programas repetem para sempre de propósito, como um jogo ou um servidor, com `while (true)`. Esses têm uma saída planejada lá dentro, o [[glossario/interromper|break]].
 
 Ver a aula [[programacao/logica-de-programacao/modulo-4/02-while-repetindo-enquanto-for-verdade|while: repetindo enquanto for verdade]].
 

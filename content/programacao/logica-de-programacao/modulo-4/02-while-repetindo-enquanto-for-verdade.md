@@ -181,7 +181,7 @@ Antes de rodar um `while`, faça três perguntas:
 Se o programa travar enquanto você testa um laço, comece por essas três perguntas.
 
 > [!info]- Laços infinitos de propósito (clique para abrir)
-> Alguns programas repetem "para sempre" de propósito. Um jogo redesenha a tela, volta após volta, até o jogador sair. Um servidor fica esperando pedidos o dia inteiro. Esses programas costumam usar `while (true)`, uma condição que nunca dá `false`, com uma saída escrita lá dentro do bloco, o `break`, que aparece na aula 4.5. A diferença para o laço infinito por engano é que esses têm uma porta de saída planejada.
+> Alguns programas repetem "para sempre" de propósito. Um jogo redesenha a tela, volta após volta, até o jogador sair. Um servidor fica esperando pedidos o dia inteiro. Esses programas costumam usar `while (true)`, uma condição que nunca dá `false`, com uma saída escrita lá dentro do bloco, o `break`, que aparece na [[programacao/logica-de-programacao/modulo-4/05-break-continue-e-lacos-aninhados|aula 4.5]]. A diferença para o laço infinito por engano é que esses têm uma porta de saída planejada.
 
 ## Quando o `while` brilha: sem saber quantas voltas
 
