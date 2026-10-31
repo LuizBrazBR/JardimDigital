@@ -26,7 +26,7 @@ As três peças do laço ficam espalhadas:
 
 O `i` é a **variável de controle**: é ela que decide quando o laço para. Se nada no bloco mudar essa variável na direção certa, a condição nunca fica falsa, e o resultado é um [[glossario/laco-infinito|laço infinito]].
 
-O `while` serve bem quando se sabe **quando parar**, mas não **quantas voltas** vão ser necessárias, como em "peça a senha até a pessoa acertar".
+O `while` serve bem quando se sabe **quando parar**, mas não **quantas voltas** vão ser necessárias, como em "peça a senha até a pessoa acertar". Quando já se sabe o número de voltas, como "de 1 a 100", o [[glossario/para|for]] costuma ser mais prático.
 
 Ver a aula [[programacao/logica-de-programacao/modulo-4/02-while-repetindo-enquanto-for-verdade|while: repetindo enquanto for verdade]].
 

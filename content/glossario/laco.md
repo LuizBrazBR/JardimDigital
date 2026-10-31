@@ -3,7 +3,7 @@ title: Laço (loop)
 ---
 
 > [!abstract] Definição
-> **Um trecho de código que o computador repete enquanto uma condição for verdadeira.** Em inglês, *loop*. Em JavaScript, os laços se escrevem com `while` ([[glossario/enquanto|enquanto]]) e `for`.
+> **Um trecho de código que o computador repete enquanto uma condição for verdadeira.** Em inglês, *loop*. Em JavaScript, os laços se escrevem com `while` ([[glossario/enquanto|enquanto]]) e `for` ([[glossario/para|para]]).
 
 Todo laço tem três peças:
 
@@ -23,7 +23,7 @@ O computador pergunta, roda o [[glossario/bloco|bloco]], muda o `i` e volta para
 
 Se nada mudar entre uma volta e outra, a condição nunca fica falsa, e o laço não termina: é o [[glossario/laco-infinito|laço infinito]].
 
-Ver as aulas [[programacao/logica-de-programacao/modulo-4/01-por-que-repetir-a-ideia-de-laco|Por que repetir: a ideia de laço]] e [[programacao/logica-de-programacao/modulo-4/02-while-repetindo-enquanto-for-verdade|while: repetindo enquanto for verdade]].
+Ver as aulas [[programacao/logica-de-programacao/modulo-4/01-por-que-repetir-a-ideia-de-laco|Por que repetir: a ideia de laço]], [[programacao/logica-de-programacao/modulo-4/02-while-repetindo-enquanto-for-verdade|while: repetindo enquanto for verdade]] e [[programacao/logica-de-programacao/modulo-4/03-for-o-laco-contado|for: o laço contado]].
 
 ## De onde vem a palavra
 

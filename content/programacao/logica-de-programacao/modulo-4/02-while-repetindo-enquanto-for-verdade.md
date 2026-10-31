@@ -211,7 +211,7 @@ console.log(meses, total); // 7 1050
 
 Repare que o número de voltas, 7, era justamente a **pergunta**. Ninguém precisou dizer ao laço quantas vezes rodar: ele só sabia quando parar, "quando o total chegar a 1000". Por isso o total final é 1050, e não 1000: o depósito do 7º mês passa da meta, e só depois disso a condição dá `false`.
 
-É o mesmo caso da senha da aula 4.1: "enquanto a senha estiver errada, pergunte de novo". O laço não sabe quantas vezes vai rodar, só sabe quando parar. Para quando você já sabe o número de voltas, como "de 1 a 100", existe o `for`, que é o assunto da aula 4.3.
+É o mesmo caso da senha da aula 4.1: "enquanto a senha estiver errada, pergunte de novo". O laço não sabe quantas vezes vai rodar, só sabe quando parar. Para quando você já sabe o número de voltas, como "de 1 a 100", existe o `for`, que é o assunto da [[programacao/logica-de-programacao/modulo-4/03-for-o-laco-contado|aula 4.3]].
 
 ## O `while` pode não dar nenhuma volta
 

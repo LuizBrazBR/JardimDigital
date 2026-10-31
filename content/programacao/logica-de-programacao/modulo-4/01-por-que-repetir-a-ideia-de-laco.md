@@ -111,7 +111,7 @@ i++;            // o mesmo que i = i + 1
 console.log(i); // 2
 ```
 
-Por enquanto, basta reconhecer as três peças. A aula 4.3 explica o `for` em detalhe.
+Por enquanto, basta reconhecer as três peças. A [[programacao/logica-de-programacao/modulo-4/03-for-o-laco-contado|aula 4.3]] explica o `for` em detalhe.
 
 ### Volta a volta
 

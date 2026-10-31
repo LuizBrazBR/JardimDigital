@@ -11,7 +11,7 @@ const true = 1; // SyntaxError: Unexpected token 'true'
 let If = 5;     // funciona: com maiúscula, é outra palavra
 ```
 
-Cada palavra reservada tem um papel fixo na linguagem: `if` abre uma [[glossario/condicional|condicional]], `const` [[glossario/declaracao|declara]] uma constante, e `true` e `false` são os dois valores [[glossario/booleano|booleanos]]. Outras vêm mais adiante: `else` (o [[glossario/senao|senão]]), `switch` (a [[glossario/escolha|escolha]]), `while` (o [[glossario/enquanto|enquanto]]), `for`, `function`, `return`.
+Cada palavra reservada tem um papel fixo na linguagem: `if` abre uma [[glossario/condicional|condicional]], `const` [[glossario/declaracao|declara]] uma constante, e `true` e `false` são os dois valores [[glossario/booleano|booleanos]]. Outras vêm mais adiante: `else` (o [[glossario/senao|senão]]), `switch` (a [[glossario/escolha|escolha]]), `while` (o [[glossario/enquanto|enquanto]]), `for` (o [[glossario/para|para]]), `function`, `return`.
 
 Nem todo nome conhecido é reservado. `console` e `log` são nomes que o navegador ou o Node deixam prontos, e não fazem parte da linguagem. Em inglês, fala-se em *reserved word* e também em *keyword*, "palavra-chave".
 
