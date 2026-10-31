@@ -7,6 +7,8 @@ title: Padrão
 
 Na programação, um padrão reconhecido costuma virar uma **função**: a lógica é escrita uma vez e usada várias.
 
+Também há padrões de técnica, jeitos de montar o código que se repetem de um problema para outro. O [[glossario/acumulador|acumulador]] e o [[glossario/contador|contador]] são dois: o mesmo formato serve para somar preços, contar pares ou tirar uma média.
+
 ## De onde vem a palavra
 
 Do latim *patrōnus*, "patrono, protetor". O sentido de **modelo** já aparece no inglês medieval, em que *patron* queria dizer tanto "patrono" quanto "exemplo". O inglês *pattern* ("padrão") vem dessa forma. Na origem, *patron* e *pattern* são a mesma palavra.
