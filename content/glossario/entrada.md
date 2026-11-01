@@ -7,6 +7,8 @@ title: Entrada
 
 Pode vir de uma pessoa (o que ela digita, toca ou fala) ou de outra fonte: um arquivo, um sensor, outro programa. No jargão de programador, em inglês, é o **input**.
 
+Numa [[glossario/funcao|função]], as entradas são os [[glossario/argumento|argumentos]], os valores entregues na chamada, que vão para os [[glossario/parametro|parâmetros]].
+
 ## De onde vem a palavra
 
 De *entrar*, do latim *intrāre*. O verbo foi formado a partir de *intrā*, "dentro". Entrar é, ao pé da letra, **ir para dentro**. *Intrā* é da mesma família de *interior*.

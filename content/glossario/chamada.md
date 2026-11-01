@@ -18,7 +18,7 @@ Na chamada, o programa sai da linha onde está, roda o corpo inteiro da função
 
 Esquecer os parênteses não dá erro, e por isso o engano é difícil de ver: a linha roda, mas a função, não. Já chamar um nome que não existe, ou escrito com outra maiúscula, dá `ReferenceError: ... is not defined`.
 
-O `console.log("oi")` também é uma chamada. O que vai entre os parênteses é o argumento, a entrada da função.
+O `console.log("oi")` também é uma chamada. O que vai entre os parênteses é o [[glossario/argumento|argumento]], a entrada da função.
 
 Ver a aula [[programacao/logica-de-programacao/modulo-5/01-o-que-e-uma-funcao-e-como-criar-uma|O que é uma função e como criar uma]].
 

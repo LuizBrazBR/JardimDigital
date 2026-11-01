@@ -3,7 +3,7 @@ title: Função (function)
 ---
 
 > [!abstract] Definição
-> **Um trecho de código com nome, escrito uma vez e usado quantas vezes for preciso.** Em JavaScript, se cria com a palavra `function`, um nome, parênteses e o corpo da função, um [[glossario/bloco|bloco]] entre chaves.
+> **Um trecho de código com nome, escrito uma vez e usado quantas vezes for preciso.** Em JavaScript, se cria com a palavra `function`, um nome, parênteses (com os [[glossario/parametro|parâmetros]], as entradas, se houver) e o corpo da função, um [[glossario/bloco|bloco]] entre chaves.
 
 ```js
 function saudar() {        // define: guarda o trecho com o nome saudar

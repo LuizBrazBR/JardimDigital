@@ -79,7 +79,7 @@ Em inglês, [[glossario/log|log]] é **registro**, como um diário de bordo. `co
 
 Os parênteses mandam a ferramenta trabalhar. Escreva `console.log` sem parênteses num arquivo e rode: não aparece nada. Você apontou para o botão, mas não apertou.
 
-O que vai dentro dos parênteses se chama **argumento**: a informação entregue para a ferramenta trabalhar. É a **entrada** do `log`. O que aparece no console é a **saída**.
+O que vai dentro dos parênteses se chama **[[glossario/argumento|argumento]]**: a informação entregue para a ferramenta trabalhar. É a **entrada** do `log`. O que aparece no console é a **saída**.
 
 Dá para passar mais de um argumento, separados por vírgula. O console junta tudo com um espaço:
 

@@ -51,7 +51,7 @@ Cada parte tem um papel:
 |---|---|---|
 | a palavra `function` | `function` | avisa que aqui começa uma função. É uma [[glossario/palavra-reservada\|palavra reservada]], como o `if` e o `for` |
 | o nome | `saudar` | é por ele que você vai usar a função depois |
-| os parênteses | `()` | é onde entram as entradas da função. Aqui estão vazios: as entradas ficam para a aula 5.2 |
+| os parênteses | `()` | é onde entram as entradas da função. Aqui estão vazios: as entradas ficam para a [[programacao/logica-de-programacao/modulo-5/02-parametros-e-argumentos-entradas-da-funcao\|aula 5.2]] |
 | o corpo | `{ ... }` | é o [[glossario/bloco\|bloco]] com o que a função faz quando roda |
 
 Criar uma função assim se chama **declarar** a função, a mesma palavra usada para criar uma variável com `let` (a [[glossario/declaracao|declaração]]). Também se diz **definir** a função.
@@ -238,7 +238,7 @@ Lembra o [[glossario/laco-aninhado|laço aninhado]] da [[programacao/logica-de-p
 
 Desde a aula 1.5, você escreve `console.log("...")`. O `console.log` é uma função, só que pronta: veio com o navegador ou o Node, e não foi você quem escreveu. Os parênteses depois do `log` fazem a chamada, como no `saudar()`.
 
-A diferença está no que vai entre os parênteses. No `console.log`, vai o texto a mostrar, o **argumento**, que a aula 1.5 chamou de entrada do `log`. No `saudar`, não vai nada, e por isso ele mostra sempre o mesmo `Bom dia!`. Dar entradas às suas funções, para que façam algo diferente a cada chamada, é o assunto da aula 5.2.
+A diferença está no que vai entre os parênteses. No `console.log`, vai o texto a mostrar, o **[[glossario/argumento|argumento]]**, que a aula 1.5 chamou de entrada do `log`. No `saudar`, não vai nada, e por isso ele mostra sempre o mesmo `Bom dia!`. Dar entradas às suas funções, para que façam algo diferente a cada chamada, é o assunto da [[programacao/logica-de-programacao/modulo-5/02-parametros-e-argumentos-entradas-da-funcao|aula 5.2]].
 
 > [!info]- E se a chamada vier antes da função? (clique para abrir)
 > Em JavaScript, isto funciona:
