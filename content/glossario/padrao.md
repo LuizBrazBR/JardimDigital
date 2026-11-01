@@ -5,7 +5,7 @@ title: Padrão
 > [!abstract] Definição
 > **Algo que se repete com o mesmo formato, mesmo quando os detalhes mudam.** Reconhecer padrões é perceber isso e reaproveitar a mesma solução, em vez de começar do zero.
 
-Na programação, um padrão reconhecido costuma virar uma **função**: a lógica é escrita uma vez e usada várias.
+Na programação, um padrão reconhecido costuma virar uma **[[glossario/funcao|função]]**: a lógica é escrita uma vez e usada várias.
 
 Também há padrões de técnica, jeitos de montar o código que se repetem de um problema para outro. O [[glossario/acumulador|acumulador]] e o [[glossario/contador|contador]] são dois: o mesmo formato serve para somar preços, contar pares ou tirar uma média.
 

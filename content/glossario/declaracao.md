@@ -15,6 +15,8 @@ let peso = 70;  // as duas juntas
 
 Usar um nome que nunca foi declarado dá `ReferenceError: ... is not defined`. Declarar o mesmo nome duas vezes, com `let` ou `const`, dá `SyntaxError: Identifier '...' has already been declared`.
 
+Uma [[glossario/funcao|função]] também se declara, com a palavra `function`: `function saudar() { ... }` cria o nome `saudar`, que passa a guardar a função. Por isso, usar o mesmo nome numa variável com `let` e numa função dá o mesmo `SyntaxError: Identifier 'saudar' has already been declared`.
+
 ## De onde vem a palavra
 
 Do latim *dēclārāre*: *dē-* + *clārāre*, "tornar claro", de *clārus*, "claro, brilhante". Declarar é **deixar claro**, anunciar. Declarar uma variável é anunciar ao JavaScript: "este nome existe".

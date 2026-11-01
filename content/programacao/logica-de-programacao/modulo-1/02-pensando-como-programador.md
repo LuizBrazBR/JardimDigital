@@ -33,7 +33,7 @@ Resolve-se uma parte de cada vez e depois junta tudo. Se uma parte ainda parecer
 
 Problemas diferentes muitas vezes têm o mesmo formato. Trocar a lâmpada da cozinha ou a do quarto é igual: desligar a energia, tirar a queimada, pôr a nova, religar. Muda o cômodo, o passo a passo é o mesmo.
 
-Quem enxerga o padrão escreve a solução **uma vez** e reaproveita. Na programação, é isso que vira uma **função** (assunto de um módulo mais à frente): a mesma lógica usada várias vezes, em vez de reescrita a cada vez.
+Quem enxerga o padrão escreve a solução **uma vez** e reaproveita. Na programação, é isso que vira uma **[[glossario/funcao|função]]** (assunto do [[programacao/logica-de-programacao/modulo-5/index|módulo 5]]): a mesma lógica usada várias vezes, em vez de reescrita a cada vez.
 
 ## Abstração
 

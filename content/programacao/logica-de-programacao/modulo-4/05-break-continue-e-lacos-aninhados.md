@@ -297,7 +297,7 @@ Em cada volta de fora, o laço de dentro mostra o `b = 1`, chega ao `b = 2` e pa
 > // saída: 1 1, 1 2, 1 3 e 2 1
 > ```
 >
-> Quando `a * b` dá 4, no `a = 2` e `b = 2`, o `break externo` encerra o laço chamado `externo`, e com ele o de dentro. Funciona, mas é pouco usado. Muitas vezes, o código fica mais claro separado em funções, que são o assunto do módulo 5.
+> Quando `a * b` dá 4, no `a = 2` e `b = 2`, o `break externo` encerra o laço chamado `externo`, e com ele o de dentro. Funciona, mas é pouco usado. Muitas vezes, o código fica mais claro separado em [[glossario/funcao|funções]], que são o assunto do [[programacao/logica-de-programacao/modulo-5/index|módulo 5]].
 
 ## Lógica ou JavaScript?
 

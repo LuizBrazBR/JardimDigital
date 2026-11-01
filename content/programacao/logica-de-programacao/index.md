@@ -38,9 +38,9 @@ Resumos das aulas do curso de Lógica de Programação, divididos em módulos co
 4. [[programacao/logica-de-programacao/modulo-4/04-contador-e-acumulador-somando-e-contando|Contador e acumulador: somando e contando]]
 5. [[programacao/logica-de-programacao/modulo-4/05-break-continue-e-lacos-aninhados|break, continue e laços aninhados]]
 
-## Módulo 5 – Funções: organizar e reutilizar
+## [[programacao/logica-de-programacao/modulo-5/index|Módulo 5 – Funções: organizar e reutilizar]]
 
-1. O que é uma função e como criar uma
+1. [[programacao/logica-de-programacao/modulo-5/01-o-que-e-uma-funcao-e-como-criar-uma|O que é uma função e como criar uma]]
 2. Parâmetros e argumentos: entradas da função
 3. return: devolvendo um resultado (x só imprimir)
 4. Escopo: variáveis locais e globais
