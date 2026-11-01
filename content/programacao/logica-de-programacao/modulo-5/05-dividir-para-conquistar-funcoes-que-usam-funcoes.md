@@ -162,6 +162,18 @@ Começar em 0 funciona aqui porque todos os produtos são positivos. Se pudesse 
 
 O módulo 6 traz as listas, e a aula 7.2 volta a esse problema de achar o maior, agora numa lista de verdade.
 
+## Decomposição, padrão e abstração
+
+Na [[programacao/logica-de-programacao/modulo-1/02-pensando-como-programador|aula 1.2]], o [[glossario/pensamento-computacional|pensamento computacional]] tinha três pilares. O dividir para conquistar usa os três ao mesmo tempo:
+
+| Pilar | No `maiorDeTres` |
+|---|---|
+| [[glossario/decomposicao\|Decomposição]] | o maior de três é quebrado em duas partes menores |
+| [[glossario/padrao\|Padrão]] | as duas partes são o mesmo problema, o maior de dois. Por isso, uma função só resolve as duas |
+| [[glossario/abstracao\|Abstração]] | quem usa a `maiorDeDois` não precisa pensar no `if`/`else` lá de dentro. Basta o nome |
+
+Nem toda divisão tem um padrão. No boletim, mais abaixo, a `calcularMedia` e a `situacao` são partes **diferentes** uma da outra: ali, é só decomposição. Mas, no sentido mais estrito da computação, "dividir para conquistar" é justamente o caso em que as partes são **o mesmo problema, em tamanho menor**: o maior de três vira o maior de dois, e o *merge sort* põe uma lista em ordem pondo em ordem as duas metades dela. Nesse sentido, decomposição e padrão andam sempre juntos.
+
 ## Não repetir código
 
 A primeira grande razão para criar funções é não escrever a mesma lógica duas vezes. Imagine um programa que confere notas em três lugares diferentes:

@@ -20,6 +20,8 @@ function maiorDeTres(a, b, c) {
 
 Muitas vezes, o problema novo vira um problema que já se sabe resolver, usado mais de uma vez. O maior de três é o maior de dois, duas vezes.
 
+Usa os três pilares do [[glossario/pensamento-computacional|pensamento computacional]]: a [[glossario/decomposicao|decomposição]] quebra o problema, o [[glossario/padrao|padrão]] aparece quando as partes são o mesmo problema, e a [[glossario/abstracao|abstração]] deixa usar cada função só pelo nome. No sentido mais estrito da computação, dividir para conquistar é sempre esse caso: as partes são o mesmo problema, em tamanho menor.
+
 Funções pequenas, com um bom nome e uma tarefa só, são mais fáceis de ler, de testar e de reaproveitar. Junto com o [[glossario/dry|DRY]], é uma das razões principais para usar funções.
 
 Ver a aula [[programacao/logica-de-programacao/modulo-5/05-dividir-para-conquistar-funcoes-que-usam-funcoes|Dividir para conquistar: funções que usam funções]].
