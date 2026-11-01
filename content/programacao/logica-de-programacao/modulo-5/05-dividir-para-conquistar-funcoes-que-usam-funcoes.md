@@ -126,7 +126,7 @@ function maiorDeTres(a, b, c) {
 
 A versão da aula 3.4 olha os três números ao mesmo tempo. Para cada um, pergunta "este é maior ou igual aos outros dois?", com um `&&` juntando as duas comparações. São até quatro comparações, e um cuidado extra: com `>` no lugar de `>=`, um empate fazia o programa apontar o número errado.
 
-A versão com funções não resolve "o maior de três". Ela **troca** esse problema por dois problemas de "o maior de dois", que a [[programacao/logica-de-programacao/modulo-3/02-if-else-o-outro-caminho|aula 3.2]] já sabia resolver com um `if`/`else`. É exatamente o dividir para conquistar: o problema que parecia novo vira um problema velho, usado duas vezes.
+A versão com funções também acha o maior de três, mas por outro caminho: ela não olha os três números de uma vez. Primeiro acha o maior entre dois deles, e depois compara esse vencedor com o terceiro. Ou seja, ela **troca** o problema de três números por dois problemas de "o maior de dois", que a [[programacao/logica-de-programacao/modulo-3/02-if-else-o-outro-caminho|aula 3.2]] já sabia resolver com um `if`/`else`. É exatamente o dividir para conquistar: o problema que parecia novo vira um problema velho, usado duas vezes.
 
 Ela também tem vantagens práticas:
 
