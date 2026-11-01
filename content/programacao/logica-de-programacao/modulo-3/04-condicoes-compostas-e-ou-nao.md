@@ -150,6 +150,8 @@ if (a >= b && a >= c) {
 
 O `else` do fim não pergunta nada sobre o `c`. Se nem o `a` nem o `b` são o maior, só sobra ele.
 
+Na [[programacao/logica-de-programacao/modulo-5/05-dividir-para-conquistar-funcoes-que-usam-funcoes|aula 5.5]], o mesmo problema fica mais simples: com funções, o maior de três vira o maior de dois, usado duas vezes.
+
 **Por que `>=`, e não `>`?** Teste uma borda, como na aula 3.3: um empate. Com `a = 15`, `b = 15` e `c = 9`, e com `>` no lugar de `>=`:
 
 | Pergunta | Resposta |

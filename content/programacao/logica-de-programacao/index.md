@@ -44,7 +44,7 @@ Resumos das aulas do curso de Lógica de Programação, divididos em módulos co
 2. [[programacao/logica-de-programacao/modulo-5/02-parametros-e-argumentos-entradas-da-funcao|Parâmetros e argumentos: entradas da função]]
 3. [[programacao/logica-de-programacao/modulo-5/03-return-devolvendo-um-resultado|return: devolvendo um resultado (x só imprimir)]]
 4. [[programacao/logica-de-programacao/modulo-5/04-escopo-variaveis-locais-e-globais|Escopo: variáveis locais e globais]]
-5. Dividir para conquistar: funções que usam funções
+5. [[programacao/logica-de-programacao/modulo-5/05-dividir-para-conquistar-funcoes-que-usam-funcoes|Dividir para conquistar: funções que usam funções]]
 
 ## Módulo 6 – Coleções: listas e objetos
 

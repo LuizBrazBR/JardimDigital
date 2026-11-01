@@ -7,6 +7,8 @@ title: Decomposição
 
 Se uma parte ainda parecer grande, decompõe-se de novo, até cada pedaço ficar simples. Depois, as soluções das partes são juntadas.
 
+No código, cada parte costuma virar uma [[glossario/funcao|função]], e uma função pode chamar outra para montar a solução inteira. É o [[glossario/dividir-para-conquistar|dividir para conquistar]], da [[programacao/logica-de-programacao/modulo-5/05-dividir-para-conquistar-funcoes-que-usam-funcoes|aula 5.5]].
+
 ## De onde vem a palavra
 
 | Parte | Latim | Sentido |

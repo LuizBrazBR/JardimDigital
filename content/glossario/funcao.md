@@ -20,6 +20,8 @@ Serve para não copiar e colar o mesmo trecho em vários lugares do programa. Co
 
 O nome segue as regras de nome de [[glossario/variavel|variável]], em [[glossario/camel-case|camelCase]], e costuma ser um verbo, porque a função faz alguma coisa: `saudar`, `mostrarLinha`. O `function` é uma [[glossario/palavra-reservada|palavra reservada]]. O `console.log` também é uma função, uma que já vem pronta.
 
+Uma função pode chamar outra. Quebrar um problema grande em funções pequenas, cada uma com uma tarefa, é o [[glossario/dividir-para-conquistar|dividir para conquistar]].
+
 Ver a aula [[programacao/logica-de-programacao/modulo-5/01-o-que-e-uma-funcao-e-como-criar-uma|O que é uma função e como criar uma]].
 
 ## De onde vem a palavra

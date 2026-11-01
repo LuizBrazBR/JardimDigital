@@ -27,7 +27,7 @@ Problema grande trava qualquer um. "Organizar a festa de aniversário" não tem 
 - cardápio e compras
 - decoração
 
-Resolve-se uma parte de cada vez e depois junta tudo. Se uma parte ainda parecer grande, quebra de novo: "cardápio e compras" vira "definir o cardápio", "fazer a lista" e "ir ao mercado".
+Resolve-se uma parte de cada vez e depois junta tudo. No código, cada parte vira uma função: é o que a [[programacao/logica-de-programacao/modulo-5/05-dividir-para-conquistar-funcoes-que-usam-funcoes|aula 5.5]] chama de [[glossario/dividir-para-conquistar|dividir para conquistar]]. Se uma parte ainda parecer grande, quebra de novo: "cardápio e compras" vira "definir o cardápio", "fazer a lista" e "ir ao mercado".
 
 ## Reconhecer padrões
 

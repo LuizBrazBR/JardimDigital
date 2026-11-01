@@ -21,6 +21,8 @@ O valor inicial é o [[glossario/elemento-neutro|elemento neutro]] da conta: 0 p
 
 O [[glossario/contador|contador]] é um acumulador mais simples, que soma sempre 1.
 
+Até "ficar com o maior" é um jeito de juntar: `maior = maiorDeDois(maior, numero)`, como na [[programacao/logica-de-programacao/modulo-5/05-dividir-para-conquistar-funcoes-que-usam-funcoes|aula 5.5]].
+
 Ver a aula [[programacao/logica-de-programacao/modulo-4/04-contador-e-acumulador-somando-e-contando|Contador e acumulador: somando e contando]].
 
 ## De onde vem a palavra
