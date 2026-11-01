@@ -14,7 +14,7 @@ saudar(); // chama: Bom dia!
 saudar(); // chama de novo: Bom dia!
 ```
 
-Definir a função não roda o corpo. Ele só roda na [[glossario/chamada|chamada]], o nome seguido de parênteses. Uma função que nunca é chamada nunca roda.
+Definir a função não roda o corpo. Ele só roda na [[glossario/chamada|chamada]], o nome seguido de parênteses. Uma função que nunca é chamada nunca roda. Com [[glossario/retorno|return]], ela devolve um valor para quem a chamou.
 
 Serve para não copiar e colar o mesmo trecho em vários lugares do programa. Com o trecho num lugar só, para mudar o que ele faz basta mexer ali, e todas as chamadas mudam juntas. É o jeito de transformar um [[glossario/padrao|padrão]] em código: a lógica que se repete ganha um nome.
 

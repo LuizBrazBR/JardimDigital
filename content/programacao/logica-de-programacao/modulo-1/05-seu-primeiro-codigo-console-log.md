@@ -25,7 +25,7 @@ Todo navegador já entende JavaScript e tem um [[glossario/console|console]] emb
 3. Digite `console.log("Olá, mundo!")` e aperte **Enter**.
 
 > [!warning] Duas coisas estranhas no console do navegador
-> - **Aparece um `undefined` embaixo da mensagem.** Não é erro. O console do navegador mostra também o "resultado" de cada comando digitado, e o `console.log` não tem resultado nenhum, ele só escreve. `undefined` é o jeito de o JavaScript dizer "nada".
+> - **Aparece um `undefined` embaixo da mensagem.** Não é erro. O console do navegador mostra também o "resultado" de cada comando digitado, e o `console.log` não tem resultado nenhum, ele só escreve. `undefined` é o jeito de o JavaScript dizer "nada". A [[programacao/logica-de-programacao/modulo-5/03-return-devolvendo-um-resultado|aula 5.3]] explica de onde ele vem.
 > - **Colar código pode ser bloqueado.** Na primeira vez que você tenta colar algo, o Chrome mostra um aviso e pede para digitar uma frase de confirmação. É uma proteção contra golpes em que alguém convence a pessoa a colar um código que rouba a conta dela. Para código que você mesmo escreveu e entende, não há problema.
 
 ### Jeito 2: no computador, com Node.js

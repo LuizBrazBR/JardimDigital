@@ -7,6 +7,8 @@ title: Saída
 
 É a última parte do ciclo [[programacao/logica-de-programacao/modulo-1/03-entrada-processamento-saida|entrada, processamento e saída]]. Em inglês, **output**. No curso de Lógica de Programação, a saída aparece quase sempre no [[glossario/console|console]].
 
+Numa [[glossario/funcao|função]], há dois jeitos de pôr um resultado para fora: [[glossario/imprimir|imprimir]] na tela, com `console.log`, para a pessoa ler, ou devolver para o resto do programa, com [[glossario/retorno|return]].
+
 ## De onde vem a palavra
 
 *Sair* vem do latim *salīre*, que queria dizer **pular, saltar**. Sair começou como **dar um pulo para fora**.
