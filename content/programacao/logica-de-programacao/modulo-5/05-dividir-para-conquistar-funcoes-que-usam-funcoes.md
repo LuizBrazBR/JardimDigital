@@ -27,8 +27,15 @@ console.log(ehPar(7)); // false
 
 A linha `return numero % 2 === 0` junta duas coisas que você já conhece:
 
-1. `numero % 2 === 0` é uma comparação, como as da [[programacao/logica-de-programacao/modulo-2/04-comparacoes|aula 2.4]]. Ela dá `true` ou `false`. Com o 4, o resto da divisão por 2 é 0, e a comparação dá `true`.
-2. O `return` devolve esse `true` ou `false` para quem chamou.
+1. `numero % 2 === 0` é uma comparação, como as da [[programacao/logica-de-programacao/modulo-2/04-comparacoes|aula 2.4]]. O JavaScript calcula a comparação primeiro, e ela vira um valor: `true` ou `false`.
+2. O `return` devolve esse valor para quem chamou, seja ele `true` ou `false`.
+
+| Chamada | `numero % 2` | `numero % 2 === 0` vira | A função devolve |
+|---|---|---|---|
+| `ehPar(4)` | `0` | `true` | `true` |
+| `ehPar(7)` | `1` | `false` | `false` |
+
+O `return` não escolhe nada: ele não é um `if`. Só entrega o valor que a comparação produziu, qualquer que seja.
 
 Muita gente, no começo, escreve assim:
 
