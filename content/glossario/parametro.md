@@ -18,7 +18,7 @@ Quando a função é escrita, ainda não se sabe quanto o parâmetro vale. Na ch
 
 Uma função pode ter vários parâmetros, separados por vírgula: `function somar(a, b)`. Os argumentos entram pela ordem, o primeiro no primeiro parâmetro, o segundo no segundo. Se faltar argumento, o parâmetro vale `undefined`. Com um `=` na definição, dá para escolher um valor padrão para esse caso: `function saudar(nome = "visitante")`.
 
-O parâmetro só existe dentro da função. Fora dela, o nome não significa nada.
+O parâmetro só existe dentro da função. Fora dela, o nome não significa nada: é uma variável local, como se vê no verbete [[glossario/escopo|escopo]].
 
 No dia a dia, muita gente diz "passar um parâmetro" querendo dizer argumento. O termo exato é: o parâmetro fica na definição, e o argumento vem na chamada.
 

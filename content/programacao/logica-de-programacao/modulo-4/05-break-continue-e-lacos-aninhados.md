@@ -202,7 +202,7 @@ O `minutosNoDia` é um [[glossario/contador|contador]], a técnica da [[programa
 
 Cada laço precisa da sua própria variável de controle. Os nomes costumam ser `i` e `j`, como se viu na aula 4.1, ou nomes que dizem o que contam, como `tabuada` e `vez`, ou `linha` e `coluna`.
 
-Se os dois laços usarem `let i`, o JavaScript aceita, mas lá dentro o `i` passa a ser só o do laço de dentro. O `i` de fora fica escondido, e não dá para usá-lo no bloco de dentro. Com nomes diferentes, os dois ficam à vista.
+Se os dois laços usarem `let i`, o JavaScript aceita, mas lá dentro o `i` passa a ser só o do laço de dentro. O `i` de fora fica escondido, e não dá para usá-lo no bloco de dentro. Com nomes diferentes, os dois ficam à vista. A [[programacao/logica-de-programacao/modulo-5/04-escopo-variaveis-locais-e-globais|aula 5.4]], sobre [[glossario/escopo|escopo]], explica por que o de fora fica escondido.
 
 ### Desenhando uma grade
 

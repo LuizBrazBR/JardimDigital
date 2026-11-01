@@ -54,7 +54,7 @@ saudar("Ana");
 console.log(nome); // ReferenceError: nome is not defined
 ```
 
-Por que é assim é o assunto da aula 5.4, sobre o escopo.
+Por que é assim é o assunto da [[programacao/logica-de-programacao/modulo-5/04-escopo-variaveis-locais-e-globais|aula 5.4]], sobre o [[glossario/escopo|escopo]].
 
 ## O argumento: o valor, na chamada
 

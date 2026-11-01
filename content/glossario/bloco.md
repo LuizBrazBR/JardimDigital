@@ -46,7 +46,7 @@ Sozinho, o bloco não decide nada. O que está dentro roda uma vez, na sua vez, 
 console.log(mensagem);   // ReferenceError: mensagem is not defined
 ```
 
-Esse "lá dentro" e "lá fora" se chama escopo, e é o assunto do [[programacao/logica-de-programacao/modulo-5/index|módulo 5]].
+Esse "lá dentro" e "lá fora" se chama [[glossario/escopo|escopo]], e é o assunto da [[programacao/logica-de-programacao/modulo-5/04-escopo-variaveis-locais-e-globais|aula 5.4]].
 
 Ver as aulas [[programacao/logica-de-programacao/modulo-3/01-tomando-decisoes-com-if|Tomando decisões com if]] e [[programacao/logica-de-programacao/modulo-3/02-if-else-o-outro-caminho|if/else: o outro caminho]].
 

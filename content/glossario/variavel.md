@@ -7,6 +7,8 @@ title: Variável
 
 É a primeira peça da lógica de programação: sem variáveis, o programa não tem onde guardar o que recebe nem o que calcula. Mais em [[programacao/logica-de-programacao/modulo-2/01-variaveis-let-e-const|Variáveis: guardando valores com let e const]].
 
+Toda variável tem um [[glossario/escopo|escopo]], o trecho do programa onde ela existe. Criada dentro de uma função ou de um bloco, ela é local e só vale ali. Criada fora de tudo, é global.
+
 ## De onde vem a palavra
 
 | Latim | Sentido |

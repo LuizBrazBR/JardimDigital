@@ -173,7 +173,7 @@ console.log("fim:", i);
 // ReferenceError: i is not defined
 ```
 
-Fora do laço, para o JavaScript, aquele `i` nunca existiu. Isso tem uma vantagem: dá para escrever vários `for` seguidos, todos com `i`, sem que um atrapalhe o outro. Um nome que só vale dentro de um pedaço do código é o assunto da aula 5.4, sobre **escopo**.
+Fora do laço, para o JavaScript, aquele `i` nunca existiu. Isso tem uma vantagem: dá para escrever vários `for` seguidos, todos com `i`, sem que um atrapalhe o outro. Um nome que só vale dentro de um pedaço do código é o assunto da [[programacao/logica-de-programacao/modulo-5/04-escopo-variaveis-locais-e-globais|aula 5.4]], sobre **[[glossario/escopo|escopo]]**.
 
 Se você precisar do valor depois do laço, crie a variável antes do `for`, e deixe na primeira parte só a atribuição, sem o `let`:
 

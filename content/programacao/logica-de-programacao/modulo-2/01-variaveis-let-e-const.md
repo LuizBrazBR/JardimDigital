@@ -173,7 +173,7 @@ Dois detalhes:
 - O JavaScript usa **ponto** nos números decimais, e não vírgula: `3.14`, `11.5`. A vírgula separa argumentos, como no `console.log("Média:", media)`.
 
 > [!info] E o `var`?
-> Em código antigo e em muitos tutoriais aparece uma terceira palavra: `var idade = 20;`. É o jeito antigo de criar variáveis, de antes de 2015, quando `let` e `const` entraram na linguagem. O `var` tem comportamentos que confundem até gente experiente, e hoje a recomendação é usar só `let` e `const`.
+> Em código antigo e em muitos tutoriais aparece uma terceira palavra: `var idade = 20;`. É o jeito antigo de criar variáveis, de antes de 2015, quando `let` e `const` entraram na linguagem. O `var` tem comportamentos que confundem até gente experiente (um deles aparece na [[programacao/logica-de-programacao/modulo-5/04-escopo-variaveis-locais-e-globais|aula 5.4]]), e hoje a recomendação é usar só `let` e `const`.
 
 ## Treine
 
