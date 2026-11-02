@@ -19,7 +19,9 @@ for (let i = 1; i <= 3; i++) {
 > [!warning] Iteração não é interação
 > As duas palavras só diferem pelo *n*. **Iteração** é repetição. **Interação** é *inter* + *ação*, a ação entre dois lados, como a conversa entre a pessoa e o programa.
 
-Ver a aula [[programacao/logica-de-programacao/modulo-4/01-por-que-repetir-a-ideia-de-laco|Por que repetir: a ideia de laço]].
+Passar assim por todos os elementos de um array também se chama [[glossario/percorrer|percorrer]] o array.
+
+Ver as aulas [[programacao/logica-de-programacao/modulo-4/01-por-que-repetir-a-ideia-de-laco|Por que repetir: a ideia de laço]] e [[programacao/logica-de-programacao/modulo-6/03-percorrendo-arrays-for-e-for-of|Percorrendo arrays: for e for...of]].
 
 ## De onde vem a palavra
 

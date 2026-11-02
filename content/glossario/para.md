@@ -24,7 +24,9 @@ O incremento é escrito antes do [[glossario/bloco|bloco]], mas roda depois dele
 
 O `for` serve bem quando se sabe **quantas voltas** o laço vai dar, como "de 1 a 100". Quando só se sabe quando parar, como "peça a senha até a pessoa acertar", o [[glossario/enquanto|enquanto]] (`while`) costuma ser mais claro.
 
-Ver a aula [[programacao/logica-de-programacao/modulo-4/03-for-o-laco-contado|for: o laço contado]].
+Para passar pelos valores de um array sem lidar com o índice, existe uma variante, o [[glossario/para-cada|para cada]]: `for (let fruta of frutas)`.
+
+Ver as aulas [[programacao/logica-de-programacao/modulo-4/03-for-o-laco-contado|for: o laço contado]] e [[programacao/logica-de-programacao/modulo-6/03-percorrendo-arrays-for-e-for-of|Percorrendo arrays: for e for...of]].
 
 ## De onde vem a palavra
 
