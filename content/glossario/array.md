@@ -16,9 +16,11 @@ console.log(frutas[10]);    // undefined: esse índice não existe
 
 Um array se cria com colchetes e vírgulas. Os mesmos colchetes, colados no nome, pegam um elemento: `frutas[1]`. O `length`, sem parênteses, diz quantos elementos o array tem, e por isso o último índice é sempre `length - 1`. Pedir um índice que não existe não dá erro em JavaScript: devolve `undefined`.
 
+O tamanho não é fixo: com o programa rodando, o array ganha e perde elementos pelos seus [[glossario/metodo|métodos]]. O `push` põe no fim, o `pop` tira do fim, o `unshift` põe no começo e o `shift` tira do começo.
+
 Em português, também se diz **lista** ou **vetor**. No Python, o nome é *list*, e o tamanho se pede com `len(frutas)`.
 
-Ver a aula [[programacao/logica-de-programacao/modulo-6/01-arrays-guardando-uma-lista-de-valores|Arrays: guardando uma lista de valores]].
+Ver as aulas [[programacao/logica-de-programacao/modulo-6/01-arrays-guardando-uma-lista-de-valores|Arrays: guardando uma lista de valores]] e [[programacao/logica-de-programacao/modulo-6/02-mexendo-no-array-adicionar-remover-e-o-tamanho|Mexendo no array: adicionar, remover e o tamanho]].
 
 ## De onde vem a palavra
 

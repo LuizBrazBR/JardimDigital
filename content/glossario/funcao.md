@@ -18,7 +18,7 @@ Definir a função não roda o corpo. Ele só roda na [[glossario/chamada|chamad
 
 Serve para não copiar e colar o mesmo trecho em vários lugares do programa. Com o trecho num lugar só, para mudar o que ele faz basta mexer ali, e todas as chamadas mudam juntas. É o jeito de transformar um [[glossario/padrao|padrão]] em código: a lógica que se repete ganha um nome.
 
-O nome segue as regras de nome de [[glossario/variavel|variável]], em [[glossario/camel-case|camelCase]], e costuma ser um verbo, porque a função faz alguma coisa: `saudar`, `mostrarLinha`. O `function` é uma [[glossario/palavra-reservada|palavra reservada]]. O `console.log` também é uma função, uma que já vem pronta.
+O nome segue as regras de nome de [[glossario/variavel|variável]], em [[glossario/camel-case|camelCase]], e costuma ser um verbo, porque a função faz alguma coisa: `saudar`, `mostrarLinha`. O `function` é uma [[glossario/palavra-reservada|palavra reservada]]. O `console.log` também é uma função, uma que já vem pronta. Como ela fica dentro do `console`, é chamada de [[glossario/metodo|método]].
 
 Uma função pode chamar outra. Quebrar um problema grande em funções pequenas, cada uma com uma tarefa, é o [[glossario/dividir-para-conquistar|dividir para conquistar]].
 

@@ -61,7 +61,7 @@ O Node mostra os textos com aspas simples, mesmo que você tenha escrito com asp
 
 Mais duas coisas que vale saber:
 
-- **Um array pode começar vazio:** `let carrinho = [];`. Os elementos entram depois, e como fazer isso é o assunto da aula 6.2.
+- **Um array pode começar vazio:** `let carrinho = [];`. Os elementos entram depois, e como fazer isso é o assunto da [[programacao/logica-de-programacao/modulo-6/02-mexendo-no-array-adicionar-remover-e-o-tamanho|aula 6.2]].
 - **Dá para misturar tipos**, como em `["Ana", 20, true]`. O JavaScript aceita, mas o costume é guardar coisas do mesmo tipo num array: uma lista de preços, uma lista de nomes.
 
 ## A posição de cada elemento: o índice
