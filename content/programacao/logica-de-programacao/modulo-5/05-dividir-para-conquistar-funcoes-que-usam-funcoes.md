@@ -167,7 +167,7 @@ A cada volta, a linha `maior = maiorDeDois(maior, produto)` compara o maior até
 
 Começar em 0 funciona aqui porque todos os produtos são positivos. Se pudesse haver números negativos, o começo seguro seria `-Infinity`, o menos infinito: qualquer número ganha dele. (O `Infinity` apareceu na aula 2.3, no `10 / 0`.)
 
-O módulo 6 traz as listas, e a aula 7.2 volta a esse problema de achar o maior, agora numa lista de verdade.
+O [[programacao/logica-de-programacao/modulo-6/index|módulo 6]] traz as listas, a partir da [[programacao/logica-de-programacao/modulo-6/01-arrays-guardando-uma-lista-de-valores|aula 6.1]], e a aula 7.2 volta a esse problema de achar o maior, agora numa lista de verdade.
 
 ## Decomposição, padrão e abstração
 

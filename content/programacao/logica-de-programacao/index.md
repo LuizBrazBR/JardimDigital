@@ -46,9 +46,9 @@ Resumos das aulas do curso de Lógica de Programação, divididos em módulos co
 4. [[programacao/logica-de-programacao/modulo-5/04-escopo-variaveis-locais-e-globais|Escopo: variáveis locais e globais]]
 5. [[programacao/logica-de-programacao/modulo-5/05-dividir-para-conquistar-funcoes-que-usam-funcoes|Dividir para conquistar: funções que usam funções]]
 
-## Módulo 6 – Coleções: listas e objetos
+## [[programacao/logica-de-programacao/modulo-6/index|Módulo 6 – Coleções: listas e objetos]]
 
-1. Arrays: guardando uma lista de valores
+1. [[programacao/logica-de-programacao/modulo-6/01-arrays-guardando-uma-lista-de-valores|Arrays: guardando uma lista de valores]]
 2. Mexendo no array: adicionar, remover e o tamanho
 3. Percorrendo arrays (for e for...of)
 4. Objetos: descrevendo uma coisa com chave e valor

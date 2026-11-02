@@ -156,7 +156,7 @@ Três laços parecidos, três resultados diferentes:
 
 Uma conta rápida, para laços que andam de 1 em 1: com `<=`, de `a` até `b` dá `b - a + 1` voltas. Com `<`, o `b` fica de fora, e dá `b - a`. De 0 até 10 com `<=`: 10 - 0 + 1 = 11.
 
-A última linha da tabela, que começa no 0 e para com `<`, vai aparecer muito no módulo 6, porque as listas do JavaScript começam a contar do 0.
+A última linha da tabela, que começa no 0 e para com `<`, vai aparecer muito no [[programacao/logica-de-programacao/modulo-6/index|módulo 6]], porque as listas do JavaScript começam a contar do 0 (ver o [[glossario/indice|índice]], na [[programacao/logica-de-programacao/modulo-6/01-arrays-guardando-uma-lista-de-valores|aula 6.1]]).
 
 ## Depois do `for`, a variável some
 

@@ -181,7 +181,7 @@ O sinal é perceber que você vai "fazer a mesma coisa várias vezes". No enunci
   ```
 
 - **Repetir até dar certo.** Pedir a senha até a pessoa acertar. O número de voltas é desconhecido, e é aí que entra o `while`, da [[programacao/logica-de-programacao/modulo-4/02-while-repetindo-enquanto-for-verdade|aula 4.2]].
-- **Passar por uma lista, item por item.** Os nomes de uma turma, os produtos de um carrinho. É o assunto do módulo 6.
+- **Passar por uma lista, item por item.** Os nomes de uma turma, os produtos de um carrinho. É o assunto do [[programacao/logica-de-programacao/modulo-6/index|módulo 6]], que começa pelo [[glossario/array|array]] na [[programacao/logica-de-programacao/modulo-6/01-arrays-guardando-uma-lista-de-valores|aula 6.1]].
 
 E quando **não** é laço? Quando a ação acontece uma vez só, ou quando o problema é escolher entre caminhos. "Diga se a nota é de aprovado" é trabalho do `if`. Já "diga, para cada aluno da turma, se a nota é de aprovado" junta os dois: um laço que passa pelos alunos e, dentro dele, um `if`.
 
