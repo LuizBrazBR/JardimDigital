@@ -35,13 +35,31 @@ O jeito de escrever você já conhece. Na [[programacao/logica-de-programacao/mo
 
 Uma função que vem dentro de um valor e trabalha com ele se chama **[[glossario/metodo|método]]**. O `push` é um método dos arrays, e o `log` é um método do `console`. Todo array já nasce com esses métodos: você não precisa criar nada.
 
-Vale comparar com o `length`, da aula 6.1, que também vem depois de um ponto:
+### Com ou sem parênteses?
+
+O `length`, da aula 6.1, também vem depois de um ponto, mas vai sem parênteses. Ou seja, depois do ponto pode vir uma de duas coisas:
+
+- **Uma informação que o array guarda.** O `length` é um número que o array já carrega, como uma etiqueta colada nele dizendo "3 itens". Para usá-lo, basta ler: `compras.length`. Um valor assim, guardado dentro de outro e lido com um ponto, se chama **[[glossario/propriedade|propriedade]]**.
+- **Uma ação que o array sabe fazer.** O `push` é uma função, e uma função só trabalha quando é chamada. Quem faz a chamada são os parênteses: `compras.push("café")`.
 
 | | `compras.length` | `compras.push("café")` |
 |---|---|---|
-| o que é | um valor que o array guarda | um método, uma função do array |
+| o que é | uma propriedade: um valor que o array guarda | um método: uma função do array |
 | parênteses | não leva | leva |
 | o que faz | só informa o tamanho | muda o array |
+
+Na hora de escrever, a pergunta é: **isso é uma informação ou uma ação?** "Quantos elementos o array tem" é uma informação, então vai `compras.length`, sem parênteses. "Pôr um elemento" é uma ação, então vai `compras.push("café")`, com parênteses.
+
+O nome costuma dar uma pista. Os métodos têm nome de verbo: *push* é "empurrar", e o `log` do `console` é "registrar". Já o `length` é um substantivo, "comprimento". Mas a pista pode falhar, e quem decide é a documentação. Na MDN, a página do array separa as duas coisas em listas diferentes: o `length` fica em *Instance properties*, as propriedades, e o `push`, o `pop`, o `shift` e o `unshift` ficam em *Instance methods*, os métodos.
+
+Errar de um lado ou de outro dá resultados bem diferentes:
+
+| Engano | O que acontece |
+|---|---|
+| parênteses numa propriedade: `compras.length()` | dá erro: `TypeError: compras.length is not a function`, como na aula 6.1 |
+| método sem parênteses: `compras.pop;` | nada acontece, e nenhum erro avisa |
+
+O segundo engano é o mais traiçoeiro, porque o programa segue como se estivesse tudo certo. Ele aparece de novo em "Os erros mais comuns", mais abaixo.
 
 ## `push`: adicionando no fim
 
@@ -205,6 +223,54 @@ Usando `push` para entrar e `shift` para sair, o array vira uma **fila** de verd
 
 > [!tip] Para não trocar os nomes
 > Em cada par, o nome mais comprido é o que **adiciona**: `push` (4 letras) contra `pop` (3), e `unshift` (7) contra `shift` (5). E os dois que têm *shift* no nome são os que mexem no começo.
+
+## Saber o que cada método devolve
+
+Todo método é uma função, então vale para ele o que a [[programacao/logica-de-programacao/modulo-5/03-return-devolvendo-um-resultado|aula 5.3]] mostrou: toda chamada vale alguma coisa. E uma chamada como `compras.pop()` faz duas coisas separadas:
+
+1. **O que ela faz com o array**: tira o último elemento.
+2. **O que ela devolve**: o elemento que tirou.
+
+Olhando só o que acontece com o array, não dá para adivinhar o que volta. O `push` e o `pop` mudam o array, mas o `push` devolve um número, o novo tamanho, e o `pop` devolve um elemento. Por isso, antes de guardar o resultado de um método numa variável, pergunte: **o que essa chamada devolve?** Para os quatro métodos desta aula, a resposta está na última coluna da tabela acima. Para qualquer outro, está na página dele na MDN, na parte *Return value*, "valor de retorno".
+
+Sabendo o que volta, dá para trabalhar com esse valor como com qualquer outro. Ele pode ser:
+
+- **guardado numa variável**, como em `let atendida = fila.shift();`, lá em cima;
+- **mostrado direto**, como em `console.log(pilha.pop());`, no laço da pilha de pratos;
+- **usado numa conta ou num texto**:
+
+```js
+let compras = ["arroz", "feijão"];
+
+let tamanho = compras.push("café");
+console.log(`Agora são ${tamanho} itens`); // Agora são 3 itens
+```
+
+- **passado para outro método**, entre os parênteses dele:
+
+```js
+let pendentes = ["lavar a louça", "estudar", "varrer"];
+let feitas = [];
+
+feitas.push(pendentes.pop());
+
+console.log(pendentes); // [ 'lavar a louça', 'estudar' ]
+console.log(feitas);    // [ 'varrer' ]
+```
+
+A linha `feitas.push(pendentes.pop());` roda de dentro para fora, como o `maiorDeDois(maiorDeTres(a, b, c), d)` da [[programacao/logica-de-programacao/modulo-5/05-dividir-para-conquistar-funcoes-que-usam-funcoes|aula 5.5]]:
+
+| Passo | O que acontece |
+|---|---|
+| 1 | `pendentes.pop()` tira o `"varrer"` de `pendentes` e vale `"varrer"` |
+| 2 | a linha vira `feitas.push("varrer");` |
+| 3 | o `push` põe o `"varrer"` no fim de `feitas` |
+
+A tarefa sai de uma lista e entra na outra numa linha só, sem nenhuma variável no meio.
+
+Só que nem todo retorno serve para alguma coisa. Num array vazio, o `pop` e o `shift` devolvem `undefined`. E o `console.log`, como se viu na aula 5.3, só mostra e devolve `undefined`. Guardar um `undefined` não dá erro, mas a variável fica sem nada útil, e é daí que costumam vir os `undefined` e os `NaN` que aparecem sem explicação.
+
+É também o que explica o erro do `compras = compras.push("café")`, em "Os erros mais comuns", logo abaixo: quem guarda o retorno do `push` achando que vem o array recebe um número.
 
 ## O `length` sempre acompanha
 
@@ -474,9 +540,52 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > >
 > > Os três `push` também podiam ser um só: `historico.push("página 1", "página 2", "página 3");`.
 
+> [!question] 13. Quais linhas estão certas?
+> Sem rodar o código, diga quais linhas estão certas e o que acontece nas erradas.
+>
+> ```js
+> let lista = ["a", "b"];
+>
+> console.log(lista.length());  // linha A
+> lista.push("c");              // linha B
+> lista.pop;                    // linha C
+> console.log(lista.length);    // linha D
+> ```
+>
+> > [!success]- Resposta
+> > As certas são a B e a D. Na A, o `length` é uma propriedade, uma informação que o array guarda, e não leva parênteses: dá `TypeError: lista.length is not a function`. Na C, o `pop` é um método, uma ação, e sem os parênteses ele não é chamado: nada sai do array, e nenhum erro avisa.
+
+> [!question] 14. O que aparece no console?
+> ```js
+> let numeros = [5, 10];
+>
+> let r = numeros.push(15);
+> console.log(r);
+> console.log(numeros);
+> ```
+>
+> > [!success]- Resposta
+> > `3` e depois `[ 5, 10, 15 ]`. O `push` faz duas coisas: põe o `15` no array e devolve o novo tamanho, 3, que fica guardado no `r`. O array mudou do mesmo jeito.
+
+> [!question] 15. O que aparece no console?
+> ```js
+> let a = ["x", "y", "z"];
+> let b = [];
+>
+> b.push(a.pop());
+> b.push(a.pop());
+>
+> console.log(a);
+> console.log(b);
+> ```
+>
+> > [!success]- Resposta
+> > `[ 'x' ]` e depois `[ 'z', 'y' ]`. Cada linha roda de dentro para fora: o `a.pop()` tira o último elemento de `a` e vale esse elemento, que o `push` põe no fim de `b`. Primeiro sai o `"z"`, depois o `"y"`, e por isso eles entram em `b` na ordem contrária.
+
 ## De onde vêm as palavras
 
 - **[[glossario/metodo|Método]]**: do latim *methodus*, do grego *méthodos*, formado por *metá* e *hodós*, "caminho". No grego, *hodós* era a estrada, a viagem e também "o jeito de fazer alguma coisa". Método é o caminho que se segue para chegar a um resultado. Na programação, é o jeito pronto que um valor tem de fazer uma tarefa: o array sabe pôr e tirar elementos. Do mesmo *hodós* vem o grego *éxodos*, a saída, o caminho para fora, que deu o nosso **êxodo**.
+- **[[glossario/propriedade|Propriedade]]**: do latim *proprietās*, formado por *proprius*, "próprio, de si mesmo", e o final *-tās*, que no português virou "-dade". *Proprietās* queria dizer tanto "o que pertence a alguém" quanto "qualidade, característica", e o português guardou os dois sentidos: uma fazenda é a propriedade de alguém, e ser transparente é uma propriedade do vidro. Na programação, vale o segundo: o `length` é uma característica própria de cada array. Do mesmo *proprius* vem o nosso **próprio**.
 - **push**: em inglês, "empurrar". Veio do francês *pousser* e, antes, do latim *pulsāre*, "bater, golpear". Do mesmo *pulsāre* vem o nosso **pulsar**, como o coração que pulsa. O `push` empurra um valor para dentro do array.
 - **pop**: uma onomatopeia, uma palavra que imita um som, no caso um estalo curto. Em inglês, serve também para ações rápidas: sair de repente, pular fora. A pipoca, *popcorn*, é o milho (*corn*) que estoura. O `pop` faz o último elemento pular fora do array.
 - **shift**: do inglês antigo *sciftan*, "dividir, repartir; arrumar, organizar". Hoje, em inglês, quer dizer "mudar de lugar, deslocar", que é o que acontece no `shift`: todos os elementos se deslocam uma posição. É a mesma palavra da tecla **Shift** do teclado.
@@ -486,10 +595,12 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > [!tip] Para guardar
 > - O array não tem tamanho fixo: ganha e perde elementos com o programa rodando.
 > - Um método é uma função que vem dentro de um valor. Chama-se com ponto e parênteses: `compras.push("café")`.
+> - Depois do ponto, uma informação vai sem parênteses (`compras.length`, uma propriedade) e uma ação vai com eles (`compras.push("café")`, um método).
+> - Antes de guardar o resultado de um método, saiba o que ele devolve. O que volta é um valor como outro qualquer: dá para guardar, mostrar, usar numa conta ou passar para outro método.
 > - `push` adiciona no fim, e `pop` tira do fim. `unshift` adiciona no começo, e `shift` tira do começo.
 > - `pop` e `shift` devolvem o elemento que tiraram. Num array vazio, devolvem `undefined`, sem erro.
 > - `push` e `unshift` devolvem o novo tamanho. Não guarde esse número no próprio array.
 > - Mexer no começo muda o índice de todos os outros elementos. Por isso `push` e `pop` são os mais usados.
 > - O `length` sempre mostra o tamanho do momento, sem que ninguém precise atualizá-lo.
 
-Fontes: MDN: [Array.prototype.push()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push), [pop()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop), [shift()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift), [unshift()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift), [Method](https://developer.mozilla.org/en-US/docs/Glossary/Method), [Sparse arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections#sparse_arrays) · Python: [More on Lists](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists) · Wikipedia: [Stack (abstract data type)](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)) · Wiktionary: [method](https://en.wiktionary.org/wiki/method), [ὁδός](https://en.wiktionary.org/wiki/%E1%BD%81%CE%B4%CF%8C%CF%82), [push](https://en.wiktionary.org/wiki/push), [pop](https://en.wiktionary.org/wiki/pop), [shift](https://en.wiktionary.org/wiki/shift)
+Fontes: MDN: [Array.prototype.push()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push), [pop()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop), [shift()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift), [unshift()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift), [Method](https://developer.mozilla.org/en-US/docs/Glossary/Method), [Property](https://developer.mozilla.org/en-US/docs/Glossary/Property/JavaScript), [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array), [Sparse arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections#sparse_arrays) · Python: [More on Lists](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists) · Wikipedia: [Stack (abstract data type)](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)) · Wiktionary: [method](https://en.wiktionary.org/wiki/method), [ὁδός](https://en.wiktionary.org/wiki/%E1%BD%81%CE%B4%CF%8C%CF%82), [push](https://en.wiktionary.org/wiki/push), [pop](https://en.wiktionary.org/wiki/pop), [shift](https://en.wiktionary.org/wiki/shift), [propriedade](https://en.wiktionary.org/wiki/propriedade), [proprietas](https://en.wiktionary.org/wiki/proprietas), [proprius](https://en.wiktionary.org/wiki/proprius)

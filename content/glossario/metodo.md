@@ -17,6 +17,8 @@ O ponto quer dizer "de dentro de": `compras.push` é "o `push` que fica dentro d
 
 Como em qualquer função, sem os parênteses o método não é chamado, e nenhum erro avisa.
 
+O `length` também vem depois do ponto, mas não é método: é uma [[glossario/propriedade|propriedade]], uma informação que o array guarda, e por isso vai sem parênteses. Para decidir, a pergunta é "isso é uma informação ou uma ação?".
+
 Ver a aula [[programacao/logica-de-programacao/modulo-6/02-mexendo-no-array-adicionar-remover-e-o-tamanho|Mexendo no array: adicionar, remover e o tamanho]].
 
 ## De onde vem a palavra
