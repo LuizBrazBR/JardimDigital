@@ -15,6 +15,8 @@ Cada palavra reservada tem um papel fixo na linguagem: `if` abre uma [[glossario
 
 Nem todo nome conhecido é reservado. `console` e `log` são nomes que o navegador ou o Node deixam prontos, e não fazem parte da linguagem. Em inglês, fala-se em *reserved word* e também em *keyword*, "palavra-chave".
 
+Algumas palavras ficam no meio do caminho: têm um sentido especial só em certos lugares e, fora deles, podem ser nome de variável. O `of` do [[glossario/para-cada|para cada]] é uma delas. Dentro de `for (let fruta of frutas)`, ele faz parte do laço, mas `let of = 5;` funciona. O `in`, ao contrário, é reservado.
+
 Ver a aula [[programacao/logica-de-programacao/modulo-3/01-tomando-decisoes-com-if|Tomando decisões com if]] e a lista completa no MDN.
 
 ## De onde vem a palavra
@@ -30,4 +32,4 @@ Reservar é **guardar à parte**, para um uso só, como uma mesa reservada num r
 
 O mesmo *servāre* está em **conservar**, **preservar** e **observar**. Este último vem do sentido de "vigiar, prestar atenção".
 
-Fontes: MDN: [Lexical grammar: reserved words](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#reserved_words) · Wiktionary: [reservō](https://en.wiktionary.org/wiki/reservo), [servō](https://en.wiktionary.org/wiki/servo)
+Fontes: MDN: [Lexical grammar: reserved words](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#reserved_words), [identifiers with special meanings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#identifiers_with_special_meanings) · Wiktionary: [reservō](https://en.wiktionary.org/wiki/reservo), [servō](https://en.wiktionary.org/wiki/servo)

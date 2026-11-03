@@ -20,6 +20,8 @@ Ao contrário do [[glossario/para|for]] pelo índice, ele não tem `i`, nem cond
 
 O que ele não tem é a posição. Para numerar os elementos, mudar o próprio array ou andar de trás para a frente, o `for` pelo índice continua sendo o caminho. Mudar a variável do laço não muda o array: ela recebe o valor do elemento, mas é uma variável separada.
 
+O `for` é uma [[glossario/palavra-reservada|palavra reservada]], mas o `of` não: ele só tem sentido especial dentro dos parênteses do laço, e fora dali `let of = 5;` funciona. E o `for...of` não serve só para arrays: ele também percorre um texto, letra por letra.
+
 Cuidado com a troca de `of` por `in`. O `for (let fruta in frutas)` não dá erro, mas entrega as posições, `"0"`, `"1"` e `"2"`, e não as frutas. No Python, é o contrário: o laço equivalente se escreve `for fruta in frutas:`.
 
 Ver a aula [[programacao/logica-de-programacao/modulo-6/03-percorrendo-arrays-for-e-for-of|Percorrendo arrays: for e for...of]].

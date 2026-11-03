@@ -153,6 +153,26 @@ A variável `fruta` é criada pelo próprio laço, e o nome quem escolhe é voc�
 >
 > No `for` pelo índice, não dá. Ali o `i++` muda o mesmo `i`, e um `const i` dá `TypeError: Assignment to constant variable.`, "atribuição a uma variável constante".
 
+> [!info]- O `for` e o `of` são palavras reservadas? (clique para abrir)
+> O `for` é. É a mesma [[glossario/palavra-reservada|palavra reservada]] do laço da aula 4.3, e não pode ser nome de variável: `let for = 1;` dá `SyntaxError`.
+>
+> O `of` não é. Ele só tem um sentido especial num lugar: dentro dos parênteses de um `for`, logo depois da variável. Fora dali, é um nome comum, e `let of = 5;` funciona. A MDN chama esse tipo de palavra de "identificador com sentido especial": ela tem um papel em certos lugares, sem ser reservada. Mesmo assim, não vale a pena usar `of` como nome de variável, porque o código fica confuso.
+>
+> Já o `in`, do erro do `for...in` mais abaixo, é reservado, porque tem outros usos na linguagem.
+>
+> E o `for...of` não é só para arrays. Ele percorre qualquer coisa que tenha elementos em sequência, como um texto, letra por letra:
+>
+> ```js
+> for (let letra of "uva") {
+>   console.log(letra);
+> }
+> // u
+> // v
+> // a
+> ```
+>
+> Com algo que não tem elementos, como um número, ele dá erro: `for (let x of 123)` dá `TypeError: 123 is not iterable`, "123 não é iterável", ou seja, não dá para percorrê-lo.
+
 ## O que o `for...of` tem de melhor
 
 Veja os dois fazendo a mesma coisa:
@@ -649,4 +669,4 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > - O acumulador, o contador e o `push` funcionam igual dentro do laço. O acumulador e o contador são criados antes do laço.
 > - É `of`, e não `in`. No JavaScript, o `in` entrega as posições.
 
-Fontes: MDN: [for...of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of), [for](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for), [for...in](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in), [Loops and iteration](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration) · Python: [for Statements](https://docs.python.org/3/tutorial/controlflow.html#for-statements), [enumerate](https://docs.python.org/3/library/functions.html#enumerate) · Wiktionary: [percorrer](https://en.wiktionary.org/wiki/percorrer), [percurrō](https://en.wiktionary.org/wiki/percurro), [currō](https://en.wiktionary.org/wiki/curro), [of](https://en.wiktionary.org/wiki/of), [cada](https://en.wiktionary.org/wiki/cada), [iterō](https://en.wiktionary.org/wiki/itero)
+Fontes: MDN: [for...of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of), [for](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for), [for...in](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in), [Lexical grammar: identifiers with special meanings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#identifiers_with_special_meanings), [Loops and iteration](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration) · Python: [for Statements](https://docs.python.org/3/tutorial/controlflow.html#for-statements), [enumerate](https://docs.python.org/3/library/functions.html#enumerate) · Wiktionary: [percorrer](https://en.wiktionary.org/wiki/percorrer), [percurrō](https://en.wiktionary.org/wiki/percurro), [currō](https://en.wiktionary.org/wiki/curro), [of](https://en.wiktionary.org/wiki/of), [cada](https://en.wiktionary.org/wiki/cada), [iterō](https://en.wiktionary.org/wiki/itero)
