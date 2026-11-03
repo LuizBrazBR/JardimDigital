@@ -282,6 +282,20 @@ Um objeto vazio continua sendo um objeto: `typeof {}` dá `"object"`. Ele só n�
 > ```
 >
 > Também vale com colchetes: `delete pessoa["cidade"]`.
+>
+> Apagar é diferente de pôr `undefined`. Com `pessoa.cidade = undefined`, a chave continua lá, vazia, e `"cidade" in pessoa` dá `true`. Com o `delete`, a chave some, e o `in` dá `false`.
+>
+> Não use o `delete` em arrays. Ele apaga o elemento, mas deixa o buraco, e as posições não andam:
+>
+> ```js
+> let frutas = ["maçã", "banana", "uva"];
+>
+> delete frutas[1];
+> console.log(frutas);        // [ 'maçã', <1 empty item>, 'uva' ]
+> console.log(frutas.length); // 3
+> ```
+>
+> É o mesmo *empty item* da aula 6.2. Para tirar elementos de um array, use o `pop` e o `shift`.
 
 ## Array ou objeto?
 
