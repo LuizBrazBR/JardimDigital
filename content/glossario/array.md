@@ -20,7 +20,9 @@ O tamanho não é fixo: com o programa rodando, o array ganha e perde elementos 
 
 Em português, também se diz **lista** ou **vetor**. No Python, o nome é *list*, e o tamanho se pede com `len(frutas)`.
 
-Ver as aulas [[programacao/logica-de-programacao/modulo-6/01-arrays-guardando-uma-lista-de-valores|Arrays: guardando uma lista de valores]] e [[programacao/logica-de-programacao/modulo-6/02-mexendo-no-array-adicionar-remover-e-o-tamanho|Mexendo no array: adicionar, remover e o tamanho]].
+Um array pode guardar qualquer valor, inclusive [[glossario/objeto|objetos]], formando uma lista de [[glossario/registro|registros]], ou outros arrays, formando uma [[glossario/matriz|matriz]].
+
+Ver as aulas [[programacao/logica-de-programacao/modulo-6/01-arrays-guardando-uma-lista-de-valores|Arrays: guardando uma lista de valores]], [[programacao/logica-de-programacao/modulo-6/02-mexendo-no-array-adicionar-remover-e-o-tamanho|Mexendo no array: adicionar, remover e o tamanho]] e [[programacao/logica-de-programacao/modulo-6/05-array-de-objetos-uma-lista-de-registros|Array de objetos: uma lista de registros]].
 
 ## De onde vem a palavra
 

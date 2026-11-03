@@ -52,7 +52,7 @@ Resumos das aulas do curso de Lógica de Programação, divididos em módulos co
 2. [[programacao/logica-de-programacao/modulo-6/02-mexendo-no-array-adicionar-remover-e-o-tamanho|Mexendo no array: adicionar, remover e o tamanho]]
 3. [[programacao/logica-de-programacao/modulo-6/03-percorrendo-arrays-for-e-for-of|Percorrendo arrays: for e for...of]]
 4. [[programacao/logica-de-programacao/modulo-6/04-objetos-descrevendo-uma-coisa-com-chave-e-valor|Objetos: descrevendo uma coisa com chave e valor]]
-5. Array de objetos: uma lista de registros
+5. [[programacao/logica-de-programacao/modulo-6/05-array-de-objetos-uma-lista-de-registros|Array de objetos: uma lista de registros]]
 
 ## Módulo 7 – Resolvendo problemas de verdade
 

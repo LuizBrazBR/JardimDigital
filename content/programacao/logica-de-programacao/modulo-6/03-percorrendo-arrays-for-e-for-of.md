@@ -286,6 +286,8 @@ console.log(notas); // [ 5, 7, 9 ]
 
 A `nota` recebe o valor de cada elemento, mas é uma variável separada, criada pelo laço. Mudar a `nota` muda só a `nota`, e o array fica como estava. É como copiar o preço de um produto num papel e corrigir o papel: a etiqueta na prateleira continua igual.
 
+Com um array de objetos, a história muda: mexer numa propriedade, como em `tarefa.concluida = true`, muda o objeto do array. Isso aparece na [[programacao/logica-de-programacao/modulo-6/05-array-de-objetos-uma-lista-de-registros|aula 6.5]].
+
 Para mudar o array, é preciso escrever na posição dele, como na troca de elementos da aula 6.1. E, para isso, é preciso o índice:
 
 ```js

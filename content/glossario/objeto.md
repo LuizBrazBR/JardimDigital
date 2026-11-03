@@ -24,7 +24,9 @@ O ponto usa o nome da chave escrito no código. Os colchetes usam um valor: a ch
 
 Objetos não são [[glossario/iteravel|iteráveis]]: o `for...of` dá erro com eles. Para passar pelas chaves, existe o `for...in`. No Python, o objeto se chama dicionário (`dict`).
 
-Ver a aula [[programacao/logica-de-programacao/modulo-6/04-objetos-descrevendo-uma-coisa-com-chave-e-valor|Objetos: descrevendo uma coisa com chave e valor]].
+Vários objetos com as mesmas chaves, guardados num array, formam uma lista de [[glossario/registro|registros]].
+
+Ver as aulas [[programacao/logica-de-programacao/modulo-6/04-objetos-descrevendo-uma-coisa-com-chave-e-valor|Objetos: descrevendo uma coisa com chave e valor]] e [[programacao/logica-de-programacao/modulo-6/05-array-de-objetos-uma-lista-de-registros|Array de objetos: uma lista de registros]].
 
 ## De onde vem a palavra
 
