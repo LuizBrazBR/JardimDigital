@@ -20,7 +20,9 @@ Com parênteses numa propriedade, o JavaScript tenta chamá-la como se fosse uma
 > [!info]- Um detalhe técnico (clique para abrir)
 > A rigor, o JavaScript chama de propriedade tudo o que vem depois do ponto, e um método é uma propriedade que guarda uma função. No dia a dia, porém, "propriedade" costuma querer dizer a informação, como o `length`, e "método", a ação, como o `push`.
 
-Ver as aulas [[programacao/logica-de-programacao/modulo-6/01-arrays-guardando-uma-lista-de-valores|Arrays: guardando uma lista de valores]] e [[programacao/logica-de-programacao/modulo-6/02-mexendo-no-array-adicionar-remover-e-o-tamanho|Mexendo no array: adicionar, remover e o tamanho]].
+Nos [[glossario/objeto|objetos]], cada par de [[glossario/chave|chave]] e valor é uma propriedade. Em `let pessoa = { nome: "Ana" }`, a `pessoa` tem a propriedade `nome`, que se lê com `pessoa.nome` ou `pessoa["nome"]`.
+
+Ver as aulas [[programacao/logica-de-programacao/modulo-6/01-arrays-guardando-uma-lista-de-valores|Arrays: guardando uma lista de valores]], [[programacao/logica-de-programacao/modulo-6/02-mexendo-no-array-adicionar-remover-e-o-tamanho|Mexendo no array: adicionar, remover e o tamanho]] e [[programacao/logica-de-programacao/modulo-6/04-objetos-descrevendo-uma-coisa-com-chave-e-valor|Objetos: descrevendo uma coisa com chave e valor]].
 
 ## De onde vem a palavra
 

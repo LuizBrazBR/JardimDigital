@@ -212,7 +212,7 @@ somar(); // TypeError: numeros is not iterable
 
 Quando aparecer um "is not iterable", confira o que a variável depois do `of` está guardando. Muitas vezes, é um `undefined` no lugar do array.
 
-Os objetos, assunto da aula 6.4, também não são iteráveis. É para eles que existe o `for...in`, que aparece em "Os erros mais comuns", mais abaixo.
+Os objetos, assunto da [[programacao/logica-de-programacao/modulo-6/04-objetos-descrevendo-uma-coisa-com-chave-e-valor|aula 6.4]], também não são iteráveis. É para eles que existe o `for...in`, que aparece em "Os erros mais comuns", mais abaixo.
 
 > [!info]- Como o JavaScript sabe o que é iterável? (clique para abrir)
 > Todo valor iterável traz, por dentro, um método especial que entrega os elementos um por um. O `for...of` chama esse método no começo do laço. Arrays e textos já nascem com ele, e números, booleanos e `undefined` não o têm, daí o erro. Existem outros valores iteráveis no JavaScript, mas o curso não chega a eles.
