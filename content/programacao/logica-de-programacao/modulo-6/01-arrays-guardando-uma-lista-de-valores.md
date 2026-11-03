@@ -8,7 +8,7 @@ tags:
 
 Primeira aula do módulo 6, o das coleções. Até aqui, cada valor do programa morou numa variável própria: `let nome = "Ana"`, `let idade = 20`. Uma variável, um valor.
 
-Esta aula traz o **[[glossario/array|array]]**: uma variável só que guarda vários valores, um depois do outro, numa ordem. Em português, também se diz **lista** ou **vetor**.
+Esta aula traz o **[[glossario/array|array]]**: um valor só que guarda vários outros, um depois do outro, numa ordem. Por ser um valor só, ele cabe numa variável só. Em português, também se diz **lista** ou **vetor**.
 
 ## O problema: uma variável para cada valor
 
@@ -421,7 +421,7 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 - **length**: em inglês, "comprimento", do inglês antigo *lengþu*, que é *long*, "comprido", com um final que faz do adjetivo um substantivo, como o *-ura* faz de **alto** a **altura**. O `length` de um array é o comprimento da fila.
 
 > [!tip] Para guardar
-> - Um array é uma variável só que guarda vários valores em ordem. Cada valor é um elemento.
+> - Um array é um valor só que guarda vários valores em ordem, e por isso cabe numa variável só. Cada valor de dentro é um elemento.
 > - Ele se cria com colchetes e vírgulas: `let frutas = ["maçã", "banana", "uva"];`.
 > - Cada elemento tem um índice, a sua posição, e o índice começa no 0: o 1º elemento tem índice 0.
 > - Para ler um elemento, use o nome e o índice entre colchetes: `frutas[0]`. O índice pode ser uma variável ou uma conta.

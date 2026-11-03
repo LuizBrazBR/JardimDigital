@@ -3,7 +3,7 @@ title: Array (lista, vetor)
 ---
 
 > [!abstract] Definição
-> **Uma variável que guarda vários valores, um depois do outro, numa ordem.** Cada valor é um **elemento**, e cada elemento tem um [[glossario/indice|índice]], o número da sua posição, que começa no 0.
+> **Um valor só que guarda vários outros, um depois do outro, numa ordem.** Por ser um valor só, cabe numa variável só. Cada valor é um **elemento**, e cada elemento tem um [[glossario/indice|índice]], o número da sua posição, que começa no 0.
 
 ```js
 let frutas = ["maçã", "banana", "uva"];

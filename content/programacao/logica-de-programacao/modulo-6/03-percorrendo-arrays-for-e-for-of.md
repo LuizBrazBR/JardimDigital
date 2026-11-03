@@ -462,6 +462,33 @@ function paresAte(limite) {
 console.log(paresAte(10)); // [ 2, 4, 6, 8, 10 ]
 ```
 
+### Um array é um valor só
+
+Um array tem vários elementos, mas é **um valor só**. Pense numa caixa de ovos: dentro há doze ovos, mas é uma caixa só, e dá para guardá-la na geladeira, entregá-la a alguém ou recebê-la de volta, tudo de uma vez. Os colchetes são só o jeito de escrever esse valor no código, como as aspas são o jeito de escrever um texto. E o texto é igual: um valor só, com vários caracteres dentro.
+
+Por isso, a variável `precos` guarda um valor só, o array, e é o array que guarda os vários elementos. E há dois jeitos de usá-lo:
+
+- **O array inteiro, de uma vez:** guardar numa variável (`let precos = [10, 25, 8];`), entregar a uma função (`somar(precos)`), devolver no `return` (`return pares;`), mostrar inteiro (`console.log(precos)`) e perguntar o tamanho (`precos.length`).
+- **Os elementos, um de cada vez:** pegar um pela posição (`precos[0]`) ou percorrer todos (`for (let preco of precos)`).
+
+A função recebe o array inteiro, com todos os elementos dentro, de uma vez. O que ela faz com ele depende da tarefa, e percorrer só é preciso quando a tarefa envolve **cada** elemento, como somar ou contar. A `primeiro`, lá em cima, só pega um elemento pela posição. E uma função que diz quantos itens há nem olha os elementos:
+
+```js
+function quantosItens(lista) {
+  return lista.length;
+}
+
+console.log(quantosItens(["arroz", "feijão", "café"])); // 3
+```
+
+| A função precisa... | Percorre? |
+|---|---|
+| do tamanho | não: `lista.length` |
+| de um elemento só, como o primeiro ou o último | não: `lista[0]` ou `lista[lista.length - 1]` |
+| de cada elemento, para somar, contar ou separar | sim |
+
+E percorrer não tira os elementos do array. O `for` e o `for...of` só leem cada elemento, e o array continua com todos eles. Quem tira são o `pop` e o `shift`, da aula 6.2, e isso leva ao cuidado a seguir.
+
 ### O cuidado: a função recebe o mesmo array
 
 Aqui, o array se comporta de um jeito diferente do número. Compare:
@@ -880,6 +907,20 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > > [!success]- Resposta
 > > Dão erro o C e o E: um número e um booleano não são iteráveis, e aparece `TypeError: 42 is not iterable` ou `TypeError: true is not iterable`. O A não dá erro: o array vazio é iterável, só não tem elementos, e o laço não dá nenhuma volta. O B mostra `a`, `b` e `c`. O D mostra `4` e `2`, porque `"42"`, entre aspas, é um texto de dois caracteres.
 
+> [!question] 18. Precisa percorrer?
+> Para cada função, diga se ela precisa percorrer o array que recebe.
+>
+> 1. `ultimo(lista)`, que devolve o último elemento.
+> 2. `tamanho(lista)`, que devolve quantos elementos há.
+> 3. `media(notas)`, que devolve a média das notas.
+> 4. `temNegativo(numeros)`, que devolve `true` se houver algum número menor que 0.
+>
+> > [!success]- Resposta
+> > 1. Não: `return lista[lista.length - 1];` pega o último direto.
+> > 2. Não: `return lista.length;` basta.
+> > 3. Sim: a média precisa da soma de todas as notas, e a soma passa por cada uma. Depois, é só dividir pelo `notas.length`.
+> > 4. Sim: para saber se algum número é negativo, é preciso olhar cada um. É um trabalho de procurar, como os da aula 7.2.
+
 ## De onde vêm as palavras
 
 - **[[glossario/percorrer|Percorrer]]**: do latim *percurrere*, formado por *per-*, "através, ao longo", e *currere*, "correr". Percorrer é correr de um lado ao outro, passando por tudo o que está no caminho. Do *percurrere* vem também o francês *parcourir*, "percorrer", e dele o **parkour**, o esporte de atravessar a cidade correndo e saltando os obstáculos. E o latim *currere* é primo distante do inglês *horse*, "cavalo", o bicho que corre.
@@ -896,7 +937,8 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > - O `for...of` percorre valores iteráveis: arrays e textos. Número, booleano e `undefined` não são iteráveis, e dão `TypeError: ... is not iterable`.
 > - Use o `for` pelo índice quando precisar da posição, quando for mudar os elementos do array ou para andar de outro jeito.
 > - O acumulador, o contador e o `push` funcionam igual dentro do laço. O acumulador e o contador são criados antes do laço.
-> - Um array pode ser argumento e também pode ser devolvido por uma função.
+> - Um array é um valor só, com vários elementos dentro. Ele pode ser argumento e também pode ser devolvido por uma função.
+> - A função recebe o array inteiro, de uma vez. Percorrer só é preciso quando a tarefa envolve cada elemento, e percorrer não tira nada do array.
 > - A função recebe o mesmo array, e não uma cópia. Se ela mexer nele, com `push`, `pop` ou `lista[i] = ...`, o array de quem chamou muda junto. Percorrer com `for` ou `for...of` só lê e não muda nada.
 > - É `of`, e não `in`. No JavaScript, o `in` entrega as posições.
 
