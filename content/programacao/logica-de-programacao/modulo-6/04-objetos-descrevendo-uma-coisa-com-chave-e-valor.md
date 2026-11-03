@@ -304,6 +304,10 @@ console.log(typeof console);     // object
 console.log(typeof console.log); // function
 ```
 
+O `console` é um objeto que o navegador e o Node já deixam pronto, e quase todas as propriedades dele são métodos. O `log` é um deles, e o `table`, da aula 6.5, é outro. Um `for...in` no `console` lista `log`, `warn`, `error`, `table`, `info` e vários outros.
+
+Só que ter propriedades não é o que faz um valor ser objeto. Um texto também tem propriedades: `"uva".length` vale 3. Mesmo assim, o `typeof "uva"` dá `"string"`, e não `"object"`. O JavaScript deixa textos e números usarem algumas propriedades prontas, mas eles continuam sendo textos e números. Quem diz se um valor é objeto é o `typeof`.
+
 Criar métodos nos seus próprios objetos fica fora desta aula.
 
 ## Os erros mais comuns
