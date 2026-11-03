@@ -577,6 +577,36 @@ Na última volta, o `i` vale 4, o `precos[4]` vale `undefined`, e `83 + undefine
 
 **Começar o `i` no 1.** O primeiro elemento, que está no índice 0, fica de fora, e nenhum erro avisa.
 
+**Esquecer o `let` no `for...of`.** Escrito sem `let` nem `const`, o laço funciona, mas por acidente:
+
+```js
+let numeros = [3, 8, 10, 7, 4];
+
+for (numero of numeros) {
+  console.log(numero);
+}
+
+console.log(numero); // 4: a variável continua existindo depois do laço
+```
+
+Sem `let` nem `const`, o JavaScript não reclama: ele cria sozinho uma variável **global**, como as da [[programacao/logica-de-programacao/modulo-5/04-escopo-variaveis-locais-e-globais|aula 5.4]], que existe no programa inteiro. Ela não é `const`, e dá para mudá-la depois. E, ao contrário de um `let numero`, que some quando o laço termina, ela fica guardando o último elemento.
+
+Isso traz dois problemas. O primeiro é que o laço pode estragar outra variável. Se o programa já tinha uma variável `numero`, o laço passa a usar essa mesma e troca o valor dela:
+
+```js
+let numero = 100;
+
+for (numero of [1, 2, 3]) {
+  // ...
+}
+
+console.log(numero); // 3: o 100 se perdeu
+```
+
+O segundo é que, em alguns lugares, o mesmo código dá erro. O JavaScript tem um modo mais rigoroso, o *strict mode*, "modo estrito", que se liga com a linha `"use strict";` no começo do arquivo e já vem ligado em muitos projetos. Nele, a variável sem `let` não é criada, e aparece `ReferenceError: numero is not defined`.
+
+O certo é sempre declarar: `for (let numero of numeros)` ou `for (const numero of numeros)`. O mesmo vale para o `for` pelo índice, em que um `for (i = 0; ...)` sem `let` também cria um `i` global.
+
 **Achar que mudar a variável do `for...of` muda o array.** Como no exemplo das notas, lá em cima: a variável recebe o valor, mas não é o elemento. Para mudar o array, use o `for` pelo índice.
 
 **Mudar sem querer o array que a função recebeu.** Com `pop`, `shift` ou `lista[i] = ...` dentro de uma função, o array de quem chamou muda junto. Se a função só precisa ler, basta percorrer com `for` ou `for...of`, como na seção "Array como argumento".
