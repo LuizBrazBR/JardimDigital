@@ -435,6 +435,8 @@ Mais dois trabalhos se fazem percorrendo um array:
 
 O "achar o maior" já apareceu nas aulas 3.4 e 5.5, mas com variáveis separadas, como o `a`, o `b` e o `c` da `maiorDeTres(a, b, c)`. Ali, o código foi escrito para exatamente três valores, e com quatro já foi preciso outra função, a `maiorDeQuatro`. Num array, a quantidade de elementos só se sabe com o programa rodando. Quem resolve é o laço: ele percorre o array e vai ficando com o maior até agora, como a aula 5.5 começou a mostrar em "E com muitos números?". A aula 5.5 também avisou que o problema voltaria na aula 7.2, "agora numa lista de verdade". É lá que esses dois trabalhos aparecem.
 
+Repare na diferença para o `contarMaioresQue`, do exercício 13. Lá, cada elemento é comparado com um limite **fixo**, escolhido antes de o laço começar: o 10 continua 10 do começo ao fim. Para achar o maior, não existe um limite escolhido antes. Cada elemento é comparado com o maior **até agora**, e esse valor muda pelo caminho, sempre que aparece um elemento maior. A comparação é o mesmo `>`. O que muda é que o outro lado dela é uma variável que o próprio laço vai atualizando.
+
 ## Array como argumento
 
 A função `somar`, lá em cima, recebeu um array inteiro pelo parâmetro `numeros`. Isso vale para qualquer função. Como na [[programacao/logica-de-programacao/modulo-5/02-parametros-e-argumentos-entradas-da-funcao|aula 5.2]], o parâmetro recebe o valor que vier na chamada, e um array é um valor como outro qualquer, assim como um número, um texto ou um booleano:
