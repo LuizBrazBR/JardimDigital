@@ -225,7 +225,54 @@ for (let tarefa of tarefas) {
 // encontrada, concluída: false
 ```
 
-A cada volta, o `if` compara o título da tarefa da vez com o texto procurado. Se o título não existir na lista, nada aparece. Avisar "não encontrada" e parar o laço assim que achar são detalhes da busca, que a aula 7.2 trata com calma.
+A cada volta, o `if` compara o título da tarefa da vez com o texto procurado. Funciona, mas esse laço ainda tem dois pontos fracos:
+
+- **Ele não para quando acha.** "lavar louça" é a segunda tarefa, mas o laço segue até a quarta, comparando à toa.
+- **Se o título não existir, nada aparece.** Não sai aviso nenhum, e quem roda o programa fica sem saber se a busca rodou ou não.
+
+O primeiro se resolve com o `break` da [[programacao/logica-de-programacao/modulo-4/05-break-continue-e-lacos-aninhados|aula 4.5]]. Ele funciona no `for...of` do mesmo jeito que no `for` e no `while`: encerra o laço na hora, e o programa segue depois do `}`.
+
+O segundo pede uma variável que lembre se achou. Ela começa `false` e vira `true` quando o `if` acerta. Depois do laço, é ela que diz o que mostrar:
+
+```js
+let buscada = "lavar louça";
+let achou = false;
+
+for (let tarefa of tarefas) {
+  if (tarefa.titulo === buscada) {
+    console.log("encontrada, concluída: " + tarefa.concluida);
+    achou = true;
+    break; // já achou: não precisa olhar o resto
+  }
+}
+
+if (!achou) {
+  console.log("não encontrada");
+}
+// encontrada, concluída: false
+```
+
+Agora o laço dá só 2 voltas em vez de 4. E com `buscada = "passear"`, o `if` de dentro nunca dá `true`, o `achou` continua `false` até o fim, e aparece `não encontrada`.
+
+> [!warning] Por que não um `else` dentro do laço?
+> Parece mais simples escrever o aviso num `else`, junto do `if`:
+>
+> ```js
+> for (let tarefa of tarefas) {
+>   if (tarefa.titulo === buscada) {
+>     console.log("encontrada, concluída: " + tarefa.concluida);
+>     break;
+>   } else {
+>     console.log("não encontrada");
+>   }
+> }
+> // não encontrada
+> // encontrada, concluída: false
+> ```
+>
+> Só que o `else` roda a **cada tarefa que não bate**, e não uma vez no fim. A primeira tarefa é "estudar JavaScript", que não é a buscada, e o aviso aparece antes mesmo de a busca chegar à segunda. Uma volta sozinha não sabe se o título está na lista: só dá para dizer "não encontrada" **depois** de olhar todas. Por isso o aviso fica fora do laço, e a variável `achou` leva a resposta até lá.
+
+Dentro de uma [[glossario/funcao|função]], o `return` da [[programacao/logica-de-programacao/modulo-5/03-return-devolvendo-um-resultado|aula 5.3]] faria os dois papéis de uma vez: sairia do laço assim que achasse, e a linha depois do laço só rodaria se não achasse. A aula 7.2 volta à busca com mais calma.
 
 ### Separar num array novo
 
@@ -703,6 +750,7 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > - No `for...of`, a variável recebe um objeto inteiro, e as propriedades se leem com ponto: `tarefa.titulo`.
 > - Mudar uma propriedade dentro do `for...of` muda o objeto do array, porque a variável recebe o mesmo objeto.
 > - Contar, buscar, separar e somar são os padrões da aula 6.3, com o ponto lendo a propriedade da vez.
+> - Na busca, o `break` para o laço assim que acha. O "não encontrada" fica depois do laço, guiado por uma variável que começa `false`, e não num `else` lá dentro.
 > - `tarefas[10].titulo`, com uma posição que não existe, dá `TypeError: Cannot read properties of undefined`.
 > - Extra: uma matriz é um array de arrays. Lê-se com dois colchetes, `notas[1][2]`, e percorre-se com um laço dentro do outro.
 
