@@ -525,6 +525,24 @@ for (let fruta in frutas) {
 
 Não dá erro, mas a `fruta` recebe as posições, `"0"`, `"1"` e `"2"`, escritas como texto, e não as frutas. O `for...in` existe no JavaScript e serve para outra coisa: ele passa pelos nomes das posições, não pelos valores. Para os valores de um array, o certo é `of`. A troca é comum porque, no Python, o laço que faz o trabalho do `for...of` se escreve justamente com `in`, como se vê logo abaixo.
 
+> [!info]- Então o `in` serve para pegar os índices? (clique para abrir)
+> Ele entrega os índices, sim, mas não é uma boa ideia usá-lo para isso num array. Os índices chegam como **texto**, e não como número:
+>
+> ```js
+> let frutas = ["maçã", "banana", "uva"];
+>
+> for (let i in frutas) {
+>   console.log(i + 1);
+> }
+> // 01
+> // 11
+> // 21
+> ```
+>
+> Com o `for` pelo índice, o `i + 1` daria 1, 2 e 3. Com o `in`, o `i` é o texto `"0"`, e perto de um texto o `+` junta em vez de somar, como na [[programacao/logica-de-programacao/modulo-2/02-tipos-de-dados|aula 2.2]]: `"0" + 1` dá `"01"`. O `frutas[i]` até funciona, e é isso que engana: o erro só aparece quando o índice entra numa conta.
+>
+> O `for...in` foi feito para outra coisa: passar pelos nomes das informações de um **objeto**, o assunto da aula 6.4. Para os índices de um array, o certo é o `for` pelo índice, em que o `i` é um número de verdade. A própria MDN recomenda, para arrays, o `for` com índice ou o `for...of`, e não o `for...in`.
+
 ## Lógica ou JavaScript?
 
 | | JavaScript | Python |
