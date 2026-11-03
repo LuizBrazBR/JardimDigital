@@ -22,7 +22,19 @@ Se faltar argumento, o parâmetro vale `undefined`. Se sobrar, o que sobra é ig
 
 O `"oi"` de `console.log("oi")` também é um argumento.
 
-Ver as aulas [[programacao/logica-de-programacao/modulo-1/05-seu-primeiro-codigo-console-log|Seu primeiro código: console.log]] e [[programacao/logica-de-programacao/modulo-5/02-parametros-e-argumentos-entradas-da-funcao|Parâmetros e argumentos: entradas da função]].
+Um [[glossario/array|array]] também pode ser argumento, e aí há um cuidado. Com um número, a função recebe só o valor, e mudar o parâmetro não mexe na variável de fora. Com um array, a função recebe **o mesmo array**, e não uma cópia: um `push` ou um `pop` lá dentro muda o array de quem chamou.
+
+```js
+function adicionarCafe(lista) {
+  lista.push("café");
+}
+
+let compras = ["arroz"];
+adicionarCafe(compras);
+console.log(compras); // [ 'arroz', 'café' ]
+```
+
+Ver as aulas [[programacao/logica-de-programacao/modulo-1/05-seu-primeiro-codigo-console-log|Seu primeiro código: console.log]] e [[programacao/logica-de-programacao/modulo-5/02-parametros-e-argumentos-entradas-da-funcao|Parâmetros e argumentos: entradas da função]] e [[programacao/logica-de-programacao/modulo-6/03-percorrendo-arrays-for-e-for-of|Percorrendo arrays: for e for...of]].
 
 ## De onde vem a palavra
 

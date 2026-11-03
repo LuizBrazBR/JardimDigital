@@ -391,6 +391,102 @@ Mais dois trabalhos se fazem percorrendo um array:
 
 O "achar o maior" já apareceu nas aulas 3.4 e 5.5, mas com variáveis separadas, como o `a`, o `b` e o `c` da `maiorDeTres(a, b, c)`. Ali, o código foi escrito para exatamente três valores, e com quatro já foi preciso outra função, a `maiorDeQuatro`. Num array, a quantidade de elementos só se sabe com o programa rodando. Quem resolve é o laço: ele percorre o array e vai ficando com o maior até agora, como a aula 5.5 começou a mostrar em "E com muitos números?". A aula 5.5 também avisou que o problema voltaria na aula 7.2, "agora numa lista de verdade". É lá que esses dois trabalhos aparecem.
 
+## Array como argumento
+
+A função `somar`, lá em cima, recebeu um array inteiro pelo parâmetro `numeros`. Isso vale para qualquer função. Como na [[programacao/logica-de-programacao/modulo-5/02-parametros-e-argumentos-entradas-da-funcao|aula 5.2]], o parâmetro recebe o valor que vier na chamada, e um array é um valor como outro qualquer, assim como um número, um texto ou um booleano:
+
+```js
+function primeiro(lista) {
+  return lista[0];
+}
+
+console.log(primeiro(["Ana", "Bia"])); // Ana
+console.log(primeiro([7, 3, 9]));      // 7
+```
+
+O caminho contrário também funciona: uma função pode **devolver** um array. Ela monta o array com `push` e o devolve no `return`:
+
+```js
+function paresAte(limite) {
+  let pares = [];
+  for (let i = 2; i <= limite; i += 2) {
+    pares.push(i);
+  }
+  return pares;
+}
+
+console.log(paresAte(10)); // [ 2, 4, 6, 8, 10 ]
+```
+
+### O cuidado: a função recebe o mesmo array
+
+Aqui, o array se comporta de um jeito diferente do número. Compare:
+
+```js
+function dobrar(n) {
+  n = n * 2;
+}
+
+let x = 5;
+dobrar(x);
+console.log(x); // 5: o x de fora não mudou
+```
+
+```js
+function adicionarCafe(lista) {
+  lista.push("café");
+}
+
+let compras = ["arroz"];
+adicionarCafe(compras);
+console.log(compras); // [ 'arroz', 'café' ]: o array de fora mudou
+```
+
+- **Com o número**, o `n` recebe o valor 5 e é uma variável à parte, como a `nota` do `for...of`. Mudar o `n` não mexe no `x`.
+- **Com o array**, os nomes `lista` e `compras` apontam para **o mesmo array**. A função não recebe uma cópia. Por isso, o `push` feito pelo nome `lista`, dentro da função, aparece no `compras`, fora dela.
+
+Passar um número é como ditar um telefone para alguém: a pessoa anota no papel dela, e o que ela rabiscar ali não muda o seu. Passar um array é como emprestar o seu caderno: o que ela escrever nele vai estar lá quando o caderno voltar.
+
+O perigo é a função mudar o array **sem querer**. Esta função soma os preços tirando um por um com o `pop`, como na pilha de pratos da aula 6.2. O total sai certo, mas o array de quem chamou fica vazio:
+
+```js
+function somarTirando(numeros) {
+  let total = 0;
+  while (numeros.length > 0) {
+    total = total + numeros.pop();
+  }
+  return total;
+}
+
+let precos = [10, 25, 8, 40];
+
+console.log(somarTirando(precos)); // 83
+console.log(precos);               // []: os preços sumiram
+```
+
+Quem chamou só queria o total e perdeu os preços, sem nenhum erro avisando. A `somar` do começo da aula não tem esse problema: percorrer com `for` ou `for...of` só lê os elementos, e o array volta inteiro.
+
+| Dentro da função | O array de quem chamou |
+|---|---|
+| ler: `lista[0]`, `lista.length`, percorrer com `for` ou `for...of` | fica igual |
+| usar `push`, `pop`, `shift` ou `unshift` | muda |
+| escrever numa posição: `lista[0] = ...` | muda |
+
+Quando a função existe justamente para mudar o array, como a `adicionarCafe`, tudo bem. Só vale deixar isso claro no nome, como a [[programacao/logica-de-programacao/modulo-5/05-dividir-para-conquistar-funcoes-que-usam-funcoes|aula 5.5]] mostrou em "O nome conta a história": `adicionarCafe` avisa que mexe na lista, e `somar` dá a entender que só lê.
+
+> [!info]- E se a função trocar o parâmetro por outro array? (clique para abrir)
+> ```js
+> function trocar(lista) {
+>   lista = ["outro"];
+> }
+>
+> let compras = ["arroz"];
+> trocar(compras);
+> console.log(compras); // [ 'arroz' ]: não mudou
+> ```
+>
+> O `=` não mexe no array: ele faz o nome `lista` passar a guardar um array novo. Daí em diante, `lista` e `compras` deixam de apontar para o mesmo array, e o de fora fica como estava. É a mesma diferença que o `const` da aula 6.2 mostrou: trocar a variável por outro array é uma coisa, e mexer no array é outra. Só o que mexe no array aparece fora da função.
+
 ## Os erros mais comuns
 
 **Usar `<=` no `for` pelo índice.** O laço dá uma volta a mais, em que o elemento vale `undefined`. Numa soma, o resultado vira `NaN`:
@@ -411,6 +507,8 @@ Na última volta, o `i` vale 4, o `precos[4]` vale `undefined`, e `83 + undefine
 **Começar o `i` no 1.** O primeiro elemento, que está no índice 0, fica de fora, e nenhum erro avisa.
 
 **Achar que mudar a variável do `for...of` muda o array.** Como no exemplo das notas, lá em cima: a variável recebe o valor, mas não é o elemento. Para mudar o array, use o `for` pelo índice.
+
+**Mudar sem querer o array que a função recebeu.** Com `pop`, `shift` ou `lista[i] = ...` dentro de uma função, o array de quem chamou muda junto. Se a função só precisa ler, basta percorrer com `for` ou `for...of`, como na seção "Array como argumento".
 
 **Escrever `in` no lugar de `of`.**
 
@@ -660,6 +758,54 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > >
 > > O contador é criado dentro da função, mas fora do laço, e o `return` devolve o resultado depois que o laço termina.
 
+> [!question] 14. O que aparece no console?
+> ```js
+> function zerarPrimeiro(lista) {
+>   lista[0] = 0;
+> }
+>
+> let notas = [7, 8, 9];
+> zerarPrimeiro(notas);
+> console.log(notas);
+> ```
+>
+> > [!success]- Resposta
+> > `[ 0, 8, 9 ]`. A função recebe o mesmo array, e não uma cópia. Escrever em `lista[0]` muda o array que o `notas` guarda, fora da função.
+
+> [!question] 15. O que aparece no console?
+> ```js
+> function contarTirando(lista) {
+>   let quantos = 0;
+>   while (lista.length > 0) {
+>     lista.pop();
+>     quantos = quantos + 1;
+>   }
+>   return quantos;
+> }
+>
+> let fila = ["Ana", "Bia", "Caio"];
+> console.log(contarTirando(fila));
+> console.log(fila);
+> ```
+>
+> > [!success]- Resposta
+> > `3` e depois `[]`. A contagem sai certa, mas cada `pop` tira um elemento do mesmo array que a `fila` guarda, e ele termina vazio. Para só contar, bastava o `fila.length`, ou percorrer com `for...of`, que não muda nada.
+
+> [!question] 16. O que aparece no console?
+> ```js
+> function dobrar(n) {
+>   n = n * 2;
+>   return n;
+> }
+>
+> let x = 4;
+> console.log(dobrar(x));
+> console.log(x);
+> ```
+>
+> > [!success]- Resposta
+> > `8` e depois `4`. O `n` recebe o valor 4 e é uma variável à parte. A função dobra o `n` e devolve 8, mas o `x` de fora continua 4. Com um número, a função nunca mexe na variável de quem chamou.
+
 ## De onde vêm as palavras
 
 - **[[glossario/percorrer|Percorrer]]**: do latim *percurrere*, formado por *per-*, "através, ao longo", e *currere*, "correr". Percorrer é correr de um lado ao outro, passando por tudo o que está no caminho. Do *percurrere* vem também o francês *parcourir*, "percorrer", e dele o **parkour**, o esporte de atravessar a cidade correndo e saltando os obstáculos. E o latim *currere* é primo distante do inglês *horse*, "cavalo", o bicho que corre.
@@ -674,6 +820,8 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > - O `for...of` entrega direto o valor de cada elemento, sem `i`, e não tem como errar o começo nem o fim.
 > - Use o `for` pelo índice quando precisar da posição, quando for mudar os elementos do array ou para andar de outro jeito.
 > - O acumulador, o contador e o `push` funcionam igual dentro do laço. O acumulador e o contador são criados antes do laço.
+> - Um array pode ser argumento e também pode ser devolvido por uma função.
+> - A função recebe o mesmo array, e não uma cópia. Se ela mexer nele, com `push`, `pop` ou `lista[i] = ...`, o array de quem chamou muda junto. Percorrer com `for` ou `for...of` só lê e não muda nada.
 > - É `of`, e não `in`. No JavaScript, o `in` entrega as posições.
 
 Fontes: MDN: [for...of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of), [for](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for), [for...in](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in), [Lexical grammar: identifiers with special meanings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#identifiers_with_special_meanings), [Loops and iteration](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration) · Python: [for Statements](https://docs.python.org/3/tutorial/controlflow.html#for-statements), [enumerate](https://docs.python.org/3/library/functions.html#enumerate) · Wiktionary: [percorrer](https://en.wiktionary.org/wiki/percorrer), [percurrō](https://en.wiktionary.org/wiki/percurro), [currō](https://en.wiktionary.org/wiki/curro), [of](https://en.wiktionary.org/wiki/of), [cada](https://en.wiktionary.org/wiki/cada), [iterō](https://en.wiktionary.org/wiki/itero)
