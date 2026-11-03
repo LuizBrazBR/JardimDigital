@@ -159,19 +159,63 @@ A variável `fruta` é criada pelo próprio laço, e o nome quem escolhe é voc�
 > O `of` não é. Ele só tem um sentido especial num lugar: dentro dos parênteses de um `for`, logo depois da variável. Fora dali, é um nome comum, e `let of = 5;` funciona. A MDN chama esse tipo de palavra de "identificador com sentido especial": ela tem um papel em certos lugares, sem ser reservada. Mesmo assim, não vale a pena usar `of` como nome de variável, porque o código fica confuso.
 >
 > Já o `in`, do erro do `for...in` mais abaixo, é reservado, porque tem outros usos na linguagem.
->
-> E o `for...of` não é só para arrays. Ele percorre qualquer coisa que tenha elementos em sequência, como um texto, letra por letra:
->
-> ```js
-> for (let letra of "uva") {
->   console.log(letra);
-> }
-> // u
-> // v
-> // a
-> ```
->
-> Com algo que não tem elementos, como um número, ele dá erro: `for (let x of 123)` dá `TypeError: 123 is not iterable`, "123 não é iterável", ou seja, não dá para percorrê-lo.
+
+### O que dá para percorrer: os iteráveis
+
+O `for...of` não é só para arrays. Ele aceita qualquer valor **[[glossario/iteravel|iterável]]**, ou seja, um valor feito de elementos em sequência, um depois do outro, que sabe entregar esses elementos um de cada vez. A palavra junta *iterar*, "percorrer", com o final *-vel* de "lavável" e "cantável", que quer dizer "que pode ser". Iterável é o que pode ser percorrido.
+
+Dos tipos que você já conhece, dois são iteráveis:
+
+| Valor | É iterável? | O que o `for...of` faz |
+|---|---|---|
+| um array, como `["maçã", "uva"]` | sim | entrega cada elemento |
+| um texto, como `"uva"` | sim | entrega cada caractere: `u`, `v`, `a` |
+| um número, como `123` | não | dá erro |
+| um booleano, como `true` | não | dá erro |
+| `undefined` | não | dá erro |
+
+O texto é percorrido caractere por caractere: cada letra, e também cada espaço, vírgula ou algarismo. Em `"oi, Ana"`, são sete voltas: `o`, `i`, `,`, o espaço, `A`, `n` e `a`.
+
+E por que o número não é? Porque um número é um valor só. O `123` não é uma lista com o 1, o 2 e o 3: os algarismos são só o jeito de escrevê-lo. Já o texto `"123"` é uma sequência de três caracteres, e esse dá para percorrer:
+
+```js
+for (let c of "123") {
+  console.log(c);
+}
+// 1
+// 2
+// 3
+
+for (let c of 123) {
+  console.log(c);
+}
+// TypeError: 123 is not iterable
+```
+
+É a diferença entre número e texto da [[programacao/logica-de-programacao/modulo-2/02-tipos-de-dados|aula 2.2]], agora dentro do laço. A mensagem quer dizer "123 não é iterável".
+
+Ser iterável não é o mesmo que ter elementos. O array vazio, `[]`, e o texto vazio, `""`, são iteráveis: o `for...of` só não dá nenhuma volta, e não aparece erro nenhum. Já o número não é uma sequência vazia: ele simplesmente não é uma sequência.
+
+Na prática, ninguém escreve `for (let c of 123)` de propósito. Esse erro aparece quando chega ao laço um valor diferente do esperado. O caso mais comum é esquecer o argumento: como na [[programacao/logica-de-programacao/modulo-5/02-parametros-e-argumentos-entradas-da-funcao|aula 5.2]], o parâmetro que ficou sem argumento vale `undefined`:
+
+```js
+function somar(numeros) {
+  let total = 0;
+  for (let numero of numeros) {
+    total = total + numero;
+  }
+  return total;
+}
+
+somar(); // TypeError: numeros is not iterable
+```
+
+Quando aparecer um "is not iterable", confira o que a variável depois do `of` está guardando. Muitas vezes, é um `undefined` no lugar do array.
+
+Os objetos, assunto da aula 6.4, também não são iteráveis. É para eles que existe o `for...in`, que aparece em "Os erros mais comuns", mais abaixo.
+
+> [!info]- Como o JavaScript sabe o que é iterável? (clique para abrir)
+> Todo valor iterável traz, por dentro, um método especial que entrega os elementos um por um. O `for...of` chama esse método no começo do laço. Arrays e textos já nascem com ele, e números, booleanos e `undefined` não o têm, daí o erro. Existem outros valores iteráveis no JavaScript, mas o curso não chega a eles.
 
 ## O que o `for...of` tem de melhor
 
@@ -824,10 +868,23 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > > [!success]- Resposta
 > > `8` e depois `4`. O `n` recebe o valor 4 e é uma variável à parte. A função dobra o `n` e devolve 8, mas o `x` de fora continua 4. Com um número, a função nunca mexe na variável de quem chamou.
 
+> [!question] 17. Quais laços dão erro?
+> ```js
+> for (let x of [])    { console.log(x); } // laço A
+> for (let x of "abc") { console.log(x); } // laço B
+> for (let x of 42)    { console.log(x); } // laço C
+> for (let x of "42")  { console.log(x); } // laço D
+> for (let x of true)  { console.log(x); } // laço E
+> ```
+>
+> > [!success]- Resposta
+> > Dão erro o C e o E: um número e um booleano não são iteráveis, e aparece `TypeError: 42 is not iterable` ou `TypeError: true is not iterable`. O A não dá erro: o array vazio é iterável, só não tem elementos, e o laço não dá nenhuma volta. O B mostra `a`, `b` e `c`. O D mostra `4` e `2`, porque `"42"`, entre aspas, é um texto de dois caracteres.
+
 ## De onde vêm as palavras
 
 - **[[glossario/percorrer|Percorrer]]**: do latim *percurrere*, formado por *per-*, "através, ao longo", e *currere*, "correr". Percorrer é correr de um lado ao outro, passando por tudo o que está no caminho. Do *percurrere* vem também o francês *parcourir*, "percorrer", e dele o **parkour**, o esporte de atravessar a cidade correndo e saltando os obstáculos. E o latim *currere* é primo distante do inglês *horse*, "cavalo", o bicho que corre.
 - **[[glossario/iteracao|Iterar]]**: do latim *iterāre*, "repetir", de *iterum*, "de novo". Iterar é fazer outra vez, e percorrer um array é fazer a mesma coisa outra vez para cada elemento.
+- **[[glossario/iteravel|Iterável]]**: *iterar* mais o final *-vel*, que veio do latim *-ābilis*, "que pode ser". É o mesmo final de "lavável" e "cantável". Iterável é o que pode ser iterado, ou seja, percorrido.
 - **of**: em inglês, "de". Vem do inglês antigo *of*, "de, para fora de", que era a forma fraca, falada sem força, da palavra *æf*. A forma forte da mesma palavra virou o inglês **off**, "fora, desligado". Então *of* e *off* começaram como uma palavra só, que se separou em duas.
 - **[[glossario/para-cada|Cada]]**: do latim *cata*, "por, para cada", que o latim tomou emprestado do grego *katá*. O *for...of* se lê "para cada... de...", e o "cada" desse nome é uma palavra grega que chegou ao português pelo latim.
 
@@ -836,10 +893,11 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > - O `console.log(array)` só mostra. Os colchetes à mão só servem para um tamanho fixo. O laço serve para qualquer tamanho.
 > - No `for` pelo índice, o `i` vai de 0 até antes do `length`: `i < array.length`, nunca `<=`.
 > - O `for...of` entrega direto o valor de cada elemento, sem `i`, e não tem como errar o começo nem o fim.
+> - O `for...of` percorre valores iteráveis: arrays e textos. Número, booleano e `undefined` não são iteráveis, e dão `TypeError: ... is not iterable`.
 > - Use o `for` pelo índice quando precisar da posição, quando for mudar os elementos do array ou para andar de outro jeito.
 > - O acumulador, o contador e o `push` funcionam igual dentro do laço. O acumulador e o contador são criados antes do laço.
 > - Um array pode ser argumento e também pode ser devolvido por uma função.
 > - A função recebe o mesmo array, e não uma cópia. Se ela mexer nele, com `push`, `pop` ou `lista[i] = ...`, o array de quem chamou muda junto. Percorrer com `for` ou `for...of` só lê e não muda nada.
 > - É `of`, e não `in`. No JavaScript, o `in` entrega as posições.
 
-Fontes: MDN: [for...of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of), [for](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for), [for...in](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in), [Lexical grammar: identifiers with special meanings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#identifiers_with_special_meanings), [Loops and iteration](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration) · Python: [for Statements](https://docs.python.org/3/tutorial/controlflow.html#for-statements), [enumerate](https://docs.python.org/3/library/functions.html#enumerate) · Wiktionary: [percorrer](https://en.wiktionary.org/wiki/percorrer), [percurrō](https://en.wiktionary.org/wiki/percurro), [currō](https://en.wiktionary.org/wiki/curro), [of](https://en.wiktionary.org/wiki/of), [cada](https://en.wiktionary.org/wiki/cada), [iterō](https://en.wiktionary.org/wiki/itero)
+Fontes: MDN: [for...of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of), [for](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for), [for...in](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in), [Lexical grammar: identifiers with special meanings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#identifiers_with_special_meanings), [Loops and iteration](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration) · Python: [for Statements](https://docs.python.org/3/tutorial/controlflow.html#for-statements), [enumerate](https://docs.python.org/3/library/functions.html#enumerate) · Wiktionary: [percorrer](https://en.wiktionary.org/wiki/percorrer), [percurrō](https://en.wiktionary.org/wiki/percurro), [currō](https://en.wiktionary.org/wiki/curro), [of](https://en.wiktionary.org/wiki/of), [cada](https://en.wiktionary.org/wiki/cada), [iterō](https://en.wiktionary.org/wiki/itero), [-ável](https://en.wiktionary.org/wiki/-%C3%A1vel)
