@@ -27,4 +27,6 @@ Ver a aula [[programacao/logica-de-programacao/modulo-4/04-contador-e-acumulador
 
 De *contar* + *-dor*, "quem conta". *Contar* vem do latim *computāre*, "calcular, fazer as contas", e por isso *contador* e **computador** são primos: os dois são "o que faz as contas".
 
-Fontes: Wiktionary: [contador](https://en.wiktionary.org/wiki/contador), [contar](https://en.wiktionary.org/wiki/contar), [computador](https://en.wiktionary.org/wiki/computador)
+O *computāre* é *con-*, "junto", mais *putāre*, que queria dizer "podar, limpar" e também "avaliar, pensar". Ele entrou no português duas vezes. Pelo caminho do povo, mudando com o uso ao longo dos séculos, virou **contar**. Copiado direto dos livros, virou **computar**. São a mesma palavra latina, por dois caminhos.
+
+Fontes: Wiktionary: [contador](https://en.wiktionary.org/wiki/contador), [contar](https://en.wiktionary.org/wiki/contar), [computador](https://en.wiktionary.org/wiki/computador), [computō](https://en.wiktionary.org/wiki/computo), [putō](https://en.wiktionary.org/wiki/puto)

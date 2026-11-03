@@ -57,7 +57,7 @@ Resumos das aulas do curso de Lógica de Programação, divididos em módulos co
 ## [[programacao/logica-de-programacao/modulo-7/index|Módulo 7 – Resolvendo problemas de verdade]]
 
 1. [[programacao/logica-de-programacao/modulo-7/01-como-atacar-um-problema-de-programacao|Como atacar um problema de programação]]
-2. Algoritmos em arrays: buscar, contar e achar o maior
+2. [[programacao/logica-de-programacao/modulo-7/02-algoritmos-em-arrays-buscar-contar-e-achar-o-maior|Algoritmos em arrays: buscar, contar e achar o maior]]
 3. Colocando em ordem: a ideia de ordenação
 4. Quando dá errado: depurando seu código
 5. Mini-projeto: uma lista de tarefas (e o próximo passo)
