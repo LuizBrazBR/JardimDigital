@@ -382,7 +382,14 @@ console.log(precos); // [ 10, 25, 8, 40 ]
 
 O `precos` continua inteiro. O laço só leu os valores dele, e quem ganhou elementos foi o `caros`.
 
-Procurar um elemento e achar o maior também são trabalhos de percorrer. Eles ficam para a aula 7.2.
+### Procurar e achar o maior
+
+Mais dois trabalhos se fazem percorrendo um array:
+
+- **procurar um elemento**, como saber se o `"café"` está na lista de compras;
+- **achar o maior**, como descobrir o preço mais alto do array `precos`.
+
+O "achar o maior" já apareceu nas aulas 3.4 e 5.5, mas com variáveis separadas, como o `a`, o `b` e o `c` da `maiorDeTres(a, b, c)`. Ali, o código foi escrito para exatamente três valores, e com quatro já foi preciso outra função, a `maiorDeQuatro`. Num array, a quantidade de elementos só se sabe com o programa rodando. Quem resolve é o laço: ele percorre o array e vai ficando com o maior até agora, como a aula 5.5 começou a mostrar em "E com muitos números?". A aula 5.5 também avisou que o problema voltaria na aula 7.2, "agora numa lista de verdade". É lá que esses dois trabalhos aparecem.
 
 ## Os erros mais comuns
 
