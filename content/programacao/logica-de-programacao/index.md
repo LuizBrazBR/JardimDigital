@@ -54,9 +54,9 @@ Resumos das aulas do curso de Lógica de Programação, divididos em módulos co
 4. [[programacao/logica-de-programacao/modulo-6/04-objetos-descrevendo-uma-coisa-com-chave-e-valor|Objetos: descrevendo uma coisa com chave e valor]]
 5. [[programacao/logica-de-programacao/modulo-6/05-array-de-objetos-uma-lista-de-registros|Array de objetos: uma lista de registros]]
 
-## Módulo 7 – Resolvendo problemas de verdade
+## [[programacao/logica-de-programacao/modulo-7/index|Módulo 7 – Resolvendo problemas de verdade]]
 
-1. Como atacar um problema de programação
+1. [[programacao/logica-de-programacao/modulo-7/01-como-atacar-um-problema-de-programacao|Como atacar um problema de programação]]
 2. Algoritmos em arrays: buscar, contar e achar o maior
 3. Colocando em ordem: a ideia de ordenação
 4. Quando dá errado: depurando seu código
