@@ -876,6 +876,33 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > > ```
 > >
 > > O contador é criado dentro da função, mas fora do laço, e o `return` devolve o resultado depois que o laço termina.
+> >
+> > E se o contador for criado fora da função, antes dela? A primeira chamada dá certo, mas as próximas não:
+> >
+> > ```js
+> > let quantos = 0; // fora da função
+> >
+> > function contarMaioresQue(numeros, limite) {
+> >   for (let numero of numeros) {
+> >     if (numero > limite) {
+> >       quantos++;
+> >     }
+> >   }
+> >   return quantos;
+> > }
+> >
+> > console.log(contarMaioresQue([10, 25, 8, 40], 10)); // 2
+> > console.log(contarMaioresQue([10, 25, 8, 40], 10)); // 4
+> > console.log(contarMaioresQue([10, 25, 8, 40], 30)); // 5
+> > ```
+> >
+> > O `quantos` não volta a 0 entre uma chamada e outra, porque é uma variável global, como as da [[programacao/logica-de-programacao/modulo-5/04-escopo-variaveis-locais-e-globais|aula 5.4]]: ele é do programa, e não da função. A segunda chamada começa do 2 que sobrou da primeira, e a terceira começa do 4. A função só funciona uma vez.
+> >
+> > | Onde o contador nasce | O que acontece |
+> > |---|---|
+> > | fora da função | continua somando de uma chamada para a outra: só a primeira dá certo |
+> > | dentro da função, antes do laço | volta a 0 em cada chamada: é o certo |
+> > | dentro do laço | volta a 0 em cada volta, e o `return` nem o enxerga: dá `ReferenceError` |
 
 > [!question] 14. O que aparece no console?
 > ```js
