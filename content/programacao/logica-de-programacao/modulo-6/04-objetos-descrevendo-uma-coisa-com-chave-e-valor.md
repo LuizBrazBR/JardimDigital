@@ -339,6 +339,26 @@ let pessoa = { nome: "Ana" idade: 20 }; // SyntaxError: Unexpected identifier 'i
 let outra = { nome: "Ana"; idade: 20 }; // SyntaxError: Unexpected token ';'
 ```
 
+**Juntar o objeto com um texto usando `+`.**
+
+```js
+let pessoa = { nome: "Ana", idade: 20 };
+
+console.log("Pessoa: " + pessoa); // Pessoa: [object Object]
+console.log("Pessoa:", pessoa);   // Pessoa: { nome: 'Ana', idade: 20 }
+```
+
+Sozinho, o `console.log(pessoa)` mostra o objeto inteiro, com todas as propriedades. Mas o `+` com um texto transforma o objeto em texto antes de juntar, e o texto de um objeto é sempre `[object Object]`, que não diz nada. A template string faz o mesmo. Para mostrar um texto e um objeto juntos, separe os dois com **vírgula**: o `console.log` aceita vários valores e mostra cada um do seu jeito. Outra saída é mostrar só a propriedade que interessa: `"Pessoa: " + pessoa.nome`.
+
+> [!info]- E se houver objetos dentro de objetos? (clique para abrir)
+> No Node, o `console.log` só desenha alguns níveis. Depois disso, ele resume o que está mais para dentro com `[Object]`:
+>
+> ```js
+> console.log({ a: { b: { c: { d: 1 } } } }); // { a: { b: { c: [Object] } } }
+> ```
+>
+> O valor continua lá, e o `console.log` só não o desenha. No console do navegador, cada nível vira uma setinha, que se abre com um clique.
+
 **Errar o nome da chave.** Na leitura, dá `undefined`. Na escrita, cria uma propriedade nova, como a `idaed` lá em cima. Nos dois casos, nenhum erro avisa.
 
 ## Lógica ou JavaScript?
