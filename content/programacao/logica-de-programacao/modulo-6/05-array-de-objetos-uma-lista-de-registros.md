@@ -66,7 +66,37 @@ console.table(tarefas);
 
 Para a planilha fazer sentido, todos os objetos precisam ter as mesmas chaves, como todas as linhas têm as mesmas colunas. Se uma tarefa tiver `title` em vez de `titulo`, um laço que lê `tarefa.titulo` vai mostrar `undefined` nela.
 
-Esse jeito de organizar é o mesmo de uma tabela num banco de dados, em que cada linha é um registro. E é também o formato em que os dados costumam chegar de um servidor na internet: uma lista de objetos.
+Esse jeito de organizar é o mesmo de uma tabela num banco de dados, em que cada linha é um registro. E é também o formato em que os dados costumam chegar de um servidor na internet: uma lista de objetos, escrita num formato de texto chamado JSON.
+
+> [!info]- O que é JSON? (clique para abrir)
+> **JSON** é a sigla de *JavaScript Object Notation*, "notação de objetos do JavaScript". É um jeito de escrever dados como **texto**, com a mesma cara dos objetos e arrays do JavaScript, para mandá-los de um programa para outro, por exemplo de um servidor para um site. Uma lista de tarefas chega assim:
+>
+> ```json
+> [
+>   { "titulo": "estudar JavaScript", "concluida": true },
+>   { "titulo": "lavar louça", "concluida": false }
+> ]
+> ```
+>
+> Quando a resposta é uma lista, o array de objetos é a forma mais comum. Muitas vezes, ele vem dentro de um objeto que traz outras informações junto, como o total de itens:
+>
+> ```json
+> { "total": 2, "produtos": [ { "nome": "caneta", "preco": 3 }, { "nome": "lápis", "preco": 2 } ] }
+> ```
+>
+> Aí o caminho até um valor junta tudo o que o módulo mostrou: `resposta.produtos[0].nome` vale `"caneta"`. E, quando a resposta é uma coisa só, como os dados de um usuário, ela vem como um objeto.
+>
+> O JSON é mais rigoroso que o JavaScript. As chaves vão **sempre** entre aspas duplas, os textos também só com aspas duplas, e não cabem funções, `undefined`, comentários nem vírgula depois do último item.
+>
+> Como o JSON é texto, o JavaScript precisa convertê-lo antes de usar. O `JSON.parse` transforma o texto em arrays e objetos de verdade, e o `JSON.stringify` faz o caminho contrário:
+>
+> ```js
+> let texto = '[{ "titulo": "ler", "concluida": false }]';
+>
+> let tarefas = JSON.parse(texto);
+> console.log(tarefas[0].titulo);       // ler
+> console.log(JSON.stringify(tarefas)); // [{"titulo":"ler","concluida":false}]
+> ```
 
 ## Lendo: primeiro a posição, depois a chave
 
