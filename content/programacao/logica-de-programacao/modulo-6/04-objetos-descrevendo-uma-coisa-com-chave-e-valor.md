@@ -98,6 +98,10 @@ Como o array da [[programacao/logica-de-programacao/modulo-6/03-percorrendo-arra
 - **guardada dentro de um array**, como na aula 6.5: `[{ nome: "Ana" }, { nome: "Bia" }]`
 - **mostrada inteira:** `console.log(pessoa)`
 
+Ela nem precisa estar numa variável. Em `descrever({ nome: "Ana", idade: 20 })`, o objeto é escrito direto entre os parênteses, como o array em `somar([10, 25, 8])`, da aula 6.3, ou o texto em `console.log("oi")`. Um valor escrito assim, direto no código, se chama **[[glossario/literal|literal]]**: `{ nome: "Ana" }` é um objeto literal, `[10, 25]` é um array literal, e `"oi"` é um texto literal.
+
+Mesmo guardado numa variável, o objeto não tem nome. Quem tem nome é a variável. Em `let pessoa = { nome: "Ana" }`, o `pessoa` é o nome da variável que aponta para o objeto, e duas variáveis podem apontar para o mesmo objeto, como a `lista` e o `compras` da aula 6.3. Por isso, o objeto escrito direto na chamada não tem nada de diferente dos outros: ele só não ficou guardado em nenhuma variável do lado de fora. Dentro da função, ele ganha um nome, o do parâmetro. Quando a função termina, ninguém mais consegue chegar até ele.
+
 E vale o mesmo cuidado do "Array como argumento", da aula 6.3. A função recebe o mesmo objeto, e não uma cópia. Se ela mudar uma propriedade, o objeto de quem chamou muda junto:
 
 ```js
