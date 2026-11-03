@@ -88,6 +88,28 @@ if (idade >= 18) {              // bloco: guarda instruções
 
 Então não é a variável que transforma os `{ }` em objeto. O que importa é estar num lugar onde cabe um valor, e guardar numa variável é só o lugar mais comum.
 
+### Um objeto também é um valor só
+
+Como o array da [[programacao/logica-de-programacao/modulo-6/03-percorrendo-arrays-for-e-for-of|aula 6.3]], o objeto é **um valor só**, com várias informações dentro. A ficha da Ana tem três informações, mas é uma ficha só. Por isso, ela vai inteira, de uma vez, a qualquer lugar onde cabe um valor:
+
+- **guardada numa variável:** `let pessoa = { nome: "Ana", idade: 20 };`
+- **entregue a uma função:** `descrever(pessoa)`
+- **devolvida no `return`:** `return { nome: "Bia" };`
+- **guardada dentro de um array**, como na aula 6.5: `[{ nome: "Ana" }, { nome: "Bia" }]`
+- **mostrada inteira:** `console.log(pessoa)`
+
+E vale o mesmo cuidado do "Array como argumento", da aula 6.3. A função recebe o mesmo objeto, e não uma cópia. Se ela mudar uma propriedade, o objeto de quem chamou muda junto:
+
+```js
+function fazerAniversario(p) {
+  p.idade = p.idade + 1;
+}
+
+let pessoa = { nome: "Ana", idade: 20 };
+fazerAniversario(pessoa);
+console.log(pessoa.idade); // 21: o objeto de fora mudou
+```
+
 ## Lendo uma propriedade
 
 Há duas formas de ler:
@@ -530,6 +552,7 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > [!tip] Para guardar
 > - Um objeto descreve uma coisa só, com várias informações. Cada informação tem um nome, a chave, e um valor.
 > - Cria-se com `{ }`: `{ nome: "Ana", idade: 20 }`. Dois-pontos entre a chave e o valor, vírgula entre os pares.
+> - Como o array, o objeto é um valor só: cabe numa variável, vai como argumento e volta no `return`. A função recebe o mesmo objeto, e não uma cópia.
 > - Lê-se com ponto, `pessoa.nome`, ou com colchetes e aspas, `pessoa["nome"]`.
 > - O ponto usa o nome escrito no código. Os colchetes usam um valor, que pode vir de uma variável (`pessoa[campo]`) e pode ter espaço (`cadastro["nome completo"]`).
 > - As duas formas também servem para mudar e para criar: `pessoa.idade = 21` ou `pessoa["idade"] = 21`.

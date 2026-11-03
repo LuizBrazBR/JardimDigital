@@ -18,7 +18,9 @@ pessoa.idade = 21;            // muda uma propriedade
 pessoa.email = "ana@ex.com";  // cria uma propriedade nova
 ```
 
-O [[glossario/array|array]] guarda uma lista de coisas parecidas, cada uma numa posição. O objeto guarda informações diferentes sobre uma coisa, cada uma com o seu nome. Assim, não é preciso lembrar que "a posição 1 é a idade": basta escrever `pessoa.idade`.
+Como o [[glossario/array|array]], o objeto é um valor só, com várias informações dentro: cabe numa variável, vai como [[glossario/argumento|argumento]] e volta no `return`. A função recebe o mesmo objeto, e não uma cópia.
+
+O array guarda uma lista de coisas parecidas, cada uma numa posição. O objeto guarda informações diferentes sobre uma coisa, cada uma com o seu nome. Assim, não é preciso lembrar que "a posição 1 é a idade": basta escrever `pessoa.idade`.
 
 O ponto usa o nome da chave escrito no código. Os colchetes usam um valor: a chave pode vir de uma variável, como em `pessoa[campo]`, e pode ter espaço, como em `cadastro["nome completo"]`. As duas formas servem para ler, mudar e criar. Pedir uma chave que não existe dá `undefined`.
 
