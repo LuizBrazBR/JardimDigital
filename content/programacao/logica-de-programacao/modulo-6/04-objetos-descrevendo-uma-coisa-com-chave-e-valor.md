@@ -75,7 +75,18 @@ O inglês não tem esse problema. Os sinais são *braces*, e o nome da informaç
 
 ### As chaves do bloco e as do objeto
 
-Os sinais `{ }` já apareceram no `if`, no `for` e na `function`, marcando um [[glossario/bloco|bloco]] de código. No objeto, eles fazem outro trabalho: guardam pares de chave e valor. O lugar diz qual é qual. Depois de um `=`, como em `let pessoa = { ... }`, é um objeto. Depois de um `if (...)`, de um `for (...)` ou de uma `function`, é um bloco.
+Os sinais `{ }` já apareceram no `if`, no `for` e na `function`, marcando um [[glossario/bloco|bloco]] de código. No objeto, eles fazem outro trabalho: guardam pares de chave e valor. O lugar diz qual é qual:
+
+- **Onde o JavaScript espera instruções**, os `{ }` são um bloco. É o caso depois de um `if (...)`, de um `for (...)` ou de uma `function`.
+- **Onde ele espera um valor**, os `{ }` criam um objeto. É o caso depois de um `=`, como em `let pessoa = { ... }`, e também em outros lugares que recebem um valor: entre os parênteses de uma chamada, como em `descrever({ nome: "Ana" })`, dentro de um array ou depois de um `return`.
+
+```js
+if (idade >= 18) {              // bloco: guarda instruções
+  let pessoa = { nome: "Ana" }; // objeto: guarda pares de chave e valor
+}
+```
+
+Então não é a variável que transforma os `{ }` em objeto. O que importa é estar num lugar onde cabe um valor, e guardar numa variável é só o lugar mais comum.
 
 ## Lendo uma propriedade
 
@@ -185,6 +196,23 @@ console.log(pessoa); // { nome: 'Ana', idade: 20, idaed: 21 }
 ```
 
 A `idade` continua 20, e o objeto ganhou uma `idaed` que ninguém queria.
+
+### Começando vazio
+
+Como o array vazio `[]` da aula 6.2, que ia ganhando elementos com o `push`, um objeto pode começar vazio, com `{}`, e ganhar propriedades depois:
+
+```js
+let ficha = {};
+console.log(ficha); // {}
+
+ficha.nome = "Ana";
+ficha["cidade"] = "Recife";
+console.log(ficha); // { nome: 'Ana', cidade: 'Recife' }
+```
+
+Cada `=` numa chave que não existe cria uma propriedade nova. Isso é útil quando as informações chegam aos poucos, como num cadastro preenchido em etapas.
+
+Um objeto vazio continua sendo um objeto: `typeof {}` dá `"object"`. Ele só não tem propriedades. Ler qualquer chave dele dá `undefined`, e um `for...in` nele não dá nenhuma volta.
 
 > [!info]- E com `const`? (clique para abrir)
 > Funciona como o array da aula 6.2:
@@ -481,6 +509,19 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > >
 > > Um objeto, como um array, pode ser argumento. E vale o mesmo cuidado da aula 6.3: a função recebe o mesmo objeto, e não uma cópia. Se ela mudar uma propriedade, o objeto de quem chamou muda junto.
 
+> [!question] 14. O que aparece no console?
+> ```js
+> let config = {};
+>
+> console.log(config.tema);
+> config.tema = "escuro";
+> config["fonte"] = 16;
+> console.log(config);
+> ```
+>
+> > [!success]- Resposta
+> > `undefined` e depois `{ tema: 'escuro', fonte: 16 }`. O objeto começa vazio, então a chave `tema` ainda não existe e dá `undefined`. Depois, cada `=` cria uma propriedade nova, uma com ponto e a outra com colchetes.
+
 ## De onde vêm as palavras
 
 - **[[glossario/objeto|Objeto]]**: do latim *obiectus*, particípio de *obicere*, "lançar diante, pôr na frente", formado por *ob-*, "diante, contra", e *iacere*, "lançar". Objeto é o que foi posto diante de nós, uma coisa que se pode ver, apontar e descrever. Na programação, é o valor que descreve uma coisa. No latim, *obiectum* também queria dizer "acusação", o que se lança contra alguém.
@@ -492,6 +533,8 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > - Lê-se com ponto, `pessoa.nome`, ou com colchetes e aspas, `pessoa["nome"]`.
 > - O ponto usa o nome escrito no código. Os colchetes usam um valor, que pode vir de uma variável (`pessoa[campo]`) e pode ter espaço (`cadastro["nome completo"]`).
 > - As duas formas também servem para mudar e para criar: `pessoa.idade = 21` ou `pessoa["idade"] = 21`.
+> - Um objeto pode começar vazio, `{}`, e ganhar propriedades depois, com o `=`.
+> - Os `{ }` criam um objeto onde cabe um valor (depois de um `=`, numa chamada, num array). Onde cabem instruções (depois de `if`, `for` ou `function`), são um bloco.
 > - Chave que não existe dá `undefined` na leitura. Na escrita, cria a propriedade, e por isso um erro de digitação passa sem aviso.
 > - Array para uma lista de coisas parecidas, objeto para uma coisa com várias características.
 > - O laço dos objetos é o `for...in`, que entrega as chaves. O valor se lê com colchetes: `pessoa[chave]`.
