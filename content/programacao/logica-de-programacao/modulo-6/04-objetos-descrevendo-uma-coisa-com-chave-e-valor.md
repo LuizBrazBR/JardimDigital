@@ -236,6 +236,27 @@ Cada `=` numa chave que não existe cria uma propriedade nova. Isso é útil qua
 
 Um objeto vazio continua sendo um objeto: `typeof {}` dá `"object"`. Ele só não tem propriedades. Ler qualquer chave dele dá `undefined`, e um `for...in` nele não dá nenhuma volta.
 
+> [!info]- E sem o `=`, cria uma propriedade com `undefined`? (clique para abrir)
+> Não. Só citar a chave, sem o `=`, não cria nada:
+>
+> ```js
+> let pessoa = { nome: "Ana" };
+>
+> pessoa.cidade;       // só lê: vale undefined, e nada muda
+> console.log(pessoa); // { nome: 'Ana' }
+> ```
+>
+> É diferente da variável vazia da [[programacao/logica-de-programacao/modulo-2/01-variaveis-let-e-const|aula 2.1]], em que `let resposta;` cria a variável com `undefined`. No objeto, quem cria a propriedade é o `=`. E um `=` sem nada do lado direito, como `pessoa.cidade = ;`, dá `SyntaxError`.
+>
+> Para criar a propriedade vazia de propósito, é preciso escrever o `undefined`:
+>
+> ```js
+> pessoa.cidade = undefined;
+> console.log(pessoa); // { nome: 'Ana', cidade: undefined }
+> ```
+>
+> Agora a chave existe, só que sem valor. Na leitura, as duas situações dão o mesmo `undefined`. Quem separa uma da outra é o `in`, um dos outros usos daquela palavra reservada da aula 6.3: `"cidade" in pessoa` dá `true` quando a chave existe, mesmo vazia, e `false` quando ela nunca foi criada.
+
 > [!info]- E com `const`? (clique para abrir)
 > Funciona como o array da aula 6.2:
 >
