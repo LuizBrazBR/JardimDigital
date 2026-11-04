@@ -214,7 +214,7 @@ console.log(menorNota); // 3
 E aqui a pegadinha do 0 é ainda mais fácil de ver. Com `let menorNota = 0`, nenhuma nota é menor que 0, e o resultado seria 0, mesmo com notas positivas comuns, como `[7, 3, 9]`. Começar com o primeiro elemento serve para os dois casos, o maior e o menor.
 
 > [!info]- E o `Math.max` da aula 5.5, funciona com array? (clique para abrir)
-> Funciona, mas pede uma coisa que o curso ainda não tinha mostrado: três pontos, `...`, antes do nome do array. Vale ver o porquê com calma.
+> Funciona, mas pede uma coisa que o curso ainda não tinha mostrado: o **[[glossario/espalhamento|espalhamento]]**, em inglês *spread*. Ele se escreve com três pontos, `...`, antes do nome do array. Vale ver o porquê com calma.
 >
 > **O array pode, sim, ser argumento.** Como a aula 6.3 mostrou, um array é um valor só, e qualquer função pode recebê-lo. A `contemFruta`, lá em cima, recebe o array inteiro no parâmetro `lista`. Funciona porque ela foi escrita **esperando** uma lista.
 >
@@ -239,13 +239,15 @@ E aqui a pegadinha do 0 é ainda mais fácil de ver. Com `let menorNota = 0`, ne
 >
 > O array inteiro entra no `a`, e o `b` fica sem nada, `undefined`. A função esperava dois números separados e recebeu uma lista só.
 >
-> **Os três pontos tiram os elementos de dentro do array.** Escritos na chamada, antes do nome do array, eles entregam cada elemento como um argumento separado:
+> **O espalhamento tira os elementos de dentro do array.** Os três pontos, escritos na chamada antes do nome do array, entregam cada elemento como um argumento separado. É como abrir a caixa de ovos da aula 6.3 e pôr os ovos na mesa, um ao lado do outro:
 >
 > ```js
 > console.log(Math.max(...notas));     // 10, o mesmo que Math.max(7, 3, 9, 5, 10, 4)
 > console.log(Math.min(...notas));     // 3
 > console.log(maiorDeDois(...[3, 8])); // 8, o mesmo que maiorDeDois(3, 8)
 > ```
+>
+> O nome vem daí: os elementos são **espalhados** pela chamada. Na MDN, a documentação de referência do JavaScript, o nome é *spread syntax*, "sintaxe de espalhamento". No dia a dia, muita gente diz "operador spread", ou só "spread".
 >
 > Para saber se precisa dos pontos, pergunte: **a função espera a lista inteira ou os valores soltos?**
 >
@@ -271,6 +273,8 @@ E aqui a pegadinha do 0 é ainda mais fácil de ver. Com `let menorNota = 0`, ne
 > E, se preferir, nem precisa do `Math.max`: a receita do campeão, lá em cima, acha o mesmo 10 só com o que o curso já mostrou.
 >
 > Uma curiosidade: `Math.max(...[])`, com a lista vazia, dá `-Infinity`. É o mesmo começo seguro que a aula 5.5 sugeriu.
+>
+> E um aviso para o futuro: os mesmos três pontos também aparecem nos **parâmetros** de uma função, como em `function somarTodos(...numeros)`. Ali eles fazem o contrário: juntam os valores soltos da chamada numa lista só. Esse uso tem outro nome, *rest*, "o resto", e fica fora desta aula.
 
 ### Achar quem é o maior
 
@@ -562,6 +566,7 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 - **[[glossario/maximo-e-minimo|Mínimo]]**: do latim *minimus*, "o menor de todos". O comparativo era *minor*, "menor". Mas o "pequeno", no latim, era *parvus*, uma palavra de outra raiz, como no português **bom**, **melhor**, **ótimo**, em que cada degrau tem uma origem diferente.
 - **Campeão**: veio do italiano *campione*, do latim tardio *campiō*, "lutador". A palavra deu uma volta. O latim *campus*, "campo", foi parar nas línguas germânicas com o sentido de "campo de batalha", e daí veio um verbo para "lutar". Dele nasceu o nome do lutador, que voltou ao latim como *campiō*. O campeão é, na origem, **quem luta no campo**. Na receita do maior, ele defende o lugar contra cada novo desafiante.
 - **[[glossario/contador|Contar]]**: do latim *computāre*, "calcular, fazer as contas", de *con-*, "junto", e *putāre*, que queria dizer "podar, limpar" e também "avaliar, pensar". O *computāre* entrou no português duas vezes: pelo caminho do povo, gastando-se com o uso, virou **contar**. Mais tarde, copiado direto dos livros, virou **computar**. Por isso contar e computar são a mesma palavra latina.
+- **[[glossario/espalhamento|Espalhamento]]**: de *espalhar* + *-mento*. *Espalhar* é *es-* + *palha* + *-ar*, e a *palha* vem do latim *palea*, "palha". O inglês *spread* vem do inglês antigo *sprǣdan*, "espalhar, expandir", de uma raiz indo-europeia que queria dizer "espalhar, semear, salpicar".
 
 > [!tip] Para guardar
 > - Buscar, contar e achar o maior fazem o mesmo movimento: percorrer o array e comparar cada elemento com alguma coisa.
@@ -573,5 +578,6 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > - Comece o campeão com `lista[0]`, e não com 0. Com 0, uma lista só de negativos dá 0, um valor que nem está nela, e sem aviso de erro.
 > - Para saber **quem** é o maior, guarde o objeto inteiro e compare a propriedade: `if (aluno.nota > melhor.nota) melhor = aluno`.
 > - Só a busca pode parar no meio. Contar e achar o maior precisam olhar todos os elementos.
+> - O `Math.max` espera os números soltos. Com um array, use o espalhamento: `Math.max(...notas)`. Uma função que espera a lista inteira recebe o array sem pontos.
 
-Fontes: MDN: [Array.prototype.includes()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes), [Array.prototype.indexOf()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf), [Math.max()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max), [Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) · Python: [Built-in Functions: max, min](https://docs.python.org/3/library/functions.html#max) · Wikipedia: [Linear search](https://en.wikipedia.org/wiki/Linear_search) · Wiktionary: [buscar](https://en.wiktionary.org/wiki/buscar), [linear](https://en.wiktionary.org/wiki/linear), [līneāris](https://en.wiktionary.org/wiki/linearis), [máximo](https://en.wiktionary.org/wiki/m%C3%A1ximo), [maximus](https://en.wiktionary.org/wiki/maximus), [magnus](https://en.wiktionary.org/wiki/magnus), [mínimo](https://en.wiktionary.org/wiki/m%C3%ADnimo), [minimus](https://en.wiktionary.org/wiki/minimus), [campeão](https://en.wiktionary.org/wiki/campe%C3%A3o), [campiō](https://en.wiktionary.org/wiki/campio), [contar](https://en.wiktionary.org/wiki/contar), [computō](https://en.wiktionary.org/wiki/computo), [putō](https://en.wiktionary.org/wiki/puto)
+Fontes: MDN: [Array.prototype.includes()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes), [Array.prototype.indexOf()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf), [Math.max()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max), [Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax), [Sintaxe de Espalhamento](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Spread_syntax), [Rest parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters) · Python: [Built-in Functions: max, min](https://docs.python.org/3/library/functions.html#max) · Wikipedia: [Linear search](https://en.wikipedia.org/wiki/Linear_search) · Wiktionary: [buscar](https://en.wiktionary.org/wiki/buscar), [linear](https://en.wiktionary.org/wiki/linear), [līneāris](https://en.wiktionary.org/wiki/linearis), [máximo](https://en.wiktionary.org/wiki/m%C3%A1ximo), [maximus](https://en.wiktionary.org/wiki/maximus), [magnus](https://en.wiktionary.org/wiki/magnus), [mínimo](https://en.wiktionary.org/wiki/m%C3%ADnimo), [minimus](https://en.wiktionary.org/wiki/minimus), [campeão](https://en.wiktionary.org/wiki/campe%C3%A3o), [campiō](https://en.wiktionary.org/wiki/campio), [contar](https://en.wiktionary.org/wiki/contar), [computō](https://en.wiktionary.org/wiki/computo), [putō](https://en.wiktionary.org/wiki/puto), [spread](https://en.wiktionary.org/wiki/spread), [espalhar](https://en.wiktionary.org/wiki/espalhar), [palha](https://en.wiktionary.org/wiki/palha)
