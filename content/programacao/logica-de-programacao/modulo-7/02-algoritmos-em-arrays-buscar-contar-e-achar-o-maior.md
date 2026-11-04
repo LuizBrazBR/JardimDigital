@@ -214,14 +214,63 @@ console.log(menorNota); // 3
 E aqui a pegadinha do 0 é ainda mais fácil de ver. Com `let menorNota = 0`, nenhuma nota é menor que 0, e o resultado seria 0, mesmo com notas positivas comuns, como `[7, 3, 9]`. Começar com o primeiro elemento serve para os dois casos, o maior e o menor.
 
 > [!info]- E o `Math.max` da aula 5.5, funciona com array? (clique para abrir)
-> Funciona, com três pontos antes do nome do array:
+> Funciona, mas pede uma coisa que o curso ainda não tinha mostrado: três pontos, `...`, antes do nome do array. Vale ver o porquê com calma.
+>
+> **O array pode, sim, ser argumento.** Como a aula 6.3 mostrou, um array é um valor só, e qualquer função pode recebê-lo. A `contemFruta`, lá em cima, recebe o array inteiro no parâmetro `lista`. Funciona porque ela foi escrita **esperando** uma lista.
+>
+> **O `Math.max` espera outra coisa.** Na aula 5.5, ele foi chamado assim: `Math.max(4, 9, 15)`. São três argumentos, um número em cada. Ele foi feito para receber os números **soltos**, um por argumento. Entregar o array é entregar um argumento só, e esse argumento não é um número:
 >
 > ```js
-> console.log(Math.max(...notas)); // 10
-> console.log(Math.min(...notas)); // 3
+> console.log(Math.max(notas)); // NaN
 > ```
 >
-> Os três pontos abrem o array e entregam os elementos separados, como se fosse `Math.max(7, 3, 9, 5, 10, 4)`. Sem eles, o `Math.max` receberia o array inteiro como um valor só, e `Math.max(notas)` daria `NaN`, o "não é um número" da aula 2.3. E uma curiosidade: `Math.max(...[])`, com a lista vazia, dá `-Infinity`. É o mesmo começo seguro que a aula 5.5 sugeriu.
+> O `NaN` é o "não é um número" da aula 2.3. Acontece o mesmo com a `maiorDeDois` da aula 5.5, que espera dois números:
+>
+> ```js
+> function maiorDeDois(a, b) {
+>   if (a > b) {
+>     return a;
+>   }
+>   return b;
+> }
+>
+> console.log(maiorDeDois([3, 8])); // undefined
+> ```
+>
+> O array inteiro entra no `a`, e o `b` fica sem nada, `undefined`. A função esperava dois números separados e recebeu uma lista só.
+>
+> **Os três pontos tiram os elementos de dentro do array.** Escritos na chamada, antes do nome do array, eles entregam cada elemento como um argumento separado:
+>
+> ```js
+> console.log(Math.max(...notas));     // 10, o mesmo que Math.max(7, 3, 9, 5, 10, 4)
+> console.log(Math.min(...notas));     // 3
+> console.log(maiorDeDois(...[3, 8])); // 8, o mesmo que maiorDeDois(3, 8)
+> ```
+>
+> Para saber se precisa dos pontos, pergunte: **a função espera a lista inteira ou os valores soltos?**
+>
+> | A função espera... | Exemplo | Como chamar |
+> |---|---|---|
+> | a lista inteira, num parâmetro só | `contemFruta(lista, procurada)` | `contemFruta(frutas, "uva")` |
+> | os valores soltos, um por argumento | `Math.max(4, 9, 15)` | `Math.max(...notas)` |
+>
+> Nas funções que você mesmo escreve, quem decide é você, no parâmetro. Todas as funções de lista que o curso escreveu até aqui, como a `somar` da aula 6.3 e a `contemFruta`, esperam a lista inteira, e por isso nunca precisaram dos pontos.
+>
+> **Com objeto, a entrega é normal.** Uma função que espera um objeto recebe o objeto direto, sem pontos:
+>
+> ```js
+> function mostrarAluno(aluno) {
+>   return aluno.nome + " tirou " + aluno.nota;
+> }
+>
+> console.log(mostrarAluno({ nome: "Ana", nota: 8 })); // Ana tirou 8
+> ```
+>
+> E os três pontos não servem para abrir um objeto numa chamada: `Math.max(...{ a: 1 })` dá `TypeError`. Na chamada, eles só funcionam com o que dá para percorrer com o `for...of`, os [[glossario/iteravel|iteráveis]], e o objeto não é um, como a aula 6.4 lembrou. (Com objetos, os três pontos têm outro uso, dentro de chaves, que fica fora desta aula.)
+>
+> E, se preferir, nem precisa do `Math.max`: a receita do campeão, lá em cima, acha o mesmo 10 só com o que o curso já mostrou.
+>
+> Uma curiosidade: `Math.max(...[])`, com a lista vazia, dá `-Infinity`. É o mesmo começo seguro que a aula 5.5 sugeriu.
 
 ### Achar quem é o maior
 
