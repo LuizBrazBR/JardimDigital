@@ -61,7 +61,7 @@ Por isso a busca costuma morar dentro de uma função. É a mesma lógica da aul
 
 Se o procurado for o primeiro, basta uma comparação. Se for o último, ou se não estiver na lista, são tantas comparações quantos forem os elementos: 4 para a `"manga"`, um milhão numa lista de um milhão. Na busca linear, o trabalho cresce junto com a lista: uma lista duas vezes maior pode pedir o dobro de comparações.
 
-Se a lista estiver em ordem, como as palavras de um dicionário, há jeitos mais rápidos de buscar. Ninguém procura "uva" no dicionário lendo da primeira página em diante. Pôr uma lista em ordem é o assunto da aula 7.3.
+Se a lista estiver em ordem, como as palavras de um dicionário, há jeitos mais rápidos de buscar. Ninguém procura "uva" no dicionário lendo da primeira página em diante. Pôr uma lista em ordem é o assunto da [[programacao/logica-de-programacao/modulo-7/03-colocando-em-ordem-a-ideia-de-ordenacao|aula 7.3]].
 
 ### E se eu quiser saber onde está?
 
