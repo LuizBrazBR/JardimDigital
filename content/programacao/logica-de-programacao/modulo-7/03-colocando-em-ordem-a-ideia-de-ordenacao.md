@@ -197,8 +197,9 @@ Cada volta do `for` é um passo das cartas. O `lugar` é a posição que está s
 
 Na terceira volta, o menor já está no lugar, então `posMenor` é igual a `lugar`, e a troca tira o 3 e põe o mesmo 3 de volta. Não muda nada, mas também não atrapalha.
 
-Três detalhes:
+Quatro detalhes:
 
+- **O `lista[...]` quer dizer uma coisa de cada lado do `=`.** Na linha `lista[lugar] = lista[posMenor]`, o lado direito vira um valor: o que está guardado na posição `posMenor`. O lado esquerdo não vira valor: ele continua sendo um lugar, a posição onde o valor vai ser guardado. É a [[glossario/atribuicao|atribuição]] da [[programacao/logica-de-programacao/modulo-6/01-arrays-guardando-uma-lista-de-valores|aula 6.1]], que guarda o valor da direita no lugar da esquerda. Na 1ª volta, o `lugar` vale 0 e o `posMenor` vale 1, e a linha fica `lista[0] = 1`: a posição 0 recebe o 1. Repare que o `lugar`, dentro dos colchetes, também vira número, e é assim que o JavaScript sabe qual posição usar. O que não vira valor é o `lista[0]` inteiro. Se virasse, a linha seria `4 = 1`, e o JavaScript recusa isso com o `SyntaxError: Invalid left-hand side in assignment` da aula 2.4, "lado esquerdo inválido na atribuição".
 - **O laço vai até `lista.length - 1`**, e não até `lista.length`, porque o último lugar se resolve sozinho, como o 4 das cartas. Com 4 elementos, o `lugar` vale 0, 1 e 2: três passos.
 - **São dois laços, um dentro do outro**, como os [[glossario/laco-aninhado|laços aninhados]] da [[programacao/logica-de-programacao/modulo-4/05-break-continue-e-lacos-aninhados|aula 4.5]]. O de fora escolhe o lugar. O de dentro, que está na `posicaoDoMenor`, procura o menor.
 - **A função não tem `return`.** Ela mexe direto no array que recebeu, escrevendo nas posições. Como a [[programacao/logica-de-programacao/modulo-6/03-percorrendo-arrays-for-e-for-of|aula 6.3]] mostrou, escrever numa posição, como em `lista[lugar] = ...`, muda o array de quem chamou. Por isso, depois de `ordenarPorSelecao(numeros)`, o próprio `numeros` está em ordem.
