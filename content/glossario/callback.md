@@ -5,7 +5,24 @@ title: Callback
 > [!abstract] Definição
 > **Uma função entregue como [[glossario/argumento|argumento]] a outra função, para que essa outra a chame quando precisar.**
 
-No curso, o exemplo é a [[glossario/funcao-de-comparacao|função de comparação]] do `sort()`:
+Uma função também é um valor, como um número ou um texto, e por isso pode ser entregue a outra função. Num exemplo pequeno:
+
+```js
+function fazerDuasVezes(tarefa) {
+  tarefa(); // chama a função que recebeu
+  tarefa();
+}
+
+function dizerOi() {
+  console.log("oi");
+}
+
+fazerDuasVezes(dizerOi); // oi, oi
+```
+
+A `dizerOi` é o callback: vai sem parênteses, entregue como valor, e quem a chama é a `fazerDuasVezes`, nas linhas `tarefa()`.
+
+No curso, o método que recebe um callback é o `sort()`, e o callback é a [[glossario/funcao-de-comparacao|função de comparação]]:
 
 ```js
 function compararNumeros(a, b) {

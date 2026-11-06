@@ -306,6 +306,54 @@ A função recebe dois itens, que se costuma chamar de `a` e `b`, e responde com
 
 Por que um número, e não `true` ou `false`? Porque são **três** respostas possíveis: o `a` vem antes, o `b` vem antes, ou tanto faz. Um [[glossario/booleano|booleano]] só tem duas.
 
+### Uma função também pode ser argumento
+
+Falta uma peça antes de escrever essa função. Até aqui, os argumentos foram números, textos, arrays e objetos. Para o `sort()`, você vai entregar uma coisa nova: uma **função**. No JavaScript, uma função também é um valor, e dá para entregá-la a outra função, como qualquer outro argumento.
+
+Veja isso primeiro num exemplo pequeno, em que dá para ver os dois lados, quem entrega e quem recebe:
+
+```js
+function fazerDuasVezes(tarefa) {
+  tarefa(); // chama a função que recebeu
+  tarefa(); // e chama de novo
+}
+
+function dizerOi() {
+  console.log("oi");
+}
+
+fazerDuasVezes(dizerOi);
+// oi
+// oi
+```
+
+Siga o que acontece:
+
+1. Na chamada `fazerDuasVezes(dizerOi)`, a `dizerOi` vai **sem parênteses**. Ela não roda ali: só é entregue, como um valor.
+2. Dentro da `fazerDuasVezes`, o parâmetro `tarefa` passa a guardar a `dizerOi`. É um parâmetro como os da [[programacao/logica-de-programacao/modulo-5/02-parametros-e-argumentos-entradas-da-funcao|aula 5.2]], só que guardando uma função.
+3. A linha `tarefa()`, **com parênteses**, chama a função guardada. São duas linhas assim, então o "oi" aparece duas vezes.
+
+Os parênteses fazem toda a diferença:
+
+| Escrito assim | Quer dizer |
+|---|---|
+| `dizerOi` | a própria função, para entregar a alguém |
+| `dizerOi()` | rode a função agora |
+
+Com parênteses na chamada, dá errado:
+
+```js
+fazerDuasVezes(dizerOi());
+// oi
+// TypeError: tarefa is not a function
+```
+
+A `dizerOi()` roda na hora e mostra um "oi". Como ela não tem `return`, a chamada vale `undefined`, como na [[programacao/logica-de-programacao/modulo-5/03-return-devolvendo-um-resultado|aula 5.3]], e é esse `undefined` que chega ao `tarefa`. Na linha `tarefa()`, o JavaScript tenta chamar o `undefined` e reclama: "tarefa não é uma função".
+
+Uma função entregue a outra, para essa outra chamar, tem um nome: **[[glossario/callback|callback]]**, do inglês *call back*, "ligar de volta". Aqui, a `dizerOi` é o callback, e a `fazerDuasVezes` é quem a chama. É como deixar o seu número de telefone com alguém: você não liga agora, e a pessoa liga de volta quando precisar. Repare que o callback é **a função entregue**. Ir sem parênteses é só o jeito de entregá-la.
+
+**Quando entregar uma função?** Só quando a função que você está chamando foi feita para receber uma. É a mesma pergunta do `Math.max`, na [[programacao/logica-de-programacao/modulo-7/02-algoritmos-em-arrays-buscar-contar-e-achar-o-maior|aula 7.2]]: **o que essa função espera?** A `fazerDuasVezes` espera uma função, porque vai chamá-la por dentro. O `Math.max` espera números. E o `sort()` aceita uma função de comparação, que ele chama cada vez que precisa comparar dois itens. Até aqui no curso, o `sort()` é o único que pede uma função. O JavaScript tem muitos outros métodos que pedem uma, e todos funcionam desse mesmo jeito.
+
 ### A versão longa, com `if`
 
 Escrita só com o que o curso já mostrou, a função de comparação para números fica assim:
@@ -328,13 +376,11 @@ numeros.sort(compararNumeros);
 console.log(numeros); // [1, 2, 10]
 ```
 
-Repare na linha do `sort`: é `compararNumeros` **sem parênteses**. Com parênteses, `compararNumeros()`, você estaria chamando a função ali mesmo, na hora, sem `a` nem `b`. Sem parênteses, você está **entregando** a função ao `sort()`, para ele chamar quando precisar. É a diferença entre fazer uma ligação e deixar o seu número de telefone para alguém ligar depois.
-
-Uma função entregue a outra, para essa outra chamar depois, tem um nome: **[[glossario/callback|callback]]**, do inglês *call back*, "ligar de volta". A `compararNumeros` é o número de telefone deixado com o `sort()`: ele liga de volta para ela cada vez que precisa comparar dois itens.
+É o mesmo esquema da `fazerDuasVezes`. Na linha do `sort`, a `compararNumeros` vai **sem parênteses**: ela é entregue, e é o callback. Quem a chama é o `sort()`, por dentro, cada vez que precisa comparar dois itens. A diferença é que o `sort()` põe dois itens nos parênteses de cada chamada e usa o número que ela devolve.
 
 ### De onde vêm o `a` e o `b`?
 
-Quem escolhe é o `sort()`. Você nunca chama a `compararNumeros`: ele chama, quantas vezes precisar, cada vez com um par diferente. Dá para espiar pondo um `console.log` dentro dela:
+Quem escolhe é o `sort()`. Na `fazerDuasVezes`, era ela que escrevia `tarefa()`. Aqui, é o `sort()` que chama a `compararNumeros`, quantas vezes precisar, cada vez com um par diferente. Você nunca a chama. Dá para espiar pondo um `console.log` dentro dela:
 
 ```js
 function compararNumeros(a, b) {
@@ -382,7 +428,9 @@ Por que funciona? Veja o que a conta dá em cada caso:
 | 10 | 2 | 8 | positivo | o `b`, o 2 |
 | 5 | 5 | 0 | zero | empate |
 
-Se o `a` é menor que o `b`, `a - b` dá negativo, e o `a` vem antes. Se o `a` é maior, dá positivo, e o `b` vem antes. Se são iguais, dá zero. É exatamente o que a versão com `if` respondia. O tamanho do número não importa: para o `sort()`, -9 e -1 querem dizer a mesma coisa, porque ele só olha o sinal.
+O segredo está numa conta simples: **um número menor menos um maior dá negativo**. 1 - 10 dá -9. Então o `a - b` só dá negativo quando o `a` é o menor dos dois. E negativo, para o `sort()`, quer dizer "o `a` vem antes". Juntando as duas coisas: com `a - b`, **o menor vai para a frente**. Repetido em todos os pares que o `sort()` comparar, isso deixa a lista em ordem crescente.
+
+É exatamente o que a versão com `if` respondia, só que sem os `if`. E o tamanho do número não importa: para o `sort()`, -9 e -1 querem dizer a mesma coisa, porque ele só olha o sinal.
 
 ### A mesma função, cada vez mais curta
 
@@ -423,6 +471,38 @@ O que mudou, peça por peça:
 
 Quando o corpo da função é uma conta só, as chaves e o `return` podem sair, e o resultado da conta é devolvido sozinho. Dá para ler `(a, b) => a - b` em voz alta assim: **"recebe `a` e `b`, devolve `a - b`"**.
 
+**Os dois pares de parênteses.** Na linha `numeros.sort((a, b) => a - b)`, há parênteses dentro de parênteses, e é fácil se perder. Separe as peças:
+
+```
+numeros.sort( (a, b) => a - b );
+              └──────┬──────┘
+          um argumento só: a função inteira
+```
+
+Os parênteses de fora são os do `sort`, como em qualquer chamada. Entre eles vai um argumento só, a função toda, de `(a, b)` até `a - b`. E o `(a, b)` de dentro são os parâmetros dessa função, como o `(a, b)` de `function compararNumeros(a, b)`.
+
+**É um argumento como outro qualquer.** Qualquer valor pode ser entregue por uma variável ou escrito direto na chamada:
+
+```js
+const nome = "Ana";
+
+console.log(nome);  // entregue por uma variável
+console.log("Ana"); // escrito direto na chamada
+```
+
+Com uma função é igual. A função de seta também pode ser guardada numa variável:
+
+```js
+const compararNumeros = (a, b) => a - b;
+
+numeros.sort(compararNumeros); // entregue por uma variável
+numeros.sort((a, b) => a - b); // escrita direto na chamada
+```
+
+As duas linhas fazem a mesma coisa. Escrever direto só poupa o trabalho de dar nome a uma função que vai ser usada uma vez só.
+
+**Quando usar a seta?** Ela nunca é obrigatória. Para tudo o que o curso mostrou, a seta e o `function` fazem o mesmo trabalho. O costume é este: uma função curta, usada uma vez só, como argumento, costuma ser escrita com a seta, direto na chamada. Uma função maior, ou usada em vários lugares, ganha um nome com `function`.
+
 A [[programacao/logica-de-programacao/modulo-2/04-comparacoes|aula 2.4]] avisou que o `=>` "existe, mas é outra coisa, bem mais avançada". Era isto: a seta que cria uma função curta.
 
 > [!warning] Com chaves, o `return` volta
@@ -447,12 +527,32 @@ notas.sort((a, b) => b - a);
 console.log(notas); // [10, 7, 4]
 ```
 
-| `a` | `b` | `b - a` | Sinal | Quem vem antes |
-|---|---|---|---|---|
-| 7 | 10 | 3 | positivo | o `b`, o 10 |
-| 10 | 4 | -6 | negativo | o `a`, o 10 |
+A lógica é a do `a - b`, virada ao contrário. O `b - a` só dá negativo quando o `b` é o menor, ou seja, quando **o `a` é o maior**. E negativo continua querendo dizer "o `a` vem antes". Então, com `b - a`, **o maior vai para a frente**: ordem decrescente.
 
-Nos dois casos, o maior fica com o lugar da frente. Para lembrar: com `a - b`, os valores sobem da esquerda para a direita (crescente). Com `b - a`, descem (decrescente).
+Veja o mesmo par, o 3 e o 8, nas duas contas. O `sort()` pode entregá-los em qualquer ordem, por isso a tabela mostra os dois jeitos:
+
+| `a` | `b` | `a - b` | Quem vem antes | `b - a` | Quem vem antes |
+|---|---|---|---|---|---|
+| 3 | 8 | -5 | o `a`, o 3 | 5 | o `b`, o 8 |
+| 8 | 3 | 5 | o `b`, o 3 | -5 | o `a`, o 8 |
+
+Com `a - b`, o 3 fica na frente nos dois casos. Com `b - a`, quem fica na frente é o 8. Trocar a ordem da conta troca o sinal de todas as respostas, e a lista inteira fica ao contrário.
+
+Na versão com `if`, seria trocar o -1 e o 1 de lugar:
+
+```js
+function compararDecrescente(a, b) {
+  if (a > b) {
+    return -1; // a é maior: o a vem antes
+  }
+  if (a < b) {
+    return 1; // a é menor: o b vem antes
+  }
+  return 0; // iguais: empate
+}
+```
+
+Para lembrar: em `a - b`, as letras estão na ordem do alfabeto, e a lista também fica na ordem normal, crescente. Em `b - a`, as letras estão invertidas, e a lista também, decrescente.
 
 ### Ordenando objetos: o ranking
 
@@ -696,6 +796,26 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > > [!success]- Resposta
 > > A primeira **entrega** a função ao `sort()`, que a chama sozinho, com os pares que escolher. A segunda **chama** a função na hora, sem `a` nem `b`. A conta `undefined - undefined` dá `NaN`, e é esse `NaN` que chega ao `sort()`, no lugar da função. O resultado é `TypeError: The comparison function must be either a function or undefined`.
 
+> [!question] 10. O que aparece no console em cada uma das duas chamadas?
+> ```js
+> function fazerDuasVezes(tarefa) {
+>   tarefa();
+>   tarefa();
+> }
+>
+> function aplaudir() {
+>   console.log("palmas!");
+> }
+>
+> fazerDuasVezes(aplaudir);
+> fazerDuasVezes(aplaudir());
+> ```
+>
+> > [!success]- Resposta
+> > A primeira chamada mostra `palmas!` duas vezes. A `aplaudir` vai sem parênteses, entregue como valor, e a `fazerDuasVezes` a chama duas vezes, nas linhas `tarefa()`.
+> >
+> > A segunda mostra `palmas!` uma vez só e depois dá `TypeError: tarefa is not a function`. Com parênteses, a `aplaudir()` roda na hora, antes de a `fazerDuasVezes` começar. Ela não tem `return`, então o que chega ao `tarefa` é `undefined`, e o JavaScript não consegue chamar um `undefined`.
+
 ## De onde vêm as palavras
 
 - **[[glossario/ordenacao|Ordenar]]**: do latim *ōrdināre*, "pôr em ordem, arrumar", feito de *ōrdō*, "ordem". O *ōrdō* era uma fileira, uma linha, uma série, e também a fileira de soldados e o posto de alguém numa classe. Ordenar é, na origem, **pôr em fila**, que é o que as cartas fizeram. De onde vem o próprio *ōrdō*, ninguém sabe ao certo.
@@ -714,7 +834,10 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > - O `sort()` muda o próprio array e também o devolve.
 > - Sem instrução, o `sort()` compara como texto: `[10, 1, 2]` vira `[1, 10, 2]`. Com números, entregue sempre uma função de comparação.
 > - A função de comparação recebe `a` e `b` e responde com um número: negativo, o `a` vem antes; positivo, o `b` vem antes; zero, empate.
-> - `(a, b) => a - b` é uma função curta: "recebe `a` e `b`, devolve `a - b`". Ordena do menor para o maior. `b - a` ordena do maior para o menor.
+> - Uma função também é um valor e pode ser argumento. `dizerOi` entrega a função; `dizerOi()` a roda na hora. A função entregue se chama callback, e quem a recebeu é quem a chama.
+> - Só entregue uma função a quem espera uma, como o `sort()`. É a mesma pergunta do `Math.max`: o que essa função espera?
+> - `(a, b) => a - b` é uma função curta, escrita direto na chamada: "recebe `a` e `b`, devolve `a - b`". Também dá para guardá-la numa variável e entregá-la pelo nome.
+> - `a - b` só dá negativo quando o `a` é o menor, então o menor vai para a frente: ordem crescente. `b - a` só dá negativo quando o `a` é o maior, então o maior vai para a frente: ordem decrescente.
 > - Entregue a função sem parênteses. Quem a chama é o `sort()`, com os pares que ele escolher.
 > - Para objetos, compare uma propriedade: `alunos.sort((a, b) => b.nota - a.nota)`.
 
