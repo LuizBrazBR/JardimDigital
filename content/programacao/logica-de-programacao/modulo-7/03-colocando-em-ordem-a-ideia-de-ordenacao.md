@@ -456,7 +456,7 @@ numeros.sort(function (a, b) {
 
 Uma função sem nome se chama **função anônima**. O `sort()` a recebe do mesmo jeito que recebia a `compararNumeros`. A diferença é que ela foi escrita ali mesmo, dentro dos parênteses do `sort`.
 
-**3. Com a seta `=>`.** O JavaScript tem uma forma ainda mais curta de escrever uma função: a ***[[glossario/arrow-function|arrow function]]***, "função de seta".
+**3. Com a seta `=>`.** O JavaScript tem uma forma ainda mais curta de escrever uma função, que chegou à linguagem bem depois das outras duas, em 2015: a ***[[glossario/arrow-function|arrow function]]***, "função de seta".
 
 ```js
 numeros.sort((a, b) => a - b);
@@ -502,6 +502,14 @@ numeros.sort((a, b) => a - b); // escrita direto na chamada
 As duas linhas fazem a mesma coisa. Escrever direto só poupa o trabalho de dar nome a uma função que vai ser usada uma vez só.
 
 **Quando usar a seta?** Ela nunca é obrigatória. Para tudo o que o curso mostrou, a seta e o `function` fazem o mesmo trabalho. O costume é este: uma função curta, usada uma vez só, como argumento, costuma ser escrita com a seta, direto na chamada. Uma função maior, ou usada em vários lugares, ganha um nome com `function`.
+
+**Por que não dá para entregar só o `a - b`?** Porque o JavaScript faria a conta na hora, antes mesmo de o `sort()` começar, como fez com a `dizerOi()`. E, nessa hora, não existe nenhum `a` nem `b`:
+
+```js
+numeros.sort(a - b); // ReferenceError: a is not defined
+```
+
+Mesmo que existissem, a conta daria um número só, como -9, e o `sort()` recusaria, com o mesmo `TypeError` do erro 3 de "Os erros mais comuns", mais abaixo. Um resultado pronto não serve, porque o `sort()` precisa fazer a pergunta muitas vezes, com um par diferente de cada vez. O que ele precisa receber é a **receita** da conta, e não o resultado dela. A função é essa receita: `(a, b) => a - b` quer dizer "quando você me der dois itens, eu faço `a - b` com eles". As três formas, com nome, sem nome e com a seta, são três jeitos de escrever a mesma receita.
 
 A [[programacao/logica-de-programacao/modulo-2/04-comparacoes|aula 2.4]] avisou que o `=>` "existe, mas é outra coisa, bem mais avançada". Era isto: a seta que cria uma função curta.
 
