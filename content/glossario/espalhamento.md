@@ -3,7 +3,7 @@ title: Espalhamento (spread)
 ---
 
 > [!abstract] Definição
-> **Três pontos, `...`, escritos antes de um array numa chamada de função. Eles tiram os elementos de dentro do array e entregam cada um como um argumento separado.** O nome oficial, em inglês, é *spread syntax*, "sintaxe de espalhamento".
+> **Três pontos, `...`, escritos antes de um array, que tiram os elementos de dentro dele. Numa chamada de função, entregam cada elemento como um argumento separado. Dentro de colchetes, põem os elementos num array novo.** O nome oficial, em inglês, é *spread syntax*, "sintaxe de espalhamento".
 
 ```js
 const notas = [7, 3, 9];
@@ -13,6 +13,18 @@ console.log(Math.max(...notas)); // 9, o mesmo que Math.max(7, 3, 9)
 ```
 
 Serve para funções que esperam os valores **soltos**, um por argumento, como o `Math.max`. Uma função que espera a **lista inteira** num parâmetro só, como uma `contem(lista, procurado)`, recebe o array direto, sem pontos. A pergunta é sempre: o que a função espera?
+
+Dentro de colchetes, os mesmos três pontos espalham os elementos num **array novo**. É um jeito comum de copiar uma lista, por exemplo para ordenar a cópia sem mexer no original:
+
+```js
+const original = [3, 1, 2];
+const ordenada = [...original].sort((a, b) => a - b);
+
+console.log(ordenada); // [1, 2, 3]
+console.log(original); // [3, 1, 2]
+```
+
+Hoje, para esse caso, também existe o `toSorted()`, que copia e ordena de uma vez. Ver a [[programacao/logica-de-programacao/modulo-7/03-colocando-em-ordem-a-ideia-de-ordenacao|aula 7.3]].
 
 Na chamada, o espalhamento só funciona com [[glossario/iteravel|iteráveis]], o que dá para percorrer com o `for...of`, como os arrays. Com um objeto, `Math.max(...{ a: 1 })` dá `TypeError`.
 

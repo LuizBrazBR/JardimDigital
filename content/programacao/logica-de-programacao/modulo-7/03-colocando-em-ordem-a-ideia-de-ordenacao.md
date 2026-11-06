@@ -624,6 +624,20 @@ Aqui, o `a` e o `b` são alunos inteiros. A conta usa as notas, `b.nota - a.nota
 > ```
 >
 > O `toSorted()` é mais novo, de 2023, e funciona nos navegadores e no Node atuais.
+>
+> Antes dele, o jeito era fazer a cópia à mão, com os três pontos do [[glossario/espalhamento|espalhamento]] da aula 7.2, e só depois ordenar:
+>
+> ```js
+> const original = [3, 1, 2];
+> const ordenada = [...original].sort((a, b) => a - b);
+>
+> console.log(ordenada); // [1, 2, 3]
+> console.log(original); // [3, 1, 2]
+> ```
+>
+> Na aula 7.2, os três pontos estavam nos parênteses de uma chamada, `Math.max(...notas)`, e entregavam cada elemento como um argumento. Aqui, eles estão dentro de colchetes, e fazem a mesma coisa: tiram os elementos de dentro do `original`, só que os põem num **array novo**. Então `[...original]` é uma cópia, `[3, 1, 2]`, e o `sort()` muda só a cópia. Você vai ver muito esse jeito em códigos mais antigos. O `toSorted()` faz as duas coisas de uma vez.
+>
+> E o *rest*, o outro uso dos três pontos que a aula 7.2 só citou, não entra aqui. Ele aparece nos parâmetros de uma função e faz o contrário: junta valores soltos numa lista.
 
 ## Os erros mais comuns
 
