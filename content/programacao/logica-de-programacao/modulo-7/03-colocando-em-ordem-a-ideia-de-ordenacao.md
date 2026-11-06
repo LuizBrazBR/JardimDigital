@@ -78,9 +78,18 @@ Uma dúvida comum no passo 1: o 4 foi parar no meio da fila, onde o 1 estava. Is
 
 Não estraga, porque o trecho à direita da barra **já estava fora de ordem**. O 4 só mudou de lugar dentro dele, e os próximos passos vão cuidar do 4 também. A troca é o jeito mais simples de pôr o menor no lugar: ninguém precisa abrir espaço nem empurrar as outras cartas uma casa para o lado. São só duas cartas mudando de lugar.
 
-### Por que "por seleção"
+### Ordenação ou ordenação por seleção?
 
-Porque cada passo **seleciona**, ou seja, escolhe, o menor do trecho que falta, e o põe no próximo lugar. Em inglês, o nome é *selection sort*.
+Os dois nomes estão certos, mas não querem dizer a mesma coisa:
+
+- **Ordenação** é o objetivo: deixar a lista em ordem. Qualquer jeito de chegar lá é uma ordenação.
+- **Ordenação por seleção** é um jeito específico de chegar lá: o das cartas, que resolve um lugar de cada vez, escolhendo o menor do que sobrou.
+
+É como "ir ao trabalho" e "ir ao trabalho de ônibus". O primeiro diz aonde você quer chegar. O segundo diz também como você vai.
+
+E existem outros jeitos de ordenar, cada um com seu nome. Quem arruma cartas na mão, num jogo, costuma fazer diferente: pega uma carta de cada vez e a encaixa no lugar certo entre as que já estão arrumadas. Esse jeito se chama **ordenação por inserção**. O resultado é o mesmo, a lista em ordem. O que muda é o caminho.
+
+O nome "por seleção" vem do que cada passo faz: **seleciona**, ou seja, escolhe, o menor do trecho que falta, e o põe no próximo lugar. Em inglês, a divisão é igual: *sorting* é a ordenação em geral, *selection sort* é a ordenação por seleção, e *insertion sort* é a por inserção.
 
 ## A ideia em código
 

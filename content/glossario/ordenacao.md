@@ -14,7 +14,7 @@ console.log(notas.sort());               // [10, 4, 7]: comparou como texto
 console.log(notas.sort((a, b) => a - b)); // [4, 7, 10]
 ```
 
-A **ordenação por seleção** (*selection sort*) é o jeito mais fácil de entender. Ela resolve um lugar de cada vez: acha o menor do trecho que ainda falta arrumar, troca esse menor com o primeiro do trecho, e repete com o resto, até sobrar um item só. É simples, mas faz muitas comparações: são 45 numa lista de 10 itens, e quase meio milhão numa de 1.000. Por isso, no dia a dia, usa-se o `sort()`.
+**Ordenação** é o objetivo, e existem vários jeitos de chegar lá, cada um com seu nome. A **ordenação por seleção** (*selection sort*) é um deles, e o mais fácil de entender. Ela resolve um lugar de cada vez: acha o menor do trecho que ainda falta arrumar, troca esse menor com o primeiro do trecho, e repete com o resto, até sobrar um item só. É simples, mas faz muitas comparações: são 45 numa lista de 10 itens, e quase meio milhão numa de 1.000. Por isso, no dia a dia, usa-se o `sort()`.
 
 Ver a [[programacao/logica-de-programacao/modulo-7/03-colocando-em-ordem-a-ideia-de-ordenacao|aula 7.3]].
 
