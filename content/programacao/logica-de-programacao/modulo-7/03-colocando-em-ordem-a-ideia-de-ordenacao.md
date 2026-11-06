@@ -111,7 +111,32 @@ console.log(posicaoDoMenor(numeros, 2)); // 3
 
 Na primeira chamada, a procura olha o array todo, e o menor, o 1, está na posição 1. Na segunda, ela começa na posição 2 e só olha o 3 e o 2. O menor desse trecho é o 2, que está na posição 3.
 
-A comparação, `lista[i] < lista[posMenor]`, usa os valores, mas o que se guarda é a posição. É como no "achar quem é o maior" da aula 7.2, que comparava a nota e guardava o aluno inteiro. E o laço começa em `inicio + 1` porque o primeiro do trecho já é o campeão e não precisa ser comparado com ele mesmo.
+A comparação, `lista[i] < lista[posMenor]`, usa os valores, mas o que se guarda é a posição. É como no "achar quem é o maior" da aula 7.2, que comparava a nota e guardava o aluno inteiro.
+
+E o `for` desta função tem um começo diferente: `let i = inicio + 1`. Vale ler com calma.
+
+**O `i` pode começar de qualquer valor.** Quase todos os `for` até aqui começavam num número escrito direto, como 0 ou 1. Mas a primeira parte dos parênteses aceita qualquer valor, até uma conta. A aula 6.3 já fez isso, quando o laço de trás para a frente começou em `frutas.length - 1`. Aqui, a conta usa o `inicio`, o parâmetro que a função recebeu. Assim, quem chama a função escolhe onde a procura começa: `posicaoDoMenor(numeros, 0)` começa no 0, e `posicaoDoMenor(numeros, 2)` começa no 2.
+
+**O `+ 1` não soma a cada volta.** Como a aula 4.3 mostrou, a primeira parte do `for` roda uma vez só, antes de tudo. Então `inicio + 1` é só a conta que dá o primeiro valor do `i`: com `inicio` valendo 0, o `i` começa em 1. Depois disso, quem faz o `i` andar, de volta em volta, é o `i++`, como em qualquer `for`.
+
+**Por que uma casa depois do `inicio`?** Porque a posição `inicio` já é a campeã, desde a linha `let posMenor = inicio`. Se o `i` começasse no próprio `inicio`, a primeira volta compararia o campeão com ele mesmo, como `4 < 4`. Um número nunca é menor que ele mesmo, então essa comparação daria `false` sempre. Não estragaria o resultado, mas seria uma volta à toa.
+
+Siga a primeira chamada, `posicaoDoMenor(numeros, 0)`, com `numeros` valendo `[4, 1, 3, 2]`:
+
+| Momento | `i` | `lista[i] < lista[posMenor]`? | `posMenor` depois |
+|---|---|---|---|
+| antes do laço | ainda não existe | | 0 (o 4) |
+| 1ª volta | 1, que vem de `0 + 1` | `1 < 4`: sim | 1 (o 1) |
+| 2ª volta | 2, pelo `i++` | `3 < 1`: não | 1 |
+| 3ª volta | 3, pelo `i++` | `2 < 1`: não | 1 |
+| fim | 4, pelo `i++` | a condição `i < lista.length` vira `4 < 4`, que dá `false`, e o laço acaba | devolve 1 |
+
+Repare em duas coisas:
+
+- **O `+ 1` só aparece no começo.** Da 2ª volta em diante, quem soma é o `i++`.
+- **Cada elemento é comparado com o campeão, e não com o vizinho.** Na 3ª volta, o 2 é comparado com o 1, que é o campeão até ali, e não com o 3, que está do lado dele.
+
+Na segunda chamada, `posicaoDoMenor(numeros, 2)`, o campeão começa na posição 2, o 3, e o `i` começa em `2 + 1`, que é 3. Há uma volta só: `2 < 3` dá sim, e o `posMenor` vira 3. O `i++` leva o `i` para 4, e o laço acaba.
 
 ### Peça 2: trocar dois elementos de lugar
 
