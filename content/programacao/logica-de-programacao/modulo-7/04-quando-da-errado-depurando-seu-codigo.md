@@ -284,7 +284,20 @@ Com a `somar` que dava `NaN`, ainda com o `<=`:
 5. Na quarta parada, `i` é 3 e `soma` é 21. A `lista` só tem os índices 0, 1 e 2, e o problema aparece, o mesmo que o `console.log` mostrou.
 6. Para parar de investigar, **Shift+F5**. Para tirar o breakpoint, clique na bolinha.
 
-Além de continuar até a próxima parada, dá para andar **uma linha por vez**, com o *Step Over* (**F10**), e ver cada variável mudar.
+Com o programa parado, quatro teclas decidem o que acontece:
+
+| Tecla (VS Code) | Nome | O que faz |
+|---|---|---|
+| **F5** | *Continue*, "continuar" | roda até o próximo breakpoint, ou até o fim, se não houver outro |
+| **F10** | *Step Over*, "passar por cima" | roda a linha atual e para na próxima |
+| **F11** | *Step Into*, "entrar" | se a linha chama uma função, entra nela e para na primeira linha de dentro |
+| **Shift+F11** | *Step Out*, "sair" | termina a função em que você está e para de volta em quem a chamou |
+
+O F5 não pula linhas. As linhas entre uma parada e a outra rodam normalmente. Você só não acompanha cada uma.
+
+A diferença entre o F10 e o F11 aparece numa linha que chama uma função. Parado em `console.log(situacao(media([7, 8, 6])));`, o F10 roda a linha inteira de uma vez, com a `media`, a `somar` e a `situacao` lá dentro, e o "reprovado" já aparece. O F11 entra na `media`, e mais um F11, na linha do `return`, entra na `somar`. Para investigar dentro de uma função, use o F11. Para não perder tempo dentro de uma que você já sabe que está certa, o F10.
+
+No Chrome, o F10, o F11 e o Shift+F11 são iguais. Só o continuar muda: lá é o F8.
 
 ### Usando no navegador
 

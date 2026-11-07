@@ -8,8 +8,9 @@ title: Breakpoint
 Com o programa parado, dá para:
 
 - **olhar as variáveis**: no VS Code, na seção VARIABLES; no Chrome, na seção *Scope* da aba *Sources*;
-- **continuar até a próxima parada**: F5 no VS Code, F8 no Chrome;
-- **avançar uma linha por vez**, com o *Step Over*: F10 nos dois.
+- **continuar até a próxima parada**: F5 no VS Code, F8 no Chrome. As linhas do meio rodam normalmente, só não são acompanhadas uma por uma;
+- **avançar uma linha por vez**, com o *Step Over*: F10 nos dois. Se a linha chama uma função, ela roda inteira de uma vez;
+- **entrar na função** que a linha chama, com o *Step Into*: F11 nos dois. Para sair dela e voltar a quem a chamou, Shift+F11.
 
 No VS Code, o breakpoint se põe clicando na margem à esquerda do número da linha, e aparece uma bolinha vermelha. No Chrome, clicando no número da linha, na aba *Sources*. Escrever `debugger;` no código faz o mesmo, se as ferramentas do desenvolvedor estiverem abertas. Se não estiverem, a linha não faz nada.
 
