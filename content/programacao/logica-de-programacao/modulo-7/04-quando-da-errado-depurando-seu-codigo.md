@@ -297,6 +297,12 @@ O F5 não pula linhas. As linhas entre uma parada e a outra rodam normalmente. V
 
 A diferença entre o F10 e o F11 aparece numa linha que chama uma função. Parado em `console.log(situacao(media([7, 8, 6])));`, o F10 roda a linha inteira de uma vez, com a `media`, a `somar` e a `situacao` lá dentro, e o "reprovado" já aparece. O F11 entra na `media`, e mais um F11, na linha do `return`, entra na `somar`. Para investigar dentro de uma função, use o F11. Para não perder tempo dentro de uma que você já sabe que está certa, o F10.
 
+Depois de entrar, siga com o **F10**, linha por linha, como em qualquer outro lugar. O F11 só faz diferença numa linha que chama **outra** função e quando você quer ver o que acontece dentro dela. Numa linha sem chamada de função, o F11 faz o mesmo que o F10. Quando a função chega ao `return`, mais um F10 leva de volta à linha que a chamou.
+
+Dentro da `somar`, por exemplo: o F11 entra e para em `let soma = 0;`. Daí em diante, cada F10 anda uma linha, dá as voltas do laço e, no `return soma;`, volta para a `media`. Num laço de muitas voltas, andar de F10 em F10 cansa. Aí é melhor pôr um breakpoint dentro do laço e usar o F5, que para uma vez a cada volta.
+
+Às vezes o F11 entra em código que não é seu, como o do próprio Node, numa linha com `console.log`. Se isso acontecer, o Shift+F11 traz você de volta.
+
 No Chrome, o F10, o F11 e o Shift+F11 são iguais. Só o continuar muda: lá é o F8.
 
 ### Usando no navegador
