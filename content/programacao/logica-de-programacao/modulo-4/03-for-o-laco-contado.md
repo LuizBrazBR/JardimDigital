@@ -144,7 +144,7 @@ for (let i = 0; i <= n; i++) {
 
 São **11** voltas, e não 10. De 1 a 10 são dez números, e o 0 é mais um.
 
-Pense numa cerca de 10 metros, com uma estaca a cada metro: uma no metro 0, outra no metro 1, e assim até o metro 10. São 11 estacas, porque a do começo também conta. Errar por um, para mais ou para menos, é tão comum que tem nome em inglês: *off-by-one error*, o "erro por um". Também se diz *fencepost error*, o "erro da estaca de cerca".
+Pense numa cerca de 10 metros, com uma estaca a cada metro: uma no metro 0, outra no metro 1, e assim até o metro 10. São 11 estacas, porque a do começo também conta. Errar por um, para mais ou para menos, é tão comum que tem nome em inglês: *off-by-one error*, o "[[glossario/erro-por-um|erro por um]]". Também se diz *fencepost error*, o "erro da estaca de cerca".
 
 Três laços parecidos, três resultados diferentes:
 
