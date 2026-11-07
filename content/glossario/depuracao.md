@@ -14,7 +14,7 @@ Depurar não é mudar coisas ao acaso até funcionar. É investigar, mais ou men
 
 O caso mais difícil é quando não aparece erro nenhum: o programa roda até o fim e só a resposta está errada. Em JavaScript isso é comum, porque um índice que não existe dá `undefined`, uma conta com `undefined` dá `NaN`, e o programa segue em frente sem avisar.
 
-Além do `console.log`, existe o **depurador** (*debugger*), uma ferramenta do navegador e de editores como o VS Code. Ele pausa o programa numa linha escolhida e mostra o valor de todas as variáveis naquele instante.
+Além do `console.log`, existe o **depurador** (*debugger*), uma ferramenta do navegador e de editores como o VS Code. Ele pausa o programa numa linha marcada, o [[glossario/breakpoint|breakpoint]], e mostra o valor de todas as variáveis naquele instante.
 
 Ver a aula [[programacao/logica-de-programacao/modulo-7/04-quando-da-errado-depurando-seu-codigo|7.4 Quando dá errado: depurando seu código]].
 

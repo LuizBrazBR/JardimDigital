@@ -256,12 +256,70 @@ A condição usa `notas`, a lista inteira, e não `nota`, a nota daquela volta. 
 
 Nomes bem diferentes evitam o engano. Com `todasAsNotas` para a lista e `nota` para o item, um não se confunde com o outro.
 
-> [!info]- Existe ferramenta além do `console.log`? (clique para abrir)
-> Existe: o **depurador**, em inglês *debugger*. Ele vem nas ferramentas do desenvolvedor do navegador (no Chrome, no Edge e no Firefox, a tecla F12) e em editores como o VS Code.
->
-> Em vez de imprimir valores, o depurador **pausa** o programa numa linha que você escolhe, o *breakpoint*, "ponto de parada". Com o programa parado, dá para ver o valor de todas as variáveis naquele instante e avançar uma linha de cada vez. Escrever `debugger;` numa linha do código também pausa ali, se as ferramentas do desenvolvedor estiverem abertas. Se não estiverem, a linha não faz nada.
->
-> Ele faz o mesmo trabalho do passo 3, sem precisar escrever e depois apagar os `console.log`. Para os programas deste curso, o `console.log` basta.
+## Outra ferramenta: o breakpoint
+
+O `console.log` não é o único jeito de fazer o passo 3. Muita gente que programa no trabalho usa o **depurador**, em inglês *debugger*, uma ferramenta que vem no navegador e em editores como o VS Code. Com ele, você marca uma linha do programa, e o programa **pausa** quando chega nela. Essa marca é o **[[glossario/breakpoint|breakpoint]]**, o "ponto de parada". No dia a dia, muita gente encurta para *break*: "põe um break nessa linha".
+
+### Não é o `break` do laço
+
+O nome parece, mas são duas coisas diferentes:
+
+| | o `break` da [[programacao/logica-de-programacao/modulo-4/05-break-continue-e-lacos-aninhados\|aula 4.5]] | o breakpoint |
+|---|---|---|
+| O que é | um comando do JavaScript, escrito no código | uma marca que você põe na ferramenta, ao lado da linha |
+| O que faz | encerra o laço de vez, e o programa segue depois do `}` | pausa o programa inteiro naquela linha, até você mandar continuar |
+| Quando age | toda vez que o programa roda | só enquanto você investiga, com o depurador ligado |
+| Fica no programa pronto? | sim, faz parte da lógica | não: a marca nem fica dentro do arquivo |
+
+As duas palavras vêm do inglês *break*, "quebrar". O `break` quebra o laço de vez. O breakpoint quebra a execução por um tempo, e depois ela continua de onde parou.
+
+### Usando no VS Code
+
+Com a `somar` que dava `NaN`, ainda com o `<=`:
+
+1. Clique na margem à esquerda do número da linha `soma = soma + lista[i];`. Aparece uma bolinha vermelha: é o breakpoint. (A tecla F9 faz o mesmo na linha em que está o cursor.)
+2. Aperte **F5** para rodar com o depurador. Se o VS Code perguntar qual, escolha **Node.js**.
+3. O programa para nessa linha, **antes** de rodá-la. Na lateral, a seção **VARIABLES** (variáveis) mostra o que vale cada uma naquele instante: `i` é 0, `soma` é 0, `lista` é `[7, 8, 6]`.
+4. Aperte **F5** de novo para continuar. O programa roda até passar pelo breakpoint outra vez e para de novo: agora `i` é 1 e `soma` é 7.
+5. Na quarta parada, `i` é 3 e `soma` é 21. A `lista` só tem os índices 0, 1 e 2, e o problema aparece, o mesmo que o `console.log` mostrou.
+6. Para parar de investigar, **Shift+F5**. Para tirar o breakpoint, clique na bolinha.
+
+Além de continuar até a próxima parada, dá para andar **uma linha por vez**, com o *Step Over* (**F10**), e ver cada variável mudar.
+
+### Usando no navegador
+
+Sem instalar nada, dá para usar o `debugger;`. É uma linha de código que funciona como um breakpoint escrito à mão:
+
+```js
+function somar(lista) {
+  let soma = 0;
+  for (let i = 0; i <= lista.length; i++) {
+    debugger; // pausa aqui, a cada volta
+    soma = soma + lista[i];
+  }
+  return soma;
+}
+
+somar([7, 8, 6]);
+```
+
+Cole isso no console do navegador (F12, como na [[programacao/logica-de-programacao/modulo-1/05-seu-primeiro-codigo-console-log|aula 1.5]]) e aperte Enter. Como as ferramentas do desenvolvedor já estão abertas, o programa pausa no `debugger;` e mostra a aba *Sources*, com os valores na seção *Scope*. A tecla **F8** continua até a próxima volta.
+
+Se as ferramentas do desenvolvedor estiverem fechadas, o `debugger;` não faz nada. Mesmo sem efeito, ele não deve ficar no programa pronto: apague-o quando achar o erro, como os `console.log`.
+
+### `console.log` ou breakpoint?
+
+Os dois servem para a mesma coisa, olhar os valores. O roteiro da aula não muda. O que muda é a ferramenta:
+
+| | `console.log` | breakpoint |
+|---|---|---|
+| Precisa mexer no código? | sim: escrever e depois apagar | não (só o `debugger;` fica no código) |
+| O que mostra | só os valores que você escolheu, de **todas** as voltas, numa lista | **todos** os valores, de um momento só |
+| Para ver a volta seguinte | já está na lista | manda continuar |
+| Onde funciona | em qualquer lugar onde o programa roda | onde houver um depurador, como o navegador e o VS Code |
+| Ajuda mais quando | você quer ver a história de um valor, como os quatro `i` do laço de uma vez | você não sabe o que olhar, ou o programa é grande |
+
+Nenhum dos dois é o jeito certo. Muita gente usa os dois, conforme o problema. E existe até um meio-termo: o *logpoint*, no VS Code e no Chrome. É um breakpoint que não pausa: ele escreve uma mensagem no console, como um `console.log`, mas sem mexer no arquivo.
 
 ## Lógica ou JavaScript?
 
@@ -449,6 +507,7 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 
 - **[[glossario/depuracao|Depurar]]**: do latim medieval *dēpūrāre*, "purificar, limpar", de *dē-*, que reforça, e *pūrus*, "puro, limpo". Depurar o código é limpá-lo dos erros. É o mesmo *pūrus* de **puro** e **purificar**. No Brasil, *depurar* também é a tradução de *debug*.
 - **[[glossario/depuracao|Debug]] e bug**: *debug* é *de-* + *bug*, "tirar o *bug*". *Bug* é "inseto" em inglês, e antes, no inglês medieval, *bugge* era "espantalho, assombração". O sentido de "defeito numa máquina" já existia entre engenheiros no século 19: Thomas Edison escreveu *bugs* numa carta de 1878. Em 1947, na Universidade Harvard, quem operava o computador Mark II achou uma mariposa presa num relé, uma das peças da máquina, e a colou no caderno de registro, com a nota *First actual case of bug being found*, "primeiro caso real de *bug* encontrado". A piada só funcionava porque a palavra já era usada. Quem espalhou a história foi Grace Hopper, que trabalhava com esse computador. O caderno, com a mariposa, está hoje num museu dos Estados Unidos, o Smithsonian.
+- **[[glossario/breakpoint|Breakpoint]]**: do inglês *break*, "quebrar", e *point*, "ponto". O *point* veio, pelo francês antigo, do latim *pūnctum*, "furo, picada, ponto", de *pungere*, "picar, furar". É o mesmo *pūnctum* que deu o nosso **ponto**. Um ponto era, na origem, a marca de uma picada. O breakpoint é a marca que você põe numa linha para o programa parar ali.
 - **Erro**: do latim *error*, ligado ao verbo *errāre*, que queria dizer "vagar, andar sem rumo, perder-se", e também "enganar-se". Errar era, na origem, perder o caminho. O português guarda os dois sentidos: quem erra a conta se engana, e o cavaleiro errante anda pelo mundo sem rumo certo.
 - **[[glossario/hipotese|Hipótese]]**: do latim tardio *hypothesis*, do grego *hupóthesis*, de *hupotíthēmi*, "pôr debaixo, propor". Entre os sentidos gregos estão "base" e "suposição". A hipótese é o que se põe por baixo para construir em cima, uma base provisória que o teste confirma ou derruba.
 - **Isolar**: veio do francês *isoler*, da família do latim *īnsula*, "ilha", que deu o italiano *isola*. Isolar é, na origem, **transformar em ilha**, como separar um trecho do resto do programa para testá-lo sozinho. Da mesma *īnsula* vêm **ilha** e **insular**.
@@ -462,6 +521,7 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > - Sem mensagem de erro, isole: teste cada função sozinha, com uma entrada cuja resposta você conhece.
 > - No `console.log`, ponha um rótulo em cada valor e coloque-o onde os valores mudam, como dentro do laço.
 > - Antes de mudar o código, diga o que espera ver. Mude uma coisa só, rode, e desfaça se não ajudou.
+> - O breakpoint (no dia a dia, às vezes só "break") pausa o programa numa linha e mostra todas as variáveis. Não é o `break` do laço, que encerra o laço de vez. Ele faz o mesmo trabalho do `console.log`, por outro caminho.
 > - O valor estranho é uma pista: `undefined` costuma ser índice, `return` ou argumento faltando; `NaN`, uma conta com `undefined` ou texto; uma volta a mais, o `<=` no lugar do `<`.
 
-Fontes: MDN: [JavaScript error reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors), [String.prototype.toUpperCase()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase), [debugger](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger) · Python: [Tutorial, Errors and Exceptions](https://docs.python.org/3/tutorial/errors.html) · Wikipedia: [Bug (engineering)](https://en.wikipedia.org/wiki/Bug_(engineering)) · Wiktionary: [depurar](https://en.wiktionary.org/wiki/depurar), [dēpūrō](https://en.wiktionary.org/wiki/depuro), [pūrus](https://en.wiktionary.org/wiki/purus), [debug](https://en.wiktionary.org/wiki/debug), [bug](https://en.wiktionary.org/wiki/bug), [errō](https://en.wiktionary.org/wiki/erro#Latin), [hipótese](https://en.wiktionary.org/wiki/hip%C3%B3tese), [ὑπόθεσις](https://en.wiktionary.org/wiki/%E1%BD%91%CF%80%CF%8C%CE%B8%CE%B5%CF%83%CE%B9%CF%82), [isolar](https://en.wiktionary.org/wiki/isolar), [isola](https://en.wiktionary.org/wiki/isola), [inspecionar](https://en.wiktionary.org/wiki/inspecionar), [īnspiciō](https://en.wiktionary.org/wiki/inspicio)
+Fontes: MDN: [JavaScript error reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors), [String.prototype.toUpperCase()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase), [debugger](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger) · Chrome DevTools: [Pause your code with breakpoints](https://developer.chrome.com/docs/devtools/javascript/breakpoints) · VS Code: [Debugging](https://code.visualstudio.com/docs/editor/debugging) · Python: [Tutorial, Errors and Exceptions](https://docs.python.org/3/tutorial/errors.html) · Wikipedia: [Bug (engineering)](https://en.wikipedia.org/wiki/Bug_(engineering)) · Wiktionary: [depurar](https://en.wiktionary.org/wiki/depurar), [dēpūrō](https://en.wiktionary.org/wiki/depuro), [pūrus](https://en.wiktionary.org/wiki/purus), [debug](https://en.wiktionary.org/wiki/debug), [bug](https://en.wiktionary.org/wiki/bug), [errō](https://en.wiktionary.org/wiki/erro#Latin), [hipótese](https://en.wiktionary.org/wiki/hip%C3%B3tese), [ὑπόθεσις](https://en.wiktionary.org/wiki/%E1%BD%91%CF%80%CF%8C%CE%B8%CE%B5%CF%83%CE%B9%CF%82), [isolar](https://en.wiktionary.org/wiki/isolar), [isola](https://en.wiktionary.org/wiki/isola), [inspecionar](https://en.wiktionary.org/wiki/inspecionar), [īnspiciō](https://en.wiktionary.org/wiki/inspicio), [breakpoint](https://en.wiktionary.org/wiki/breakpoint), [point](https://en.wiktionary.org/wiki/point), [pūnctum](https://en.wiktionary.org/wiki/punctum), [pungō](https://en.wiktionary.org/wiki/pungo), [ponto](https://en.wiktionary.org/wiki/ponto)
