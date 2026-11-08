@@ -305,7 +305,7 @@ A aula cita várias palavras sem apresentar. Aqui vai a versão curta de cada um
 <p>Faltam 2 tarefas.</p>
 ```
 
-O `<h1>` marca um título, e o `<p>`, um parágrafo. O HTML é coisa do front-end. Neste curso, ele aparece só como um dos conteúdos que uma resposta pode trazer.
+O `<h1>` marca um título, e o `<p>`, um parágrafo. O HTML é do front-end, mesmo chegando pelo servidor. Parece contradição, e a seção "Back-end e front-end", mais abaixo, explica por que não é. Neste curso, o HTML aparece só como um dos conteúdos que uma resposta pode trazer.
 
 ### JSON
 
@@ -340,7 +340,30 @@ Programas para fazer requisições à mão, sem navegador. O curl roda no termin
 
 ### Back-end e front-end
 
-**Back-end** é a parte de um sistema que fica no servidor: recebe as requisições, aplica as regras, conversa com o banco de dados e responde. **Front-end** é a parte que roda no cliente: as telas e os botões. A aula 1.5 é sobre o back-end.
+**Back-end** é a parte de um sistema que **roda** no servidor: recebe as requisições, aplica as regras, conversa com o banco de dados e responde. **Front-end** é a parte que **roda** no cliente: as telas e os botões. A aula 1.5 é sobre o back-end.
+
+#### Se o HTML é do front-end, por que quem manda é o servidor?
+
+Porque front-end e back-end separam o código pelo lugar onde ele **roda**, e não pelo lugar onde ele fica guardado.
+
+O HTML fica guardado no servidor só porque o navegador precisa buscá-lo em algum lugar. O servidor não roda o HTML: só entrega, do mesmo jeito que entrega uma imagem. Quem lê o HTML e desenha a página é o navegador. Por isso o HTML é do front-end. O mesmo vale para o CSS, que dá as cores e o tamanho das letras, e para o JavaScript que mexe na tela.
+
+> [!example] O móvel desmontado
+> Você compra um armário numa loja, e ele chega numa caixa, com as peças e o manual de montagem. A loja guardou a caixa e despachou, mas quem monta o armário é você, em casa. O HTML, o CSS e o JavaScript das telas são as peças e o manual: saem do servidor, mas são montados no navegador. O back-end é o que fica na loja e trabalha lá: o estoque, o caixa, o cadastro dos clientes.
+
+| Código | Fica guardado | Roda | Lado |
+|---|---|---|---|
+| HTML, CSS e o JavaScript das telas | no servidor, até alguém pedir | no navegador | front-end |
+| o código do servidor, como um `adicionarTarefa` que grava no banco de dados | no servidor | no servidor | back-end |
+
+O JavaScript aparece nas duas linhas. No navegador, ele mexe na tela. No servidor, com o Node.js, o mesmo que roda o seu `tarefas.js`, ele faz o back-end.
+
+Na prática, um servidor trabalha de um destes jeitos:
+
+- **Só entrega arquivos prontos.** Este site é assim. Quando uma aula é publicada, um programa chamado Quartz transforma as anotações em arquivos HTML, e o GitHub guarda esses arquivos. Quando você pede uma página, o servidor do GitHub só acha o arquivo e manda, sem rodar nada dele. Foi esse servidor que apareceu como `server: GitHub.com` na aba Headers. Ninguém escreveu um back-end para este site: tudo nele é front-end, guardado num servidor que entrega arquivos.
+- **Roda código para responder.** Numa loja, ou na lista de tarefas na web, o servidor busca no banco de dados e aplica as regras: aí existe back-end. Às vezes ele responde só os dados, em JSON, e o JavaScript no navegador encaixa os dados na tela. Outras vezes ele monta o HTML na hora, já com os dados dentro, e manda pronto. Mesmo assim, o servidor só escreve o HTML. Quem desenha a página continua sendo o navegador.
+
+O papel de cada um, navegador e servidor, é o assunto da aula 1.3.
 
 ### Nuvem
 
@@ -450,6 +473,12 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > >
 > > A pergunta que resolve é sempre a mesma: quem sabe essa informação? Um detalhe para depois: o `content-type` também aparece em requisições, quando o navegador manda dados ao servidor, como num formulário. Nesse caso, quem avisa o tipo é quem está mandando o conteúdo. O módulo 5 trata disso.
 
+> [!question] 10. Do front-end, mas vindo do servidor
+> O HTML é do front-end. Mesmo assim, quando você abre uma página, quem manda o HTML é o servidor. Como as duas coisas podem ser verdade ao mesmo tempo?
+>
+> > [!success]- Resposta
+> > Front-end e back-end separam o código pelo lugar onde ele **roda**. O HTML fica guardado no servidor, que só o entrega, sem rodar nada. Quem lê o HTML e desenha a página é o navegador, então o HTML é do front-end. Back-end é o código que roda no próprio servidor, como buscar no banco de dados. É o armário desmontado: sai da loja, mas é montado em casa.
+
 ## De onde vêm as palavras
 
 - **[[glossario/cliente|Cliente]]**: do latim *cliēns*. Em Roma, o cliente era quem dependia de um *patronus*, o patrono: um homem importante que dava proteção e ajuda. Toda manhã, os clientes iam à casa do patrono, numa recepção chamada *salutatio*, e faziam os seus pedidos: ajuda num processo, dinheiro emprestado, apoio num negócio. Em troca, prestavam serviços quando o patrono precisava. O cliente romano já fazia o que o da web faz: vai até a porta e pede. A origem da palavra não é certa. Pode vir de *clueō*, "ser chamado, ter fama", ou de *clīnō*, "inclinar".
@@ -464,6 +493,7 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > - Toda troca segue a mesma ordem: requisição, processamento, resposta. O servidor nunca começa, e toda requisição ganha uma resposta, mesmo que seja "não achei".
 > - Requisição e resposta funcionam como chamar uma função e receber o `return`, só que atravessando a internet.
 > - **Protocolo** é idioma mais etiqueta: o formato das mensagens, quem fala primeiro e o que cada resposta quer dizer. Na web, o protocolo é o **HTTP**.
+> - **Front-end** e **back-end** separam o código pelo lugar onde ele roda. O HTML fica guardado no servidor, mas é desenhado no navegador: é front-end. Back-end é o código que roda no próprio servidor.
 > - Dá para ver as requisições acontecendo: F12 e a aba Network, no navegador, ou `curl.exe` no terminal.
 > - No Chrome, a aba **Headers** mostra os cabeçalhos das duas mensagens, com os da resposta em cima. A aba **Response** mostra o conteúdo da resposta: para uma página, o HTML em texto, e não a página desenhada.
 
