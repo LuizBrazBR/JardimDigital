@@ -151,6 +151,8 @@ Content-Type: text/html; charset=utf-8
 
 As regras, então, são estas: uma primeira linha com partes fixas, numa ordem fixa, depois linhas no formato `Nome: valor`, uma linha em branco e o conteúdo. Quem segue isso é entendido por qualquer programa que também siga.
 
+As linhas `Nome: valor` se chamam **cabeçalhos**, em inglês *headers*. São avisos sobre a mensagem, como o tipo do conteúdo ou o site pedido, e não a mensagem em si. A requisição tem os cabeçalhos dela, e a resposta tem os dela.
+
 ## Veja com os próprios olhos
 
 ### No navegador
@@ -159,9 +161,82 @@ As regras, então, são estas: uma primeira linha com partes fixas, numa ordem f
 2. Aperte **F12** e vá na aba **Network** (em português, **Rede**). Se ela não aparecer, está escondida atrás do `>>`.
 3. Aperte **F5** para recarregar a página.
 
-Cada linha da lista é uma requisição que o navegador fez. Mesmo uma página simples pede dezenas de coisas: o HTML, os estilos, as imagens, as fontes das letras, os scripts. A coluna **Status** mostra o código de cada resposta, e 200 quer dizer "deu certo". Clicando numa linha, a aba **Headers** (Cabeçalhos) mostra a requisição e a resposta, e a aba **Response** (Resposta) mostra o conteúdo que chegou.
+Cada linha da lista é uma requisição que o navegador fez. Mesmo uma página simples pede dezenas de coisas: o HTML, os estilos, as imagens, as fontes das letras, os scripts. A coluna **Status** mostra o código de cada resposta, e 200 quer dizer "deu certo".
 
 Repare que a lista estava vazia antes do F5. A página já estava aberta, mas nenhum pedido novo tinha sido feito. Só com o F5 o cliente pediu de novo, e as requisições apareceram.
+
+#### Dentro de uma linha: as abas Headers e Response
+
+Clicando numa linha, abre um painel com várias abas. Duas importam agora:
+
+- **Headers** (em português, Cabeçalhos) mostra os **cabeçalhos** das duas mensagens, a requisição e a resposta. São só os avisos `nome: valor`, sem o conteúdo.
+- **Response** (Resposta) mostra o **conteúdo** da resposta, o que vinha depois da linha em branco na espiada.
+
+Cada parte da espiada tem o seu lugar no Chrome:
+
+| Parte | Na espiada | No Chrome |
+|---|---|---|
+| primeira linha da requisição | `GET / HTTP/1.1` | **Request method** e **Request URL**, no bloco General, aba Headers |
+| cabeçalhos da requisição | `Host: example.com` | bloco **Request Headers**, aba Headers |
+| primeira linha da resposta | `HTTP/1.1 200 OK` | **Status code**, no bloco General, aba Headers |
+| cabeçalhos da resposta | `Content-Type: text/html` | bloco **Response Headers**, aba Headers |
+| conteúdo da resposta | o HTML depois da linha em branco | aba **Response** |
+
+#### Os três blocos da aba Headers
+
+A aba Headers tem três blocos, cada um com um título:
+
+| Bloco | Em português | O que mostra |
+|---|---|---|
+| General | Geral | um resumo: o endereço pedido, o método e o código da resposta |
+| Response Headers | Cabeçalhos de resposta | os avisos que o **servidor** mandou junto com a resposta |
+| Request Headers | Cabeçalhos de solicitação | os avisos que o **navegador** mandou junto com o pedido |
+
+> [!warning] A resposta aparece antes da requisição
+> Na conversa, a requisição vem primeiro. Mas o Chrome mostra os cabeçalhos da resposta em cima e os da requisição embaixo. E, se você copiar a aba inteira, os títulos dos blocos não vão junto, e fica difícil ver onde um termina e o outro começa.
+
+Um exemplo de verdade: o que a aba Headers mostra para a página do verbete [[glossario/http|HTTP]] deste site, aberta pelo link desta aula. A lista é longa, então aqui vão os cabeçalhos que dá para entender já. Os outros voltam no módulo 5.
+
+**General**, o resumo:
+
+| Linha | O que quer dizer |
+|---|---|
+| `Request URL: https://luizbrazbr.github.io/JardimDigital/glossario/http` | o endereço pedido |
+| `Request method: GET` | "me manda", a primeira palavra da requisição |
+| `Status code: 200 OK` | "deu certo", da primeira linha da resposta |
+| `Remote address: 185.199.108.153:443` | o endereço do computador onde roda o servidor, e a porta. A aula 1.4 explica os dois |
+
+**Response Headers**, o que o servidor contou:
+
+| Cabeçalho | O que quer dizer |
+|---|---|
+| `content-type: text/html; charset=utf-8` | "o conteúdo é HTML" |
+| `content-encoding: gzip` | "o conteúdo vai compactado, como um arquivo zip". O navegador descompacta antes de ler |
+| `content-length: 6999` | o tamanho do conteúdo, em bytes, já compactado |
+| `server: GitHub.com` | quem respondeu: o GitHub, onde este site fica |
+| `last-modified: Sun, 08 Nov 2026 18:04:56 GMT` | quando esta página mudou pela última vez, no caso, quando o verbete foi publicado. As datas do HTTP vêm sempre no horário de Greenwich (GMT): 18h04 lá são 15h04 em Brasília |
+| `cache-control: max-age=600` | "pode guardar uma cópia por 600 segundos", ou seja, 10 minutos. É o assunto da aula 5.3 |
+| os que começam com `x-` | avisos extras do GitHub e da empresa que entrega as páginas dele. Não fazem parte das regras do HTTP |
+
+**Request Headers**, o que o navegador contou:
+
+| Cabeçalho | O que quer dizer |
+|---|---|
+| `:method: GET`, `:path: /JardimDigital/glossario/http` e `:authority: luizbrazbr.github.io` | a primeira linha e o `Host` da espiada, escritos de outro jeito. Os nomes com dois-pontos na frente são o formato das versões mais novas do HTTP, assunto da aula 2.4 |
+| `accept: text/html, ...` | "aceito HTML, imagens e outros formatos" |
+| `accept-language: pt-BR, ...` | "prefiro a página em português" |
+| `referer: .../01-cliente-e-servidor-o-modelo-por-tras-da-web` | "vim desta página": o link foi clicado na aula 1.1 |
+| `user-agent: Mozilla/5.0 ... Chrome/157 ...` | "quem está pedindo é o Chrome, neste sistema" |
+
+Para saber de que lado é um cabeçalho, pergunte quem sabe aquela informação. Que idioma você prefere e qual navegador está usando, só o navegador sabe: são da requisição. Que tipo de conteúdo está indo e quando a página mudou, só o servidor sabe: são da resposta.
+
+#### A aba Response não é a página que você vê
+
+A aba **Response** mostra o texto que chegou, do jeito que chegou. Para a requisição de uma página, isso é o código HTML, com as marcas como `<h1>` e `<p>`, e não a página desenhada.
+
+A página que aparece na tela é trabalho do navegador. Ele lê esse HTML, descobre que precisa de estilos, imagens, fontes e scripts, faz uma requisição para cada um, e monta tudo junto. Cada uma dessas requisições é outra linha na lista da aba Network, com os seus próprios Headers e a sua própria Response. Ou seja, o que você vê na tela é a soma de muitas respostas, e não uma só.
+
+A aba ao lado, **Preview** (Visualização), mostra o conteúdo de um jeito mais fácil de ler: uma imagem aparece como imagem, e um JSON aparece arrumado, em vez de numa linha só.
 
 ### No terminal
 
@@ -353,6 +428,28 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > > [!success]- Resposta
 > > A requisição faz o papel da chamada, e a resposta faz o papel do `return`. A diferença é que a função está no mesmo programa, e a requisição atravessa a internet até outro programa, às vezes em outro computador muito longe. Por isso ela demora mais e pode falhar no caminho, por exemplo quando o servidor está desligado.
 
+> [!question] 9. De quem é cada cabeçalho?
+> Você copiou a aba Headers do Chrome, e os títulos dos blocos sumiram. Diga se cada cabeçalho abaixo foi mandado pelo navegador, na requisição, ou pelo servidor, na resposta:
+>
+> ```
+> accept-language: pt-BR,pt;q=0.9
+> content-type: text/html; charset=utf-8
+> user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) ... Chrome/157.0.0.0
+> server: GitHub.com
+> referer: https://luizbrazbr.github.io/JardimDigital/
+> last-modified: Sun, 08 Nov 2026 18:04:56 GMT
+> ```
+>
+> > [!success]- Resposta
+> > - `accept-language`: **requisição**. Só o navegador sabe que idioma você prefere.
+> > - `content-type: text/html`: **resposta**. Só o servidor sabe o que está mandando.
+> > - `user-agent`: **requisição**. É o navegador dizendo quem ele é.
+> > - `server`: **resposta**. É o servidor dizendo quem ele é.
+> > - `referer`: **requisição**. Só o navegador sabe de que página você veio.
+> > - `last-modified`: **resposta**. Só o servidor sabe quando a página mudou.
+> >
+> > A pergunta que resolve é sempre a mesma: quem sabe essa informação? Um detalhe para depois: o `content-type` também aparece em requisições, quando o navegador manda dados ao servidor, como num formulário. Nesse caso, quem avisa o tipo é quem está mandando o conteúdo. O módulo 5 trata disso.
+
 ## De onde vêm as palavras
 
 - **[[glossario/cliente|Cliente]]**: do latim *cliēns*. Em Roma, o cliente era quem dependia de um *patronus*, o patrono: um homem importante que dava proteção e ajuda. Toda manhã, os clientes iam à casa do patrono, numa recepção chamada *salutatio*, e faziam os seus pedidos: ajuda num processo, dinheiro emprestado, apoio num negócio. Em troca, prestavam serviços quando o patrono precisava. O cliente romano já fazia o que o da web faz: vai até a porta e pede. A origem da palavra não é certa. Pode vir de *clueō*, "ser chamado, ter fama", ou de *clīnō*, "inclinar".
@@ -368,5 +465,6 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > - Requisição e resposta funcionam como chamar uma função e receber o `return`, só que atravessando a internet.
 > - **Protocolo** é idioma mais etiqueta: o formato das mensagens, quem fala primeiro e o que cada resposta quer dizer. Na web, o protocolo é o **HTTP**.
 > - Dá para ver as requisições acontecendo: F12 e a aba Network, no navegador, ou `curl.exe` no terminal.
+> - No Chrome, a aba **Headers** mostra os cabeçalhos das duas mensagens, com os da resposta em cima. A aba **Response** mostra o conteúdo da resposta: para uma página, o HTML em texto, e não a página desenhada.
 
 Fontes: MDN: [Uma visão geral do HTTP](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Guides/Overview) · Chrome DevTools: [Network panel](https://developer.chrome.com/docs/devtools/network) · curl: [FAQ](https://curl.se/docs/faq.html) · Open-Meteo: [API](https://open-meteo.com/en/docs) · Wikipedia: [Patronage in ancient Rome](https://en.wikipedia.org/wiki/Patronage_in_ancient_Rome), [Stipulatio](https://en.wikipedia.org/wiki/Stipulatio), [HTTP](https://en.wikipedia.org/wiki/HTTP), [Markup language](https://en.wikipedia.org/wiki/Markup_language), [JSON](https://en.wikipedia.org/wiki/JSON), [API](https://en.wikipedia.org/wiki/API), [Cloud computing](https://en.wikipedia.org/wiki/Cloud_computing) · Wiktionary: [cliente](https://en.wiktionary.org/wiki/cliente), [cliēns](https://en.wiktionary.org/wiki/cliens), [servidor](https://en.wiktionary.org/wiki/servidor), [serviō](https://en.wiktionary.org/wiki/servio), [protocol](https://en.wiktionary.org/wiki/protocol), [πρωτόκολλον](https://en.wiktionary.org/wiki/%CF%80%CF%81%CF%89%CF%84%CF%8C%CE%BA%CE%BF%CE%BB%CE%BB%CE%BF%CE%BD), [cola](https://en.wiktionary.org/wiki/cola), [collagen](https://en.wiktionary.org/wiki/collagen), [requīrō](https://en.wiktionary.org/wiki/requiro), [quaerō](https://en.wiktionary.org/wiki/quaero), [querer](https://en.wiktionary.org/wiki/querer), [resposta](https://en.wiktionary.org/wiki/resposta), [respondeō](https://en.wiktionary.org/wiki/respondeo), [spondeō](https://en.wiktionary.org/wiki/spondeo), [esposo](https://en.wiktionary.org/wiki/esposo), [hypertext](https://en.wiktionary.org/wiki/hypertext), [hyper-](https://en.wiktionary.org/wiki/hyper-), [texto](https://en.wiktionary.org/wiki/texto)
