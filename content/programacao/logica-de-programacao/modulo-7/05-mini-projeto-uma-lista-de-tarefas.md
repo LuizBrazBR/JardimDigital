@@ -639,9 +639,9 @@ Por que o curso diz que a lógica sustenta qualquer framework? Porque o framewor
 
 Estas sugestões não fazem parte do curso. Os passos 1 e 2 valem para qualquer caminho. Os passos 3 e 4 são para quem ainda não tem a próxima trilha definida: se o seu roadmap já aponta uma, eles já estão decididos, e é só seguir a trilha.
 
-**1. Termine o mini-projeto sem olhar.** Faça os exercícios do Treine. Depois, apague o arquivo e escreva tudo de novo, do zero, sem consultar nada. Se travar numa parte, a tabela "As peças e de onde elas vêm" diz qual aula rever.
+**1. Faça o mini-projeto e o Treine tentando antes de abrir cada resposta.** Consultar não é trapaça: quem programa olha a sintaxe o tempo todo, como o jeito de escrever o `for...of` ou o nome do método que põe no fim do array. O que não dá para consultar, e é o que se treina, é decidir sozinho qual laço usar, onde vai o `if` e onde vai o `return`. Se travar numa parte, a tabela "As peças e de onde elas vêm" diz qual aula rever.
 
-**2. Faça mais dois ou três projetos do mesmo tamanho**, só com o que o curso ensinou. É assim que se passa de "entendo quando leio" para "consigo escrever". Algumas ideias:
+**2. Faça mais dois ou três projetos do mesmo tamanho**, só com o que o curso ensinou. É assim que se passa de "entendo quando leio" para "consigo escrever". No mini-projeto, os passos já vinham separados, com o nome de cada função e a saída esperada. Nestes, o enunciado tem uma linha só, e separar o problema em funções faz parte do trabalho, como na [[programacao/logica-de-programacao/modulo-7/01-como-atacar-um-problema-de-programacao|aula 7.1]]. Algumas ideias:
 
 - **Controle de gastos.** Cada gasto é um objeto como `{ descricao: "mercado", valor: 120, categoria: "comida" }`. Calcule o total, o maior gasto, o total de uma categoria e a lista dos gastos acima de um valor.
 - **Boletim.** Cada aluno é `{ nome: "Ana", notas: [7, 8, 6] }`. Calcule a média de cada um, diga quem passou e quem teve a maior média, e mostre a turma em ordem de média.
