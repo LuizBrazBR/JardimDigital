@@ -637,7 +637,7 @@ Por que o curso diz que a lógica sustenta qualquer framework? Porque o framewor
 
 ### Sugestões do que fazer agora
 
-Estas sugestões não fazem parte do curso.
+Estas sugestões não fazem parte do curso. Os passos 1 e 2 valem para qualquer caminho. Os passos 3 e 4 são para quem ainda não tem a próxima trilha definida: se o seu roadmap já aponta uma, eles já estão decididos, e é só seguir a trilha.
 
 **1. Termine o mini-projeto sem olhar.** Faça os exercícios do Treine. Depois, apague o arquivo e escreva tudo de novo, do zero, sem consultar nada. Se travar numa parte, a tabela "As peças e de onde elas vêm" diz qual aula rever.
 
@@ -646,6 +646,10 @@ Estas sugestões não fazem parte do curso.
 - **Controle de gastos.** Cada gasto é um objeto como `{ descricao: "mercado", valor: 120, categoria: "comida" }`. Calcule o total, o maior gasto, o total de uma categoria e a lista dos gastos acima de um valor.
 - **Boletim.** Cada aluno é `{ nome: "Ana", notas: [7, 8, 6] }`. Calcule a média de cada um, diga quem passou e quem teve a maior média, e mostre a turma em ordem de média.
 - **Agenda de contatos.** Adicionar um contato, buscar pelo nome, avisar quando não achar e não deixar repetir.
+
+Não precisa fazer os três antes de seguir. Um ou dois bastam, e dá para fazê-los nos primeiros dias da trilha seguinte. A trilha nova traz muita coisa de uma vez. Com a lógica treinada, fica mais fácil saber de onde vem cada erro: da lógica ou da ferramenta que você acabou de conhecer.
+
+Se a próxima trilha for de **back-end**, esses projetos são o treino mais direto. Boa parte do trabalho de um back-end é guardar listas de objetos e pôr, buscar, mudar e tirar itens delas. Esse conjunto tem até nome: **CRUD**, as iniciais, em inglês, de criar, ler, atualizar e apagar (*Create, Read, Update, Delete*). A própria lista de tarefas costuma voltar como um dos primeiros projetos de back-end. Os pedidos passam a chegar pela internet, e os dados ficam num banco de dados em vez de sumir quando o programa termina, mas a lógica de adicionar, listar, concluir e buscar é a mesma.
 
 **3. Escolha uma direção.** O curso citou back-end, ciência de dados e engenharia de dados. A outra direção comum é o front-end:
 
