@@ -192,6 +192,13 @@ console.log(tarefas[1].concluida); // true: o array mudou
 
 O que continua sem funcionar é trocar a variável por outro objeto, como em `tarefa = { titulo: "outra", concluida: true }`. Isso só faz a variável `tarefa` guardar um objeto novo, e o array fica como estava. É a diferença que já apareceu no `const` da aula 6.2: mexer no objeto é uma coisa, trocar a variável por outro é outra.
 
+> [!tip] Para não confundir: olhe o lado esquerdo do `=`
+> - **Só um nome**, como `nota = nota + 1` ou `tarefa = { ... }`: troca o que a variável guarda, e o array fica como estava.
+> - **Um nome com ponto**, como `tarefa.concluida = true`: mexe dentro do objeto, que é o mesmo do array.
+> - **Um nome com colchetes**, como `notas[i] = 10`: mexe na posição do array.
+>
+> A [[programacao/logica-de-programacao/modulo-7/05-mini-projeto-uma-lista-de-tarefas|aula 7.5]] volta a isso com mais calma.
+
 ## Contando, buscando, separando e somando
 
 O padrão é o da aula 6.3: percorrer o array e, a cada volta, fazer alguma coisa com as propriedades do objeto da vez. A única novidade é o ponto: em vez de `preco > 10`, aparece `tarefa.concluida` ou `item.preco`.

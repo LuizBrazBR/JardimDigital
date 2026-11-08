@@ -6,7 +6,7 @@ tags:
   - arrays
 ---
 
-Primeira aula do módulo 6, o das coleções. Até aqui, cada valor do programa morou numa variável própria: `let nome = "Ana"`, `let idade = 20`. Uma variável, um valor.
+Primeira aula do módulo 6, o das **[[glossario/colecao|coleções]]**: valores que guardam outros valores dentro deles. O módulo mostra duas, o array e o objeto. Até aqui, cada valor do programa morou numa variável própria: `let nome = "Ana"`, `let idade = 20`. Uma variável, um valor.
 
 Esta aula traz o **[[glossario/array|array]]**: um valor só que guarda vários outros, um depois do outro, numa ordem. Por ser um valor só, ele cabe numa variável só. Em português, também se diz **lista** ou **vetor**.
 

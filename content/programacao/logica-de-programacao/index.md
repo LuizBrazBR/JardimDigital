@@ -4,7 +4,7 @@ cssclasses:
   - sem-listagem
 ---
 
-Resumos das aulas do curso de Lógica de Programação, divididos em módulos como no curso. As aulas com link já têm resumo, e as outras ainda vão ser estudadas.
+Resumos das aulas do curso de Lógica de Programação, divididos em módulos como no curso. A última aula, a 7.5, também traz [[programacao/logica-de-programacao/modulo-7/05-mini-projeto-uma-lista-de-tarefas#E depois do curso?|sugestões do que estudar depois]].
 
 ## [[programacao/logica-de-programacao/modulo-1/index|Módulo 1 – O que é lógica de programação e algoritmos]]
 
@@ -60,4 +60,4 @@ Resumos das aulas do curso de Lógica de Programação, divididos em módulos co
 2. [[programacao/logica-de-programacao/modulo-7/02-algoritmos-em-arrays-buscar-contar-e-achar-o-maior|Algoritmos em arrays: buscar, contar e achar o maior]]
 3. [[programacao/logica-de-programacao/modulo-7/03-colocando-em-ordem-a-ideia-de-ordenacao|Colocando em ordem: a ideia de ordenação]]
 4. [[programacao/logica-de-programacao/modulo-7/04-quando-da-errado-depurando-seu-codigo|Quando dá errado: depurando seu código]]
-5. Mini-projeto: uma lista de tarefas (e o próximo passo)
+5. [[programacao/logica-de-programacao/modulo-7/05-mini-projeto-uma-lista-de-tarefas|Mini-projeto: uma lista de tarefas (e o próximo passo)]]

@@ -10,4 +10,4 @@ cssclasses:
 2. [[programacao/logica-de-programacao/modulo-7/02-algoritmos-em-arrays-buscar-contar-e-achar-o-maior|Algoritmos em arrays: buscar, contar e achar o maior]]
 3. [[programacao/logica-de-programacao/modulo-7/03-colocando-em-ordem-a-ideia-de-ordenacao|Colocando em ordem: a ideia de ordenação]]
 4. [[programacao/logica-de-programacao/modulo-7/04-quando-da-errado-depurando-seu-codigo|Quando dá errado: depurando seu código]]
-5. Mini-projeto: uma lista de tarefas (e o próximo passo)
+5. [[programacao/logica-de-programacao/modulo-7/05-mini-projeto-uma-lista-de-tarefas|Mini-projeto: uma lista de tarefas (e o próximo passo)]]
