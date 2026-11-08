@@ -282,6 +282,41 @@ for (const tarefa of tarefas) {
 
 O `const` deixa o `tarefa.concluida = true` porque a variável continua sendo o mesmo objeto do começo ao fim da volta. O que mudou foi o que tem **dentro** do objeto. É a mesma coisa do `const` com `push`, da aula 6.2.
 
+## `return` ou `break` para parar a busca?
+
+A busca da aula 6.5 parava com `break`. A do passo 3 para com `return;`. Os dois param o laço, mas não param a mesma coisa:
+
+- o **`break`** encerra só o laço. O programa continua na linha depois do `}` do laço;
+- o **`return`** encerra a função inteira. O laço para junto, e nenhuma linha depois dele roda.
+
+Nenhum dos dois é o certo sempre. Depende do que precisa acontecer depois de achar:
+
+| Situação | Use | Por quê |
+|---|---|---|
+| a busca está numa função, e achar já é o fim do trabalho | `return` | para tudo de uma vez, e a linha depois do laço fica para o "não achou", sem precisar da variável `achou` (aula 7.2) |
+| a busca está numa função, mas alguma coisa depois do laço precisa rodar, achando ou não | `break` | o `return` pularia essa parte |
+| o laço não está dentro de uma função | `break` | não há função para encerrar |
+
+Um exemplo do segundo caso: concluir a tarefa e, de qualquer jeito, mostrar a lista no fim.
+
+```js
+function concluirEListar(titulo) {
+  for (const tarefa of tarefas) {
+    if (tarefa.titulo === titulo) {
+      tarefa.concluida = true;
+      break; // sai só do laço
+    }
+  }
+  listarTarefas(); // roda tendo achado ou não
+}
+```
+
+Com `return` no lugar do `break`, a lista só apareceria quando o título **não** existisse, o contrário do que se quer.
+
+Nas buscas, o `return` aparece mais, porque quase toda busca acaba virando uma função, como o `concluirTarefa`. O `break` continua sendo o jeito de parar só o laço, sem sair da função, ou de parar um laço que nem está numa função. E, em [[programacao/logica-de-programacao/modulo-4/05-break-continue-e-lacos-aninhados|laços aninhados]], o `break` sai só do laço de dentro, enquanto o `return` sai de todos de uma vez.
+
+E o `return` com ou sem valor? Sem valor, `return;`, quando a função só faz alguma coisa e quem chamou não espera resposta, como o `concluirTarefa`. Com valor, como `return true`, quando quem chamou precisa da resposta, como o `existeTarefa` do exercício 4.
+
 ## Treine: deixando a lista melhor
 
 Os exercícios partem do arquivo dos quatro passos. Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
@@ -625,7 +660,7 @@ Para estudar: a MDN, com guias em português de [HTML, CSS e JavaScript](https:/
 > - O projeto usa todas as peças do curso: array e objeto para os dados, `for...of` para passar por eles, `if` para decidir, busca linear para achar, contador para contar, e uma função para cada ação.
 > - Com números, textos e booleanos, a variável do `for...of` recebe uma **cópia**. Com objetos e arrays, recebe **o mesmo objeto** do array.
 > - Olhe o lado esquerdo do `=`: só um nome troca a variável e não mexe no array. Com ponto ou colchetes, a linha mexe dentro do objeto ou do array.
-> - O `return` dentro do laço para a busca ao achar, e a linha depois do laço só roda se não achou.
+> - O `return` dentro do laço encerra a função inteira: a busca para ao achar, e a linha depois do laço só roda se não achou. O `break` encerra só o laço, e o que vem depois dele roda nos dois casos. Numa função cuja busca é o trabalho todo, use o `return`. Para parar só o laço, use o `break`.
 > - **Roadmap** é um plano em etapas. "Siga o seu roadmap" é abrir a próxima trilha da lista.
 > - **Framework** é um programa pela metade, que chama as funções que você escreve. **Biblioteca** é um conjunto de funções que você chama. Os dois são feitos da mesma lógica do curso.
 
