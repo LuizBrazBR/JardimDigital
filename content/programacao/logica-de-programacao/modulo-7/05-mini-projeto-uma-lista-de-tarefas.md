@@ -317,6 +317,25 @@ Nas buscas, o `return` aparece mais, porque quase toda busca acaba virando uma f
 
 E o `return` com ou sem valor? Sem valor, `return;`, quando a função só faz alguma coisa e quem chamou não espera resposta, como o `concluirTarefa`. Com valor, como `return true`, quando quem chamou precisa da resposta, como o `existeTarefa` do exercício 4.
 
+E o `continue`, da aula 4.5? Ele não para nada. Pula só **o resto da volta atual**, ou seja, o elemento da vez, e o laço segue para o próximo. Por isso não serve para encerrar uma busca: o laço continua até o último elemento do mesmo jeito. Ele serve para deixar de lado alguns elementos, como as tarefas já feitas. Com "Estudar laços" concluída, como depois do passo 3:
+
+```js
+for (const tarefa of tarefas) {
+  if (tarefa.concluida) {
+    continue; // pula esta tarefa, e o laço vai para a próxima
+  }
+  console.log("[ ] " + tarefa.titulo);
+}
+// [ ] Fazer o exercício de funções
+// [ ] Revisar arrays e objetos
+```
+
+| Comando | O que para | Onde o programa segue |
+|---|---|---|
+| `continue` | só a volta da vez | na próxima volta do laço |
+| `break` | o laço inteiro | na linha depois do `}` do laço |
+| `return` | a função inteira, e o laço junto | em quem chamou a função |
+
 ## Treine: deixando a lista melhor
 
 Os exercícios partem do arquivo dos quatro passos. Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
