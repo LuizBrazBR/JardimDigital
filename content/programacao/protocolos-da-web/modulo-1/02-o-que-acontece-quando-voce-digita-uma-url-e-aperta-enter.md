@@ -285,6 +285,39 @@ Aqui o navegador também resolve dois casos:
 - Se o texto não parece uma URL, como `tenis preto`, o navegador entende que é uma pesquisa e monta uma URL do site de busca, com o texto na query string. Algo como `https://www.google.com/search?q=tenis+preto`.
 - Se falta o esquema, como em `loja.com.br`, o navegador completa. Os navegadores de hoje tentam primeiro com `https`.
 
+#### O que é um parser
+
+A parte do programa que faz o parse se chama **parser**. Ela recebe um texto, entende a estrutura dele e devolve ao programa uma versão organizada, que ele consegue usar. Se o texto está fora do formato, o parser devolve um erro.
+
+Mas, se o texto já tem estrutura, por que precisa de parser? Porque a estrutura está **escrita**, e o programa ainda não consegue usá-la. Veja este HTML:
+
+```html
+<ul><li>Arroz</li><li>Feijão</li></ul>
+```
+
+Você olha e vê uma lista com dois itens. O programa vê uma fila de caracteres: `<`, `u`, `l`, `>`, `<`, `l`, `i`... Ele não sabe que "Arroz" está dentro de um item, nem que o item está dentro da lista. O parser lê caractere por caractere e monta essa estrutura na memória:
+
+```
+ul
+├── li → "Arroz"
+└── li → "Feijão"
+```
+
+Agora o programa responde na hora "quantos itens tem a lista?" ou "qual é o segundo?", sem reler o texto. O parser não inventa a estrutura: ela já estava no texto, e ele só a deixa pronta para uso. Por isso só existe parser para formatos que têm regras. Num texto como `oi tudo bem`, não há estrutura para procurar.
+
+Existe parser para quase todo formato que um programa precisa entender. Só nessa ida à página, o navegador usa vários:
+
+| Entra (texto) | Sai (estrutura organizada) |
+|---|---|
+| a URL | o esquema, o host, a porta, o caminho... |
+| a resposta HTTP | o código de status, os cabeçalhos e o corpo, separados |
+| o HTML | a árvore de elementos que o navegador desenha |
+| o CSS | o estilo de cada elemento |
+| o JavaScript | a estrutura do código, pronta para ser executada |
+| um JSON, com `JSON.parse` | objetos e arrays de verdade |
+
+Cuidado para não chamar o parser de interpretador. Na programação, **interpretador** é o programa que **executa** código. O parser só lê e organiza. No JavaScript dá para ver os dois: primeiro o parser entende o código, e só depois outra parte do navegador o executa. Em português, o nome técnico do parser é *analisador sintático*, com o mesmo "sintático" da análise sintática da escola.
+
 ### 2. Trocar o nome pelo IP: o DNS
 
 O navegador tem o nome, `www.loja.com.br`, mas precisa do número. Para isso, ele pergunta ao **DNS**, sigla do inglês *Domain Name System*, "sistema de nomes de domínio". O DNS é a lista de contatos da internet: recebe um nome e devolve o IP. A aula 1.4 mostra como ele funciona por dentro.
