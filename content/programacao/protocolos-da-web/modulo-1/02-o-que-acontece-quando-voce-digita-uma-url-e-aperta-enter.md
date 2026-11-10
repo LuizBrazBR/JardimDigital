@@ -11,7 +11,7 @@ Segunda aula do módulo 1. A aula 1.1 mostrou a conversa entre cliente e servido
 ## A URL
 
 > [!abstract] Definição
-> **[[glossario/url|URL]] é o endereço completo de uma coisa na internet. Ela diz como pedir, a quem pedir e o que pedir.**
+> **[[glossario/url|URL]] é o endereço completo de uma coisa, quase sempre na internet. Ela diz como pedir, a quem pedir e o que pedir.**
 
 URL é a sigla do inglês *Uniform Resource Locator*, "localizador uniforme de recursos". Cada palavra conta um pedaço da ideia:
 
@@ -106,6 +106,36 @@ Por que, então, a parte não se chama logo "protocolo"? Porque nem toda URL é 
 O `mailto` e o `file` não são protocolos de conversa: um abre outro programa, e o outro abre um arquivo. O esquema é mais geral do que um protocolo. Ele diz que tipo de endereço é aquele e como ler o resto. Só nos endereços da web esse tipo é um protocolo. Por isso as regras oficiais das URLs chamam essa parte de *scheme*, "esquema" em inglês.
 
 Mesmo assim, muita gente chama essa parte de protocolo, e até o JavaScript faz isso: o objeto `URL`, que aparece na seção "Veja com os próprios olhos", guarda o esquema numa propriedade chamada `protocol`. Quando alguém falar "o protocolo da URL", está falando do esquema.
+
+#### Então qualquer coisa pode ser uma URL?
+
+Qualquer coisa, não. Qualquer texto escrito **no formato** de URL, sim. Uma URL não precisa ser um endereço da web. O que faz um texto ser uma URL é o jeito como ele está escrito, e não o que ele aponta.
+
+A regra que vale para toda URL é esta: **ela começa com um esquema, que é uma palavra, seguido de dois-pontos**. Depois do `:`, cada esquema tem o seu jeito de escrever o resto. O `https` pede `://`, host e caminho. O `mailto` pede só um e-mail. O `tel`, de "telefone", pede um número: `tel:+5511999999999` é a URL que, num celular, abre a discagem com o número preenchido.
+
+Os endereços da web são as URLs que começam com `http:` ou `https:`. São as mais comuns, e por isso a gente costuma pensar que URL é só isso.
+
+Para saber se um texto é uma URL, olhe o começo:
+
+| Texto | É URL? | Por quê |
+|---|---|---|
+| `https://www.loja.com.br` | sim | começa com o esquema `https` e os dois-pontos |
+| `mailto:fulano@exemplo.com` | sim | começa com o esquema `mailto` e os dois-pontos |
+| `www.loja.com.br` | não | falta o esquema. Quando você digita isso na barra, o navegador põe o `https://` na frente por conta própria, e só então vira URL |
+| `/estilos.css` | não, sozinho | é só o caminho, um pedaço de URL. Quem completa é o navegador, com o começo da página em que ele aparece. A seção "Uma página, muitas requisições" mostra isso |
+| `oi tudo bem` | não | não tem esquema nenhum |
+
+O JavaScript faz esse teste por você. O `new URL(...)` da seção "Veja com os próprios olhos" aceita o texto se ele está no formato e dá erro se não está:
+
+```js
+new URL("mailto:fulano@exemplo.com");  // aceita: o esquema é mailto
+new URL("www.loja.com.br");            // erro: TypeError: Invalid URL
+```
+
+Duas pegadinhas:
+
+- **Estar no formato não quer dizer que alguém entende.** `banana:qualquer-coisa` também passa no `new URL`, porque tem uma palavra e dois-pontos no começo. Só que nenhum programa sabe o que fazer com o esquema `banana`. Ser URL é questão de formato, e funcionar depende de algum programa conhecer aquele esquema.
+- **Um caminho de arquivo do Windows parece URL.** Em `C:\Users\voce\pagina.html`, o `C:` parece um esquema, e o `new URL` lê assim mesmo, com o esquema `c`. Por isso, para apontar um arquivo como URL, se escreve com o esquema `file`: `file:///C:/Users/voce/pagina.html`.
 
 ### Host: com quem conversar
 
@@ -563,6 +593,7 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 
 > [!tip] Para guardar
 > - A **URL** tem partes fixas, numa ordem fixa, separadas por sinais: **esquema** (`https`), `://`, **host** (`www.loja.com.br`), `:` e **porta** (`443`), **caminho** (`/produtos/tenis`), `?` e **query string** (`cor=preto&tamanho=42`), `#` e **fragmento** (`avaliacoes`).
+> - Toda **URL** começa com um esquema e dois-pontos. Os endereços da web são só as URLs de esquema `http` ou `https`; `mailto:` e `tel:` também são URLs.
 > - **Esquema** é o nome da parte, e **protocolo** é o que ela informa nos endereços da web. Muita gente, e até o JavaScript, chama a parte de protocolo.
 > - A **porta padrão** do HTTP é a 80, e a do HTTPS é a 443. Quando a URL usa a padrão, não precisa escrever.
 > - O **fragmento** nunca chega ao servidor: o navegador fica com ele, para rolar a página.

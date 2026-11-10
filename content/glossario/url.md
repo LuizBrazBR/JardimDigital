@@ -3,7 +3,7 @@ title: URL
 ---
 
 > [!abstract] Definição
-> **O endereço completo de uma coisa na internet: diz como pedir, a quem pedir e o que pedir.** Sigla do inglês *Uniform Resource Locator*, "localizador uniforme de recursos".
+> **O endereço completo de uma coisa, quase sempre na internet: diz como pedir, a quem pedir e o que pedir.** Sigla do inglês *Uniform Resource Locator*, "localizador uniforme de recursos".
 
 Tem partes fixas, numa ordem fixa, separadas por sinais: o [[glossario/esquema|esquema]] (`https`), o [[glossario/host|host]] (`www.loja.com.br`), a [[glossario/porta|porta]] (`:443`), o [[glossario/caminho|caminho]] (`/produtos/tenis`), a [[glossario/query-string|query string]] (`?cor=preto`) e o [[glossario/fragmento|fragmento]] (`#avaliacoes`). O recurso é a coisa apontada: uma página, uma imagem, uma lista de produtos. No dia a dia, a URL é o "endereço" ou o "link". Ver a aula [[programacao/protocolos-da-web/modulo-1/02-o-que-acontece-quando-voce-digita-uma-url-e-aperta-enter|1.2 O que acontece quando você digita uma URL e aperta Enter]].
 
