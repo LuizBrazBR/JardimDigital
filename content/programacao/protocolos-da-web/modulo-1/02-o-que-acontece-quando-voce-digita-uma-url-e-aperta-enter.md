@@ -295,11 +295,13 @@ Se você abriu o site há pouco, o computador já guardou a resposta, e este pas
 
 Com o IP e a porta, o navegador chama o servidor, e os dois trocam um primeiro "alô": o navegador avisa que quer conversar, o servidor responde que está ouvindo, e o navegador confirma. Depois disso existe uma **conexão**: um canal aberto entre os dois, por onde as mensagens vão passar. É a ligação completada. O telefone tocou e a pessoa atendeu, mas ninguém disse nada ainda.
 
-Essa parte não é do HTTP. Na maioria das vezes, quem cuida dela é outro protocolo, chamado TCP. Ele é um dos que levam o HTTP de um computador a outro, como os Correios levam a carta da aula 1.1.
+Essa troca de abertura se chama **aperto de mão**, do inglês *handshake*, porque é o cumprimento que vem antes da conversa. Como são três mensagens, em inglês ela também é chamada de *three-way handshake*, "aperto de mão em três tempos".
+
+Essa parte não é do HTTP. Na maioria das vezes, quem cuida dela é outro protocolo, o **TCP**, sigla de *Transmission Control Protocol*, "protocolo de controle de transmissão". É ele que dita as regras da conexão: além do aperto de mão, garante que as mensagens cheguem inteiras e na ordem certa, e manda de novo o que se perder. O TCP é um dos que levam o HTTP de um computador a outro, como os Correios levam a carta da aula 1.1.
 
 ### 4. Combinar a proteção: o TLS
 
-Este passo só acontece quando o esquema é `https`. Antes de mandar qualquer pedido, navegador e servidor trocam algumas mensagens para combinar a proteção da conversa. Essa troca se chama **aperto de mão**, do inglês *handshake*, porque é o cumprimento que vem antes da conversa. As regras dela são de mais um protocolo, o **TLS**, sigla de *Transport Layer Security*, "segurança da camada de transporte".
+Este passo só acontece quando o esquema é `https`. Antes de mandar qualquer pedido, navegador e servidor trocam algumas mensagens para combinar a proteção da conversa. É um **segundo aperto de mão**, logo depois do aperto de mão do TCP, e acontece por dentro da mesma conexão. *Handshake* não é nome de um protocolo só: é como se chama qualquer troca de abertura, e cada protocolo tem a sua. As regras deste segundo aperto de mão são de mais um protocolo, o **TLS**, sigla de *Transport Layer Security*, "segurança da camada de transporte". Ele não abre outra conexão: põe uma camada de proteção por cima da que o TCP abriu.
 
 Nessa troca, acontecem duas coisas:
 
