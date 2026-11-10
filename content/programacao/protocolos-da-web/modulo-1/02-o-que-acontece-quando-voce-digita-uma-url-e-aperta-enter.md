@@ -137,6 +137,21 @@ Duas pegadinhas:
 - **Estar no formato não quer dizer que alguém entende.** `banana:qualquer-coisa` também passa no `new URL`, porque tem uma palavra e dois-pontos no começo. Só que nenhum programa sabe o que fazer com o esquema `banana`. Ser URL é questão de formato, e funcionar depende de algum programa conhecer aquele esquema.
 - **Um caminho de arquivo do Windows parece URL.** Em `C:\Users\voce\pagina.html`, o `C:` parece um esquema, e o `new URL` lê assim mesmo, com o esquema `c`. Por isso, para apontar um arquivo como URL, se escreve com o esquema `file`: `file:///C:/Users/voce/pagina.html`.
 
+#### E URI, é a mesma coisa que URL?
+
+Quase. Você vai encontrar também a sigla **URI**, de *Uniform Resource Identifier*, "identificador uniforme de recurso". URL é *Uniform Resource Locator*, "localizador uniforme de recurso". A diferença está na última palavra: identificar e localizar.
+
+A regra antiga das URLs, de 2005, separa as duas assim:
+
+- **URI** é qualquer texto no formato `esquema:resto`. Ela dá um nome a alguma coisa.
+- **URL** é a URI que diz **onde** a coisa está, e como chegar nela.
+
+Toda URL é uma URI, mas nem toda URI é uma URL. O exemplo clássico é `urn:isbn:9788535902778`. O ISBN é o número que todo livro publicado recebe, e essa URI dá nome a um livro. Só que ela não diz onde o livro está: nenhum programa abre esse texto e te entrega o livro.
+
+As URLs desta aula, inclusive `mailto:` e `file:`, dizem onde a coisa está. O `file:///C:/Users/voce/pagina.html` diz em que pasta do seu computador fica o arquivo. Então elas são URLs, e são URIs também. Não acredite em quem disser que `file:` "não é URL, é URI" só porque não é endereço de site. URL não quer dizer endereço de site.
+
+Hoje a separação quase não se usa. O padrão que os navegadores seguem, o *URL Standard*, chama tudo de URL, inclusive o `urn:`. Por isso o `new URL("urn:isbn:9788535902778")` funciona. No dia a dia, fale URL. A palavra URI aparece mais em documentação técnica antiga e em algumas linguagens de programação.
+
 ### Host: com quem conversar
 
 O **[[glossario/host|host]]**, `www.loja.com.br`, é o nome do computador onde roda o servidor que vai responder.
