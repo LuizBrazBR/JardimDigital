@@ -363,7 +363,7 @@ Na prática, um servidor trabalha de um destes jeitos:
 - **Só entrega arquivos prontos.** Este site é assim. Quando uma aula é publicada, um programa chamado Quartz transforma as anotações em arquivos HTML, e o GitHub guarda esses arquivos. Quando você pede uma página, o servidor do GitHub só acha o arquivo e manda, sem rodar nada dele. Foi esse servidor que apareceu como `server: GitHub.com` na aba Headers. Ninguém escreveu um back-end para este site: tudo nele é front-end, guardado num servidor que entrega arquivos.
 - **Roda código para responder.** Numa loja, ou na lista de tarefas na web, o servidor busca no banco de dados e aplica as regras: aí existe back-end. Às vezes ele responde só os dados, em JSON, e o JavaScript no navegador encaixa os dados na tela. Outras vezes ele monta o HTML na hora, já com os dados dentro, e manda pronto. Mesmo assim, o servidor só escreve o HTML. Quem desenha a página continua sendo o navegador.
 
-O papel de cada um, navegador e servidor, é o assunto da aula 1.3.
+O papel de cada um, navegador e servidor, é o assunto da [[programacao/protocolos-da-web/modulo-1/03-o-papel-do-navegador-e-do-servidor|aula 1.3]].
 
 ### Nuvem
 
