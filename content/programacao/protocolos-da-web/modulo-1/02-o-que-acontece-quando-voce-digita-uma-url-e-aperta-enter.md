@@ -28,7 +28,7 @@ A aula usa esta URL de exemplo, de uma loja inventada:
 ```
 https://www.loja.com.br:443/produtos/tenis?cor=preto&tamanho=42#avaliacoes
 └─┬─┘   └──────┬──────┘ └┬┘└──────┬──────┘ └────────┬─────────┘ └───┬────┘
-esquema       host     porta   caminho         query string     fragmento
+esquema      host      porta   caminho        query string      fragmento
 ```
 
 Cada parte responde a uma pergunta:
