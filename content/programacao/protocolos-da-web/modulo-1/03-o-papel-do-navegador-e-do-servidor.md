@@ -238,7 +238,41 @@ A diferença está **depois** da resposta, nos trabalhos que só o navegador faz
 
 Então não é que um aplicativo "funcione diferente da web". A conversa é a mesma: HTTP. O que o aplicativo não tem são os trabalhos extras do navegador. Ele recebe os dados em JSON e monta a tela com o próprio código, em vez de receber uma página pronta para desenhar.
 
-Por isso uma mesma empresa costuma ter um servidor só, com uma API, para o site e para o aplicativo. Os dois pedem os mesmos dados, e cada um mostra do seu jeito.
+### Quem monta a tela: o servidor ou o navegador?
+
+O navegador também pode trabalhar como o aplicativo: receber só os dados em JSON e montar a tela com o JavaScript. Hoje, os sites são feitos de dois jeitos.
+
+**1. O servidor monta o HTML.** O servidor busca os dados no banco, escreve o HTML já com eles dentro e manda a página pronta. O navegador só faz o parse e desenha.
+
+```
+GET /produtos   -> HTML, já com os produtos escritos dentro
+```
+
+É o jeito mais antigo, e continua muito usado em lojas, blogs e sistemas de empresa.
+
+**2. O navegador monta a tela.** O servidor manda primeiro o site em si: um HTML quase vazio, o CSS e o JavaScript das telas. Depois, o JavaScript pede os dados a uma API, e eles chegam em JSON:
+
+```
+1. GET /                -> HTML       (a página quase vazia)
+2. GET /app.js          -> JavaScript (o código das telas)
+3. GET /api/produtos    -> JSON       (os dados)
+```
+
+Com os dados na mão, o JavaScript monta a lista de produtos na tela. É assim no Gmail e em muitos painéis de sistema.
+
+Repare que, mesmo no segundo jeito, o navegador não recebe só JSON. Antes ele precisa receber o código que vai montar a tela, nos pedidos 1 e 2. É o armário desmontado da aula 1.1: as peças e o manual chegam primeiro.
+
+O aplicativo de celular faz só o pedido 3. O código das telas dele já veio instalado da loja de aplicativos. Por isso, uma empresa que monta as telas no navegador consegue usar **uma API só para o site e para o aplicativo**: os dois fazem o mesmo `GET /api/produtos`, recebem o mesmo JSON, e cada um monta a tela do seu jeito.
+
+| | O servidor monta o HTML | O navegador monta a tela |
+|---|---|---|
+| o que o navegador recebe | a página pronta, com os dados dentro | primeiro o código das telas, depois os dados em JSON |
+| quem junta os dados com a tela | o servidor | o JavaScript, no navegador |
+| o aplicativo de celular aproveita o mesmo servidor? | não direto: o aplicativo não quer HTML, quer os dados | sim: pede a mesma API |
+
+Um jeito não substituiu o outro. Muitos sites misturam os dois: a primeira página vem pronta do servidor, e as partes que mudam depois, como o carrinho ou a busca, pedem JSON a uma API.
+
+E uma API não é "o que devolve JSON". Pela definição da aula 1.1, **[[glossario/api|API]]** é a lista de pedidos que um programa aceita de outros programas. Numa API da web, esses pedidos são requisições HTTP, e as respostas **quase sempre** vêm em JSON, mas podem vir em outros formatos. E nem toda API é pela internet: o `JSON.parse` e o `http.createServer` do Node também são APIs, que você usa chamando uma função, sem requisição nenhuma.
 
 ## Veja com os próprios olhos
 
