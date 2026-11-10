@@ -16,7 +16,61 @@ O HTTP não é do navegador nem do servidor. Ele é a regra da conversa entre os
 | escreve | a requisição | a resposta |
 | lê | a resposta | a requisição |
 
-Para ler a mensagem que chega, cada lado faz o **[[glossario/parse|parse]]** dela, aquele trabalho de separar as partes que a aula 1.2 mostrou. O servidor separa o método, o caminho e os cabeçalhos da requisição. O navegador separa o código de status, os cabeçalhos e o corpo da resposta.
+Para ler a mensagem que chega, cada lado faz o **[[glossario/parse|parse]]** dela, aquele trabalho de separar as partes que a aula 1.2 mostrou.
+
+### O servidor faz o parse da requisição
+
+Pela conexão, chega ao servidor um texto só, uma letra atrás da outra:
+
+```http
+GET /produtos/tenis?cor=preto HTTP/1.1
+Host: www.loja.com.br
+User-Agent: Mozilla/5.0 ... Chrome/157.0.0.0
+Accept-Language: pt-BR
+
+```
+
+Para o programa do servidor, isso ainda é só texto. Ele não sabe que `GET` é o método nem onde termina o caminho. O parser lê esse texto seguindo as regras do HTTP, que a aula 1.1 mostrou: a primeira linha tem três partes separadas por espaço, cada linha seguinte é um `Nome: valor`, e a linha em branco marca o fim dos cabeçalhos. Ele corta nesses pontos e entrega ao programa as partes já separadas:
+
+| Parte | Valor | Onde estava no texto |
+|---|---|---|
+| método | `GET` | primeira linha, antes do primeiro espaço |
+| caminho | `/produtos/tenis?cor=preto` | primeira linha, entre os dois espaços |
+| versão | `HTTP/1.1` | primeira linha, depois do segundo espaço |
+| cabeçalho `host` | `www.loja.com.br` | linha `Host: ...`, cortada no `:` |
+| cabeçalho `user-agent` | `Mozilla/5.0 ... Chrome/157.0.0.0` | linha `User-Agent: ...` |
+| cabeçalho `accept-language` | `pt-BR` | linha `Accept-Language: ...` |
+
+Só depois disso o servidor consegue perguntar "o método é `GET`?" ou "o caminho é `/produtos/tenis`?" e decidir o que fazer. Se a primeira linha vier fora do formato, por exemplo sem o método, o parse falha e o servidor responde com um erro, o 400, "requisição mal formada".
+
+No Node, é exatamente isso que o programa recebe. No `servidor.js`, mais abaixo nesta aula, o parse já veio feito: `requisicao.method` é o `GET`, `requisicao.url` é o caminho e `requisicao.headers` é um objeto com os cabeçalhos. O Node escreve os nomes dos cabeçalhos em minúsculas, como `requisicao.headers["user-agent"]`, porque no HTTP tanto faz escrever `User-Agent` ou `user-agent`.
+
+### O navegador faz o parse da resposta
+
+Na volta, acontece o mesmo, do outro lado. Chega ao navegador outro texto:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Length: 1256
+Set-Cookie: carrinho=abc123
+
+<!doctype html><html><head><title>Tênis</title>...
+```
+
+O parser do navegador separa:
+
+| Parte | Valor | O que o navegador faz com ela |
+|---|---|---|
+| código de status | `200` | sabe que deu certo. Se fosse `404`, mostraria a página de erro que veio no corpo |
+| cabeçalho `content-type` | `text/html` | sabe que o corpo é HTML, e por isso vai montar uma página. Se fosse `image/png`, mostraria uma imagem |
+| cabeçalho `content-length` | `1256` | sabe quantos bytes de corpo esperar, e quando a resposta terminou |
+| cabeçalho `set-cookie` | `carrinho=abc123` | guarda o cookie, para devolver no próximo pedido |
+| corpo | o HTML, depois da linha em branco | passa para o parser do HTML |
+
+Repare na última linha: o corpo de uma resposta passa por **dois** parses. Primeiro o do HTTP, que separa o corpo do resto da mensagem. Depois o do HTML, que monta a árvore de elementos. São parsers diferentes, cada um para um formato.
+
+E é o `content-type` que diz qual parser usar no corpo. O mesmo texto `{"id":42}` vira dados num cliente que recebe `application/json`, e vira só texto na tela se vier como `text/plain`. Os cabeçalhos são o assunto do módulo 5.
 
 Essa parte é igual em qualquer conversa HTTP. Não importa se o cliente é o Chrome, o curl ou um aplicativo de celular: todos escrevem requisições e leem respostas no mesmo formato. O que muda de um cliente para outro é **o que ele faz com a resposta depois**, e é aí que o navegador se separa dos outros.
 
@@ -45,8 +99,8 @@ O navegador guarda dados no computador do usuário:
 
 | O que guarda | Para quê |
 |---|---|
-| **[[glossario/cookie|cookies]]** | pequenos textos que o servidor manda guardar. O navegador os devolve, sozinho, em cada pedido seguinte ao mesmo site. É assim que o site sabe que você já fez login |
-| **[[glossario/cache|cache]]** | cópias de arquivos já baixados, como imagens e estilos, para não pedir de novo |
+| **[[glossario/cookie\|cookies]]** | pequenos textos que o servidor manda guardar. O navegador os devolve, sozinho, em cada pedido seguinte ao mesmo site. É assim que o site sabe que você já fez login |
+| **[[glossario/cache\|cache]]** | cópias de arquivos já baixados, como imagens e estilos, para não pedir de novo |
 | histórico | as páginas que você visitou |
 
 Repare que quem decide criar um cookie é o servidor, numa resposta. Quem guarda e devolve é o navegador. O HTTP sozinho não lembra de nada entre um pedido e outro. Esse é o assunto da aula 2.3, e os cookies voltam na aula 5.5.
@@ -252,37 +306,59 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > > [!success]- Resposta
 > > Falta dizer que o servidor também fala HTTP. O HTTP é a regra da conversa entre os dois. O navegador escreve a requisição e lê a resposta. O servidor lê a requisição e escreve a resposta. Os dois fazem o parse da mensagem que recebem.
 
-> [!question] 3. Parse ou execução?
+> [!question] 3. Faça o parse você mesmo
+> Chegou ao servidor este texto:
+>
+> ```http
+> POST /tarefas HTTP/1.1
+> Host: localhost:3000
+> Content-Type: application/json
+>
+> {"titulo":"Comprar pão"}
+> ```
+>
+> Separe o método, o caminho, o host, o tipo do corpo e o corpo. Que outro parse o servidor ainda precisa fazer antes de usar o título?
+>
+> > [!success]- Resposta
+> > - método: `POST`
+> > - caminho: `/tarefas`
+> > - host: `localhost:3000`
+> > - tipo do corpo: `application/json`
+> > - corpo: `{"titulo":"Comprar pão"}`, tudo depois da linha em branco
+> >
+> > O corpo ainda é texto. Como o `Content-Type` diz que é JSON, o servidor faz mais um parse, com `JSON.parse`, para virar um objeto e poder ler o `titulo`. É o mesmo caso do HTML no navegador: o corpo passa por dois parses, o do HTTP e o do formato dele.
+
+> [!question] 4. Parse ou execução?
 > O navegador recebeu um HTML, um CSS e um JavaScript. De quais ele faz o parse? Quais ele executa?
 >
 > > [!success]- Resposta
 > > Ele faz o parse dos três, porque precisa entender a estrutura de cada um. Executa só o JavaScript, que é o único que é código. O HTML e o CSS descrevem a página, e não rodam.
 
-> [!question] 4. O preço trocado
+> [!question] 5. O preço trocado
 > Numa loja, o preço aparece na página como R$ 299,90. Um usuário abre o F12, muda o número para R$ 1,00 e clica em "Finalizar compra". A loja deveria cobrar R$ 1,00?
 >
 > > [!success]- Resposta
 > > Não. O usuário controla o navegador, então nada que vem dele é garantido. O servidor não usa o preço que veio do navegador. Ele busca o preço no banco de dados, que só o servidor controla, e cobra R$ 299,90.
 
-> [!question] 5. Conferir duas vezes
+> [!question] 6. Conferir duas vezes
 > Um formulário de cadastro avisa na hora, ainda no navegador, que o e-mail está sem `@`. Se o navegador já confere, por que o servidor confere de novo?
 >
 > > [!success]- Resposta
 > > Porque a conferência do navegador pode ser pulada: dá para desligá-la pelo F12, ou mandar a requisição direto pelo curl. A do navegador existe para avisar o usuário rápido, sem esperar o servidor. A do servidor é a que garante a regra.
 
-> [!question] 6. O aplicativo e o site
+> [!question] 7. O aplicativo e o site
 > Uma loja tem um site e um aplicativo de celular. Os dois mostram a mesma lista de produtos. O aplicativo conversa com o servidor por um protocolo diferente do HTTP? O que muda entre os dois?
 >
 > > [!success]- Resposta
 > > Não, os dois falam HTTP, e podem até pedir ao mesmo servidor. O que muda é o que cada um faz com a resposta. O navegador costuma receber HTML, CSS e JavaScript, e desenha a página. O aplicativo costuma receber os produtos em JSON e monta a tela com o próprio código, sem HTML e sem CSS.
 
-> [!question] 7. O pedido que ninguém fez
+> [!question] 8. O pedido que ninguém fez
 > No terminal do `servidor.js`, apareceu um `GET /favicon.ico` que você não digitou em lugar nenhum. De onde ele veio? O curl faria o mesmo pedido?
 >
 > > [!success]- Resposta
 > > Veio do navegador. Ele pede o ícone da aba sozinho, a todo site. O curl não pede, porque só faz o que você manda e não tem aba para pôr ícone. É um dos trabalhos extras do navegador.
 
-> [!question] 8. A loja vira cliente
+> [!question] 9. A loja vira cliente
 > O servidor da loja, para finalizar uma compra, pede a um serviço de pagamento que cobre o cartão. Nessa conversa, a loja faz o trabalho de navegador?
 >
 > > [!success]- Resposta
