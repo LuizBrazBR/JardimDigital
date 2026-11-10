@@ -95,15 +95,42 @@ Você digita uma URL só, mas o navegador faz dezenas de requisições, como a a
 
 ### 3. Lembrar de coisas entre um pedido e outro
 
-O navegador guarda dados no computador do usuário:
+O navegador guarda três coisas no computador do usuário: os cookies, o cache e o histórico. O histórico você já conhece: é a lista das páginas que você visitou. Os outros dois pedem explicação.
 
-| O que guarda | Para quê |
-|---|---|
-| **[[glossario/cookie\|cookies]]** | pequenos textos que o servidor manda guardar. O navegador os devolve, sozinho, em cada pedido seguinte ao mesmo site. É assim que o site sabe que você já fez login |
-| **[[glossario/cache\|cache]]** | cópias de arquivos já baixados, como imagens e estilos, para não pedir de novo |
-| histórico | as páginas que você visitou |
+#### Cookie
 
-Repare que quem decide criar um cookie é o servidor, numa resposta. Quem guarda e devolve é o navegador. O HTTP sozinho não lembra de nada entre um pedido e outro. Esse é o assunto da aula 2.3, e os cookies voltam na aula 5.5.
+O HTTP não tem memória. Cada requisição chega ao servidor sozinha, sem nada que diga "sou a mesma pessoa do pedido anterior". A aula 2.3 é sobre isso. Então como o site sabe que você já fez login, quando você muda de página?
+
+Pelo **[[glossario/cookie|cookie]]**. Um cookie é um pequeno texto, no formato `nome=valor`, que o **servidor manda** o navegador guardar. O **navegador guarda** e, a partir daí, **devolve** esse texto em todo pedido ao mesmo site, sem ninguém pedir. Acontece assim:
+
+1. Você manda o e-mail e a senha. O servidor confere, cria um número de sessão, como `8f3a2c`, e anota no banco de dados: "a sessão `8f3a2c` é da Ana".
+2. Na resposta, o servidor manda o cabeçalho `Set-Cookie: sessao=8f3a2c`. Quer dizer: "guarda isto".
+3. O navegador guarda o cookie, ligado ao endereço daquele site.
+4. Em cada pedido seguinte ao mesmo site, o navegador acrescenta sozinho o cabeçalho `Cookie: sessao=8f3a2c`.
+5. O servidor lê o cookie, procura `8f3a2c` no banco de dados e descobre que é a Ana.
+
+> [!example] A comanda do bar
+> Na entrada do bar, você recebe uma comanda com um número. A cada pedido, você mostra a comanda, e o garçom anota na conta daquele número. O garçom não lembra de você: lembra do número. O cookie é a comanda. Quem dá é o servidor, quem carrega é o navegador, e quem sabe o que aquele número quer dizer é o servidor, de novo.
+
+Então o cookie fica **guardado no navegador**, mas quem **cria e entende** o cookie é o servidor. O navegador só carrega e devolve. Os cookies voltam com detalhes na aula 5.5.
+
+#### Cache
+
+**[[glossario/cache|Cache]]** é uma cópia guardada de algo que já foi buscado, para não buscar de novo. A palavra é genérica: qualquer programa pode ter um cache, inclusive o servidor. O que está nesta lista é o **cache do navegador**, que fica no computador do usuário.
+
+Quando você abre uma página pela segunda vez, o logo do site, os estilos e os scripts costumam ser os mesmos da primeira vez. Em vez de pedir tudo de novo, o navegador usa as cópias que guardou. A página abre mais rápido, e o servidor recebe menos pedidos.
+
+Mas por quanto tempo a cópia vale? Quem decide isso é o servidor, num cabeçalho da resposta, como o `cache-control: max-age=600` da aula 1.1: "pode guardar por 600 segundos". É a mesma divisão do cookie: o servidor diz a regra, e o navegador guarda e obedece.
+
+Do lado do servidor também existem caches. Um servidor pode guardar, por exemplo, uma lista de produtos que demora para buscar no banco de dados, e reaproveitar a mesma lista para muitos clientes. Esse cache é dele, fica na máquina dele e serve a todos. O do navegador serve a um usuário só. O cache é o assunto da aula 5.3.
+
+| | Cookie | Cache do navegador |
+|---|---|---|
+| o que é | um pequeno texto `nome=valor` | cópias de arquivos já baixados |
+| para quê | o servidor reconhecer quem está pedindo | não baixar de novo o que já veio |
+| quem decide | o servidor, com o `Set-Cookie` | o servidor, com o `Cache-Control` |
+| onde fica | no navegador | no navegador |
+| vai junto nos pedidos seguintes? | sim, sempre | não: evita o pedido
 
 ### 4. Proteger o usuário
 
@@ -145,7 +172,21 @@ O `GET` é "me manda" e o `POST` é "cria". Os outros métodos ficam para o mód
 
 ### 4. Guardar os dados e as regras
 
-O banco de dados fica do lado do servidor. As regras do negócio também: o preço de cada produto, quem pode ver o quê, se ainda tem estoque. É esse código, o que roda no servidor, que se chama back-end. A aula 1.5 é sobre ele.
+Uma loja tem dois tipos de coisa que precisam valer para todo mundo: os dados e as regras.
+
+Os **dados** são os produtos, os clientes, os pedidos, o estoque. Eles ficam no **[[glossario/banco-de-dados|banco de dados]]**, e quem conversa com o banco é o servidor. Precisam ficar desse lado porque são de todos: o estoque que você vê é o mesmo que eu vejo. Se cada navegador guardasse a sua cópia, cada um veria um estoque diferente, e os dados sumiriam quando o usuário limpasse o navegador.
+
+As **regras de negócio** são as regras de como a empresa funciona. Não têm nada a ver com a tela: valeriam igual numa loja de rua, com papel e caneta. Alguns exemplos:
+
+- o preço de cada produto, e o desconto de 10% no Pix;
+- não vender o que não tem no estoque;
+- frete grátis acima de 200 reais;
+- só o dono de um pedido pode ver esse pedido;
+- um cupom vale uma vez por cliente.
+
+Essas regras também ficam no servidor, por dois motivos. O primeiro é o mesmo dos dados: valem para todos, e precisam ser iguais no site e no aplicativo. O segundo é segurança: o que roda no navegador o usuário pode mudar, como a seção "O servidor não confia no navegador", mais abaixo, mostra. Uma regra que o usuário pode desligar não é regra.
+
+Esse código, que roda no servidor, cuida dos dados e aplica as regras, é o que se chama **back-end**. A aula 1.5 é sobre ele.
 
 ### 5. Montar a resposta
 
@@ -170,7 +211,7 @@ E lembre-se da aula 1.1: cliente e servidor são papéis, e não tipos de progra
 
 O navegador roda na máquina do usuário, e o usuário controla a própria máquina. Com o F12, dá para mudar qualquer coisa na página: apagar a regra que proíbe deixar um campo vazio, trocar o preço que aparece na tela, mandar uma requisição montada à mão. Com o curl, dá até para pular o navegador.
 
-Por isso, **o servidor confere tudo de novo**. Se a página mostra um tênis por R$ 299,90 e alguém muda para R$ 1,00 antes de finalizar a compra, o servidor ignora o preço que veio do navegador e busca o preço certo no banco de dados.
+Por isso, **o servidor confere tudo de novo**. Se a página mostra um tênis por R\$ 299,90 e alguém muda para R\$ 1,00 antes de finalizar a compra, o servidor ignora o preço que veio do navegador e busca o preço certo no banco de dados.
 
 | Conferir no navegador | Conferir no servidor |
 |---|---|
@@ -335,10 +376,10 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > > Ele faz o parse dos três, porque precisa entender a estrutura de cada um. Executa só o JavaScript, que é o único que é código. O HTML e o CSS descrevem a página, e não rodam.
 
 > [!question] 5. O preço trocado
-> Numa loja, o preço aparece na página como R$ 299,90. Um usuário abre o F12, muda o número para R$ 1,00 e clica em "Finalizar compra". A loja deveria cobrar R$ 1,00?
+> Numa loja, o preço aparece na página como R\$ 299,90. Um usuário abre o F12, muda o número para R\$ 1,00 e clica em "Finalizar compra". A loja deveria cobrar R\$ 1,00?
 >
 > > [!success]- Resposta
-> > Não. O usuário controla o navegador, então nada que vem dele é garantido. O servidor não usa o preço que veio do navegador. Ele busca o preço no banco de dados, que só o servidor controla, e cobra R$ 299,90.
+> > Não. O usuário controla o navegador, então nada que vem dele é garantido. O servidor não usa o preço que veio do navegador. Ele busca o preço no banco de dados, que só o servidor controla, e cobra R\$ 299,90.
 
 > [!question] 6. Conferir duas vezes
 > Um formulário de cadastro avisa na hora, ainda no navegador, que o e-mail está sem `@`. Se o navegador já confere, por que o servidor confere de novo?
