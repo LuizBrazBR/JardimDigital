@@ -339,13 +339,23 @@ Troque o endereço para `http://localhost:3000/produtos/7`. Os dois clientes rec
 
 ### Quem disparou cada pedido
 
-Na aba **Network** do F12, com um site qualquer aberto, clique com o botão direito no título de uma das colunas e ligue a coluna **Initiator** ("quem iniciou"), se ela ainda não estiver aparecendo. Ela diz o que fez o navegador pedir cada arquivo:
+Abra um site qualquer, aperte **F12**, vá na aba **Network** (em português, **Rede**) e aperte **F5**, para a lista se encher do zero. Use um site de verdade, e não o `localhost:3000`: o nosso servidor só devolve um texto, então ninguém pede mais nada.
 
-| Initiator | Quer dizer |
+Na lista, procure a coluna **Initiator** (em português, **Iniciador**), "quem iniciou". Ela costuma já vir ligada, entre **Type** e **Size**. Se não estiver, clique com o botão direito no título de qualquer coluna e marque-a.
+
+Ela diz o que fez o navegador pedir cada arquivo. Em cada linha aparece o nome do arquivo que fez o pedido, seguido de `:` e do número da linha onde o pedido está escrito:
+
+| Na coluna Initiator | Quer dizer |
 |---|---|
-| **Other** | o pedido que você fez, digitando a URL ou clicando num link |
-| **(index)**, ou o nome de um arquivo, com o tipo **Parser** ao passar o mouse | o parser do HTML achou um `src` ou um `href` e pediu o arquivo |
-| o nome de um arquivo `.js`, com o tipo **Script** | o JavaScript da página pediu |
+| **Other** | ninguém da página pediu: foi você, digitando a URL ou clicando num link. É o que aparece na linha do próprio HTML, a primeira da lista |
+| **(index):12**, ou o nome da página com um número | o parser do HTML achou um `src` ou um `href` na linha 12 da página e pediu o arquivo |
+| **app.js:3**, ou outro arquivo `.js` com um número | o JavaScript da página pediu, na linha 3 desse arquivo |
+
+O **(index)** é o nome que o Chrome dá à página quando o endereço termina em `/`, como `https://site.com/`. Se o endereço for `https://site.com/produtos`, aparece **produtos** no lugar.
+
+Clique num desses nomes, e o Chrome abre o arquivo exatamente na linha que fez o pedido. Num `(index)`, você cai numa tag como `<img src="...">` ou `<link href="...">`.
+
+Para ver o tipo escrito por extenso, clique na engrenagem do canto direito da aba Network e marque **Big request rows** (pode aparecer como "Use large request rows"). Cada linha ganha uma segunda linha, em cinza, e na coluna Initiator aparece **Parser** ou **Script** embaixo do nome.
 
 É a lista dos trabalhos do navegador, vista por dentro: você pediu um, o parser pediu vários, e o JavaScript pediu outros.
 
