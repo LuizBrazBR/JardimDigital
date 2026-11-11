@@ -355,7 +355,7 @@ O **(index)** é o nome que o Chrome dá à página quando o endereço termina e
 
 Clique num desses nomes, e o Chrome abre o arquivo exatamente na linha que fez o pedido. Num `(index)`, você cai numa tag como `<img src="...">` ou `<link href="...">`.
 
-Para ver o tipo escrito por extenso, clique na engrenagem do canto direito da aba Network e marque **Big request rows** (pode aparecer como "Use large request rows"). Cada linha ganha uma segunda linha, em cinza, e na coluna Initiator aparece **Parser** ou **Script** embaixo do nome.
+Para ver o tipo escrito por extenso, clique na engrenagem do canto direito da aba Network e marque **Big request rows** (pode aparecer como "Use large request rows"). Cada linha ganha uma segunda linha, em cinza, e na coluna Initiator aparece o tipo: **Other**, **Parser** ou **Script**, um para cada linha da tabela acima.
 
 É a lista dos trabalhos do navegador, vista por dentro: você pediu um, o parser pediu vários, e o JavaScript pediu outros.
 
