@@ -185,7 +185,7 @@ https://www.loja.com.br/produtos/tenis
 
 Mesmo quando não está escrita, a porta é usada. Na aula 1.1, o `Remote address` era `185.199.108.153:443`: o IP, os dois-pontos e a porta. A URL não tinha porta nenhuma escrita, mas começava com `https`, então o navegador bateu na 443.
 
-Quando você escrever o seu primeiro back-end, vai ver endereços como `http://localhost:3000`. O `localhost` é um nome especial que quer dizer "este computador mesmo". Ali a porta precisa ser escrita, porque a 3000 não é a porta padrão do HTTP: é um número livre, que muita gente usa para testar. A aula 1.4 volta ao IP e à porta com calma.
+Quando você escrever o seu primeiro back-end, vai ver endereços como `http://localhost:3000`. O `localhost` é um nome especial que quer dizer "este computador mesmo". Ali a porta precisa ser escrita, porque a 3000 não é a porta padrão do HTTP: é um número livre, que muita gente usa para testar. A [[programacao/protocolos-da-web/modulo-1/04-enderecos-na-internet-ip-dns-e-porta|aula 1.4]] volta ao IP e à porta com calma.
 
 ### Caminho: o que pedir
 
@@ -320,7 +320,7 @@ Cuidado para não chamar o parser de interpretador. Na programação, **interpre
 
 ### 2. Trocar o nome pelo IP: o DNS
 
-O navegador tem o nome, `www.loja.com.br`, mas precisa do número. Para isso, ele pergunta ao **DNS**, sigla do inglês *Domain Name System*, "sistema de nomes de domínio". O DNS é a lista de contatos da internet: recebe um nome e devolve o IP. A aula 1.4 mostra como ele funciona por dentro.
+O navegador tem o nome, `www.loja.com.br`, mas precisa do número. Para isso, ele pergunta ao **DNS**, sigla do inglês *Domain Name System*, "sistema de nomes de domínio". O DNS é a lista de contatos da internet: recebe um nome e devolve o IP. A [[programacao/protocolos-da-web/modulo-1/04-enderecos-na-internet-ip-dns-e-porta|aula 1.4]] mostra como ele funciona por dentro.
 
 Se você abriu o site há pouco, o computador já guardou a resposta, e este passo fica mais rápido.
 

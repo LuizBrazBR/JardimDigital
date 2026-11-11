@@ -145,7 +145,7 @@ Do outro lado, o trabalho é outro.
 
 ### 1. Ficar escutando
 
-O servidor fica ligado o tempo todo, numa porta, esperando alguém chamar. O navegador só abre a conversa quando o usuário pede. A aula 1.4 mostra como a porta funciona.
+O servidor fica ligado o tempo todo, numa porta, esperando alguém chamar. O navegador só abre a conversa quando o usuário pede. A [[programacao/protocolos-da-web/modulo-1/04-enderecos-na-internet-ip-dns-e-porta|aula 1.4]] mostra como a porta funciona.
 
 ### 2. Atender muitos clientes ao mesmo tempo
 

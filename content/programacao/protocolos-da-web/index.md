@@ -11,7 +11,7 @@ Resumos das aulas do curso de Protocolos da Web, a trilha que veio depois da [[p
 1. [[programacao/protocolos-da-web/modulo-1/01-cliente-e-servidor-o-modelo-por-tras-da-web|Cliente e servidor: o modelo por trás da web]]
 2. [[programacao/protocolos-da-web/modulo-1/02-o-que-acontece-quando-voce-digita-uma-url-e-aperta-enter|O que acontece quando você digita uma URL e aperta Enter]]
 3. [[programacao/protocolos-da-web/modulo-1/03-o-papel-do-navegador-e-do-servidor|O papel do navegador e do servidor]]
-4. Endereços na internet: IP, DNS e porta
+4. [[programacao/protocolos-da-web/modulo-1/04-enderecos-na-internet-ip-dns-e-porta|Endereços na internet: IP, DNS e porta]]
 5. O que é um back-end e o que ele faz
 
 ## Módulo 2 – HTTP por dentro

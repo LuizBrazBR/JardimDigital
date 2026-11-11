@@ -31,7 +31,7 @@ O que faz de um programa um cliente não é ser navegador, aplicativo ou comando
 > [!abstract] Definição
 > **[[glossario/servidor|Servidor]] é o programa que fica esperando pedidos e responde a cada um.**
 
-Ele passa o tempo todo ligado, pronto para atender quem chegar. O nome técnico disso é "ficar escutando", e a aula 1.4 mostra como funciona.
+Ele passa o tempo todo ligado, pronto para atender quem chegar. O nome técnico disso é "ficar escutando", e a [[programacao/protocolos-da-web/modulo-1/04-enderecos-na-internet-ip-dns-e-porta|aula 1.4]] mostra como funciona.
 
 A confusão mais comum é achar que servidor é a máquina. Servidor é **o programa**. Ele pode rodar num computador grande numa sala refrigerada, num computador alugado na nuvem ou no seu notebook, enquanto você testa o que está fazendo. O que faz dele um servidor é o trabalho que ele faz: esperar e responder.
 
@@ -120,7 +120,7 @@ A última linha é a mesma ideia da [[programacao/logica-de-programacao/modulo-1
 
 **2. "O mais usado" depende de onde.** Na web, o HTTP é praticamente o único: quase tudo que o navegador pede vai em HTTP, ou em HTTPS, a versão protegida, que é o assunto da aula 2.5. Mas a internet leva outras conversas, com outros protocolos. O e-mail, por exemplo, passa de um servidor para outro por um protocolo chamado SMTP.
 
-E o próprio HTTP viaja em cima de outros protocolos, que cuidam de levar a mensagem até o computador certo. Pense numa carta: o idioma em que ela foi escrita é uma coisa, e as regras dos Correios, como o endereço e o CEP no envelope, são outra. O carteiro não lê a carta, e a carta não precisa saber a rota do caminhão. O HTTP é o idioma da carta. A parte do endereço é a aula 1.4, sobre IP, DNS e porta.
+E o próprio HTTP viaja em cima de outros protocolos, que cuidam de levar a mensagem até o computador certo. Pense numa carta: o idioma em que ela foi escrita é uma coisa, e as regras dos Correios, como o endereço e o CEP no envelope, são outra. O carteiro não lê a carta, e a carta não precisa saber a rota do caminhão. O HTTP é o idioma da carta. A parte do endereço é a [[programacao/protocolos-da-web/modulo-1/04-enderecos-na-internet-ip-dns-e-porta|aula 1.4]], sobre IP, DNS e porta.
 
 ### Uma espiada numa mensagem HTTP
 
@@ -204,7 +204,7 @@ Um exemplo de verdade: o que a aba Headers mostra para a página do verbete [[gl
 | `Request URL: https://luizbrazbr.github.io/JardimDigital/glossario/http` | o endereço pedido |
 | `Request method: GET` | "me manda", a primeira palavra da requisição |
 | `Status code: 200 OK` | "deu certo", da primeira linha da resposta |
-| `Remote address: 185.199.108.153:443` | o endereço do computador onde roda o servidor, e a porta. A aula 1.4 explica os dois |
+| `Remote address: 185.199.108.153:443` | o endereço do computador onde roda o servidor, e a porta. A [[programacao/protocolos-da-web/modulo-1/04-enderecos-na-internet-ip-dns-e-porta\|aula 1.4]] explica os dois |
 
 **Response Headers**, o que o servidor contou:
 
