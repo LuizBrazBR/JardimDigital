@@ -21,6 +21,14 @@ Todo aparelho ligado a uma rede, seja um servidor, o seu notebook ou o seu celul
 
 IP é a sigla de *Internet Protocol*, "protocolo da internet". É o protocolo que leva os dados de um computador a outro, passando por muitos computadores no meio do caminho. É a parte dos Correios da carta da aula 1.1: o HTTP é o idioma da carta, e o IP cuida do envelope. Ele não lê a carta, só olha o endereço.
 
+> [!info] IP: o protocolo e o endereço
+> A sigla aparece com dois sentidos, e é fácil confundir:
+>
+> - **o IP**, o protocolo: as regras de como os dados viajam e são entregues;
+> - **o endereço IP**: o número que esse protocolo usa para saber aonde entregar.
+>
+> Um depende do outro, como os Correios e o endereço no envelope. Os Correios são o serviço que leva a carta; o endereço, com rua, número e CEP, segue o formato que os Correios sabem ler. Do mesmo jeito, o endereço IP segue o formato que o protocolo IP sabe ler, e por isso leva o nome dele. Quando alguém diz "o IP do meu computador", é um atalho para "o **endereço** IP do meu computador". No resto da aula, quando o texto fala de um número, é o endereço; quando fala de levar os dados, é o protocolo.
+
 Os dados não viajam inteiros. Eles são cortados em pedaços, os **pacotes**, e cada pacote leva dois IPs no envelope: o de destino, para saber aonde ir, e o de origem, para a resposta saber voltar. O TCP da aula 1.2 trabalha junto: o IP entrega cada pacote no computador certo, e o TCP confere se chegaram todos, na ordem. Por isso a dupla costuma aparecer com um nome só, **TCP/IP**.
 
 ### IPv4: quatro números
@@ -72,12 +80,17 @@ Numa URL, um IPv6 vai entre colchetes: `http://[::1]:3000/`. É por causa do par
 O seu notebook também tem um IP. No terminal do VS Code:
 
 ```powershell
-ipconfig | Select-String IPv4
+ipconfig | findstr IPv4
 ```
 
 ```
    Endereço IPv4. . . . . . . .  . . . . . . . : 192.168.0.57
 ```
+
+O `ipconfig` mostra tudo sobre as redes do computador, e é bastante coisa. O `|`, a barra em pé, passa o que um comando escreveu para o próximo, e o `findstr` deixa só as linhas que têm o texto `IPv4`. Esse comando funciona no PowerShell, no Prompt de Comando (o CMD) e no Git Bash. No Git Bash, o `ç` de "Endereço" pode sair como um símbolo estranho, por causa de acentuação; o número sai certo.
+
+> [!warning] Cada terminal tem os seus comandos
+> O VS Code pode abrir três terminais diferentes no Windows: o **PowerShell**, que é o padrão, o **Command Prompt** (o CMD) e o **Git Bash**. Programas como o `ipconfig`, o `findstr`, o `nslookup` e o `curl.exe` funcionam nos três. Mas alguns comandos desta aula, como o `Resolve-DnsName`, o `Get-DnsClientCache` e o `Get-Content`, são do PowerShell, e nos outros dois dão erro, como `command not found`. Os blocos marcados com `powershell` são para rodar nele. Para abrir um PowerShell no VS Code, clique na setinha ao lado do `+` do terminal e escolha **PowerShell**. O nome do terminal aparece no canto direito do painel.
 
 O seu número vai sair diferente, mas provavelmente começa com `192.168`, `10` ou `172`. São as faixas de **IP privado**: endereços que só valem dentro de uma rede local, como a da sua casa ou a da sua empresa. Milhões de casas usam os mesmos `192.168.0.x`, e não tem problema, porque esses números nunca saem para a internet.
 
