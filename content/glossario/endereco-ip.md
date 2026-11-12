@@ -5,7 +5,7 @@ title: Endereço IP
 > [!abstract] Definição
 > **O número que diz onde está um computador numa rede, como o endereço de uma casa diz onde ela fica na cidade.** É para esse número que os dados viajam. IP é a sigla de *Internet Protocol*, "protocolo da internet".
 
-O formato mais comum é o **IPv4**, com quatro números de 0 a 255 separados por ponto, como `203.0.113.55`. Como os IPv4 acabaram, existe também o **IPv6**, com oito grupos em hexadecimal separados por dois-pontos, como `2001:db8::1`. As pessoas usam nomes, e o [[glossario/dns|DNS]] troca o nome pelo IP. Dentro do computador, quem diz qual programa recebe os dados é a [[glossario/porta|porta]]. O `localhost` é o IP do próprio computador: `127.0.0.1` ou `::1`. Ver a aula [[programacao/protocolos-da-web/modulo-1/04-enderecos-na-internet-ip-dns-e-porta|1.4 Endereços na internet: IP, DNS e porta]].
+O formato mais comum é o **IPv4**, com quatro números de 0 a 255 separados por ponto, como `203.0.113.55`. Como os IPv4 acabaram, existe também o **IPv6**, com oito grupos em hexadecimal separados por dois-pontos, como `2001:db8::1`. As pessoas usam nomes, e o [[glossario/dns|DNS]] troca o nome pelo IP. Dentro do computador, quem diz qual programa recebe os dados é a [[glossario/porta|porta]]. O `localhost` é o IP do próprio computador: `127.0.0.1` ou `::1`. Em casa, o IP do computador é **privado**, como `192.168.0.57`, e só vale dentro da rede local. Quem aparece para a internet é o IP **público** do [[glossario/roteador|roteador]]. Ver a aula [[programacao/protocolos-da-web/modulo-1/04-enderecos-na-internet-ip-dns-e-porta|1.4 Endereços na internet: IP, DNS e porta]].
 
 ## De onde vem a palavra
 

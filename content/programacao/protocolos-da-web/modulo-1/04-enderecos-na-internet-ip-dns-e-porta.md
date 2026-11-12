@@ -92,17 +92,74 @@ O `ipconfig` mostra tudo sobre as redes do computador, e é bastante coisa. O `|
 > [!warning] Cada terminal tem os seus comandos
 > O VS Code pode abrir três terminais diferentes no Windows: o **PowerShell**, que é o padrão, o **Command Prompt** (o CMD) e o **Git Bash**. Programas como o `ipconfig`, o `findstr`, o `nslookup` e o `curl.exe` funcionam nos três. Mas alguns comandos desta aula, como o `Resolve-DnsName`, o `Get-DnsClientCache` e o `Get-Content`, são do PowerShell, e nos outros dois dão erro, como `command not found`. Os blocos marcados com `powershell` são para rodar nele. Para abrir um PowerShell no VS Code, clique na setinha ao lado do `+` do terminal e escolha **PowerShell**. O nome do terminal aparece no canto direito do painel.
 
+Esse número é o IP **do seu computador** dentro da rede da sua casa, a **rede local**. Não é o IP do roteador, nem o que os sites veem.
+
 O seu número vai sair diferente, mas provavelmente começa com `192.168`, `10` ou `172`. São as faixas de **IP privado**: endereços que só valem dentro de uma rede local, como a da sua casa ou a da sua empresa. Milhões de casas usam os mesmos `192.168.0.x`, e não tem problema, porque esses números nunca saem para a internet.
 
-Quem sai é o **roteador**. Ele tem um IP público, que vale na internet inteira, e fala em nome de todos os aparelhos da casa. Quando a resposta volta, ele entrega ao aparelho que pediu:
+### O roteador: um IP de cada lado
+
+Quem sai para a internet é o **[[glossario/roteador|roteador]]**. Ele fica entre duas redes, a da sua casa e a internet, e por isso tem dois IPs, um de cada lado:
 
 ```
-notebook   192.168.0.57  \
-celular    192.168.0.80   >  roteador  ->  na internet, todos aparecem como 198.51.100.7
-TV         192.168.0.91  /
+notebook  192.168.0.57 \
+celular   192.168.0.80  >  192.168.0.1  [roteador]  198.51.100.7  ->  internet
+TV        192.168.0.91 /
+                           IP interno               IP público
 ```
 
-Então a frase "todo aparelho tem um IP" está certa, mas com um detalhe: o IP do seu notebook vale só dentro da sua rede. Para um servidor lá fora, quem pediu foi o IP do roteador.
+- **O IP interno**, aqui `192.168.0.1`, é o endereço do roteador dentro da casa. Para os aparelhos da casa, o roteador é o **gateway**, o portão: todo pacote que vai para fora da rede passa por ele. Foi o roteador também que deu o `192.168.0.57` ao notebook. Quando um aparelho entra no Wi-Fi, ele pede um número, e o roteador empresta um que esteja livre. Esse serviço se chama **DHCP**, *Dynamic Host Configuration Protocol*, "protocolo de configuração automática de host".
+- **O IP público**, aqui `198.51.100.7`, quem dá é a operadora de internet. Ele vale na internet inteira. O roteador fala em nome de todos os aparelhos da casa com esse IP só. Quando a resposta volta, ele entrega ao aparelho que pediu. Essa troca de endereços se chama **NAT**, *Network Address Translation*, "tradução de endereços de rede".
+
+Então a frase "todo aparelho tem um IP" está certa, mas com um detalhe: o IP do seu notebook vale só dentro da sua rede. Para um servidor lá fora, quem pediu foi o IP público do roteador.
+
+Na página de configuração do roteador, os dois lados aparecem com siglas em inglês. O lado de dentro é a **LAN**, *Local Area Network*, "rede local". O lado de fora é a **WAN**, *Wide Area Network*, "rede de longa distância".
+
+### Ver os dois IPs do roteador
+
+O de dentro aparece no mesmo `ipconfig`. É só pedir ao `findstr` duas palavras em vez de uma. Entre aspas e separadas por espaço, ele deixa as linhas que têm qualquer uma delas:
+
+```powershell
+ipconfig | findstr "IPv4 Gateway"
+```
+
+```
+   Endereço IPv4. . . . . . . .  . . . . . . . : 192.168.0.57
+   Gateway Padrão. . . . . . . . . . . . . . . : 192.168.0.1
+```
+
+O **Gateway Padrão** é o roteador visto de dentro da rede. Num Windows em inglês, as linhas saem como `IPv4 Address` e `Default Gateway`, e o comando funciona igual. Se aparecer mais de um par, ou uma linha de Gateway sem número, é de outra placa de rede do computador, como a de uma VPN ou de uma máquina virtual. Vale o par que tem número nas duas linhas.
+
+Digitar esse IP no navegador, como `http://192.168.0.1`, abre a página de configuração do roteador. A senha costuma estar numa etiqueta embaixo do aparelho. Só olhe, não mude nada lá sem saber o que é: uma configuração errada pode derrubar a internet da casa.
+
+O IP público, o computador não sabe sozinho, porque quem tem esse IP é o roteador. É preciso perguntar a alguém lá fora. O `ifconfig.me` é um site que responde só com o IP de quem pediu:
+
+```powershell
+curl.exe -4 ifconfig.me
+```
+
+```
+198.51.100.7
+```
+
+O `-4` pede a conexão por IPv4. Sem ele, se a sua internet tiver IPv6, a resposta pode vir num IPv6. Pesquisar "qual é meu ip" no Google mostra o mesmo número.
+
+### Modem ou roteador?
+
+Muita gente mistura os dois nomes, porque na maioria das casas eles estão no mesmo aparelho. Mas são dois trabalhos diferentes:
+
+| aparelho | o que faz | tem um IP que você usa? |
+|---|---|---|
+| **[[glossario/modem\|modem]]** | traduz o sinal que chega da operadora, pela fibra, pelo cabo ou pela linha de telefone, para um sinal que o computador entende | não: ele só traduz o sinal, não escolhe para onde vão os pacotes |
+| **[[glossario/roteador\|roteador]]** | liga a rede da casa à internet: dá os IPs internos (DHCP), fala por todos com o IP público (NAT) e entrega cada resposta ao aparelho certo | sim, dois: o interno e o público |
+
+Com fibra, a operadora instala um aparelho só, que faz os dois trabalhos. O nome técnico dele é **ONT**, *Optical Network Terminal*, "terminal de rede óptica", e no dia a dia todo mundo chama de "modem". Por isso, quando alguém fala do "IP do modem", quase sempre quer dizer o IP do roteador: o interno, para abrir a página de configuração, ou o público, o que a internet vê. Para saber qual dos dois, olhe para que a pessoa quer o número.
+
+> [!info] Quando nem o IP público é só seu
+> Como os IPv4 acabaram, muitas operadoras no Brasil não dão um IP público para cada casa. Elas põem vários clientes atrás de um IP só e fazem, do lado delas, o mesmo NAT que o seu roteador faz na sua casa. Isso se chama **CGNAT**, *Carrier-Grade NAT*, "NAT de operadora".
+>
+> Dá para perceber de dois jeitos. Na página do roteador, o IP da WAN começa com um número entre `100.64` e `100.127`, uma faixa reservada para isso. Ou o IP da WAN é diferente do que o `curl.exe -4 ifconfig.me` mostra.
+>
+> Para navegar, não muda nada. Muda para quem quer rodar um servidor em casa e receber conexões de fora: elas não chegam, porque o IP público é dividido com outros clientes, e o NAT da operadora não sabe para qual casa mandar. Nesse caso, é preciso pedir um IP público à operadora.
 
 ### localhost: o próprio computador
 
@@ -440,7 +497,27 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > > [!success]- Resposta
 > > Só o a e o c. O b e o d têm um número maior que 255, que não cabe num byte. O e tem só três números, e o IPv4 tem quatro. O c é o resolvedor público do Google, e o a é um IP privado, de rede local.
 
-> [!question] 3. Qual passo falhou?
+> [!question] 3. De quem é cada IP?
+> Num computador de casa, estes dois comandos deram isto:
+>
+> ```
+> PS> ipconfig | findstr "IPv4 Gateway"
+>    Endereço IPv4. . . . . . . .  . . . . . . . : 192.168.1.23
+>    Gateway Padrão. . . . . . . . . . . . . . . : 192.168.1.1
+> PS> curl.exe -4 ifconfig.me
+> 198.51.100.40
+> ```
+>
+> - a) De quem é cada um dos três números?
+> - b) Quando esse computador abre um site, qual IP o site vê?
+> - c) Qual número se digita no navegador para abrir a página de configuração do roteador?
+>
+> > [!success]- Resposta
+> > - a) O `192.168.1.23` é o do computador, na rede local. O `192.168.1.1` é o do roteador, do lado de dentro. O `198.51.100.40` é o do roteador, do lado de fora: o IP público, que a operadora deu.
+> > - b) O `198.51.100.40`. O IP privado do computador nunca sai da casa: o roteador fala por ele, com o NAT.
+> > - c) O `192.168.1.1`, o Gateway Padrão: `http://192.168.1.1`.
+
+> [!question] 4. Qual passo falhou?
 > Dois pedidos deram errado:
 >
 > ```
@@ -456,13 +533,13 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > >
 > > Nenhum dos dois chegou ao HTTP. Um 404 ou um 500 seriam respostas HTTP, e isso quer dizer que a conexão funcionou.
 
-> [!question] 4. Dois na mesma porta
+> [!question] 5. Dois na mesma porta
 > Você rodou o `servidor.js` duas vezes, e a segunda deu `EADDRINUSE`. Por que o sistema não deixa os dois escutarem na 3000? Como resolver?
 >
 > > [!success]- Resposta
 > > Porque a porta é o que diz ao sistema para qual programa entregar os pacotes que chegam. Com dois programas na mesma porta, ele não saberia qual escolher. Para resolver, desligue o primeiro com Ctrl+C, ou rode o segundo em outra porta, como a 3001.
 
-> [!question] 5. O site mudou de servidor
+> [!question] 6. O site mudou de servidor
 > A loja trocou de servidor às 14h, e o IP mudou. O DNS dela tem TTL de 3600. Às 14h30, alguns clientes ainda caem no servidor antigo. Por quê? Até quando isso pode acontecer?
 >
 > > [!success]- Resposta
@@ -470,13 +547,13 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > >
 > > Por isso, quem vai mudar de servidor costuma baixar o TTL, por exemplo para 300, alguns dias antes. Assim, na hora da troca, os caches esquecem a resposta antiga em cinco minutos.
 
-> [!question] 6. O DNS caiu
+> [!question] 7. O DNS caiu
 > O resolvedor da sua operadora parou de responder. A internet parou?
 >
 > > [!success]- Resposta
 > > Não. Os computadores continuam se achando por IP, e os pacotes continuam viajando. O que parou foi a tradução: você não consegue chegar aos sites pelo nome. Os sites que você abriu há pouco ainda funcionam por um tempo, porque o IP deles está no cache, até o TTL acabar. Trocar o resolvedor do computador por um público, como o `1.1.1.1`, resolve.
 
-> [!question] 7. Monte o par
+> [!question] 8. Monte o par
 > O DNS diz que `www.loja.com.br` é `203.0.113.55`. Para qual par IP:porta vai a conexão de cada URL?
 >
 > - a) `https://www.loja.com.br/produtos`
@@ -490,19 +567,19 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > > - c) `203.0.113.55:8080`: a porta escrita vale mais que a padrão.
 > > - d) `[::1]:3000`: o IPv6 deste computador, na porta 3000. Não há DNS nenhum, porque a URL já traz o número.
 
-> [!question] 8. O banco e o site na mesma máquina
+> [!question] 9. O banco e o site na mesma máquina
 > Um servidor, com o IP `203.0.113.55`, roda o site na porta 443 e o PostgreSQL na 5432. Chegam dois pedidos, um em `203.0.113.55:443` e outro em `203.0.113.55:5432`. Quem recebe cada um?
 >
 > > [!success]- Resposta
 > > O IP é o mesmo, então os dois chegam ao mesmo computador. A porta decide o resto: o pedido na 443 vai para o servidor do site, e o da 5432 vai para o PostgreSQL. É o mesmo prédio, com dois apartamentos.
 
-> [!question] 9. Um IP, muitos sites
+> [!question] 10. Um IP, muitos sites
 > Este site e o de milhões de outras pessoas ficam no GitHub, nos mesmos quatro IPs, como o `185.199.108.153`. Se o pedido de todos chega ao mesmo IP e à mesma porta, 443, como o servidor sabe qual site mandar?
 >
 > > [!success]- Resposta
 > > Pelo nome, que continua indo junto: no TLS e no cabeçalho `Host` da requisição. O IP e a porta levam o pedido até o servidor do GitHub, e o `Host: luizbrazbr.github.io` diz qual dos sites ele quer. É por isso que o nome não some depois do DNS.
 
-> [!question] 10. A porta do curl
+> [!question] 11. A porta do curl
 > No relatório do curl, apareceu `from ::1 port 58890`. Quem escolheu esse 58890? Por que o curl precisa de uma porta, se quem escuta é o servidor?
 >
 > > [!success]- Resposta
@@ -514,11 +591,16 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 - **Internet**: encurtamento do inglês *internetwork*, de *inter-*, "entre", e *network*, "rede": a rede entre as redes. A forma curta já aparece em 1974, no título de um documento de Vint Cerf e outros pesquisadores sobre o TCP, e o Departamento de Defesa dos Estados Unidos adotou o nome *Internet* nos anos 1980. Faz sentido: a internet não é uma rede só, mas milhares de redes, como a da sua casa, a da sua empresa e a do GitHub, que o IP consegue atravessar.
 - **Resolver**: do latim *resolvere*, "desatar, soltar", de *re-*, "de volta", e *solvere*, "soltar". Do mesmo *solvere* vêm **solução**, **dissolver** e **absolver**. Resolver um nome é desatar o nome até chegar ao número que estava preso nele.
 - **Hexadecimal**: junta o grego *héx*, "seis", e o latim *decimālis*, de *decem*, "dez": seis mais dez, dezesseis. É um nome misturado, meio grego e meio latim.
+- **Roteador**: de **rota**, que veio do francês antigo *rote*, de *(via) rupta*, "caminho rompido": um caminho aberto à força. *Ruptus* é "rompido", o mesmo de **ruptura** e **romper**. O roteador escolhe a rota de cada pacote. Em inglês, *router*, de *route*.
+- **Modem**: abreviação do inglês *modulator-demodulator*, "modulador-demodulador". Modular, do latim *modulārī*, "medir, regular, marcar o compasso", que vem de *modulus*, "pequena medida", de *modus*, "medida", o mesmo de **modo** e **moderar**. O modem modula: põe os dados num sinal que viaja pelo fio ou pela fibra. E demodula: tira os dados do sinal que chega.
+- **Gateway**: do inglês *gate*, "portão", e *way*, "caminho": o portão por onde se sai da rede.
 - **Localhost**: *local*, do latim *locālis*, de *locus*, "lugar", o mesmo de **localizador** da aula 1.2, e **[[glossario/host|host]]**: o computador que fica no lugar onde você está.
 
 > [!tip] Para guardar
 > - O **IP** diz onde está um computador na rede. O **IPv4** tem quatro números de 0 a 255 (`203.0.113.55`). O **IPv6** tem oito grupos em hexadecimal (`2001:db8::1`), e existe porque os IPv4 acabaram.
-> - O IP do seu computador em casa é **privado** (`192.168...`) e só vale na sua rede. Para a internet, quem aparece é o roteador.
+> - O IPv4 que o `ipconfig` mostra é o **do seu computador**, na rede local. Ele é **privado** (`192.168...`) e só vale dentro da sua rede.
+> - O **roteador** tem dois IPs. O **interno** é o **Gateway Padrão** (`ipconfig | findstr "IPv4 Gateway"`), e abre a página de configuração. O **público**, que a operadora dá, é o que a internet vê (`curl.exe -4 ifconfig.me`). Com o **NAT**, o roteador fala por todos os aparelhos da casa usando o IP público.
+> - O **modem** só traduz o sinal da operadora. No Brasil, ele e o roteador costumam vir num aparelho só, e todo mundo chama esse aparelho de "modem".
 > - `localhost` é este computador: `127.0.0.1` ou `::1`.
 > - O **DNS** troca o nome pelo IP. A pergunta passa pelos caches e pelo **resolvedor**. Se ninguém sabe, a busca vai da **raiz** ao final (`.br`) e dele ao servidor **autoritativo** do domínio, da direita para a esquerda no nome.
 > - O **TTL** diz por quanto tempo uma resposta do DNS pode ficar guardada. Por isso uma mudança de IP demora a chegar a todos.
@@ -527,4 +609,4 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > - Toda conexão vai a um **par IP:porta**. Mas o nome continua indo junto, no `Host` e no TLS, porque um IP pode servir muitos sites.
 > - Dá para ver tudo isso: `nslookup` e `Resolve-DnsName` para o DNS, `netstat` para as portas escutando e `curl.exe -sv` para o caminho do nome até a conexão.
 
-Fontes: MDN: [IP Address](https://developer.mozilla.org/en-US/docs/Glossary/IP_Address), [DNS](https://developer.mozilla.org/en-US/docs/Glossary/DNS), [Port](https://developer.mozilla.org/en-US/docs/Glossary/Port), [What is a domain name?](https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name) · Cloudflare: [What is DNS?](https://www.cloudflare.com/learning/dns/what-is-dns/) · IANA: [Root servers](https://www.iana.org/domains/root/servers), [Port numbers](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml) · IETF: [RFC 1034, os conceitos do DNS](https://www.rfc-editor.org/rfc/rfc1034), [RFC 1918, os IPs privados](https://www.rfc-editor.org/rfc/rfc1918), [RFC 5737, os IPv4 de exemplo](https://www.rfc-editor.org/rfc/rfc5737), [RFC 3849, os IPv6 de exemplo](https://www.rfc-editor.org/rfc/rfc3849), [RFC 675, a primeira "internet"](https://www.rfc-editor.org/rfc/rfc675) · Node.js: [Common system errors](https://nodejs.org/api/errors.html#common-system-errors) · Microsoft: [Resolve-DnsName](https://learn.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname), [Get-DnsClientCache](https://learn.microsoft.com/en-us/powershell/module/dnsclient/get-dnsclientcache) · GitHub Docs: [Managing a custom domain for your GitHub Pages site](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site) · Wikipedia: [Domain Name System](https://en.wikipedia.org/wiki/Domain_Name_System), [IPv4 address exhaustion](https://en.wikipedia.org/wiki/IPv4_address_exhaustion), [Hosts (file)](https://en.wikipedia.org/wiki/Hosts_(file)) · Wiktionary: [endereço](https://en.wiktionary.org/wiki/endere%C3%A7o), [endereçar](https://en.wiktionary.org/wiki/endere%C3%A7ar), [address](https://en.wiktionary.org/wiki/address), [Internet](https://en.wiktionary.org/wiki/Internet), [resolvo](https://en.wiktionary.org/wiki/resolvo), [hexadecimal](https://en.wiktionary.org/wiki/hexadecimal)
+Fontes: MDN: [IP Address](https://developer.mozilla.org/en-US/docs/Glossary/IP_Address), [DNS](https://developer.mozilla.org/en-US/docs/Glossary/DNS), [Port](https://developer.mozilla.org/en-US/docs/Glossary/Port), [What is a domain name?](https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name) · Cloudflare: [What is DNS?](https://www.cloudflare.com/learning/dns/what-is-dns/) · IANA: [Root servers](https://www.iana.org/domains/root/servers), [Port numbers](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml) · IETF: [RFC 1034, os conceitos do DNS](https://www.rfc-editor.org/rfc/rfc1034), [RFC 1918, os IPs privados](https://www.rfc-editor.org/rfc/rfc1918), [RFC 6598, a faixa do CGNAT](https://www.rfc-editor.org/rfc/rfc6598), [RFC 2131, o DHCP](https://www.rfc-editor.org/rfc/rfc2131), [RFC 5737, os IPv4 de exemplo](https://www.rfc-editor.org/rfc/rfc5737), [RFC 3849, os IPv6 de exemplo](https://www.rfc-editor.org/rfc/rfc3849), [RFC 675, a primeira "internet"](https://www.rfc-editor.org/rfc/rfc675) · Node.js: [Common system errors](https://nodejs.org/api/errors.html#common-system-errors) · Microsoft: [Resolve-DnsName](https://learn.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname), [Get-DnsClientCache](https://learn.microsoft.com/en-us/powershell/module/dnsclient/get-dnsclientcache) · GitHub Docs: [Managing a custom domain for your GitHub Pages site](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site) · Wikipedia: [Domain Name System](https://en.wikipedia.org/wiki/Domain_Name_System), [IPv4 address exhaustion](https://en.wikipedia.org/wiki/IPv4_address_exhaustion), [Hosts (file)](https://en.wikipedia.org/wiki/Hosts_(file)) · Wiktionary: [endereço](https://en.wiktionary.org/wiki/endere%C3%A7o), [endereçar](https://en.wiktionary.org/wiki/endere%C3%A7ar), [address](https://en.wiktionary.org/wiki/address), [Internet](https://en.wiktionary.org/wiki/Internet), [resolvo](https://en.wiktionary.org/wiki/resolvo), [hexadecimal](https://en.wiktionary.org/wiki/hexadecimal), [route](https://en.wiktionary.org/wiki/route), [modem](https://en.wiktionary.org/wiki/modem), [modulor](https://en.wiktionary.org/wiki/modulor), [gateway](https://en.wiktionary.org/wiki/gateway)
