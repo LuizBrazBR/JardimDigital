@@ -324,6 +324,29 @@ A aula do curso diz que, depois do DNS, a conversa acontece por IP e porta, e qu
 
 Isso acontece porque um IP pode servir muitos sites. O `185.199.108.153` não é só deste site: é um dos quatro IPs que o GitHub usa para todos os sites que ele hospeda, de milhões de pessoas. Quando um pedido chega nesse IP, a única coisa que diz ao servidor qual site mandar é o nome, no `Host`.
 
+> [!example] Um prédio, muitos apartamentos
+> Pense no IP como o endereço de um prédio, e em cada site como um apartamento dentro dele. Milhões de sites do GitHub moram no mesmo prédio. A carta chega ao prédio pelo endereço, o IP. Quem decide para qual apartamento ela vai é o porteiro, que lê o nome no envelope, o `Host`.
+>
+> Dá para ver isso no terminal, pedindo dois sites diferentes do GitHub:
+>
+> ```powershell
+> curl.exe -s -o NUL -w "%{remote_ip}\n" https://luizbrazbr.github.io/JardimDigital/
+> curl.exe -s -o NUL -w "%{remote_ip}\n" https://octocat.github.io/
+> ```
+>
+> ```
+> 185.199.110.153
+> 185.199.110.153
+> ```
+>
+> O `-w "%{remote_ip}\n"` manda o curl escrever só o IP a que se conectou. Os dois sites são diferentes, mas o IP é o mesmo. Só o nome no `Host` separa um do outro. No seu teste, o IP pode ser outro dos quatro do GitHub, de `185.199.108.153` a `185.199.111.153`. Mesmo que os dois saiam diferentes, são do mesmo conjunto: `Resolve-DnsName luizbrazbr.github.io` e `Resolve-DnsName octocat.github.io` devolvem os mesmos quatro.
+
+> [!warning] São duas setas, em sentidos opostos
+> - **Um IP, muitos nomes**: é esta seção. Vários sites dividem o mesmo computador, e o `Host` diz qual deles você quer.
+> - **Um nome, muitos IPs**: é a segunda razão de "Por que nomes, e não números", lá em cima. Um site grande tem vários computadores com o mesmo conteúdo, e o DNS devolve a lista. Qualquer um deles serve, porque todos têm a mesma coisa. Não há confusão, porque não importa em qual a pessoa cai.
+>
+> No GitHub, as duas acontecem ao mesmo tempo. O nome `luizbrazbr.github.io` tem quatro IPs, e cada um desses IPs serve milhões de sites.
+
 Por isso, digitar o IP direto no navegador, como `https://185.199.108.153`, costuma não dar no site que você queria. Sem o nome, o servidor não sabe qual dos sites mandar, e o certificado do TLS não bate com um número.
 
 ### O nome bate? O certificado
