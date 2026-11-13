@@ -207,8 +207,23 @@ Repare que a busca segue o nome da direita para a esquerda, do mais geral para o
 | Parada | Quem é | O que sabe |
 |---|---|---|
 | servidor **raiz** | 13 nomes, com mais de mil cópias pelo mundo | quem cuida de cada final: `.br`, `.com`, `.org`... |
-| servidor do **final** | o do `.br` fica com o Registro.br | quem cuida de cada domínio registrado com aquele final |
+| servidor do **final** | o do `.br` fica com o Registro.br; o do `.com`, com a Verisign | quem cuida de cada domínio registrado com aquele final |
 | servidor **autoritativo** | o do próprio domínio, cuidado pelo dono ou pela empresa que hospeda o site | o IP de cada nome dentro do domínio |
+
+> [!question] E o `.com`, quem cuida?
+> Todo final tem um dono oficial, chamado **registro** (em inglês, *registry*). É ele quem guarda a lista de domínios com aquele final e mantém os servidores do final.
+>
+> | Final | Registro |
+> |---|---|
+> | `.br` | Registro.br, parte do NIC.br, uma entidade brasileira sem fins lucrativos |
+> | `.com` e `.net` | Verisign, uma empresa americana |
+> | `.org` | Public Interest Registry, uma entidade americana sem fins lucrativos |
+>
+> Quem decide qual registro fica com cada final é a **ICANN**, uma organização sem fins lucrativos dos Estados Unidos que coordena os nomes e números da internet. O `.com` não é de nenhum país, então ela contrata uma empresa para cuidar dele. Os finais de país, como o `.br`, ficam com uma entidade do próprio país.
+>
+> Quem compra um `.com` não fala com a Verisign. Compra numa loja de domínios, como a GoDaddy ou a Hostinger, chamada **registrador** (*registrar*). A loja cobra o cliente, avisa a Verisign, e a Verisign põe o domínio na lista do `.com`. No `.br`, o Registro.br vende direto.
+>
+> Não confunda o servidor do final com o servidor raiz. A raiz não cuida do `.com`, só sabe quem cuida. A Verisign cuida do `.com` e, por acaso, também mantém 2 dos 13 servidores raiz, mas são trabalhos separados.
 
 O servidor autoritativo tem esse nome porque é a **autoridade** sobre o domínio: a resposta dele é a oficial. As outras são cópias guardadas no caminho.
 
