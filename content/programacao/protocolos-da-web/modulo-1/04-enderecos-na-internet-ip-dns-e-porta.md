@@ -609,7 +609,7 @@ Quatro coisas para reparar:
 - **Com o nome, há um passo a mais.** As linhas `was resolved`, `IPv6` e `IPv4` são a resolução: o `localhost` virou `::1` e `127.0.0.1`. Com o número, elas nem aparecem, porque não há nome para resolver.
 - **O IPv6 vem entre colchetes:** `[::1]:3000`, pelo mesmo motivo da URL. Sem eles, não daria para saber onde o IP termina e a porta começa.
 - **O `from ::1 port 58890` é a porta do cliente**, a que o sistema sorteou para o curl. Rode de novo, e o número muda. A do servidor continua 3000.
-- **O `Host` muda**, mas a resposta é a mesma. O nosso servidor nem olha para o `Host`, porque só tem um site. O servidor do GitHub olha.
+- **O `Host` muda**, mas a resposta é a mesma. O `Host` chega ao `servidor.js` e fica guardado em `requisicao.headers.host`, mas nenhuma linha do código lê esse valor: o `if` só olha o método e o caminho. Ninguém programou o servidor para isso, porque ele só tem um site. O servidor do GitHub foi programado para ler o `Host`, como o `sites.js` da seção anterior.
 
 ### No Chrome
 
