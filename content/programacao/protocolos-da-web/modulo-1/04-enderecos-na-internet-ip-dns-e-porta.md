@@ -525,6 +525,50 @@ Use o `servidor.js` da aula 1.3.
 
 Para desligar cada servidor, **Ctrl+C** no terminal dele.
 
+> [!question] Mas o GitHub não serve milhões de sites na mesma porta?
+> Serve, e não é contradição. A regra é **uma porta, um programa**, e não "uma porta, um site". No GitHub, **um programa só** escuta a porta 443 e serve todos os sites. Para cada pedido, ele lê o `Host` e escolhe de qual site mandar os arquivos.
+>
+> No passo 2, o problema foram **dois programas**, dois `node` separados, querendo a mesma porta. Para ter dois sites na mesma porta, o caminho é um programa só que olha o `Host`. Crie um `sites.js`:
+>
+> ```js
+> const http = require("node:http");
+>
+> const servidor = http.createServer((requisicao, resposta) => {
+>   const host = requisicao.headers.host;
+>   console.log("Host:", host);
+>
+>   resposta.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
+>
+>   if (host === "loja.local:3002") {
+>     resposta.end("Bem-vindo à loja");
+>   } else if (host === "blog.local:3002") {
+>     resposta.end("Bem-vindo ao blog");
+>   } else {
+>     resposta.end("Não conheço o site " + host);
+>   }
+> });
+>
+> servidor.listen(3002, () => {
+>   console.log("Servidor escutando na porta 3002");
+> });
+> ```
+>
+> Rode com `node sites.js` e, em outro terminal, peça os dois sites ao mesmo IP e à mesma porta, mudando só o `Host`. O `-H` do curl, de *header*, troca um cabeçalho do pedido:
+>
+> ```powershell
+> curl.exe -H "Host: loja.local:3002" http://localhost:3002/
+> curl.exe -H "Host: blog.local:3002" http://localhost:3002/
+> curl.exe http://localhost:3002/
+> ```
+>
+> ```
+> Bem-vindo à loja
+> Bem-vindo ao blog
+> Não conheço o site localhost:3002
+> ```
+>
+> Os três pedidos foram ao mesmo `localhost:3002`. Só o `Host` mudou, e a resposta mudou junto. É o que o servidor do GitHub faz, com milhões de nomes em vez de dois. Ter vários sites no mesmo programa, separados pelo nome, se chama **hospedagem virtual** (em inglês, *virtual hosting*). Cada site ali dentro é um **host virtual**.
+
 ### Por nome ou por número
 
 Com o servidor da porta 3000 rodando, peça com o nome:
