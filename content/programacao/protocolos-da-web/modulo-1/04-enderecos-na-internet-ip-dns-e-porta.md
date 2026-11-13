@@ -177,6 +177,19 @@ Decorar um número para cada site seria impossível. Mas não é o único motivo
 - **Um nome pode ter vários IPs.** O `www.google.com` devolve vários números de uma vez, um para cada servidor que responde por ele. Um curl da aula 1.2 já tinha recebido dois IPs para o `example.com` e tentado o primeiro.
 - **O mesmo nome pode dar IPs diferentes para pessoas diferentes.** Um site grande tem servidores em vários países, e o DNS pode responder a cada pessoa com o IP do servidor mais perto dela.
 
+> [!question] "O dono atualiza o DNS": então eu mexo no DNS?
+> Mexe, mas só na sua parte. Ninguém mexe no DNS inteiro: quem tem um domínio cuida só dos nomes que terminam com ele. E não precisa de comando nenhum. Quem cuida do DNS do domínio, seja o Registro.br, a Cloudflare ou a empresa de hospedagem, tem no site dela um **painel de DNS**, uma tabela assim:
+>
+> | Nome | Tipo | Valor |
+> |---|---|---|
+> | `www` | A | `203.0.113.55` |
+>
+> Cada linha é um **registro de DNS**. O tipo **A** quer dizer "este nome aponta para este IP". Quando a loja muda de servidor, o dono troca o `203.0.113.55` pelo IP novo e salva. Isso é atualizar o DNS.
+>
+> Essa tabela fica no servidor **autoritativo**, que aparece mais abaixo. A mudança não chega a todo mundo na hora: quem guardou o IP antigo continua usando ele até o **TTL** acabar, outra coisa que aparece mais abaixo. Por isso as hospedagens avisam que a mudança "pode levar algumas horas para propagar".
+>
+> Este site não tem domínio próprio: mora num endereço do GitHub, `luizbrazbr.github.io`, e o DNS desse nome é o GitHub quem cuida. Com um domínio comprado, é nesse painel que se cria a linha apontando para o GitHub.
+
 ### Antes do DNS: um arquivo só
 
 No começo da rede que deu origem à internet, a lista de nomes e números era um arquivo de texto, o `HOSTS.TXT`, cuidado por um escritório só, na Califórnia. Cada computador baixava uma cópia. Com milhares de computadores entrando na rede, um arquivo só não dava mais conta, e em 1983 Paul Mockapetris inventou o DNS.
@@ -312,6 +325,50 @@ A aula do curso diz que, depois do DNS, a conversa acontece por IP e porta, e qu
 Isso acontece porque um IP pode servir muitos sites. O `185.199.108.153` não é só deste site: é um dos quatro IPs que o GitHub usa para todos os sites que ele hospeda, de milhões de pessoas. Quando um pedido chega nesse IP, a única coisa que diz ao servidor qual site mandar é o nome, no `Host`.
 
 Por isso, digitar o IP direto no navegador, como `https://185.199.108.153`, costuma não dar no site que você queria. Sem o nome, o servidor não sabe qual dos sites mandar, e o certificado do TLS não bate com um número.
+
+### O nome bate? O certificado
+
+Para provar que é o dono do nome, o servidor mostra ao navegador um **[[glossario/certificado|certificado]]**: um documento digital que funciona como a carteira de identidade do site. Ele traz três coisas:
+
+- **os nomes** para os quais ele vale;
+- **quem assinou**: uma **autoridade certificadora**, uma empresa ou entidade em que o navegador confia, como a Let's Encrypt;
+- **a validade**: de quando até quando ele vale.
+
+Este é o certificado deste site, de verdade:
+
+| Campo | Valor |
+|---|---|
+| nomes | `*.github.io`, `github.io`, `*.github.com`, `github.com`... |
+| assinado por | Let's Encrypt |
+| vale até | 29/12/2026 |
+
+O `*` quer dizer "qualquer nome nesta posição". O `*.github.io` vale para `luizbrazbr.github.io`, para `fulano.github.io` e para qualquer outro nome com um pedaço só antes de `.github.io`. É assim que um certificado só serve a todos os sites que o GitHub hospeda.
+
+"O nome bater" é o navegador fazer esta conferência:
+
+1. pega o nome que está na barra de endereço: `luizbrazbr.github.io`;
+2. procura esse nome na lista de nomes do certificado;
+3. achou (o `*.github.io` cobre), segue a conversa. Não achou, para tudo e mostra a tela vermelha **"Sua conexão não é particular"**.
+
+O navegador confere também se quem assinou é uma autoridade em que ele confia e se o certificado não venceu. Mas é a conferência do nome que amarra o TLS ao DNS.
+
+**Por que isso protege.** Imagine alguém no Wi-Fi da lanchonete que engana o seu DNS e faz `loja.com.br` apontar para o computador dele. O navegador chega ao computador errado, e esse computador precisa mostrar um certificado com o nome `loja.com.br`. Ele não tem, porque a autoridade certificadora só dá certificado a quem prova que controla o domínio. Sem o nome certo no certificado, o navegador para antes de mandar qualquer coisa. O DNS pode ser enganado, e o certificado é a segunda conferência.
+
+E como a autoridade sabe quem controla o domínio? Pede uma prova que só o dono consegue dar. Uma delas: criar no painel de DNS uma linha com um código que ela inventou na hora. Se a linha aparece no DNS do domínio, quem pediu manda nele. É o mesmo painel de DNS do começo da aula.
+
+**No terminal.** Pedindo pelo IP, o curl faz a mesma conferência e para:
+
+```powershell
+curl.exe https://185.199.108.153
+```
+
+```
+curl: (60) schannel: SNI or certificate check failed: SEC_E_WRONG_PRINCIPAL (0x80090322) - The target principal name is incorrect.
+```
+
+*The target principal name is incorrect*: "o nome do destino está errado". O nome pedido, um número, não está na lista do certificado.
+
+**No Chrome.** Clique no ícone à esquerda do endereço, depois em **A conexão é segura** e em **O certificado é válido**. A janela que abre mostra para quem o certificado foi emitido, quem assinou e a validade. A aula 2.5 mostra o TLS e os certificados por dentro.
 
 ## Veja com os próprios olhos
 
@@ -609,6 +666,7 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 - **Roteador**: de **rota**, que veio do francês antigo *rote*, de *(via) rupta*, "caminho rompido": um caminho aberto à força. *Ruptus* é "rompido", o mesmo de **ruptura** e **romper**. O roteador escolhe a rota de cada pacote. Em inglês, *router*, de *route*.
 - **Modem**: abreviação do inglês *modulator-demodulator*, "modulador-demodulador". Modular, do latim *modulārī*, "medir, regular, marcar o compasso", que vem de *modulus*, "pequena medida", de *modus*, "medida", o mesmo de **modo** e **moderar**. O modem modula: põe os dados num sinal que viaja pelo fio ou pela fibra. E demodula: tira os dados do sinal que chega.
 - **Gateway**: do inglês *gate*, "portão", e *way*, "caminho": o portão por onde se sai da rede.
+- **[[glossario/certificado|Certificado]]**: de **certificar**, do latim *certificāre*, de *certus*, "certo", e *facere*, "fazer": tornar certo. *Certus* vem de *cernere*, "peneirar, separar, decidir", o mesmo de **discernir**. O certificado deixa certo quem é o dono do nome.
 - **Localhost**: *local*, do latim *locālis*, de *locus*, "lugar", o mesmo de **localizador** da aula 1.2, e **[[glossario/host|host]]**: o computador que fica no lugar onde você está.
 
 > [!tip] Para guardar
@@ -622,6 +680,8 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > - A **porta** diz qual programa, dentro do computador, recebe a conexão. Uma porta, um programa (`EADDRINUSE`). Porta sem ninguém escutando, conexão recusada.
 > - **Portas conhecidas**: 22 SSH, 53 DNS, 80 HTTP, 443 HTTPS. A porta do cliente é sorteada pelo sistema.
 > - Toda conexão vai a um **par IP:porta**. Mas o nome continua indo junto, no `Host` e no TLS, porque um IP pode servir muitos sites.
+> - No TLS, o servidor mostra um **certificado** com os nomes para os quais vale, assinado por uma **autoridade certificadora**. O navegador confere se o nome da barra de endereço está na lista. Se não está, para.
+> - Quem tem um domínio atualiza o DNS dele num **painel de DNS**: cada linha é um registro, e o tipo **A** liga um nome a um IP.
 > - Dá para ver tudo isso: `nslookup` e `Resolve-DnsName` para o DNS, `netstat` para as portas escutando e `curl.exe -sv` para o caminho do nome até a conexão.
 
-Fontes: MDN: [IP Address](https://developer.mozilla.org/en-US/docs/Glossary/IP_Address), [DNS](https://developer.mozilla.org/en-US/docs/Glossary/DNS), [Port](https://developer.mozilla.org/en-US/docs/Glossary/Port), [What is a domain name?](https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name) · Cloudflare: [What is DNS?](https://www.cloudflare.com/learning/dns/what-is-dns/) · IANA: [Root servers](https://www.iana.org/domains/root/servers), [Port numbers](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml) · IETF: [RFC 1034, os conceitos do DNS](https://www.rfc-editor.org/rfc/rfc1034), [RFC 1918, os IPs privados](https://www.rfc-editor.org/rfc/rfc1918), [RFC 6598, a faixa do CGNAT](https://www.rfc-editor.org/rfc/rfc6598), [RFC 2131, o DHCP](https://www.rfc-editor.org/rfc/rfc2131), [RFC 5737, os IPv4 de exemplo](https://www.rfc-editor.org/rfc/rfc5737), [RFC 3849, os IPv6 de exemplo](https://www.rfc-editor.org/rfc/rfc3849), [RFC 675, a primeira "internet"](https://www.rfc-editor.org/rfc/rfc675) · Node.js: [Common system errors](https://nodejs.org/api/errors.html#common-system-errors) · Microsoft: [Resolve-DnsName](https://learn.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname), [Get-DnsClientCache](https://learn.microsoft.com/en-us/powershell/module/dnsclient/get-dnsclientcache) · GitHub Docs: [Managing a custom domain for your GitHub Pages site](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site) · Wikipedia: [Domain Name System](https://en.wikipedia.org/wiki/Domain_Name_System), [IPv4 address exhaustion](https://en.wikipedia.org/wiki/IPv4_address_exhaustion), [Hosts (file)](https://en.wikipedia.org/wiki/Hosts_(file)) · Wiktionary: [endereço](https://en.wiktionary.org/wiki/endere%C3%A7o), [endereçar](https://en.wiktionary.org/wiki/endere%C3%A7ar), [address](https://en.wiktionary.org/wiki/address), [Internet](https://en.wiktionary.org/wiki/Internet), [resolvo](https://en.wiktionary.org/wiki/resolvo), [hexadecimal](https://en.wiktionary.org/wiki/hexadecimal), [route](https://en.wiktionary.org/wiki/route), [modem](https://en.wiktionary.org/wiki/modem), [modulor](https://en.wiktionary.org/wiki/modulor), [gateway](https://en.wiktionary.org/wiki/gateway)
+Fontes: MDN: [IP Address](https://developer.mozilla.org/en-US/docs/Glossary/IP_Address), [DNS](https://developer.mozilla.org/en-US/docs/Glossary/DNS), [Port](https://developer.mozilla.org/en-US/docs/Glossary/Port), [What is a domain name?](https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name) · Cloudflare: [What is DNS?](https://www.cloudflare.com/learning/dns/what-is-dns/) · IANA: [Root servers](https://www.iana.org/domains/root/servers), [Port numbers](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml) · IETF: [RFC 1034, os conceitos do DNS](https://www.rfc-editor.org/rfc/rfc1034), [RFC 1918, os IPs privados](https://www.rfc-editor.org/rfc/rfc1918), [RFC 6598, a faixa do CGNAT](https://www.rfc-editor.org/rfc/rfc6598), [RFC 2131, o DHCP](https://www.rfc-editor.org/rfc/rfc2131), [RFC 5737, os IPv4 de exemplo](https://www.rfc-editor.org/rfc/rfc5737), [RFC 3849, os IPv6 de exemplo](https://www.rfc-editor.org/rfc/rfc3849), [RFC 675, a primeira "internet"](https://www.rfc-editor.org/rfc/rfc675) · Node.js: [Common system errors](https://nodejs.org/api/errors.html#common-system-errors) · Microsoft: [Resolve-DnsName](https://learn.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname), [Get-DnsClientCache](https://learn.microsoft.com/en-us/powershell/module/dnsclient/get-dnsclientcache) · Let's Encrypt: [How It Works](https://letsencrypt.org/how-it-works/) · GitHub Docs: [Managing a custom domain for your GitHub Pages site](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site) · Wikipedia: [Domain Name System](https://en.wikipedia.org/wiki/Domain_Name_System), [IPv4 address exhaustion](https://en.wikipedia.org/wiki/IPv4_address_exhaustion), [Hosts (file)](https://en.wikipedia.org/wiki/Hosts_(file)) · Wiktionary: [endereço](https://en.wiktionary.org/wiki/endere%C3%A7o), [endereçar](https://en.wiktionary.org/wiki/endere%C3%A7ar), [address](https://en.wiktionary.org/wiki/address), [Internet](https://en.wiktionary.org/wiki/Internet), [resolvo](https://en.wiktionary.org/wiki/resolvo), [hexadecimal](https://en.wiktionary.org/wiki/hexadecimal), [route](https://en.wiktionary.org/wiki/route), [modem](https://en.wiktionary.org/wiki/modem), [modulor](https://en.wiktionary.org/wiki/modulor), [gateway](https://en.wiktionary.org/wiki/gateway), [certifico](https://en.wiktionary.org/wiki/certifico), [certus](https://en.wiktionary.org/wiki/certus)
