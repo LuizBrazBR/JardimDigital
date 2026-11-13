@@ -186,7 +186,7 @@ As **regras de negócio** são as regras de como a empresa funciona. Não têm n
 
 Essas regras também ficam no servidor, por dois motivos. O primeiro é o mesmo dos dados: valem para todos, e precisam ser iguais no site e no aplicativo. O segundo é segurança: o que roda no navegador o usuário pode mudar, como a seção "O servidor não confia no navegador", mais abaixo, mostra. Uma regra que o usuário pode desligar não é regra.
 
-Esse código, que roda no servidor, cuida dos dados e aplica as regras, é o que se chama **back-end**. A aula 1.5 é sobre ele.
+Esse código, que roda no servidor, cuida dos dados e aplica as regras, é o que se chama **back-end**. A [[programacao/protocolos-da-web/modulo-1/05-o-que-e-um-back-end-e-o-que-ele-faz|aula 1.5]] é sobre ele.
 
 ### 5. Montar a resposta
 
@@ -300,7 +300,7 @@ servidor.listen(3000, () => {
 });
 ```
 
-Não precisa entender cada linha agora. O back-end é a aula 1.5 e a trilha inteira que vem depois. Repare só nos trabalhos do servidor:
+Não precisa entender cada linha agora. O back-end é a [[programacao/protocolos-da-web/modulo-1/05-o-que-e-um-back-end-e-o-que-ele-faz|aula 1.5]] e a trilha inteira que vem depois. Repare só nos trabalhos do servidor:
 
 - `servidor.listen(3000, ...)`: **ficar escutando** na porta 3000;
 - a função dentro do `createServer` roda **uma vez para cada requisição** que chega;

@@ -340,7 +340,7 @@ Programas para fazer requisições à mão, sem navegador. O curl roda no termin
 
 ### Back-end e front-end
 
-**Back-end** é a parte de um sistema que **roda** no servidor: recebe as requisições, aplica as regras, conversa com o banco de dados e responde. **Front-end** é a parte que **roda** no cliente: as telas e os botões. A aula 1.5 é sobre o back-end.
+**Back-end** é a parte de um sistema que **roda** no servidor: recebe as requisições, aplica as regras, conversa com o banco de dados e responde. **Front-end** é a parte que **roda** no cliente: as telas e os botões. A [[programacao/protocolos-da-web/modulo-1/05-o-que-e-um-back-end-e-o-que-ele-faz|aula 1.5]] é sobre o back-end.
 
 #### Se o HTML é do front-end, por que quem manda é o servidor?
 

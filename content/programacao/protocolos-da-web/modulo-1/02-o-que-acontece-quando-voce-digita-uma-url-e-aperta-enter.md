@@ -356,7 +356,7 @@ Daqui em diante, é a conversa da aula 1.1.
 
 ### 6. O servidor processa e responde
 
-O servidor da loja recebe o pedido, lê o caminho e a query string, procura no banco de dados os tênis pretos de tamanho 42, monta a página e responde. Esse é o trabalho do back-end, o assunto da aula 1.5.
+O servidor da loja recebe o pedido, lê o caminho e a query string, procura no banco de dados os tênis pretos de tamanho 42, monta a página e responde. Esse é o trabalho do back-end, o assunto da [[programacao/protocolos-da-web/modulo-1/05-o-que-e-um-back-end-e-o-que-ele-faz|aula 1.5]].
 
 ### 7. O navegador desenha a página
 
