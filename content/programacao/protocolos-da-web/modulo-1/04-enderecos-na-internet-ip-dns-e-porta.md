@@ -240,6 +240,23 @@ Repare que a busca segue o nome da direita para a esquerda, do mais geral para o
 
 O servidor autoritativo tem esse nome porque é a **autoridade** sobre o domínio: a resposta dele é a oficial. As outras são cópias guardadas no caminho.
 
+> [!question] Comprei no Registro.br e levei para a Cloudflare. O que eu fiz?
+> Ter um site no ar envolve três trabalhos, e cada um pode ficar com uma empresa diferente:
+>
+> | Trabalho | O que faz | Exemplos |
+> |---|---|---|
+> | **registrador** | vende o domínio e guarda quem é o dono. A renovação é lá | Registro.br, GoDaddy |
+> | **DNS autoritativo** | guarda a tabela de registros do domínio (`www` → IP) e responde por ele | o DNS do Registro.br, a Cloudflare |
+> | **hospedagem** | guarda os arquivos do site e responde às requisições HTTP | GitHub Pages, Hostinger |
+>
+> Quem compra no Registro.br e cria os registros lá mesmo usa o Registro.br para os dois primeiros trabalhos: ele é o registrador e o autoritativo.
+>
+> Levar para a Cloudflare é trocar só o segundo. No Registro.br, você troca os **servidores DNS** do domínio pelos que a Cloudflare indicar, nomes como `fulana.ns.cloudflare.com`, e passa a criar os registros no painel da Cloudflare. O nome disso é **delegar o DNS**, ou **apontar os servidores DNS** (em inglês, *nameservers*) para a Cloudflare. Não é hospedar o site: os arquivos continuam onde estavam. O domínio continua comprado no Registro.br, e a renovação continua sendo lá.
+>
+> Na busca que a tabela acima mostra, o que muda é a resposta do servidor do `.br`. Antes, para "quem cuida de loja.com.br?", ele respondia "o DNS do Registro.br". Agora responde "os servidores da Cloudflare".
+>
+> A Cloudflare também pode fazer mais que DNS: ficar **na frente** do site, recebendo as requisições e repassando ao servidor de verdade. Aí o DNS devolve um IP da Cloudflare, e não o da hospedagem. Isso se chama **proxy**, e é assunto para mais adiante.
+
 O resolvedor guarda cada resposta. Na próxima pergunta sobre um `.br`, ele já sabe a quem perguntar e pula a raiz. Por isso, na prática, quase nenhuma pergunta faz o caminho inteiro.
 
 > [!info] O ponto que ninguém escreve
