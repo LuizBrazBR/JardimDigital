@@ -101,13 +101,20 @@ Repare nas duas últimas linhas: a URL é a mesma, `/pedidos`, mas são dois end
 
 "Expor" quer dizer deixar disponível para quem está fora. O conjunto dos endpoints de um back-end é a **[[glossario/api|API]]** dele, a lista de pedidos que ele aceita. Os métodos são o módulo 3, e o jeito de escolher os caminhos é o módulo 7.
 
-A API não é só um monte de endpoints juntos. Ela também diz, para cada um, o que mandar e o que volta. No restaurante, a API é o **cardápio**, e cada prato é um endpoint. O cardápio não é só a lista de nomes dos pratos: diz o que vem em cada um, as opções que você escolhe ("ao ponto ou bem passado?") e o preço. Uma API diz, para cada endpoint, que dados mandar no pedido, que resposta volta e que erros podem voltar. Quem vai usar a API lê isso e sabe pedir, sem nunca ver o código do back-end, como você pede o prato sem entrar na cozinha.
+A API não é só um monte de endpoints juntos: cada endpoint tem as suas regras, o que mandar no pedido e o que volta. No restaurante, a API é **o que a cozinha aceita fazer**: cada prato é um endpoint, com o que vem nele e as opções que você escolhe ("ao ponto ou bem passado?").
 
-| | Endpoint | API |
-|---|---|---|
-| o que é | **um** pedido que o back-end atende | **todos** os pedidos que ele atende, com as regras de cada um |
-| exemplo | `POST /pedidos` | `GET /produtos`, `GET /produtos/42`, `POST /pedidos`, `GET /pedidos`, e o que cada um pede e devolve |
-| no restaurante | um prato | o cardápio |
+E o cardápio? O cardápio é a **documentação** da API: o texto que descreve os pratos para quem vai pedir. São duas coisas diferentes, e dá para ver pelo que acontece quando elas não batem:
+
+- A cozinha parou de fazer o bife, mas o cardápio ainda mostra. Você pede, e o garçom volta: "não tem". O que vale é a cozinha, e o cardápio ficou desatualizado.
+- A cozinha faz um prato que não está no cardápio, e só os clientes da casa sabem pedir. Esse prato faz parte do que a cozinha aceita, mesmo sem estar escrito.
+
+Na web é igual. A API é o que o back-end **aceita de fato**: os endpoints que o código atende, e como. A documentação é a página que explica isso para quem vai usar a API, com cada endpoint, o que mandar, o que volta e os erros. Quem usa lê a documentação e sabe pedir, sem nunca ver o código, como você pede o prato sem entrar na cozinha. Se o código muda e ninguém atualiza a documentação, ela passa a mentir, e quem manda é o código. No dia a dia, "ler a API" quase sempre quer dizer ler a documentação dela, e por isso é fácil misturar as duas.
+
+| | Endpoint | API | Documentação da API |
+|---|---|---|---|
+| o que é | **um** pedido que o back-end atende | **todos** os pedidos que ele atende, e como | o texto que descreve a API |
+| exemplo | `POST /pedidos` | `GET /produtos`, `GET /produtos/42`, `POST /pedidos`, `GET /pedidos` | uma página com cada um, o que mandar e o que volta |
+| no restaurante | um prato | os pratos que a cozinha faz | o cardápio |
 
 ### 2. Receber e validar os dados
 
@@ -669,7 +676,7 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > - **Node.js** não é uma linguagem: é o programa que roda JavaScript fora do navegador.
 > - Os trabalhos do back-end: expor **endpoints** (método + caminho), receber e **validar**, aplicar as **regras de negócio**, ler e gravar no **banco de dados**, **autenticar** (quem é) e **autorizar** (o que pode), conversar com outros serviços e devolver a resposta.
 > - **Validar** é conferir se o dado está bem escrito, olhando só o pedido. A **regra de negócio** depende do resto do sistema, como o estoque.
-> - A **API** é o conjunto dos endpoints, com o que cada um pede e devolve: o cardápio, em que cada prato é um endpoint.
+> - A **API** é o conjunto dos endpoints, com o que cada um pede e devolve: os pratos que a cozinha faz. A **documentação** é o texto que descreve a API: o cardápio.
 > - Regra de negócio não quer dizer regra única: quer dizer que **quem decide é o negócio**. O estoque é uma.
 > - Num pedido: autenticar (401), validar (400, 404), conferir o estoque (409), calcular o total, gravar e responder (201). Quem pode recusar vem primeiro, e gravar vem por último.
 > - O preço e o nome do cliente **não vêm do front-end**: o preço vem do banco, e quem é o cliente vem do token.
