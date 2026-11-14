@@ -12,7 +12,7 @@ Quinta e última aula do módulo 1. A aula 1.1 mostrou os dois papéis da conver
 > [!abstract] Definição
 > **[[glossario/back-end|Back-end]] é o código que roda no servidor e cuida das regras de negócio, dos dados e da segurança da aplicação.** **[[glossario/front-end|Front-end]] é o código que roda no navegador do usuário, ou dentro de um aplicativo, e cuida da tela e da interação.**
 
-A aula 1.1 já tinha separado os dois [[programacao/protocolos-da-web/modulo-1/01-cliente-e-servidor-o-modelo-por-tras-da-web|pelo lugar onde o código **roda**]], e não pelo lugar onde ele fica guardado: o HTML fica guardado no servidor, mas é desenhado no navegador, então é front-end. E a aula 1.3 mostrou [[programacao/protocolos-da-web/modulo-1/03-o-papel-do-navegador-e-do-servidor|o que só o servidor faz]]: escutar, atender muitos clientes, decidir pelo método e pelo caminho, cuidar dos dados e das regras e montar a resposta. O back-end é o código que faz esses trabalhos.
+A [[programacao/protocolos-da-web/modulo-1/01-cliente-e-servidor-o-modelo-por-tras-da-web|aula 1.1]] já tinha separado os dois pelo lugar onde o código **roda**, e não pelo lugar onde ele fica guardado: o HTML fica guardado no servidor, mas é desenhado no navegador, então é front-end. E a aula 1.3 mostrou [[programacao/protocolos-da-web/modulo-1/03-o-papel-do-navegador-e-do-servidor|o que só o servidor faz]]: escutar, atender muitos clientes, decidir pelo método e pelo caminho, cuidar dos dados e das regras e montar a resposta. O back-end é o código que faz esses trabalhos.
 
 Front-end e back-end conversam exatamente como a trilha mostrou até aqui: o front-end, no papel de cliente, pede; o back-end, no papel de servidor, responde. A conversa é em HTTP, e os dados vão quase sempre em [[glossario/json|JSON]], o assunto do módulo 6.
 
@@ -53,7 +53,25 @@ Então "dois programas" é o caso mais comum hoje, mas a separação que sempre 
 
 Esta é a linha da tabela que mais pesa na hora de programar.
 
-O código do front-end **precisa** ir para a máquina do usuário, porque é lá que ele roda. Uma vez lá, qualquer um lê. Abra um site qualquer, aperte **F12** e vá na aba **Sources** (em português, **Fontes**): na lateral aparecem os arquivos `.js` da página, inteiros. Muitas vezes o código vem **minificado**, tudo numa linha só, com nomes curtos como `a` e `b`, para ficar menor. Fica difícil de ler, mas continua ali. Se o arquivo aparecer numa linha só, o botão `{}`, no canto de baixo, arruma os espaços e as quebras de linha.
+O código do front-end **precisa** ir para a máquina do usuário, porque é lá que ele roda. Uma vez lá, qualquer um lê. O navegador tem três jeitos de olhar o que veio, e cada um mostra uma coisa:
+
+| Jeito | Como abrir | O que mostra |
+|---|---|---|
+| **Exibir código-fonte** | botão direito na página, "Exibir código-fonte da página", ou **Ctrl+U** | só o arquivo HTML, do jeito que chegou. Os `.js` aparecem ali só como um endereço, numa linha `<script src="...">`. Clicando no endereço, o arquivo abre |
+| **Inspecionar** | botão direito, "Inspecionar", ou **F12** | abre o DevTools na aba **Elements** (Elementos): o HTML como está agora na tela, já mexido pelo JavaScript |
+| **Sources** | dentro do DevTools, a aba **Sources** (Fontes) | todos os arquivos que a página baixou, numa árvore de pastas: o HTML, o CSS, os `.js`, as imagens |
+
+"Inspecionar" e F12 abrem a mesma janela, o DevTools; só muda a aba em que ela abre. Para achar os `.js`, a aba Sources é a mais fácil, porque junta todos num lugar só:
+
+1. Abra um site qualquer e aperte **F12**.
+2. Na fileira de abas do alto (Elements, Console, Sources, Network...), clique em **Sources**. Se ela não aparecer, está escondida atrás do `»`.
+3. Na coluna da esquerda, na aba **Page** (Página), aparece uma árvore: `top`, depois o nome do site, depois as pastas. Vá abrindo as setinhas.
+4. Clique num arquivo terminado em `.js`. O código aparece no meio da janela.
+
+Muitas vezes o código vem **minificado**: tudo numa linha só, com nomes curtos como `a` e `b`, para o arquivo ficar menor e chegar mais rápido. Se o arquivo aparecer numa linha só, o botão `{}`, no canto de baixo do código, arruma os espaços e as quebras de linha.
+
+> [!note] Não é para entender esse código
+> Mesmo arrumado, ele vai parecer uma sopa de letras, e tudo bem: foi escrito por outra equipe, com milhares de linhas, e a minificação trocou os nomes que explicavam o que cada coisa faz. O exercício aqui não é ler o código. É só ver que ele está ali, inteiro, no seu computador. Tudo o que a loja pôs no front-end, você tem uma cópia.
 
 O código do back-end **nunca sai do servidor**. O que sai é só a resposta. Pela aba **Network**, você vê o que a loja respondeu, mas não tem como ver o código que decidiu essa resposta.
 
@@ -81,7 +99,15 @@ Um **[[glossario/endpoint|endpoint]]** é uma das portas de entrada do back-end:
 
 Repare nas duas últimas linhas: a URL é a mesma, `/pedidos`, mas são dois endpoints, porque o método muda. Um lista, o outro cria. Foi o que o `if` do `servidor.js` da aula 1.3 fez: olhou o método **e** o caminho.
 
-"Expor" quer dizer deixar disponível para quem está fora. O conjunto dos endpoints de um back-end é a **API** dele, a lista de pedidos que ele aceita. Os métodos são o módulo 3, e o jeito de escolher os caminhos é o módulo 7.
+"Expor" quer dizer deixar disponível para quem está fora. O conjunto dos endpoints de um back-end é a **[[glossario/api|API]]** dele, a lista de pedidos que ele aceita. Os métodos são o módulo 3, e o jeito de escolher os caminhos é o módulo 7.
+
+A API não é só um monte de endpoints juntos. Ela também diz, para cada um, o que mandar e o que volta. No restaurante, a API é o **cardápio**, e cada prato é um endpoint. O cardápio não é só a lista de nomes dos pratos: diz o que vem em cada um, as opções que você escolhe ("ao ponto ou bem passado?") e o preço. Uma API diz, para cada endpoint, que dados mandar no pedido, que resposta volta e que erros podem voltar. Quem vai usar a API lê isso e sabe pedir, sem nunca ver o código do back-end, como você pede o prato sem entrar na cozinha.
+
+| | Endpoint | API |
+|---|---|---|
+| o que é | **um** pedido que o back-end atende | **todos** os pedidos que ele atende, com as regras de cada um |
+| exemplo | `POST /pedidos` | `GET /produtos`, `GET /produtos/42`, `POST /pedidos`, `GET /pedidos`, e o que cada um pede e devolve |
+| no restaurante | um prato | o cardápio |
 
 ### 2. Receber e validar os dados
 
@@ -94,6 +120,11 @@ Isso se chama **validar**: conferir o formato dos dados, olhando só o que veio 
 As **regras de negócio** são as regras de como a empresa funciona, que a aula 1.3 listou: o preço, o desconto, o frete grátis acima de 200 reais, não vender o que não tem no estoque, um cupom por cliente.
 
 A diferença para a validação: validar é conferir se o dado está **bem escrito**, só olhando o pedido. A regra de negócio depende **do resto do sistema**. "A quantidade é 2" passa na validação. "Tem 2 no estoque?" só dá para responder olhando o banco de dados, e a resposta pode mudar de um minuto para o outro.
+
+> [!question] Regra de negócio é uma regra só daquela empresa?
+> Não. "De negócio" diz **de onde vem** a regra, e não que ela é única. Vem do jeito como a empresa trabalha, e não do formato dos dados. Muitas regras de negócio são iguais em quase toda loja, como "não vender o que não tem no estoque". Outras mudam de uma loja para a outra, como "frete grátis acima de 200 reais".
+>
+> O teste: **quem decide a regra é o dono do negócio?** Se ele poderia decidir diferente, é regra de negócio. E o estoque passa no teste: há lojas que vendem sem estoque, por encomenda ou em pré-venda, e entregam quando o produto chega. A decisão é da loja. Já "a quantidade é um número" não é decisão de ninguém: um pedido com `"quantidade": "abc"` não faz sentido em loja nenhuma. Isso é validação.
 
 ### 4. Ler e gravar no banco de dados
 
@@ -113,7 +144,20 @@ São duas perguntas diferentes, e as palavras se parecem:
 > [!example] O crachá e a catraca
 > Num prédio comercial, a portaria confere o seu documento e entrega um crachá: isso é **autenticar**. Depois, cada catraca lê o crachá e decide se você entra naquele andar: isso é **autorizar**. Dá para estar autenticado e não autorizado: o crachá é seu, mas não abre aquele andar.
 
-Para saber quem é, o back-end olha alguma coisa que vem em todo pedido: o cookie de sessão da [[programacao/protocolos-da-web/modulo-1/03-o-papel-do-navegador-e-do-servidor|aula 1.3]], ou um **token** no cabeçalho `Authorization`, que é o assunto da aula 5.4. Lembre que o HTTP não tem memória: cada pedido precisa provar de novo quem é.
+Para saber quem é, o back-end olha alguma coisa que vem em todo pedido: o cookie de sessão da [[programacao/protocolos-da-web/modulo-1/03-o-papel-do-navegador-e-do-servidor|aula 1.3]], ou um **token** no cabeçalho `Authorization`, que é o assunto da aula 5.4. Lembre que o HTTP não tem memória: cada pedido precisa provar de novo quem é. É por isso que o cookie e o token existem. A aula 2.3 volta a esse "não tem memória".
+
+> [!info] Cookie e token: dois jeitos de carregar o crachá
+> No prédio, a portaria confere o documento uma vez só e entrega o crachá. Na web, a portaria é o **login**: você manda e-mail e senha, o back-end confere e entrega um código, por exemplo `8f3a2c`, e anota "o `8f3a2c` é da Ana". Esse código é o crachá. Daí em diante, cada pedido mostra o crachá, e não a senha.
+>
+> Cookie e token são dois jeitos de levar o crachá em cada pedido:
+>
+> | | Cookie | Token |
+> |---|---|---|
+> | onde vai no pedido | no cabeçalho `Cookie` | no cabeçalho `Authorization` |
+> | quem põe no pedido | o navegador, sozinho, em todo pedido para aquele site | o programa, à mão, em cada pedido |
+> | onde é mais comum | sites abertos no navegador | aplicativos de celular e programas que chamam uma API |
+>
+> A autenticação de verdade é a conferência: o login, e depois o back-end achar o crachá na lista dele. Cookie e token são só o envelope em que o crachá viaja. As aulas 5.4 e 5.5 mostram os dois por dentro.
 
 Cada pergunta tem o seu erro:
 
@@ -154,8 +198,8 @@ Agora, o que o back-end faz:
 
 1. **Confere se o usuário está autenticado.** Procura o token `8f3a2c` entre as sessões e descobre que é a Ana. Se não achar, para aqui: **401**.
 2. **Valida os dados.** O corpo é um JSON válido? A `quantidade` é um número inteiro maior que zero? O produto 42 existe? Se a quantidade é `-3`, para aqui: **400**. Se o produto não existe: **404**, "não achei".
-3. **Consulta o estoque.** O produto 42 tem 2 unidades? Se só tem 1, para aqui. Muitas APIs respondem **409**, "conflito com o estado atual", outras **422**, "entendi o pedido, mas não dá para fazer". O módulo 4 discute a escolha.
-4. **Aplica as regras de negócio.** Calcula o total com o preço do banco: 2 × R\$ 299,90. Se houver desconto ou frete, entram aqui.
+3. **Consulta o estoque.** O produto 42 tem 2 unidades? Se só tem 1, para aqui. Muitas APIs respondem **409**, "conflito com o estado atual", outras **422**, "entendi o pedido, mas não dá para fazer". O módulo 4 discute a escolha. O estoque é uma regra de negócio, mas tem um passo só dele porque pode **recusar** o pedido.
+4. **Calcula o total.** São as regras de negócio do preço, que não recusam nada, só fazem a conta: 2 × R\$ 299,90, com o preço do banco. Se houver desconto ou frete, entram aqui.
 5. **Grava o pedido** no banco de dados e tira as 2 unidades do estoque.
 6. **Responde.** **201**, "criado", com o pedido em JSON:
 
@@ -167,6 +211,8 @@ Content-Type: application/json; charset=utf-8
 ```
 
 A resposta traz coisas que o cliente não mandou: o `id` do pedido e o `total`. Quem criou foi o back-end. O `59980` está em centavos, e a seção "Veja com os próprios olhos" explica por quê.
+
+E traz o nome, `"cliente": "Ana"`, e não o token. O token é o crachá: o front-end já tem, porque acabou de mandar, e vai mandar de novo no próximo pedido. Devolver não acrescentaria nada. O nome é o que o back-end **descobriu** com o token, no passo 1, e serve para o front-end mostrar "Pedido da Ana confirmado". O token só aparece numa resposta uma vez: na do login, quando é criado e entregue.
 
 ### Por que nessa ordem
 
@@ -183,7 +229,7 @@ Cada passo que falha **para tudo e responde na hora**. É a mesma ideia do `retu
 | 1. autenticar | quem é? | 401 |
 | 2. validar | os dados estão bem escritos? o produto existe? | 400, ou 404 |
 | 3. estoque | tem o suficiente? | 409, ou 422 |
-| 4. regras | quanto custa? | — |
+| 4. total | quanto custa? | — |
 | 5. gravar | — | 500, se o banco falhar |
 | 6. responder | — | 201, deu certo |
 
@@ -266,7 +312,7 @@ const servidor = http.createServer((requisicao, resposta) => {
       return responder(resposta, 409, { erro: "Estoque insuficiente: restam " + produto.estoque });
     }
 
-    // 4. A regra de negócio: o preço vem daqui, e não do cliente
+    // 4. O total, com as regras de preço: o preço vem daqui, e não do cliente
     const subtotal = produto.preco * corpo.quantidade;
     const frete = subtotal >= 20000 ? 0 : 1500;
 
@@ -294,12 +340,88 @@ servidor.listen(3000, () => {
 A maior parte você já conhece. O que é novo:
 
 - **`produtos`, `sessoes` e `pedidos`** fazem o papel do banco de dados. São um array e um objeto, como na [[programacao/logica-de-programacao/modulo-7/05-mini-projeto-uma-lista-de-tarefas|aula 7.5]], e por isso somem quando o servidor para. O `sessoes` é a tabela da aula 1.3, "a sessão `8f3a2c` é da Ana", que o login teria criado.
-- **`buscarProduto`** é a busca linear da aula 7.2: percorre o array e devolve o produto assim que acha.
+- **`buscarProduto`** é a busca linear da aula 7.2: percorre o array e devolve o produto assim que acha. O `return undefined` do fim é o "não achei", e não uma resposta HTTP de erro. É a resposta da **função** para quem a chamou, como o `return -1` da `posicaoDe` na [[programacao/logica-de-programacao/modulo-7/02-algoritmos-em-arrays-buscar-contar-e-achar-o-maior|aula 7.2]]. Lá, a função devolvia uma posição, e o `-1` não se confundia com nenhuma. Aqui, ela devolve um objeto, e para "nenhum objeto" o JavaScript tem o `undefined`, o mesmo valor que aparece quando você lê uma chave que não existe (aula 6.4). Quem transforma esse "não achei" em **404** é o servidor, lá embaixo, no `if (!produto)`.
 - **`responder`** junta numa função o que o `servidor.js` fazia em duas linhas: o `writeHead`, com o status e o cabeçalho, e o `end`, com o corpo em JSON. Assim cada passo responde numa linha só.
 - **`return responder(...)`** responde e sai da função na mesma linha. É o "para tudo e responde na hora" da seção anterior.
-- **`requisicao.on("data", ...)` e `requisicao.on("end", ...)`**: o corpo não chega de uma vez. Como a aula 1.4 mostrou, os dados viajam em pacotes, e um corpo grande chega aos pedaços. O Node chama a primeira função a cada pedaço que chega, e a segunda quando acabou. São duas callbacks: você diz o que fazer, e o Node decide quando.
 - **`try { ... } catch { ... }`**: o `JSON.parse` dá erro, e derrubaria o programa, se o texto não for um JSON válido. O `try` quer dizer "tenta isto", e o `catch`, "se der erro, faça isto no lugar". Aqui, em vez de cair, o servidor responde 400.
 - **`Number.isInteger(x)`** devolve `true` só se `x` for um número inteiro. Para `"2"`, um texto, ou para `1.5`, devolve `false`.
+
+Duas partes pedem mais calma: as duas linhas que acham o usuário, e o corpo que chega aos pedaços.
+
+### As duas linhas que acham o usuário
+
+```js
+const autorizacao = requisicao.headers.authorization || "";
+const usuario = sessoes[autorizacao.replace("Bearer ", "")];
+```
+
+Uma peça de cada vez.
+
+**1. `requisicao.headers.authorization`** é o valor do cabeçalho `Authorization` que veio no pedido. O Node guarda os cabeçalhos num objeto, `requisicao.headers`, com os nomes em minúsculas. Se o curl mandou `-H "Authorization: Bearer 8f3a2c"`, o valor é o texto `"Bearer 8f3a2c"`. Se o pedido veio sem esse cabeçalho, é `undefined`.
+
+E o nome da variável: o cabeçalho se chama *Authorization*, "autorização", mas o que ele carrega serve para **autenticar**, para dizer quem é. É o mesmo nome mal escolhido do 401 *Unauthorized*. A variável só copiou o nome do cabeçalho.
+
+**2. `|| ""`**: a aula 2.5 de Lógica usou o `||` com `true` e `false`. Com outros valores, ele devolve o da esquerda, se ele "valer alguma coisa", e senão o da direita. `undefined` não vale nada, então `undefined || ""` dá `""`, um texto vazio:
+
+```js
+"Bearer 8f3a2c" || ""  // "Bearer 8f3a2c": a esquerda tem valor, fica ela
+undefined || ""        // "": a esquerda não tem, vai a da direita
+```
+
+É um valor padrão, como o `nome = "visitante"` da aula 5.2. Para que serve? Para a próxima linha não quebrar. O `.replace` só existe em textos, e `undefined.replace(...)` dá o erro `Cannot read properties of undefined`, que derrubaria o servidor. Com o `|| ""`, a `autorizacao` é sempre um texto, mesmo vazio.
+
+**3. `.replace("Bearer ", "")`** é novo. É um método dos textos: procura o primeiro texto que você passou e troca pelo segundo. Devolve um texto novo, sem mexer no original:
+
+```js
+"bom dia".replace("dia", "noite")      // "bom noite"
+"Bearer 8f3a2c".replace("Bearer ", "") // "8f3a2c"
+```
+
+Trocar por `""`, um texto vazio, é o jeito de **apagar** um pedaço. Aqui, apaga o `Bearer ` da frente e sobra só o código. Por que o `Bearer` vem ali? Porque o cabeçalho `Authorization` tem um formato fixo: primeiro o tipo de crachá, depois o crachá. `Bearer`, "portador", é o tipo mais comum, e a aula 5.4 explica os tipos.
+
+**4. `sessoes[...]`** procura o código no objeto `sessoes`. São colchetes, e não ponto, porque a chave está numa variável, como o `pessoa[chave]` da aula 6.4. `sessoes["8f3a2c"]` dá `"Ana"`. Um código que não está lá dá `undefined`, e o `if (!usuario)` responde 401.
+
+O caminho completo, para cada pedido:
+
+| O que veio no `Authorization` | Depois do `\|\| ""` | Depois do `.replace` | `usuario` |
+|---|---|---|---|
+| `Bearer 8f3a2c` | `"Bearer 8f3a2c"` | `"8f3a2c"` | `"Ana"` |
+| nada | `""` | `""` | `undefined` → 401 |
+| `Bearer 123` | `"Bearer 123"` | `"123"` | `undefined` → 401 |
+
+### O corpo chega aos pedaços
+
+```js
+let texto = "";
+requisicao.on("data", (pedaco) => {
+  texto += pedaco;
+});
+requisicao.on("end", () => {
+  // aqui o texto está completo
+});
+```
+
+**É o TCP?** Em parte. Como a aula 1.4 mostrou, os dados viajam em pacotes, e o TCP põe os pacotes em ordem do lado de cá. O Node não espera o corpo inteiro chegar para te avisar: ele vai entregando os bytes conforme chegam, em pedaços. Os pedaços não são exatamente os pacotes do TCP, mas a ideia é a mesma: um corpo grande não chega de uma vez.
+
+**O `.on`** quer dizer "quando acontecer isto, chame esta função". `requisicao.on("data", ...)` é "quando chegar um pedaço, chame esta função", e `requisicao.on("end", ...)` é "quando acabarem os pedaços, chame esta outra". São callbacks, como a função do `sort` na aula 7.3 de Lógica: você entrega a função, e quem decide quando chamá-la é o Node.
+
+**Passo a passo**, com um corpo que chegasse em dois pedaços:
+
+| Momento | O que chega | Como fica o `texto` |
+|---|---|---|
+| antes de tudo | — | `""` |
+| 1º `data` | `{"produtoId": 4` | `{"produtoId": 4` |
+| 2º `data` | `2, "quantidade": 2}` | `{"produtoId": 42, "quantidade": 2}` |
+| `end` | — | completo: agora o `JSON.parse` funciona |
+
+O `texto += pedaco` é o `texto = texto + pedaco`: cola o pedaço novo no fim do que já tinha. Se o `JSON.parse` rodasse no primeiro pedaço, daria erro, porque `{"produtoId": 4` não é um JSON inteiro. Por isso todo o resto do trabalho fica dentro do `end`.
+
+O seu `pedido.json` tem uns 34 bytes e chega num pedaço só. Num teste com um corpo de 300 mil bytes, o Node entregou 5 pedaços, de uns 64 mil bytes cada. Mas o código não sabe o tamanho antes de chegar, então sempre junta.
+
+> [!tip] Precisa saber escrever isso agora?
+> Não. Basta a ideia: **o corpo pode chegar aos pedaços, e só dá para usar depois que acabou**. No dia a dia, quase ninguém escreve essas linhas: os frameworks de back-end, como o Express, para Node, já juntam os pedaços e entregam o corpo pronto, num `requisicao.body`. Aqui está escrito à mão para você ver o que eles fazem por dentro.
+
+Repare também na ordem: o token é conferido **antes** de esperar o corpo. Se não sabe quem é, o back-end responde 401 sem nem juntar os pedaços. É o "do mais barato para o mais caro" de antes.
 
 > [!info] Por que o dinheiro está em centavos
 > No computador, os números com vírgula nem sempre dão a conta exata. Rode no terminal:
@@ -510,6 +632,27 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > > [!success]- Resposta
 > > Nas duas, ele é cliente: é ele quem pede. Não contradiz nada. Back-end é o código que roda no servidor, e cliente e servidor são papéis numa conversa, como a aula 1.1 mostrou. Para o front-end, o back-end é servidor. Para o banco e para o gateway, é cliente.
 
+> [!question] 11. O token sem o Bearer
+> No `pedidos.js`, estas duas linhas acham o usuário:
+>
+> ```js
+> const autorizacao = requisicao.headers.authorization || "";
+> const usuario = sessoes[autorizacao.replace("Bearer ", "")];
+> ```
+>
+> E `sessoes` é `{ "8f3a2c": "Ana" }`. Qual é o `usuario` em cada caso?
+>
+> - a) `-H "Authorization: Bearer 8f3a2c"`
+> - b) sem o `-H "Authorization: ..."`
+> - c) `-H "Authorization: 8f3a2c"`, sem o `Bearer`
+> - d) `-H "Authorization: bearer 8f3a2c"`, com `b` minúsculo
+>
+> > [!success]- Resposta
+> > - a) `"Ana"`: o `.replace` apaga o `Bearer ` e sobra `"8f3a2c"`.
+> > - b) `undefined`, e volta 401: o cabeçalho não veio, o `|| ""` põe um texto vazio, e `sessoes[""]` não existe. Sem o `|| ""`, o `.replace` daria erro e derrubaria o servidor.
+> > - c) `"Ana"`: o `.replace` não acha `Bearer ` para trocar e devolve o texto como estava, `"8f3a2c"`. Funciona, mesmo fora do formato. Um back-end mais rigoroso conferiria se o texto começa com `Bearer `.
+> > - d) `undefined`, e volta 401: o `.replace` diferencia maiúsculas de minúsculas, então não acha `Bearer ` em `bearer 8f3a2c`, e nada é apagado.
+
 ## De onde vêm as palavras
 
 - **[[glossario/back-end|Back-end]]** e **[[glossario/front-end|front-end]]**: do inglês *back*, "de trás", *front*, "da frente", e *end*, "ponta, extremidade". A ponta da frente e a ponta de trás de um sistema. Em inglês, quando é substantivo, escreve-se em geral separado, *the back end*, e com hífen quando vem antes de outro nome, *a back-end developer*. Em português, ficou com hífen. É a mesma ideia do restaurante, que em inglês tem o *front of house*, o salão, e o *back of house*, a cozinha.
@@ -526,8 +669,10 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > - **Node.js** não é uma linguagem: é o programa que roda JavaScript fora do navegador.
 > - Os trabalhos do back-end: expor **endpoints** (método + caminho), receber e **validar**, aplicar as **regras de negócio**, ler e gravar no **banco de dados**, **autenticar** (quem é) e **autorizar** (o que pode), conversar com outros serviços e devolver a resposta.
 > - **Validar** é conferir se o dado está bem escrito, olhando só o pedido. A **regra de negócio** depende do resto do sistema, como o estoque.
-> - Num pedido: autenticar (401), validar (400, 404), conferir o estoque (409), aplicar as regras, gravar e responder (201). Quem pode recusar vem primeiro, e gravar vem por último.
+> - A **API** é o conjunto dos endpoints, com o que cada um pede e devolve: o cardápio, em que cada prato é um endpoint.
+> - Regra de negócio não quer dizer regra única: quer dizer que **quem decide é o negócio**. O estoque é uma.
+> - Num pedido: autenticar (401), validar (400, 404), conferir o estoque (409), calcular o total, gravar e responder (201). Quem pode recusar vem primeiro, e gravar vem por último.
 > - O preço e o nome do cliente **não vêm do front-end**: o preço vem do banco, e quem é o cliente vem do token.
 > - Dados num array somem quando o servidor para. Para durar, precisam de um banco de dados.
 
-Fontes: MDN: [Introduction to the server side](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Introduction), [Client-Server overview](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Client-Server_overview), [201 Created](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/201), [400 Bad Request](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/400), [401 Unauthorized](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/401), [403 Forbidden](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/403), [409 Conflict](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/409), [422 Unprocessable Content](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/422), [try...catch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch), [Number.isInteger()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger) · Node.js: [http](https://nodejs.org/api/http.html), [Anatomy of an HTTP Transaction](https://nodejs.org/en/learn/modules/anatomy-of-an-http-transaction) · curl: [man page](https://curl.se/docs/manpage.html) · Chrome DevTools: [Sources panel](https://developer.chrome.com/docs/devtools/sources) · Wiktionary: [back end](https://en.wiktionary.org/wiki/back_end), [front end](https://en.wiktionary.org/wiki/front_end), [endpoint](https://en.wiktionary.org/wiki/endpoint), [authentic](https://en.wiktionary.org/wiki/authentic), [αὐθέντης](https://en.wiktionary.org/wiki/%E1%BC%80%CF%85%CE%B8%CE%AD%CE%BD%CF%84%CE%B7%CF%82), [auctor](https://en.wiktionary.org/wiki/auctor), [validus](https://en.wiktionary.org/wiki/validus), [negotium](https://en.wiktionary.org/wiki/negotium)
+Fontes: MDN: [Introduction to the server side](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Introduction), [Client-Server overview](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Client-Server_overview), [201 Created](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/201), [400 Bad Request](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/400), [401 Unauthorized](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/401), [403 Forbidden](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/403), [409 Conflict](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/409), [422 Unprocessable Content](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/422), [try...catch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch), [Number.isInteger()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger), [String.prototype.replace()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace), [Logical OR (||)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR), [Authorization](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Authorization) · Node.js: [http](https://nodejs.org/api/http.html), [Anatomy of an HTTP Transaction](https://nodejs.org/en/learn/modules/anatomy-of-an-http-transaction) · curl: [man page](https://curl.se/docs/manpage.html) · Chrome DevTools: [Sources panel](https://developer.chrome.com/docs/devtools/sources) · Wiktionary: [back end](https://en.wiktionary.org/wiki/back_end), [front end](https://en.wiktionary.org/wiki/front_end), [endpoint](https://en.wiktionary.org/wiki/endpoint), [authentic](https://en.wiktionary.org/wiki/authentic), [αὐθέντης](https://en.wiktionary.org/wiki/%E1%BC%80%CF%85%CE%B8%CE%AD%CE%BD%CF%84%CE%B7%CF%82), [auctor](https://en.wiktionary.org/wiki/auctor), [validus](https://en.wiktionary.org/wiki/validus), [negotium](https://en.wiktionary.org/wiki/negotium)

@@ -5,7 +5,9 @@ title: API
 > [!abstract] Definição
 > **A lista de pedidos que um programa aceita de outros programas, com o que cada pedido precisa levar e o que volta.** Numa API da web, cada pedido é uma [[glossario/requisicao|requisição]] [[glossario/http|HTTP]], e as respostas costumam vir em [[glossario/json|JSON]].
 
-Quem usa uma [[glossario/funcao|função]] precisa saber o nome dela, o que passar e o que ela devolve, e não como ela funciona por dentro. Uma API é isso para um programa inteiro. A diferença para um site: o site responde [[glossario/html|HTML]], para uma pessoa ver, e a API responde dados, para um programa usar. Ver a aula [[programacao/protocolos-da-web/modulo-1/01-cliente-e-servidor-o-modelo-por-tras-da-web|1.1 Cliente e servidor: o modelo por trás da web]].
+Quem usa uma [[glossario/funcao|função]] precisa saber o nome dela, o que passar e o que ela devolve, e não como ela funciona por dentro. Uma API é isso para um programa inteiro. A diferença para um site: o site responde [[glossario/html|HTML]], para uma pessoa ver, e a API responde dados, para um programa usar.
+
+Num [[glossario/back-end|back-end]], cada pedido da lista é um [[glossario/endpoint|endpoint]], como `POST /pedidos`, e a API é o conjunto deles, com o que cada um pede e devolve. Num restaurante, seria o cardápio: cada prato é um endpoint, e o cardápio diz o que vem em cada um e o que escolher, sem mostrar a cozinha. Ver as aulas [[programacao/protocolos-da-web/modulo-1/05-o-que-e-um-back-end-e-o-que-ele-faz|1.5 O que é um back-end e o que ele faz]] e [[programacao/protocolos-da-web/modulo-1/01-cliente-e-servidor-o-modelo-por-tras-da-web|1.1 Cliente e servidor: o modelo por trás da web]].
 
 ## De onde vem a palavra
 
