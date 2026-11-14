@@ -14,9 +14,9 @@ Resumos das aulas do curso de Protocolos da Web, a trilha que veio depois da [[p
 4. [[programacao/protocolos-da-web/modulo-1/04-enderecos-na-internet-ip-dns-e-porta|Endereços na internet: IP, DNS e porta]]
 5. [[programacao/protocolos-da-web/modulo-1/05-o-que-e-um-back-end-e-o-que-ele-faz|O que é um back-end e o que ele faz]]
 
-## Módulo 2 – HTTP por dentro
+## [[programacao/protocolos-da-web/modulo-2/index|Módulo 2 – HTTP por dentro]]
 
-1. A anatomia de uma requisição HTTP
+1. [[programacao/protocolos-da-web/modulo-2/01-a-anatomia-de-uma-requisicao-http|A anatomia de uma requisição HTTP]]
 2. A anatomia de uma resposta HTTP
 3. HTTP não tem memória: o que significa ser stateless
 4. As versões do HTTP: 1.1, 2 e 3
