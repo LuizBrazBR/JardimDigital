@@ -78,7 +78,7 @@ GET /produtos/42 HTTP/1.1
 | Parte | No exemplo | O que diz |
 |---|---|---|
 | **método** | `GET` | a ação: buscar, criar, mudar, apagar. `GET` é "me manda". O módulo 3 é todo sobre isso |
-| **caminho** | `/produtos/42` | o **[[glossario/recurso|recurso]]** que o pedido quer, dentro daquele servidor |
+| **caminho** | `/produtos/42` | o **[[glossario/recurso]]** que o pedido quer, dentro daquele servidor |
 | **versão** | `HTTP/1.1` | a versão do HTTP que o cliente está falando. As versões são a aula 2.4 |
 
 **Recurso** é a palavra do HTTP para "a coisa pedida". Pode ser um produto, uma lista de pedidos, uma página, uma imagem. É o R de URL, *Uniform Resource Locator*, "localizador uniforme de recursos": a URL diz onde o recurso está, e o caminho aponta para ele dentro do servidor. `/produtos/42` é o recurso "produto 42"; `/produtos` é o recurso "a lista de produtos".
