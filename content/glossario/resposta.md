@@ -5,7 +5,7 @@ title: Resposta
 > [!abstract] Definição
 > **O que o [[glossario/servidor|servidor]] devolve depois de processar uma [[glossario/requisicao|requisição]]:** o resultado pedido, ou o aviso de que não deu certo. "Não achei" também é uma resposta.
 
-Em inglês, *response*. Faz o papel do `return` de uma [[glossario/funcao|função]]. Ver a aula [[programacao/protocolos-da-web/modulo-1/01-cliente-e-servidor-o-modelo-por-tras-da-web|1.1 Cliente e servidor: o modelo por trás da web]].
+Em inglês, *response*. Faz o papel do `return` de uma [[glossario/funcao|função]]. Ver as aulas [[programacao/protocolos-da-web/modulo-1/01-cliente-e-servidor-o-modelo-por-tras-da-web|1.1 Cliente e servidor: o modelo por trás da web]] e [[programacao/protocolos-da-web/modulo-2/02-a-anatomia-de-uma-resposta-http|2.2 A anatomia de uma resposta HTTP]].
 
 ## De onde vem a palavra
 

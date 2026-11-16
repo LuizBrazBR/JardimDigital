@@ -17,7 +17,7 @@ Resumos das aulas do curso de Protocolos da Web, a trilha que veio depois da [[p
 ## [[programacao/protocolos-da-web/modulo-2/index|Módulo 2 – HTTP por dentro]]
 
 1. [[programacao/protocolos-da-web/modulo-2/01-a-anatomia-de-uma-requisicao-http|A anatomia de uma requisição HTTP]]
-2. A anatomia de uma resposta HTTP
+2. [[programacao/protocolos-da-web/modulo-2/02-a-anatomia-de-uma-resposta-http|A anatomia de uma resposta HTTP]]
 3. HTTP não tem memória: o que significa ser stateless
 4. As versões do HTTP: 1.1, 2 e 3
 5. HTTP vs HTTPS: por que o TLS importa
