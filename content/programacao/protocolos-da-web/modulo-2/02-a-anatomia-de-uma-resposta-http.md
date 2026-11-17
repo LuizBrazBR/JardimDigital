@@ -89,7 +89,7 @@ Nem sempre houve uma regra única. O ASCII, uma codificação antiga, representa
 
 No UTF-8, o número de bytes depende do caractere: `A` ocupa um byte; `â` e `ã` ocupam dois bytes cada. Por isso, contar letras não basta para preencher `Content-Length`. Os exemplos acima contam o texto exatamente como está, com espaços, em UTF-8 e **sem uma quebra de linha no fim do corpo**.
 
-Para conferir os números com Node.js, crie um arquivo chamado `tamanhos.cjs`, salve em UTF-8 e rode `node tamanhos.cjs`. A extensão `.cjs` será explicada no exercício do servidor, mais adiante; por enquanto, ela indica ao Node como executar este arquivo JavaScript.
+Para conferir os números com Node.js, crie um arquivo chamado `tamanhos.js`, como nos exercícios anteriores, salve em UTF-8 e rode `node tamanhos.js`.
 
 ```js
 const produto = '{"id": 42, "nome": "Teclado mecânico", "preco": 350.0}';
@@ -154,9 +154,12 @@ Um cookie é um pequeno dado que o navegador guarda a pedido do servidor e pode 
 
 ## Veja com os próprios olhos
 
-Vamos montar um servidor pequeno com três resultados: **produto encontrado**, **produto não encontrado** e **sucesso sem corpo**. Use uma pasta de exercícios e crie `respostas.cjs`.
+Vamos montar um servidor pequeno com três resultados: **produto encontrado**, **produto não encontrado** e **sucesso sem corpo**. Use uma pasta de exercícios e crie `respostas.js`.
 
-Antes do código, entenda o nome do arquivo. Em Node.js, um **módulo** é um arquivo de código que pode usar recursos de outros arquivos. Há duas formas comuns de fazer isso: **CommonJS**, que usa `require(...)`, e **módulos ECMAScript (ESM)**, que usam `import`. CommonJS veio primeiro no Node; ESM foi padronizado para JavaScript e também passou a ser aceito pelo Node. A extensão **`.cjs`** quer dizer *CommonJS JavaScript*: avisa ao Node que este arquivo usa a forma com `require`. A extensão `.mjs` indica ESM; um arquivo `.js` pode seguir uma ou outra forma conforme a configuração do projeto no `package.json`. Assim, `.cjs` mantém o exercício funcionando mesmo se a pasta tiver um `package.json` com `"type": "module"`. Aqui, `require("node:http")` carrega o módulo de HTTP que já vem com o Node.
+Por que `.js`? É a extensão dos arquivos JavaScript que você já criou, como `servidor.js` e `pedidos.js`. O código também começa da mesma forma: `require("node:http")` pega as funções de HTTP que já vêm com o Node. **Módulo** é o nome dado a esse código reutilizável. Assim como nos exercícios anteriores, você pode usar `require` em um arquivo `.js` numa pasta de exercícios sem configuração de módulos.
+
+> [!info]- E se eu encontrar um arquivo `.cjs`?
+> O Node também aceita a extensão `.cjs` para arquivos JavaScript que usam `require`. Ela é útil quando um projeto está configurado no `package.json` com `"type": "module"`: nessa configuração, os arquivos `.js` usam `import` em vez de `require`, mas um arquivo `.cjs` continua aceitando `require`. **Este exercício não precisa dessa configuração**, então seguimos com `.js` como nas aulas anteriores.
 
 ```js
 const http = require("node:http");
@@ -189,7 +192,7 @@ servidor.listen(3000, "127.0.0.1", () => {
 });
 ```
 
-Rode `node respostas.cjs`. Se outro exercício estiver usando a porta 3000, encerre aquele servidor com **Ctrl+C** antes.
+Rode `node respostas.js`. Se outro exercício estiver usando a porta 3000, encerre aquele servidor com **Ctrl+C** antes.
 
 - **`resposta.statusCode`** escolhe o código da linha de status. O Node fornece a frase usual, como `OK` ou `Not Found`.
 - **`resposta.setHeader(nome, valor)`** define um cabeçalho antes do envio.
