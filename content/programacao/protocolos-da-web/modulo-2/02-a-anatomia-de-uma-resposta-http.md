@@ -83,9 +83,13 @@ O cabeçalho descreve o corpo, mas não o transforma. Escrever `Content-Type: ap
 
 ### Conferindo os bytes
 
-Os exemplos acima contam o texto exatamente como está, com espaços, em UTF-8 e **sem uma quebra de linha no fim do corpo**. O `â` de `mecânico` e o `ã` de `não` ocupam dois bytes cada nesse formato.
+Um **caractere** é algo que lemos, como `A` ou `â`. Um **byte** é uma unidade usada para guardar e transmitir dados. Para enviar texto, o computador precisa de uma regra que transforme caracteres em bytes e permita reconstruí-los depois. Essa regra se chama **codificação de caracteres**.
 
-Crie um arquivo `tamanhos.cjs`, salve em UTF-8 e rode `node tamanhos.cjs`:
+Nem sempre houve uma regra única. O ASCII, uma codificação antiga, representava letras básicas do inglês, números e sinais, mas não incluía `â` nem `ã`. Outras codificações surgiram para atender a diferentes idiomas; quando quem enviava e quem lia usavam regras diferentes, os acentos podiam aparecer como símbolos estranhos. O **UTF-8** é uma codificação que representa esses caracteres e muitos outros. No começo do curso, você já viu `charset=utf-8` em um `Content-Type`: ali, `charset` indica ao leitor qual codificação usar para interpretar o texto.
+
+No UTF-8, o número de bytes depende do caractere: `A` ocupa um byte; `â` e `ã` ocupam dois bytes cada. Por isso, contar letras não basta para preencher `Content-Length`. Os exemplos acima contam o texto exatamente como está, com espaços, em UTF-8 e **sem uma quebra de linha no fim do corpo**.
+
+Para conferir os números com Node.js, crie um arquivo chamado `tamanhos.cjs`, salve em UTF-8 e rode `node tamanhos.cjs`. A extensão `.cjs` será explicada no exercício do servidor, mais adiante; por enquanto, ela indica ao Node como executar este arquivo JavaScript.
 
 ```js
 const produto = '{"id": 42, "nome": "Teclado mecânico", "preco": 350.0}';
@@ -136,7 +140,9 @@ Esses cabeçalhos são [[glossario/metadados|metadados]]: falam sobre a resposta
 
 ## Veja com os próprios olhos
 
-Vamos montar um servidor pequeno com três resultados: **produto encontrado**, **produto não encontrado** e **sucesso sem corpo**. Use uma pasta de exercícios e crie `respostas.cjs`. A extensão `.cjs` permite usar `require` mesmo se houver um `package.json` com `"type": "module"` na pasta.
+Vamos montar um servidor pequeno com três resultados: **produto encontrado**, **produto não encontrado** e **sucesso sem corpo**. Use uma pasta de exercícios e crie `respostas.cjs`.
+
+Antes do código, entenda o nome do arquivo. Em Node.js, um **módulo** é um arquivo de código que pode usar recursos de outros arquivos. Há duas formas comuns de fazer isso: **CommonJS**, que usa `require(...)`, e **módulos ECMAScript (ESM)**, que usam `import`. CommonJS veio primeiro no Node; ESM foi padronizado para JavaScript e também passou a ser aceito pelo Node. A extensão **`.cjs`** quer dizer *CommonJS JavaScript*: avisa ao Node que este arquivo usa a forma com `require`. A extensão `.mjs` indica ESM; um arquivo `.js` pode seguir uma ou outra forma conforme a configuração do projeto no `package.json`. Assim, `.cjs` mantém o exercício funcionando mesmo se a pasta tiver um `package.json` com `"type": "module"`. Aqui, `require("node:http")` carrega o módulo de HTTP que já vem com o Node.
 
 ```js
 const http = require("node:http");
