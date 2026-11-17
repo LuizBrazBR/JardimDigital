@@ -138,6 +138,8 @@ Um **software de servidor web** é um programa que recebe pedidos HTTP e envia r
 
 [[glossario/cache|Cache]] e [[glossario/cookie|cookie]] serão estudados no módulo 5. Por enquanto, reconheça o sentido da conversa: o servidor manda `Set-Cookie`; em pedidos posteriores que atendam às regras desse cookie, o navegador pode mandá-lo de volta no cabeçalho `Cookie`.
 
+Um cookie é um pequeno dado que o navegador guarda a pedido do servidor e pode devolver em requisições futuras. Um **token** é um valor que o servidor pode criar para representar, por exemplo, uma sessão autenticada. O servidor pode enviar esse token numa resposta; depois, o cliente o apresenta em novas requisições, muitas vezes no cabeçalho `Authorization`. Também é possível guardar um token dentro de um cookie: nesse caso, o navegador o envia no cabeçalho `Cookie`. Portanto, a diferença não é simplesmente que o cookie vai ao servidor e o token vem dele: ambos podem viajar nos dois sentidos. Cookie é um mecanismo de armazenamento e envio no navegador; token é o dado usado como credencial ou comprovante.
+
 ## Veja com os próprios olhos
 
 Vamos montar um servidor pequeno com três resultados: **produto encontrado**, **produto não encontrado** e **sucesso sem corpo**. Use uma pasta de exercícios e crie `respostas.cjs`.
