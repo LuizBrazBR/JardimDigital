@@ -128,13 +128,13 @@ Imagine que o cliente pediu para remover um item. O servidor removeu e devolveu 
 | `Content-Type` | informa o formato do corpo, como `application/json`, `text/html` ou `image/png` |
 | `Content-Length` | nos exemplos com corpo desta aula, informa o tamanho em bytes |
 | `Date` | informa a data e a hora de origem da mensagem |
-| `Server` | pode identificar o software do servidor, como nginx ou Apache |
+| `Server` | pode identificar o programa que atende à conexão HTTP, como nginx ou Apache HTTP Server |
 | `Cache-Control` | dá instruções de cache para clientes e caches intermediários |
 | `Set-Cookie` | envia ao navegador uma instrução para guardar ou atualizar um cookie |
 
-Esses cabeçalhos são [[glossario/metadados|metadados]]: falam sobre a resposta e como tratá-la. `Date` não é a data em que o produto foi cadastrado, nem a última alteração dele. É uma informação sobre **a mensagem**. No exemplo, `GMT` indica a referência de horário usada no cabeçalho, e não o horário local do seu computador.
+Esses cabeçalhos são [[glossario/metadados|metadados]]: falam sobre a resposta e como tratá-la. `Date` não é a data em que o produto foi cadastrado, nem a última alteração dele. É uma informação sobre **a mensagem**. Em `Fri, 10 Jul 2026 14:32:10 GMT`, **GMT** significa *Greenwich Mean Time* (Horário Médio de Greenwich). É a referência de horário usada nas datas HTTP: `14:32:10 GMT` corresponde a `11:32:10` em um lugar que esteja três horas atrás, como Brasília nessa data. Assim, computadores em fusos diferentes conseguem interpretar o mesmo instante.
 
-`Server: nginx/1.25` é uma identificação declarada pelo servidor. Esse campo pode ser omitido e não revela, por si só, toda a tecnologia que processou o pedido.
+Um **software de servidor web** é um programa que recebe pedidos HTTP e envia respostas. **nginx** (lê-se aproximadamente “engine-x”) e **Apache HTTP Server** são exemplos desses programas: podem servir arquivos, como páginas e imagens, ou encaminhar o pedido para uma aplicação que produz a resposta. **Apache** aqui é o nome curto do Apache HTTP Server. No exemplo, `Server: nginx/1.25` declara o nome e uma versão desse programa. O campo pode ser omitido e não revela, por si só, toda a tecnologia que processou o pedido.
 
 [[glossario/cache|Cache]] e [[glossario/cookie|cookie]] serão estudados no módulo 5. Por enquanto, reconheça o sentido da conversa: o servidor manda `Set-Cookie`; em pedidos posteriores que atendam às regras desse cookie, o navegador pode mandá-lo de volta no cabeçalho `Cookie`.
 
