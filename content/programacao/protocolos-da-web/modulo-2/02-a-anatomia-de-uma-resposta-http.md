@@ -128,13 +128,21 @@ Imagine que o cliente pediu para remover um item. O servidor removeu e devolveu 
 | `Content-Type` | informa o formato do corpo, como `application/json`, `text/html` ou `image/png` |
 | `Content-Length` | nos exemplos com corpo desta aula, informa o tamanho em bytes |
 | `Date` | informa a data e a hora de origem da mensagem |
-| `Server` | pode identificar o programa que atende à conexão HTTP, como nginx ou Apache HTTP Server |
+| `Server` | pode declarar o nome do programa que enviou a resposta, como nginx ou Apache HTTP Server |
 | `Cache-Control` | dá instruções de cache para clientes e caches intermediários |
 | `Set-Cookie` | envia ao navegador uma instrução para guardar ou atualizar um cookie |
 
 Esses cabeçalhos são [[glossario/metadados|metadados]]: falam sobre a resposta e como tratá-la. `Date` não é a data em que o produto foi cadastrado, nem a última alteração dele. É uma informação sobre **a mensagem**. Em `Fri, 10 Jul 2026 14:32:10 GMT`, **GMT** significa *Greenwich Mean Time* (Horário Médio de Greenwich). É a referência de horário usada nas datas HTTP: `14:32:10 GMT` corresponde a `11:32:10` em um lugar que esteja três horas atrás, como Brasília nessa data. Assim, computadores em fusos diferentes conseguem interpretar o mesmo instante.
 
-Um **software de servidor web** é um programa que recebe pedidos HTTP e envia respostas. **nginx** (lê-se aproximadamente “engine-x”) e **Apache HTTP Server** são exemplos desses programas: podem servir arquivos, como páginas e imagens, ou encaminhar o pedido para uma aplicação que produz a resposta. **Apache** aqui é o nome curto do Apache HTTP Server. No exemplo, `Server: nginx/1.25` declara o nome e uma versão desse programa. O campo pode ser omitido e não revela, por si só, toda a tecnologia que processou o pedido.
+### O servidor que você roda e o `Server` do cabeçalho
+
+Você já rodou um servidor nesta máquina: ao executar um arquivo com `node` no terminal do VS Code, o **Node.js** inicia seu programa. Quando ele chama `listen(3000, "127.0.0.1")`, fica aguardando pedidos naquela porta. O VS Code é o editor e abriga o terminal; quem recebe o HTTP e produz a resposta é o programa em execução. **Servidor** pode nomear esse programa, a função que ele desempenha ou a máquina onde ele roda. Por isso, não é preciso ter um computador especial nem instalar nginx para fazer o exercício.
+
+Por que existem outros programas chamados servidores web? No começo da web, era comum o servidor receber um pedido por uma página e devolver um arquivo HTML que já estava no disco. Programas como **Apache HTTP Server** (muitas vezes chamado só de **Apache**) foram feitos para atender essas conexões, localizar arquivos e enviar respostas HTTP. Depois, os sites passaram a montar respostas com dados e regras da aplicação, como o nosso programa Node faz ao escolher entre produto encontrado e `404`. **nginx** (lê-se aproximadamente “engine-x”) é outro servidor web. Tanto ele quanto Apache podem entregar arquivos e também passar pedidos para uma aplicação que gera a resposta.
+
+Imagine o nosso exercício publicado para outras pessoas acessarem. Uma configuração possível é `navegador → nginx → programa Node`: nginx recebe a conexão pública, pode cuidar de HTTPS e arquivos estáticos, e encaminha `/produtos/42` ao Node; o Node monta o JSON, que volta pelo nginx ao navegador. Também é possível expor diretamente a aplicação Node. Neste exercício, `127.0.0.1` aponta para o próprio computador, então o navegador conversa direto com o Node, sem nginx nem Apache no meio.
+
+O cabeçalho `Server: nginx/1.25` do primeiro exemplo é uma identificação **declarada** na resposta: sugere que nginx participou do atendimento e informa uma versão. Não quer dizer que nginx criou o JSON nem que ele é o único programa envolvido. Esse campo pode ser omitido; o servidor Node do exercício, por exemplo, não precisa enviá-lo.
 
 [[glossario/cache|Cache]] e [[glossario/cookie|cookie]] serão estudados no módulo 5. Por enquanto, reconheça o sentido da conversa: o servidor manda `Set-Cookie`; em pedidos posteriores que atendam às regras desse cookie, o navegador pode mandá-lo de volta no cabeçalho `Cookie`.
 
