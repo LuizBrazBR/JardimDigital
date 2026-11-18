@@ -79,7 +79,7 @@ GET /produtos/42 HTTP/1.1
 |---|---|---|
 | **método** | `GET` | a ação: buscar, criar, mudar, apagar. `GET` é "me manda". O módulo 3 é todo sobre isso |
 | **caminho** | `/produtos/42` | o **[[glossario/recurso]]** que o pedido quer, dentro daquele servidor |
-| **versão** | `HTTP/1.1` | a versão do HTTP que o cliente está falando. As versões são a aula 2.4 |
+| **versão** | `HTTP/1.1` | a versão do HTTP que o cliente está falando. As versões são o assunto da [[programacao/protocolos-da-web/modulo-2/04-as-versoes-do-http-1-1-2-e-3|aula 2.4]] |
 
 **Recurso** é a palavra do HTTP para "a coisa pedida". Pode ser um produto, uma lista de pedidos, uma página, uma imagem. É o R de URL, *Uniform Resource Locator*, "localizador uniforme de recursos": a URL diz onde o recurso está, e o caminho aponta para ele dentro do servidor. `/produtos/42` é o recurso "produto 42"; `/produtos` é o recurso "a lista de produtos".
 
@@ -267,7 +267,7 @@ As três partes, com as marcas visíveis: a linha de requisição, os cabeçalho
 Pode aparecer um segundo pedido, `GET /favicon.ico`: é o navegador procurando o ícone da aba, sozinho.
 
 > [!note] Por que o DevTools às vezes mostra outro formato
-> Aqui o Chrome mandou o texto do HTTP/1.1, porque `localhost:3000` é HTTP sem o S. Em sites com HTTPS, como este, o Chrome costuma usar o HTTP/2, e a aba Network mostra os cabeçalhos como `:method: GET`, `:path: ...` e `:authority: ...`, como a [[programacao/protocolos-da-web/modulo-1/01-cliente-e-servidor-o-modelo-por-tras-da-web|aula 1.1]] mostrou. São as mesmas informações: o `:method` e o `:path` fazem o papel da linha de requisição, e o `:authority`, o do `Host`. Só a embalagem muda. É a aula 2.4.
+> Aqui o Chrome mandou o texto do HTTP/1.1, porque `localhost:3000` é HTTP sem o S. Em sites com HTTPS, como este, o Chrome costuma usar o HTTP/2, e a aba Network mostra os cabeçalhos como `:method: GET`, `:path: ...` e `:authority: ...`, como a [[programacao/protocolos-da-web/modulo-1/01-cliente-e-servidor-o-modelo-por-tras-da-web|aula 1.1]] mostrou. São as mesmas informações: o `:method` e o `:path` fazem o papel da linha de requisição, e o `:authority`, o do `Host`. Só a embalagem muda. A [[programacao/protocolos-da-web/modulo-2/04-as-versoes-do-http-1-1-2-e-3|aula 2.4]] explica as diferenças entre as versões.
 
 Pare o servidor com **Ctrl+C**.
 
