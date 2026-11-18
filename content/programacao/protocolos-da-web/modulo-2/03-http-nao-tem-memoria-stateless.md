@@ -7,7 +7,7 @@ tags:
 
 Você entra numa loja, faz login e abre a página dos pedidos. A lista aparece sem pedir sua senha outra vez. Parece que o servidor se lembrou de você. Mas cada página pode ter sido carregada por uma requisição HTTP diferente, e o protocolo não traz uma lembrança automática da anterior. Como as duas coisas podem ser verdade?
 
-A resposta está numa distinção importante: **o HTTP não mantém estado entre requisições; a aplicação pode manter estado e reconstruir o contexto a cada pedido**. Esse modo de funcionamento do protocolo é chamado de **stateless**, ou "sem estado".
+A resposta está numa distinção importante: **o HTTP não mantém estado entre requisições; a aplicação pode manter [[glossario/estado|estado]] e reconstruir o contexto a cada pedido**. Esse modo de funcionamento do protocolo é chamado de **[[glossario/stateless|stateless]]**, ou "sem estado".
 
 ## O servidor recebe um pedido novo
 
@@ -38,7 +38,7 @@ Accept: application/json
 Authorization: Bearer credencial-da-sessao
 ```
 
-O servidor valida a credencial e então decide se pode mostrar os pedidos. Em sites, ela pode ser transportada num cookie que o navegador devolve automaticamente, de acordo com as regras daquele cookie. Em outros clientes, pode ser um token incluído no cabeçalho `Authorization`. As aulas do módulo 5 abrem esses mecanismos por dentro.
+O servidor valida a credencial e então decide se pode mostrar os pedidos. Em sites, ela pode ser transportada num [[glossario/cookie|cookie]] que o navegador devolve automaticamente, de acordo com as regras daquele cookie. Em outros clientes, pode ser um [[glossario/token|token]] incluído no cabeçalho `Authorization`. As aulas do módulo 5 abrem esses mecanismos por dentro.
 
 ## Cookie, sessão e token não são a mesma coisa
 
@@ -46,23 +46,34 @@ Esses nomes aparecem juntos porque podem participar da mesma autenticação, mas
 
 | Nome | O que é | Onde pode ficar |
 |---|---|---|
-| **Cookie** | Um mecanismo do navegador para guardar um valor e enviá-lo em requisições compatíveis | O valor fica no navegador; pode ser um ID de sessão ou até um token |
-| **Sessão** | Dados que a aplicação associa a uma visita autenticada, como o usuário e o prazo de validade | Em memória, num banco, num cache compartilhado ou noutro armazenamento do servidor |
-| **Token** | Uma credencial apresentada pelo cliente; pode ser um identificador aleatório ou carregar dados assinados | Normalmente o cliente o guarda e envia; a aplicação pode ou não manter um registro dele no servidor |
+| **[[glossario/cookie|Cookie]]** | Um mecanismo do navegador para guardar um valor e enviá-lo em requisições compatíveis | O valor fica no navegador; pode ser um ID de sessão ou até um token |
+| **[[glossario/sessao|Sessão]]** | Dados que a aplicação associa a uma visita autenticada, como o usuário e o prazo de validade | Em memória, num banco, num cache compartilhado ou noutro armazenamento do servidor |
+| **[[glossario/token|Token]]** | Uma credencial apresentada pelo cliente; pode ser um identificador aleatório ou carregar dados assinados | Normalmente o cliente o guarda e envia; a aplicação pode ou não manter um registro dele no servidor |
 
 ### Quando o valor é um ID de sessão
 
-Um fluxo comum é o servidor criar um valor aleatório, como `8f3a2c`, e guardar uma associação no armazenamento de sessões:
+Um fluxo comum é o servidor criar um valor aleatório, como `8f3a2c`, e guardar uma associação no armazenamento de sessões. No exemplo da aula 1.5, isso aparece como `const sessoes = { "8f3a2c": "Ana" }`: um objeto JavaScript que faz de conta que é uma tabela.
 
 ```text
 ID recebido: 8f3a2c  ──>  sessão: usuária Ana, validade até 18:00
 ```
 
-O navegador pode guardar `8f3a2c` num cookie e enviá-lo em pedidos seguintes. O servidor procura esse ID no armazenamento para descobrir a quem pertence a sessão. Nesse modelo, **o cookie não contém a sessão inteira**: ele carrega a chave que permite encontrá-la.
+O navegador pode guardar `8f3a2c` num [[glossario/cookie|cookie]] e enviá-lo em pedidos seguintes. O servidor procura esse ID no armazenamento para descobrir a quem pertence a sessão. Nesse modelo, **o cookie não contém a sessão inteira**: ele carrega a chave que permite encontrá-la.
+
+No exercício da aula 1.5, `sessoes` é apenas uma variável na memória do processo Node. Se parar ou reiniciar o programa, o objeto é recriado vazio e os logins de exemplo desaparecem. Num sistema real, a aplicação pode guardar as sessões num banco de dados ou num serviço de armazenamento compartilhado. Como esses dados ficam fora da memória temporária do processo, reiniciar o servidor não os apaga; eles continuam disponíveis até expirarem ou serem removidos. Com vários servidores, todos podem consultar o mesmo armazenamento.
 
 ### Quando o valor é um token assinado
 
-Outra opção é um token autocontido, como um JWT. Ele pode carregar informações chamadas *claims*, por exemplo um identificador de usuário e um prazo de validade, acompanhadas de uma assinatura. O servidor verifica a assinatura com uma chave e confere se o token ainda é válido. Em geral, isso não é descriptografia: um JWT assinado costuma ser codificado para transporte e assinado para detectar alterações, mas seu conteúdo não fica secreto só por causa da assinatura.
+Outra opção é um [[glossario/jwt|JWT]], um tipo de token que carrega informações e uma [[glossario/assinatura-digital|assinatura digital]]. Imagine o servidor emitir este crachá eletrônico:
+
+```text
+conteúdo: usuário = Ana; validade = 18:00
+assinatura: prova feita pelo servidor com uma chave secreta
+```
+
+O navegador guarda o JWT e o reenvia. O servidor confere a assinatura com a chave correspondente: se alguém mudar "Ana" para "Bruno", a assinatura não confere. Se confere e o prazo ainda não venceu, o servidor aceita a identidade descrita no token.
+
+Em um JWT assinado comum, o conteúdo é codificado para transporte, mas não fica secreto. O servidor normalmente **não descriptografa** o conteúdo: ele o lê e verifica a assinatura. A assinatura serve para detectar alterações e confirmar quem emitiu o token; não é uma consulta automática ao banco e não significa que os pedidos de Ana estejam dentro dele.
 
 Com esse modelo, o servidor pode identificar o usuário sem consultar uma tabela de sessões a cada pedido. Ainda pode consultar o banco para buscar os pedidos da pessoa, verificar permissões ou checar se o token foi revogado. Também existem tokens opacos, que parecem sequências aleatórias e precisam ser consultados num armazenamento para descobrir a que sessão ou usuário correspondem.
 
@@ -81,7 +92,7 @@ Também não significa que todas as requisições precisam repetir todos os dado
 
 ## Um pedido, três servidores
 
-Suponha que a loja cresça e passe a usar três servidores atrás de um **balanceador de carga**. É um componente que recebe o tráfego destinado à aplicação e encaminha cada conexão ou requisição a um dos servidores disponíveis, por exemplo para dividir o trabalho e continuar atendendo quando um servidor fica indisponível:
+Suponha que a loja cresça e passe a usar três servidores atrás de um **[[glossario/balanceador-de-carga|balanceador de carga]]**. É um componente que recebe o tráfego destinado à aplicação e encaminha cada conexão ou requisição a um dos servidores disponíveis, por exemplo para dividir o trabalho e continuar atendendo quando um servidor fica indisponível:
 
 ```text
 Navegador ── pedido A ──> Servidor 1
@@ -94,9 +105,9 @@ Se o login só tiver sido anotado na memória do Servidor 1, o pedido seguinte p
 O estilo stateless facilita essa distribuição quando cada servidor consegue validar a requisição e acessar os mesmos dados necessários. Não elimina a necessidade de banco, sessão ou coordenação; evita que o protocolo exija uma conversa anterior guardada na memória de um servidor específico.
 
 > [!info] E a conexão persistente?
-> No HTTP/1.1, o cliente pode reutilizar uma conexão TCP para várias requisições. Isso economiza o trabalho de abrir conexões repetidamente. Cada requisição continua sendo uma mensagem separada; a conexão, por si só, não é uma credencial de login nem identifica o usuário para a aplicação.
+> O [[glossario/tcp|TCP]] entrega os bytes de forma confiável e em ordem, como você viu na aula 1.5, que recebe o corpo aos poucos. Uma **[[glossario/conexao-persistente|conexão persistente]]** é outra ideia: no HTTP/1.1, depois de uma mensagem, o cliente e o servidor mantêm a conexão aberta para poder reutilizá-la em outras requisições, em vez de estabelecer uma nova. Cada requisição continua sendo uma mensagem separada; a conexão, por si só, não é uma credencial de login.
 >
-> **Conexão persistente não quer dizer que o corpo está sendo enviado em chunks.** Quer dizer que a conexão TCP continua disponível para mais mensagens. *Chunked transfer encoding* é um mecanismo específico do HTTP/1.1 para delimitar o corpo em partes; HTTP/2 usa frames, e HTTP/3 também organiza dados em frames sobre QUIC. São camadas e mecanismos diferentes.
+> **Conexão persistente não quer dizer que o corpo está sendo enviado em chunks.** Quer dizer que a conexão TCP continua disponível para mais mensagens. *Chunked transfer encoding* é um mecanismo específico do HTTP/1.1 para delimitar o corpo em partes; HTTP/2 e HTTP/3 organizam os dados em frames. São camadas e mecanismos diferentes.
 
 ## Pense como o servidor
 
