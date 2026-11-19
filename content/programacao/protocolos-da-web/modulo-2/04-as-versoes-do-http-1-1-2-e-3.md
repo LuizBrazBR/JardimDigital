@@ -19,7 +19,7 @@ Accept: application/json
 
 O HTTP/1.1 também permite manter uma conexão TCP aberta e reutilizá-la para outras requisições, em vez de abrir uma conexão nova para cada uma. Isso é chamado de **conexão persistente** (*keep-alive*).
 
-Em geral, o navegador envia uma requisição e espera sua resposta antes de enviar a próxima pela mesma conexão. O HTTP/1.1 também define *pipelining*, que permite enviar várias requisições sem esperar cada resposta, mas o suporte foi limitado: as respostas precisam chegar na ordem das requisições. Se uma resposta demora, as seguintes ficam bloqueadas atrás dela. Esse atraso é chamado de **head-of-line blocking** (bloqueio de fila) na camada HTTP.
+Em geral, o navegador envia uma requisição e espera sua resposta antes de enviar a próxima pela mesma conexão. O HTTP/1.1 também define *pipelining*, que permite enviar várias requisições sem esperar cada resposta, mas o suporte foi limitado: as respostas precisam chegar na ordem das requisições. Se uma resposta demora, as seguintes ficam bloqueadas atrás dela. Esse atraso é chamado de **[[glossario/head-of-line-blocking|head-of-line blocking]]** (bloqueio de fila) na camada HTTP.
 
 Para contornar a espera, os navegadores costumam abrir várias conexões TCP com o mesmo servidor. Isso permite avançar em mais de uma transferência, mas cada conexão tem custos de estabelecimento e recursos próprios.
 
@@ -28,7 +28,7 @@ Para contornar a espera, os navegadores costumam abrir várias conexões TCP com
 
 ## HTTP/2: binário e multiplexado
 
-O HTTP/2, padronizado em 2015, mantém a semântica do HTTP: métodos, status, cabeçalhos e corpos continuam com o mesmo sentido. A diferença é a forma de transmissão. Em vez de linhas de texto, os dados são organizados em **frames**, num formato binário.
+O HTTP/2, padronizado em 2015, mantém a semântica do HTTP: métodos, status, cabeçalhos e corpos continuam com o mesmo sentido. A diferença é a forma de transmissão. Em vez de linhas de texto, os dados são organizados em **[[glossario/frame|frames]]**, num formato binário.
 
 No HTTP/2, as informações da linha de requisição aparecem como pseudo-cabeçalhos: campos especiais que começam com `:`. O bloco abaixo é uma representação legível para estudo, não os bytes transmitidos na rede:
 
@@ -41,17 +41,17 @@ accept: application/json
 user-agent: Mozilla/5.0
 ```
 
-A principal mudança é a **multiplexação**: várias requisições e respostas podem avançar ao mesmo tempo, intercaladas em uma única conexão TCP. Assim, uma resposta lenta não precisa impedir que outra resposta completa seja entregue primeiro na camada HTTP.
+A principal mudança é a **[[glossario/multiplexacao|multiplexação]]**: várias requisições e respostas podem avançar ao mesmo tempo, intercaladas em uma única conexão TCP. Assim, uma resposta lenta não precisa impedir que outra resposta completa seja entregue primeiro na camada HTTP.
 
 Imagine que o navegador peça uma imagem grande e, logo depois, um ícone pequeno. O servidor pode enviar partes dos dois fluxos intercaladas. Se o ícone terminar primeiro, o navegador pode recebê-lo sem esperar a imagem inteira. Isso não torna a rede mais rápida por mágica; evita que uma resposta demorada obrigue todas as outras a esperar na camada HTTP.
 
-O HTTP/2 também comprime os cabeçalhos com **HPACK**. Como muitos cabeçalhos se repetem entre requisições — por exemplo, `User-Agent` e, quando aplicável, `Cookie` — a compressão evita reenviar todos os mesmos dados integralmente a cada vez.
+O HTTP/2 também comprime os cabeçalhos com **[[glossario/hpack|HPACK]]**. Como muitos cabeçalhos se repetem entre requisições — por exemplo, `User-Agent` e, quando aplicável, `Cookie` — a compressão evita reenviar todos os mesmos dados integralmente a cada vez.
 
-Ainda existe uma limitação: o HTTP/2 usa TCP, que entrega os bytes em ordem. Se um segmento TCP se perde, o TCP precisa recuperá-lo antes de entregar os dados seguintes à aplicação. Isso pode atrasar todos os fluxos HTTP/2 naquela conexão, mesmo que a perda diga respeito aos dados de apenas um deles. É o **head-of-line blocking na camada de transporte**.
+Ainda existe uma limitação: o HTTP/2 usa TCP, que entrega os bytes em ordem. Se um segmento TCP se perde, o TCP precisa recuperá-lo antes de entregar os dados seguintes à aplicação. Isso pode atrasar todos os fluxos HTTP/2 naquela conexão, mesmo que a perda diga respeito aos dados de apenas um deles. É o **[[glossario/head-of-line-blocking|head-of-line blocking]] na camada de transporte**.
 
 ## HTTP/3: QUIC sobre UDP
 
-O HTTP/3, padronizado em 2022, usa o **QUIC** em vez do TCP. O QUIC é um protocolo de transporte que funciona sobre UDP e oferece fluxos independentes. Se dados de um fluxo se perdem, a recuperação atrasa esse fluxo, mas os outros podem continuar avançando.
+O HTTP/3, padronizado em 2022, usa o **[[glossario/quic|QUIC]]** em vez do [[glossario/tcp|TCP]]. O QUIC é um protocolo de transporte que funciona sobre [[glossario/udp|UDP]] e oferece fluxos independentes. Se dados de um fluxo se perdem, a recuperação atrasa esse fluxo, mas os outros podem continuar avançando.
 
 O QUIC também integra o estabelecimento de segurança TLS à conexão. Isso pode reduzir o tempo necessário para começar a trocar dados, especialmente quando há uma conexão nova. A negociação e o ganho real dependem da rede e da situação da conexão.
 
@@ -103,5 +103,5 @@ Compare duas requisições do mesmo site. Se uma conexão já foi aberta, a pró
 
 - **Multiplexar** vem do latim *multiplex*, "com muitas partes". Em redes, vários fluxos compartilham um mesmo canal de comunicação.
 - **Frame** significa "moldura" ou "quadro" em inglês. No HTTP/2 e no HTTP/3, é uma unidade estruturada que carrega parte da conversa.
-- **QUIC** começou como o nome de um protocolo do Google, derivado de *Quick UDP Internet Connections*. O nome permaneceu quando o protocolo foi padronizado.
+- **QUIC** começou como sigla informal do Google, *Quick UDP Internet Connections*. Ao ser padronizado, a IETF decidiu que não é sigla: a RFC 9000 diz que "QUIC é um nome, não uma sigla".
 

@@ -9,6 +9,6 @@ Um token pode ser um identificador aleatório que o servidor procura num armazen
 
 ## De onde vem a palavra
 
-Do inglês antigo *tācn*, "sinal, símbolo", da mesma raiz do alemão *Zeichen* e do português "teclar"? Não: a ligação é com o verbo "mostrar, indicar". Em inglês, *token* ficou para "sinal", "ficha" e "prova de algo", como a ficha de metrô. Em redes, é o valor que serve de prova de que você tem permissão.
+Do inglês antigo *tācn*, "sinal, símbolo", parente do alemão *Zeichen*, "sinal". Em inglês, *token* ficou para "sinal", "ficha" e "prova de algo", como a ficha de metrô. Em redes, é o valor que serve de prova de que você tem permissão.
 
 Fontes: Wiktionary: [token](https://en.wiktionary.org/wiki/token)
