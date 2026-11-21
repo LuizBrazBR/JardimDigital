@@ -108,11 +108,24 @@ Se qualquer uma falhar, o navegador **para** e mostra o aviso de conexão não s
 
 Esse vai-e-vem do começo é o [[glossario/handshake|handshake]], "aperto de mão". No TLS 1.3, ele tem poucos passos:
 
-1. **O cliente se apresenta:** "quero falar com `api.loja.com`. Sei embaralhar de tais jeitos." (Os nomes técnicos: *Client Hello*, e os jeitos são as [[glossario/cifra|cifras]].)
+1. **O cliente se apresenta:** "quero falar com `api.loja.com`. Sei embaralhar de tais jeitos." (Os nomes técnicos: *Client Hello*, e os "jeitos" são as [[glossario/cifra|cifras]], explicadas logo a seguir.)
 2. **O servidor responde:** "vamos usar este jeito. Aqui está o meu certificado e a minha assinatura." (*Server Hello*.)
 3. **O cliente faz as quatro conferências** da seção anterior.
 4. **Os dois combinam a chave de embaralhar** (explicada a seguir).
 5. **O HTTP começa**, e tudo vai embaralhado.
+
+## Cifra e chave: o método e o segredo
+
+Duas palavras que se misturam: **cifra** e **chave**.
+
+- A **[[glossario/cifra|cifra]]** é o **método** de embaralhar uma mensagem. **Cifrar** é aplicar esse método.
+- A **chave** é o **segredo** que o método usa.
+
+Um exemplo antigo, a **cifra de César**: o método é "trocar cada letra pela que vem algumas casas depois no alfabeto", e a chave é **quantas casas**. Com a chave `3`, `A` vira `D`, e `LOJA` vira `ORMD`. Quem sabe o método e a chave desfaz: volta 3 casas. Quem só vê `ORMD` não entende nada.
+
+O método pode ser público, e o que mantém a conversa secreta é a **chave**. Por isso o TLS não esconde qual cifra usa; esconde a chave.
+
+As cifras de verdade são bem mais fortes que o César, e têm nomes como `AES`. Na primeira mensagem, o cliente manda uma **lista** das cifras que conhece, e o servidor escolhe uma da lista. É a isso que o passo 1 e o passo 2 do aperto de mão se referem.
 
 ## A chave que embaralha: a chave de sessão
 
