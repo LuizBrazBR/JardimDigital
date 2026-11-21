@@ -109,6 +109,17 @@ Sem corpo, os dados de um `GET` vão na URL, de dois jeitos:
 > [!abstract] A regra prática
 > **Se o dado diz qual recurso você quer, vai no caminho. Se o dado ajusta como a busca é feita, vai na query string.**
 
+> [!info] Isso é erro do HTTP? (clique para abrir)
+> Não. O HTTP não obriga nada: o servidor recebe o texto da URL e faz o que o código mandar. Dá para escrever `/produtos/eletronicos/ate-500` em vez de `/produtos?categoria=eletronicos&preco_max=500`, e funciona. Muita API antiga foi desenhada assim. É uma **escolha de desenho**, e não um erro de protocolo: a regra acima é uma convenção, e quem a ignora fez uma abordagem pior, não um pedido inválido.
+>
+> O motivo da convenção é o que cada filtro permite:
+>
+> - **Filtro é opcional e combinável.** Na query string, `categoria` e `preco_max` podem vir juntos, separados ou nenhum, em qualquer ordem. No caminho, cada combinação vira um endereço diferente para o servidor tratar (`/produtos/eletronicos`, `/produtos/ate-500`, `/produtos/eletronicos/ate-500`...), e a ordem passa a importar.
+> - **Filtro novo não quebra nada.** Acrescentar `cor=preto` à query string não muda os endereços que já existiam.
+> - **O caminho identifica.** `/produtos/42` aponta um recurso específico: sem o `42`, o endereço é outro recurso (a lista inteira).
+>
+> Um jeito rápido de decidir: se o dado é opcional, ou mais dados do mesmo tipo podem ser somados, é query string. Se ele é necessário para dizer qual recurso se abre, é caminho. O caminho também pode mostrar hierarquia, como `/clientes/7/pedidos`, "os pedidos do cliente 7": aí o `7` identifica o cliente, e `pedidos` é o recurso que pertence a ele. A aula 7.2 volta a isso.
+
 ### Query string e parâmetro de query: o todo e as partes
 
 A aula usa os dois nomes, e eles não são a mesma coisa. A **query string** é o texto inteiro depois do `?`. Cada par `nome=valor` dentro dela é um **parâmetro de query**. O `&` separa os pares.
