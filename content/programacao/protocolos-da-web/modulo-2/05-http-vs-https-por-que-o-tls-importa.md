@@ -32,61 +32,108 @@ Em HTTP puro, esses bytes viajam **como estão escritos**, em texto aberto. Quem
 
 O risco não é só a senha. Na aula 2.3, o servidor reconhecia a Ana por um [[glossario/cookie|cookie]] ou por um [[glossario/token|token]] no cabeçalho. Em HTTP puro, quem copia esse valor no caminho **entra como a Ana sem saber a senha**.
 
+## Quem faz o quê: IP, TCP, TLS e HTTP
+
+Antes do TLS, uma arrumação. Quando você abre `https://api.loja.com`, **quatro coisas diferentes** trabalham juntas, cada uma com um trabalho só. A maior confusão da aula vem de misturar essas quatro.
+
+| Camada | O que ela faz | Na analogia da carta |
+|---|---|---|
+| **HTTP** | É a **conversa**: o pedido (`GET /pedidos`) e a resposta (`200 OK` com os dados). | O texto escrito na carta |
+| **TLS** | **Protege** a conversa: prova quem é o servidor e embaralha tudo. | O envelope lacrado, com a identidade de quem enviou |
+| **TCP** | **Liga** os dois computadores e garante que tudo chegue **inteiro e em ordem**, reenviando o que se perder. Não entende o conteúdo. | O carteiro que confirma cada entrega e refaz a que se perdeu |
+| **IP** | Leva os pacotes até a **máquina certa**. É o endereço de onde o servidor está. Não garante nada. | O endereço da casa |
+
+Só o HTTP é a conversa. Os outros três **carregam e protegem** o que o HTTP diz, e não sabem o que está escrito na carta.
+
+Então, para as suas perguntas: o **IP** diz *onde* fica o servidor. O **TCP** faz a ligação com aquele endereço e cuida de entregar tudo certinho. O **TLS** entra **depois** que o TCP ligou, para proteger a ligação. E só **depois do TLS** o HTTP começa a falar:
+
+```text
+1. IP + TCP    acham o servidor e abrem a ligação
+2. TLS         combinam a proteção (só no HTTPS)
+3. HTTP        o pedido e a resposta, já protegidos
+```
+
 ## HTTPS = HTTP + TLS
 
 > [!abstract] Definição
 > **[[glossario/https|HTTPS]] é o HTTP rodando por dentro do TLS, uma camada que embaralha a conversa e prova quem é o servidor.** O **S** é de *Secure*, "seguro". Os métodos, os códigos de status e os cabeçalhos são os mesmos do HTTP.
 
-Na pilha de camadas que você já conhece, o TLS fica entre o HTTP e o TCP:
+Na aula 2.4, você viu que o TLS 1.3 acrescenta mais uma ida e volta antes dos dados, e que o QUIC embute esse passo na própria conexão.
 
-```text
-HTTP    a mensagem: método, cabeçalhos, corpo
-TLS     embaralha e prova a identidade do servidor
-TCP     entrega os bytes completos e em ordem
-IP      leva os pacotes até a máquina de destino
-```
+### O que o TLS combina (e o que ele não combina)
 
-O TLS entra **antes** de qualquer byte de HTTP. Primeiro vem o aperto de mão do TCP; depois, o do TLS; só então o navegador manda a requisição. Por isso, na aula 2.4, você viu que o TLS 1.3 acrescenta mais uma ida e volta antes dos dados, e que o QUIC embute esse passo na própria conexão.
+O TLS **não negocia tudo**. No começo da conexão, ele resolve três coisas:
 
-> [!info] Na prática, só com TLS
-> Os navegadores só falam HTTP/2 e HTTP/3 sobre TLS. A negociação da versão acontece **dentro** do aperto de mão do TLS, numa parte chamada **ALPN**, que aparece no `curl` mais abaixo.
+1. **Quem é o servidor?** O servidor prova a identidade dele.
+2. **Como embaralhar?** Os dois escolhem o método e criam a chave.
+3. **De carona, qual versão do HTTP vamos usar?** Isso se chama **ALPN**.
 
-## O aperto de mão do TLS, passo a passo
+A terceira é "de carona" porque o começo da conexão é o único momento em que os dois já se falam, antes de qualquer HTTP. Aproveita-se para combinar a versão (1.1, 2 ou 3) ali. Na prática, os navegadores só usam HTTP/2 e HTTP/3 dentro do TLS.
 
-O [[glossario/handshake|handshake]] do TLS 1.3 tem quatro passos antes do HTTP:
+O **HTTP não negocia nada**: ele só faz o pedido e recebe a resposta. A pergunta "este servidor é mesmo o `api.loja.com`?" é do **TLS**, e a resposta vem no certificado.
 
-| Passo | Quem | O que acontece |
+## Como o servidor prova quem é
+
+O problema: qualquer servidor pode dizer "eu sou a loja". Precisa de uma prova. Ela vem em duas peças.
+
+### Peça 1: o certificado, o RG do site
+
+O [[glossario/certificado|certificado]] é como um RG. Diz **de quem é** (`api.loja.com`), a **validade** e quem o **emitiu**.
+
+Quem emite é uma [[glossario/autoridade-certificadora|autoridade certificadora]], que funciona como um **cartório**: só reconhece o RG depois de conferir que a pessoa é mesmo dona daquele nome. O seu navegador já traz uma lista de cartórios em que confia.
+
+### Peça 2: a assinatura, para provar que o RG é dele
+
+Só que um RG pode ser copiado. Se qualquer um pudesse mostrar o certificado da loja, o certificado não provaria nada. Então o servidor precisa mostrar que **é o dono verdadeiro**.
+
+Isso é feito com um **par de chaves**, duas chaves diferentes ligadas entre si:
+
+- A **chave privada** fica só com o servidor, como a sua assinatura de punho. Ninguém mais sabe fazer igual.
+- A **chave pública** vai dentro do certificado. Todo mundo pode ter. Ela só serve para **conferir** a assinatura feita com a privada, não para assinar.
+
+Na hora do aperto de mão, o servidor **assina** uma mensagem com a chave privada. O navegador confere essa [[glossario/assinatura-digital|assinatura]] com a chave pública do certificado. Se confere, só o dono da chave privada poderia ter feito aquilo. É a mesma ideia do JWT da aula 2.3.
+
+### As quatro conferências do navegador
+
+Ao receber o certificado e a assinatura, o navegador confere:
+
+1. O **nome** do certificado bate com o do endereço que você digitou?
+2. Quem emitiu é um **cartório** em que ele confia?
+3. O certificado ainda está **dentro da validade**?
+4. A **assinatura** confere com a chave pública?
+
+Se qualquer uma falhar, o navegador **para** e mostra o aviso de conexão não segura. Nenhuma requisição é mandada.
+
+## O que acontece, em ordem
+
+Esse vai-e-vem do começo é o [[glossario/handshake|handshake]], "aperto de mão". No TLS 1.3, ele tem poucos passos:
+
+1. **O cliente se apresenta:** "quero falar com `api.loja.com`. Sei embaralhar de tais jeitos." (Os nomes técnicos: *Client Hello*, e os jeitos são as [[glossario/cifra|cifras]].)
+2. **O servidor responde:** "vamos usar este jeito. Aqui está o meu certificado e a minha assinatura." (*Server Hello*.)
+3. **O cliente faz as quatro conferências** da seção anterior.
+4. **Os dois combinam a chave de embaralhar** (explicada a seguir).
+5. **O HTTP começa**, e tudo vai embaralhado.
+
+## A chave que embaralha: a chave de sessão
+
+São **dois tipos de chave**, com trabalhos diferentes:
+
+| Chave | Quantas | Para que serve |
 |---|---|---|
-| **1** | cliente | Manda o *Client Hello*: "falo TLS 1.3, conheço estas [[glossario/cifra\|cifras]], quero falar com `api.loja.com`, e esta é a minha metade de um segredo". |
-| **2** | servidor | Responde com o *Server Hello*: escolhe uma cifra, manda a metade dele do segredo, o **certificado** e uma **assinatura** que prova que ele tem a chave privada do certificado. |
-| **3** | cliente | Confere o certificado: o nome bate com `api.loja.com`? Foi assinado por uma [[glossario/autoridade-certificadora\|autoridade certificadora]] em que confia? Não venceu? A assinatura confere? |
-| **4** | os dois | Cada um, do seu lado, calcula a **mesma** [[glossario/chave-de-sessao\|chave de sessão]]. Trocam uma mensagem de fim (*Finished*) já cifrada. A partir daí, tudo é cifrado, inclusive o HTTP. |
+| **Par: pública e privada** | Duas, diferentes | **Provar quem é** o servidor (a assinatura) |
+| **[[glossario/chave-de-sessao\|Chave de sessão]]** | Uma só, igual nos dois lados | **Embaralhar a conversa**: a mesma chave tranca e destranca |
 
-Se qualquer conferência do passo 3 falhar, o navegador **para** e mostra o aviso de conexão não segura. Nenhuma requisição é mandada.
-
-Há dois tipos de chave nesse processo, com jobs diferentes.
-
-### Chave pública e chave privada: provar quem é
-
-Um **par de chaves** funciona como um cadeado e a sua chave. A **chave pública** é como um cadeado aberto que o dono distribui para todos; a **chave privada** fica só com o dono. O que uma das duas faz, só a outra desfaz.
-
-O servidor usa o par para **provar que é quem diz ser**: ele assina um trecho do aperto de mão com a chave privada, e o cliente confere com a chave pública que está no certificado. É a mesma ideia da [[glossario/assinatura-digital|assinatura digital]] do JWT na aula 2.3: quem não tem a chave privada não consegue produzir uma assinatura que confira.
-
-Esse par de chaves é chamado de **criptografia assimétrica**, porque as duas chaves são diferentes. Ela é cara em cálculo, então o TLS a usa só nessa prova e na combinação do segredo, não para cifrar a conversa inteira.
-
-### Chave de sessão: cifrar a conversa
-
-Para cifrar a conversa, o TLS usa uma **chave só**, a mesma para trancar e para destrancar: a **criptografia simétrica**. Ela é muito mais rápida. Essa chave é criada no passo 4, vale só para **aquela conexão** e é jogada fora no fim. Daí o nome: chave de sessão.
+Por que não usar o par de chaves para embaralhar tudo? Porque é lento. A chave única é muito mais rápida, então o TLS usa o par só para a prova de identidade e a chave única para o resto. A de sessão é criada **para aquela conexão** e jogada fora no fim.
 
 > [!warning] Sessão de dois jeitos
-> Cuidado: a "chave de sessão" do TLS não é a [[glossario/sessao|sessão]] da aula 2.3. A sessão da 2.3 é o registro que a **aplicação** guarda sobre o login da Ana. A chave de sessão é um segredo que o **TLS** cria para cifrar **uma conexão**. São camadas diferentes, com um nome parecido.
+> Cuidado: a "chave de sessão" do TLS não é a [[glossario/sessao|sessão]] da aula 2.3. A sessão da 2.3 é o registro que a **aplicação** guarda sobre o login da Ana. A chave de sessão é um segredo que o **TLS** cria para embaralhar **uma conexão**. São camadas diferentes, com um nome parecido.
 
 > [!info]- Como os dois combinam a mesma chave sem mandá-la?
-> No passo 1 e no passo 2, cada lado manda **a sua metade** de um segredo. As metades podem passar abertas; ninguém consegue montar a chave só com elas. Esse truque se chama **Diffie-Hellman**, descrito em 1976 por Whitfield Diffie e Martin Hellman.
+> Cada lado manda **a sua metade** de um segredo, e as metades podem passar abertas: ninguém consegue montar a chave só com elas. Esse truque se chama **Diffie-Hellman**, descrito em 1976 por Whitfield Diffie e Martin Hellman.
 >
 > Uma analogia com tintas: cada um tem uma cor secreta e há uma cor pública, que todos conhecem. Cada um mistura a sua cor secreta com a pública e **manda a mistura** para o outro. Depois, cada um acrescenta a sua cor secreta à mistura que recebeu. Os dois acabam com a **mesma** cor final. Quem só viu as misturas no caminho não consegue desmisturá-las para descobrir as cores secretas.
 >
-> A assinatura do servidor, do passo 2, garante que a mistura veio mesmo dele, e não de um impostor.
+> A assinatura do servidor garante que a mistura veio mesmo dele, e não de um impostor.
 
 ## O que o TLS garante
 
@@ -211,7 +258,14 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > > [!success]- Resposta
 > > Não. O TLS protege só o caminho. Quando a requisição chega ao servidor, o TLS termina, e o que a aplicação faz com os dados é responsabilidade dela.
 
+> [!question] 8. Quem faz o quê
+> Associe cada tarefa à camada certa (IP, TCP, TLS ou HTTP): (a) provar que o servidor é o `api.loja.com`; (b) levar os pacotes até a máquina onde o servidor está; (c) dizer `GET /pedidos`; (d) reenviar um pedaço que se perdeu no caminho.
+>
+> > [!success]- Resposta
+> > (a) é o **TLS**, com o certificado e a assinatura. (b) é o **IP**, o endereço da máquina. (c) é o **HTTP**, a conversa em si. (d) é o **TCP**, que garante que tudo chegue inteiro e em ordem.
+
 > [!tip] Para guardar
+> - **Quem faz o quê:** o IP leva até a máquina, o TCP liga e garante a entrega, o TLS protege e o HTTP é a conversa.
 > - HTTP e HTTPS têm a **mesma** mensagem. O HTTPS é o HTTP por dentro do TLS, na porta 443.
 > - O aperto de mão do TLS: o cliente se apresenta, o servidor manda o certificado e uma assinatura, o cliente confere e os dois calculam a mesma **chave de sessão**.
 > - **Chave pública e privada** provam identidade. **Chave de sessão** cifra a conversa, rápida e de uso único.
