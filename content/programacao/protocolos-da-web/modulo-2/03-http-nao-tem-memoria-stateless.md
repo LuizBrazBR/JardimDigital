@@ -46,9 +46,9 @@ Esses nomes aparecem juntos porque podem participar da mesma autenticação, mas
 
 | Nome | O que é | Onde pode ficar |
 |---|---|---|
-| **[[glossario/cookie|Cookie]]** | Um mecanismo do navegador para guardar um valor e enviá-lo em requisições compatíveis | O valor fica no navegador; pode ser um ID de sessão ou até um token |
-| **[[glossario/sessao|Sessão]]** | Dados que a aplicação associa a uma visita autenticada, como o usuário e o prazo de validade | Em memória, num banco, num cache compartilhado ou noutro armazenamento do servidor |
-| **[[glossario/token|Token]]** | Uma credencial apresentada pelo cliente; pode ser um identificador aleatório ou carregar dados assinados | Normalmente o cliente o guarda e envia; a aplicação pode ou não manter um registro dele no servidor |
+| **[[glossario/cookie\|Cookie]]** | Um mecanismo do navegador para guardar um valor e enviá-lo em requisições compatíveis | O valor fica no navegador; pode ser um ID de sessão ou até um token |
+| **[[glossario/sessao\|Sessão]]** | Dados que a aplicação associa a uma visita autenticada, como o usuário e o prazo de validade | Em memória, num banco, num cache compartilhado ou noutro armazenamento do servidor |
+| **[[glossario/token\|Token]]** | Uma credencial apresentada pelo cliente; pode ser um identificador aleatório ou carregar dados assinados | Normalmente o cliente o guarda e envia; a aplicação pode ou não manter um registro dele no servidor |
 
 ### Quando o valor é um ID de sessão
 
