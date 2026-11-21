@@ -84,6 +84,8 @@ Fontes: [Nome](url) · [Nome](url)
 
 ## Armadilhas de formatação (já deram problema)
 
+- **Link com alias dentro de tabela: escape o pipe.** Em tabela, o `|` separa colunas e quebra o link. Escreva `[[glossario/cookie\|Cookie]]`, com barra invertida antes do `|`. Fora de tabela, `[[glossario/cookie|Cookie]]` continua certo. Antes de commitar, confira: `grep -n '^|.*\[\[[^]]*[^\\]|' <arquivos>` não deve achar nada.
+
 - **Nada de `$` no texto corrido.** O Quartz lê o trecho entre dois `$` como fórmula e embaralha. Escreva "200 reais" ou ponha o valor entre crases. Depois do build, `grep -c 'class="katex'` no HTML gerado deve dar 0.
 - **Nada de markdown dentro de alias de wikilink.** `[[pagina|texto **negrito**]]` mostra os `**` literais. Ponha o link numa palavra simples e o negrito fora.
 - **Fim de linha LF**, não CRLF. No Windows a ferramenta de escrever grava CRLF: antes de commitar, rode `sed -i 's/\r$//' arquivo.md` (ou grave com `newline="\n"` se usar Python) e confira com `git diff --stat` que o arquivo não inteiro aparece como alterado.
