@@ -157,6 +157,56 @@ O `loja.exemplo.com` é um endereço de mentira, então esses três não respond
 - **O `-H`** acrescenta um cabeçalho ao pedido, escrito como na mensagem: `"Nome: valor"`. O método continua `GET`: cabeçalho não é corpo.
 - **As aspas na URL do meio** não são enfeite. No PowerShell, o `&` é um caractere especial. Sem as aspas, o comando nem roda, e aparece: `The ampersand (&) character is not allowed.` Com aspas, o `&` vai para o curl como parte da URL. A URL do primeiro comando não tem `&` e funciona sem aspas, mas pôr aspas sempre é o hábito mais seguro.
 
+## Quando a URL não aguenta: o limite de tamanho
+
+Como o `GET` não tem corpo, **tudo** o que ele leva precisa caber na URL. E a URL tem um tamanho máximo. O HTTP não fixa o número: quem fixa é cada servidor e cada [[glossario/proxy|proxy]] no caminho, e eles podem ter limites diferentes. A especificação só recomenda que os programas aceitem pelo menos 8000 caracteres na linha de requisição.
+
+Quando a URL passa do limite, o servidor recusa o pedido. O status mais indicado para isso é o **414**, *URI Too Long*, "URI longa demais". Alguns servidores respondem outro status. Os status codes são o módulo 4.
+
+Isso aparece em buscas grandes. Imagine uma API de busca com `GET /busca?q=<termo>` em que alguns clientes mandam um termo enorme, mais dezenas de filtros na query string. A URL cresce até o limite, e o pedido é recusado.
+
+### A saída: POST com corpo
+
+O corpo não tem o limite da URL. A saída é mandar a busca num `POST`, com os dados no corpo:
+
+```http
+POST /busca HTTP/1.1
+Host: api.loja.com
+Content-Type: application/json
+
+{"q": "termo enorme...", "filtros": [ ... dezenas ... ]}
+```
+
+Isso pode parecer contradizer o que a aula disse. Não contradiz:
+
+- O `GET` **promete** não mudar nada. Não promete ser o **único** método que lê.
+- O `POST` é o método mais geral: quer dizer "processe isto que estou mandando". Criar um recurso é o uso mais comum, e a aula 3.2 trata dele, mas não é o único.
+- Uma busca por `POST` só lê, e é um uso comum e aceito quando a busca não cabe na URL.
+
+O preço é perder o que vinha da promessa do `GET`: o cache guardar a resposta, o navegador repetir o pedido sozinho e a busca poder ser salva como link. Por isso a regra prática é: **`GET` sempre que couber na URL; `POST` só quando não couber.**
+
+### Veja com os próprios olhos
+
+Com o `catalogo.js` rodando, mande uma query string de 8000 caracteres e outra de 20000. O `curl.exe` aceita uma URL desse tamanho:
+
+```powershell
+$curto = "a" * 8000
+$longo = "a" * 20000
+curl.exe -s -o NUL -w "%{http_code}`n" "http://localhost:3000/produtos?q=$curto"
+curl.exe -s -o NUL -w "%{http_code}`n" "http://localhost:3000/produtos?q=$longo"
+```
+
+No Node 22, que foi o usado ao testar a aula, a saída é:
+
+```
+200
+431
+```
+
+A URL de 8000 caracteres passa. A de 20000 é recusada, mas com o status **431**, *Request Header Fields Too Large*, "cabeçalhos grandes demais", e não com o 414. O Node limita o tamanho de tudo o que vem antes do corpo, a linha de requisição e os cabeçalhos juntos, a 16 KB, e responde 431 quando passa. Cada servidor tem o seu limite e o seu status, e o 414 é o que a especificação reserva para uma URL longa demais. O limite e o status mudam de servidor para servidor, mas a causa é a mesma: a URL não coube.
+
+O `-s -o NUL -w "%{http_code}"` do comando mostra só o status: o `-s` cala o curl, o `-o NUL` joga o corpo fora e o `-w` imprime o status no fim. Na saída do PowerShell, o `` `n `` é a quebra de linha: no PowerShell, o acento grave é o caractere de escape.
+
 ## Por que o GET não pode mudar dados
 
 A promessa de não mudar nada tem nome: o `GET` é um [[glossario/metodo-seguro|método seguro]]. "Seguro", aqui, não tem a ver com ataques nem com HTTPS. Quer dizer só "só lê". A aula 3.5 define o termo com precisão.
@@ -496,6 +546,12 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > > [!success]- Resposta
 > > De quem fez o blog. O crawler só mandou um `GET`, o método que promete não mudar nada, e confiou na promessa. A especificação do HTTP põe a responsabilidade no dono do servidor: uma ação que apaga não pode ser disparada por `GET`. O certo seria `DELETE /posts/10`.
 
+> [!question] 10. A busca que não cabe
+> Uma API aceita `GET /busca?q=<termo>`, mas alguns clientes mandam um termo enorme e dezenas de filtros, e recebem o erro **414 URI Too Long**. Qual é a causa e qual é a saída mais alinhada ao HTTP?
+>
+> > [!success]- Resposta
+> > A causa é que a URL passou do limite de tamanho de algum servidor ou proxy no caminho. Como o `GET` não tem corpo, tudo precisa caber na URL. A saída é mandar a busca num `POST`, com os dados no corpo, que não tem esse limite. Perde-se o cache e a repetição automática que o `GET` permite, por isso o `GET` continua sendo a primeira opção sempre que a busca couber na URL. O DNS não tem relação com isso: ele só troca o nome do host por um IP. E o `Accept` diz o formato da resposta, e não o tamanho do pedido.
+
 ## De onde vêm as palavras
 
 - **[[glossario/metodo-http|Método]] e verbo**: *método* vem do grego *méthodos*, de *hodós*, "caminho": o caminho para fazer alguma coisa. *Verbo* vem do latim *verbum*, "palavra", da mesma raiz do inglês *word*.
@@ -517,6 +573,7 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > - Tudo na URL chega como texto: o back-end converte com `Number(...)`.
 > - O `GET` é um **método seguro**: pré-carregamento, crawlers e proxies mandam `GET` sozinhos, confiando que nada muda. Uma ação que apaga ou grava num `GET` pode disparar sem ninguém clicar.
 > - Garantir isso é trabalho de **quem escreve o back-end**, e não de quem consome a API.
+> - Como o `GET` só tem a URL, uma busca grande demais é recusada (o 414, ou outro status, conforme o servidor). Nesse caso, a saída é um `POST` com os dados no corpo: `GET` quando couber, `POST` quando não couber.
 > - No PowerShell, URL com `&` vai entre aspas.
 
 Fontes: IETF: [RFC 9110, seção 9: Methods](https://www.rfc-editor.org/rfc/rfc9110#section-9), [9.2.1: Safe Methods](https://www.rfc-editor.org/rfc/rfc9110#section-9.2.1), [9.3.1: GET](https://www.rfc-editor.org/rfc/rfc9110#section-9.3.1) · MDN: [HTTP request methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods), [GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods/GET), [Safe](https://developer.mozilla.org/en-US/docs/Glossary/Safe/HTTP), [URL.searchParams](https://developer.mozilla.org/en-US/docs/Web/API/URL/searchParams), [String.prototype.split](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split), [rel=prefetch](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/rel/prefetch) · Wikipedia: [Google Web Accelerator](https://en.wikipedia.org/wiki/Google_Web_Accelerator) · Wiktionary: [method](https://en.wiktionary.org/wiki/method), [verbum](https://en.wiktionary.org/wiki/verbum), [proxy](https://en.wiktionary.org/wiki/proxy), [crawl](https://en.wiktionary.org/wiki/crawl), [fetch](https://en.wiktionary.org/wiki/fetch), [collateral](https://en.wiktionary.org/wiki/collateral), [securus](https://en.wiktionary.org/wiki/securus), [caminho](https://en.wiktionary.org/wiki/caminho)
