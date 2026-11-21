@@ -93,29 +93,29 @@ Isso é feito com um **par de chaves**, duas chaves diferentes ligadas entre si:
 
 Na hora do aperto de mão, o servidor **assina** uma mensagem com a chave privada. O navegador confere essa [[glossario/assinatura-digital|assinatura]] com a chave pública do certificado. Se confere, só o dono da chave privada poderia ter feito aquilo. É a mesma ideia do JWT da aula 2.3.
 
-> [!example] Chave privada não é assinatura
-> A **chave privada** é a **caneta**: fica guardada e é sempre a mesma. A **assinatura** é o **rabisco** que a caneta deixa **numa mensagem específica**: muda a cada mensagem. Quem vê o rabisco não consegue descobrir como é a caneta, mas com a chave pública consegue conferir que foi aquela caneta que o fez.
+> [!example] Chave privada e assinatura digital
+> A **assinatura digital** é um valor calculado a partir de **uma mensagem específica** com a **chave privada**. Outra mensagem gera outra assinatura. A **chave pública** não gera nada: ela só **verifica** se a assinatura foi feita pela chave privada correspondente àquela mensagem.
 >
-> E a autoridade **não entrega** a chave privada ao servidor. O servidor **gera o par sozinho**, no próprio computador, e a privada nunca sai de lá. O que ele manda ao cartório é só a **chave pública** e o nome do site. O cartório confere que o site é mesmo dono do nome e **assina o certificado** (nome + chave pública + validade) com a **chave privada dele, do cartório**.
+> O servidor gera o par de chaves no próprio computador, e a chave privada nunca sai de lá. Para obter o certificado, ele envia à autoridade certificadora (CA) só a **chave pública** e o nome do domínio. A CA confere que o servidor controla o domínio e **assina os dados do certificado** com a **chave privada da CA**.
 >
-> Então existem **duas assinaturas** diferentes, feitas por donos diferentes:
+> Existem **duas assinaturas** diferentes, feitas por chaves diferentes:
 >
-> | Assinatura | Quem assina | Com qual chave | O que prova | Quem confere |
+> | Assinatura | Quem assina | Com qual chave | O que prova | Quem verifica, e com qual chave |
 > |---|---|---|---|---|
-> | **No certificado** | O cartório (autoridade certificadora) | A privada **do cartório** | "Esta chave pública pertence mesmo a `api.loja.com`" | O navegador, com a chave pública **do cartório**, que ele já traz instalada (conferência 2) |
-> | **No aperto de mão** | O servidor | A privada **do servidor** | "Quem está falando comigo agora é o dono dessa chave pública" | O navegador, com a chave pública **que veio dentro do certificado** (conferência 4) |
+> | **Do certificado** | A CA | Privada **da CA** | A chave pública do certificado pertence ao domínio | O navegador, com a chave pública **da CA**, que vem no root store (conferência 2 e 4) |
+> | **CertificateVerify** (assinatura do transcript) | O servidor | Privada **do servidor** | O servidor possui a chave privada correspondente à chave pública do certificado | O navegador, com a chave pública **do certificado** (conferência 4) |
 >
-> A chave pública do certificado, portanto, vem do **servidor** (o cartório só a carimbou). Sem a primeira assinatura, o navegador não saberia se aquela chave pública é mesmo da loja; sem a segunda, não saberia se quem a apresenta é o dono verdadeiro ou alguém que copiou o certificado. A analogia do RG vale até aqui: no mundo real o cartório não te dá a sua assinatura de punho, ela já é sua; ele só atesta que ela é sua.
+> Sem a primeira assinatura, o navegador não teria como saber se a chave pública do certificado pertence mesmo à loja. Sem a segunda, não saberia se quem apresenta o certificado possui a chave privada, ou se apenas copiou o certificado.
 
-### Como o navegador confere o selo do cartório
+### Como o navegador verifica a assinatura da CA
 
-O certificado traz um papel com o nome da loja, a chave pública e um **selo** do cartório. O navegador tem uma **cópia** do selo de cada cartório de confiança. Ele compara as duas coisas:
+O certificado contém os dados (nome do domínio, chave pública, validade) e a **assinatura digital da CA** sobre esses dados. O navegador guarda, no **root store**, as chaves públicas das CAs de confiança. Ele usa a chave pública da CA para verificar a assinatura do certificado:
 
 ```mermaid
 flowchart TD
-    A["Certificado: chave pública X é da loja.com, com selo do cartório"] --> B{"O selo bate com a cópia do cartório no navegador?"}
-    B -- Sim --> C["Papel verdadeiro: a chave X é mesmo da loja.com"]
-    B -- Não --> D["Papel falso: o navegador para e mostra o aviso"]
+    A["Certificado: nome, chave pública do servidor, validade e assinatura da CA"] --> B{"A assinatura da CA verifica com a chave pública da CA no root store?"}
+    B -- Sim --> C["Certificado autêntico: a chave pública pertence ao domínio"]
+    B -- Não --> D["Certificado não confiável: o navegador interrompe a conexão"]
 ```
 
 ### As quatro conferências do navegador
