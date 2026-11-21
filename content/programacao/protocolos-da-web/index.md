@@ -22,9 +22,9 @@ Resumos das aulas do curso de Protocolos da Web, a trilha que veio depois da [[p
 4. [[programacao/protocolos-da-web/modulo-2/04-as-versoes-do-http-1-1-2-e-3|As versões do HTTP: 1.1, 2 e 3]]
 5. [[programacao/protocolos-da-web/modulo-2/05-http-vs-https-por-que-o-tls-importa|HTTP vs HTTPS: por que o TLS importa]]
 
-## Módulo 3 – Métodos HTTP
+## [[programacao/protocolos-da-web/modulo-3/index|Módulo 3 – Métodos HTTP]]
 
-1. GET: o método para ler dados
+1. [[programacao/protocolos-da-web/modulo-3/01-get-o-metodo-para-ler-dados|GET: o método para ler dados]]
 2. POST: o método para criar recursos
 3. PUT e PATCH: atualização total e parcial
 4. DELETE, HEAD e OPTIONS: remover e consultar

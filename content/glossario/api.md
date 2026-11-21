@@ -7,7 +7,11 @@ title: API
 
 Quem usa uma [[glossario/funcao|função]] precisa saber o nome dela, o que passar e o que ela devolve, e não como ela funciona por dentro. Uma API é isso para um programa inteiro. A diferença para um site: o site responde [[glossario/html|HTML]], para uma pessoa ver, e a API responde dados, para um programa usar.
 
-Num [[glossario/back-end|back-end]], cada pedido da lista é um [[glossario/endpoint|endpoint]], como `POST /pedidos`, e a API é o conjunto deles, com o que cada um pede e devolve. Num restaurante, a API seria o que a cozinha aceita fazer, e cada prato, um endpoint. O cardápio é outra coisa: é a **documentação** da API, o texto que a descreve para quem vai pedir. Se o código muda e a documentação não, vale o código. Ver as aulas [[programacao/protocolos-da-web/modulo-1/05-o-que-e-um-back-end-e-o-que-ele-faz|1.5 O que é um back-end e o que ele faz]] e [[programacao/protocolos-da-web/modulo-1/01-cliente-e-servidor-o-modelo-por-tras-da-web|1.1 Cliente e servidor: o modelo por trás da web]].
+Num [[glossario/back-end|back-end]], cada pedido da lista é um [[glossario/endpoint|endpoint]], como `POST /pedidos`, e a API é o conjunto deles, com o que cada um pede e devolve. Num restaurante, a API seria o que a cozinha aceita fazer, e cada prato, um endpoint. O cardápio é outra coisa: é a **documentação** da API, o texto que a descreve para quem vai pedir. Se o código muda e a documentação não, vale o código.
+
+**Consumir uma API** é usar a API de outro programa: mandar os pedidos e usar as respostas. Quem faz isso é o **consumidor** (ou cliente) da API, como o aplicativo da loja que chama `GET /produtos`. Quem escreve o back-end que responde **expõe** a API. Ver a aula [[programacao/protocolos-da-web/modulo-3/01-get-o-metodo-para-ler-dados|3.1 GET: o método para ler dados]].
+
+Ver também as aulas [[programacao/protocolos-da-web/modulo-1/05-o-que-e-um-back-end-e-o-que-ele-faz|1.5 O que é um back-end e o que ele faz]] e [[programacao/protocolos-da-web/modulo-1/01-cliente-e-servidor-o-modelo-por-tras-da-web|1.1 Cliente e servidor: o modelo por trás da web]].
 
 ## De onde vem a palavra
 
