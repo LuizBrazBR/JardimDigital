@@ -93,6 +93,20 @@ Isso é feito com um **par de chaves**, duas chaves diferentes ligadas entre si:
 
 Na hora do aperto de mão, o servidor **assina** uma mensagem com a chave privada. O navegador confere essa [[glossario/assinatura-digital|assinatura]] com a chave pública do certificado. Se confere, só o dono da chave privada poderia ter feito aquilo. É a mesma ideia do JWT da aula 2.3.
 
+> [!example] Chave privada não é assinatura
+> A **chave privada** é a **caneta**: fica guardada e é sempre a mesma. A **assinatura** é o **rabisco** que a caneta deixa **numa mensagem específica**: muda a cada mensagem. Quem vê o rabisco não consegue descobrir como é a caneta, mas com a chave pública consegue conferir que foi aquela caneta que o fez.
+>
+> E a autoridade **não entrega** a chave privada ao servidor. O servidor **gera o par sozinho**, no próprio computador, e a privada nunca sai de lá. O que ele manda ao cartório é só a **chave pública** e o nome do site. O cartório confere que o site é mesmo dono do nome e **assina o certificado** (nome + chave pública + validade) com a **chave privada dele, do cartório**.
+>
+> Então existem **duas assinaturas** diferentes, feitas por donos diferentes:
+>
+> | Assinatura | Quem assina | Com qual chave | O que prova | Quem confere |
+> |---|---|---|---|---|
+> | **No certificado** | O cartório (autoridade certificadora) | A privada **do cartório** | "Esta chave pública pertence mesmo a `api.loja.com`" | O navegador, com a chave pública **do cartório**, que ele já traz instalada (conferência 2) |
+> | **No aperto de mão** | O servidor | A privada **do servidor** | "Quem está falando comigo agora é o dono dessa chave pública" | O navegador, com a chave pública **que veio dentro do certificado** (conferência 4) |
+>
+> A chave pública do certificado, portanto, vem do **servidor** (o cartório só a carimbou). Sem a primeira assinatura, o navegador não saberia se aquela chave pública é mesmo da loja; sem a segunda, não saberia se quem a apresenta é o dono verdadeiro ou alguém que copiou o certificado. A analogia do RG vale até aqui: no mundo real o cartório não te dá a sua assinatura de punho, ela já é sua; ele só atesta que ela é sua.
+
 ### As quatro conferências do navegador
 
 Ao receber o certificado e a assinatura, o navegador confere:
