@@ -107,6 +107,17 @@ Na hora do aperto de mão, o servidor **assina** uma mensagem com a chave privad
 >
 > A chave pública do certificado, portanto, vem do **servidor** (o cartório só a carimbou). Sem a primeira assinatura, o navegador não saberia se aquela chave pública é mesmo da loja; sem a segunda, não saberia se quem a apresenta é o dono verdadeiro ou alguém que copiou o certificado. A analogia do RG vale até aqui: no mundo real o cartório não te dá a sua assinatura de punho, ela já é sua; ele só atesta que ela é sua.
 
+### Como o navegador confere o selo do cartório
+
+O certificado traz um papel com o nome da loja, a chave pública e um **selo** do cartório. O navegador tem uma **cópia** do selo de cada cartório de confiança. Ele compara as duas coisas:
+
+```mermaid
+flowchart TD
+    A["Certificado: chave pública X é da loja.com, com selo do cartório"] --> B{"O selo bate com a cópia do cartório no navegador?"}
+    B -- Sim --> C["Papel verdadeiro: a chave X é mesmo da loja.com"]
+    B -- Não --> D["Papel falso: o navegador para e mostra o aviso"]
+```
+
 ### As quatro conferências do navegador
 
 Ao receber o certificado e a assinatura, o navegador confere:
