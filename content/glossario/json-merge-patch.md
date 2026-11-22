@@ -5,7 +5,7 @@ title: JSON Merge Patch
 > [!abstract] Definição
 > **Formato que descreve em JSON mudanças a aplicar a dados existentes.** Em um objeto, campos omitidos conservam o valor atual e `null` pede a remoção do campo.
 
-Se a API aceitar esse formato, envie `{"ativo":false}` no corpo de um [[glossario/patch|PATCH]] para desativar uma conta e preservar o restante do cadastro. O cabeçalho `Content-Type: application/merge-patch+json` identifica o formato. Ver a aula [[programacao/protocolos-da-web/modulo-3/03-put-e-patch-atualizacao-total-e-parcial|3.3 PUT e PATCH: atualização total e parcial]].
+O método [[glossario/patch|PATCH]] pede a alteração. O cabeçalho `Content-Type: application/merge-patch+json` informa que o corpo segue este formato. Em um cadastro `{"nome":"Caneta","desconto":5}`, aplicar `{"desconto":null}` produz `{"nome":"Caneta"}`. Aplicar `{"desconto":0}` grava zero e mantém o campo presente. Ver a aula [[programacao/protocolos-da-web/modulo-3/03-put-e-patch-atualizacao-total-e-parcial|3.3 PUT e PATCH: atualização total e parcial]].
 
 ## De onde vem a palavra
 

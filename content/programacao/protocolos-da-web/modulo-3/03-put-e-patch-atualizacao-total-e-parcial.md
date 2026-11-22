@@ -84,19 +84,44 @@ Content-Length: 81
 | E-mail | marina@exemplo.com | Omitido | marina@exemplo.com |
 | Ativo | `true` | `false` | `false` |
 
-> [!info]- O formato do PATCH define o que cada instrução faz
-> No JSON Merge Patch, omitir `email` preserva seu valor. Enviar `{"email":null}` pede para remover o campo, se a API aceitar essa mudança. Outros formatos de `PATCH` podem usar uma lista de operações. Normalmente o alvo já existe. A especificação permite criação em certas condições, conforme o formato e as regras da API.
+### O método e o formato do corpo
+
+| Pedaço da requisição | O que diz ao servidor |
+|---|---|
+| `PATCH /api/usuarios/107` | Aplique as mudanças ao usuário 107. |
+| `Content-Type: application/merge-patch+json` | Leia o corpo pelas regras do JSON Merge Patch. |
+| `{"ativo":false}` | Defina o valor de `ativo` como `false`. |
+
+O HTTP define o método `PATCH`. Cada API escolhe quais formatos aceita para descrever as mudanças. O cabeçalho `Content-Type` identifica o formato usado naquele pedido. Outros formatos podem descrever as mudanças como uma lista de instruções. [RFC 5789, método PATCH](https://www.rfc-editor.org/rfc/rfc5789.html#section-2)
+
+### Omitir, zerar ou remover um campo
+
+Imagine um produto com os dados `{"nome":"Caderno","estoque":10}`. Se a API aceitar estas alterações, cada linha abaixo parte dos mesmos dados iniciais.
+
+| Corpo em JSON Merge Patch | Resultado | O que aconteceu |
+|---|---|---|
+| `{"nome":"Caderno azul"}` | `{"nome":"Caderno azul","estoque":10}` | O estoque foi omitido do pedido e conservou o valor 10. |
+| `{"estoque":0}` | `{"nome":"Caderno","estoque":0}` | O campo continua presente e vale zero. |
+| `{"estoque":null}` | `{"nome":"Caderno"}` | O nome do campo e seu valor foram removidos do objeto. |
+
+Nesse formato, `null` como valor de um campo no corpo é uma instrução para apagar o campo inteiro. Isso descreve o resultado no JSON. A API decide como guardar essa mudança e pode rejeitá-la se o campo for obrigatório. [RFC 7396, processamento do JSON Merge Patch](https://www.rfc-editor.org/rfc/rfc7396.html#section-2)
+
+> [!info]- E se o recurso ainda não existir?
+> Normalmente o alvo do `PATCH` já existe. A especificação permite a criação em certas condições, conforme o formato e as regras da API.
 
 ## O que acontece ao repetir o pedido
 
-A [[glossario/idempotencia|idempotência]] é a propriedade de um pedido cujo efeito pretendido é igual quando ele é feito uma vez ou repetido com os mesmos dados. Compare dois pedidos que uma API poderia oferecer para um estoque que começa em 10.
+A [[glossario/idempotencia|idempotência]] é a propriedade de um pedido cujo efeito pretendido é igual quando ele é feito uma vez ou repetido com os mesmos dados. Compare três pedidos para um produto que começa com estoque 10, sem outras alterações entre os envios.
 
 | Pedido | Após uma vez | Após duas vezes |
 |---|---|---|
-| Definir o estoque como 12 | 12 | 12 |
-| Adicionar duas unidades ao estoque | 12 | 14 |
+| `PUT` com a ficha completa do produto e estoque 12 | 12 | 12 |
+| `PATCH` com o corpo `{"estoque":12}` em JSON Merge Patch | 12 | 12 |
+| `PATCH` numa API que aceita a instrução «adicione duas unidades» | 12 | 14 |
 
-O `PUT` é idempotente porque cada envio pede para gravar a mesma versão. No `PATCH`, a operação determina o efeito de repetir o pedido. Definir `ativo` como `false` novamente deixa a conta desativada. Acrescentar duas unidades novamente soma outras duas. Isso importa se a conexão cair antes de chegar a resposta. O cliente pode ficar sem saber se o primeiro pedido foi aplicado.
+O HTTP define o `PUT` como idempotente porque cada envio pede para gravar a mesma versão. Para `PATCH`, a idempotência depende da instrução. No JSON Merge Patch da tabela, o número `12` é o valor desejado. A instrução «adicione duas unidades» usa o valor atual como ponto de partida, então cada envio soma mais duas. Essa soma é um exemplo de operação que outra API pode oferecer. [RFC 9110, idempotência](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2) · [RFC 5789, método PATCH](https://www.rfc-editor.org/rfc/rfc5789.html#section-2)
+
+Isso importa se a conexão cair antes de chegar a resposta. O cliente pode ficar sem saber se o primeiro pedido foi aplicado.
 
 > [!info]- A resposta pode mudar mesmo quando o efeito é igual
 > Um `PUT` pode retornar `201 Created` na primeira vez e `200 OK` na segunda, quando o recurso já existe. A versão final pedida é a mesma nos dois casos. A aula 3.5 volta a essa diferença.
@@ -122,6 +147,12 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 >
 > > [!success]- Resposta
 > > Não. Depois do primeiro pedido há uma cópia adicional do rótulo. Depois do segundo há duas. O efeito acumulou.
+
+> [!question] 4. Remover ou zerar o desconto
+> Uma API aceita JSON Merge Patch. O produto está como `{"nome":"Caneta","desconto":5}`. Qual é o resultado de enviar `{"desconto":null}`? E se, partindo do cadastro original, você enviar `{"desconto":0}`?
+>
+> > [!success]- Resposta
+> > Com `null`, o resultado é `{"nome":"Caneta"}`. Com zero, o resultado é `{"nome":"Caneta","desconto":0}`.
 
 > [!tip] Para guardar
 > Use `PUT` para enviar a versão completa dos dados que a API permite substituir. Use `PATCH` para enviar mudanças no formato aceito pela API. Antes de enviar, confira o endereço do recurso e o que o servidor fará com os campos omitidos.
