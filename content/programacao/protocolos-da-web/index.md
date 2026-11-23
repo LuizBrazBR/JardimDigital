@@ -27,7 +27,7 @@ Resumos das aulas do curso de Protocolos da Web, a trilha que veio depois da [[p
 1. [[programacao/protocolos-da-web/modulo-3/01-get-o-metodo-para-ler-dados|GET: o método para ler dados]]
 2. [[programacao/protocolos-da-web/modulo-3/02-post-o-metodo-para-criar-recursos|POST: o método para criar recursos]]
 3. [[programacao/protocolos-da-web/modulo-3/03-put-e-patch-atualizacao-total-e-parcial|PUT e PATCH: atualização total e parcial]]
-4. DELETE, HEAD e OPTIONS: remover e consultar
+4. [[programacao/protocolos-da-web/modulo-3/04-delete-head-e-options-remover-e-consultar|DELETE, HEAD e OPTIONS: remover e consultar]]
 5. Métodos seguros, idempotentes e erros comuns de semântica
 
 ## Módulo 4 – Status codes
