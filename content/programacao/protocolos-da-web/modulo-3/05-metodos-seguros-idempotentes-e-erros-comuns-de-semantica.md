@@ -47,7 +47,9 @@ Duas confusões comuns:
 > Olhar a vitrine de uma loja uma vez ou cem vezes não muda as mercadorias. Você gasta o seu tempo e talvez o vendedor perceba, mas a loja continua igual. A comparação vai até aqui: na vitrine, o vidro impede que você mexa nas coisas. No HTTP, quem impede um `GET` de mudar dados é o programador do back-end. Nada no protocolo o obriga, e é por isso que o erro mais comum desta aula existe.
 
 > [!info]- E o TRACE?
-> A especificação do HTTP lista também o `TRACE` entre os métodos seguros. Ele devolve ao cliente o pedido exatamente como o servidor o recebeu, e serve para diagnosticar o caminho. É raro e muitos servidores o desativam, então o curso não o usa. [RFC 9110, métodos seguros](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.1)
+> A especificação do HTTP lista também o `TRACE` entre os métodos seguros. Ele devolve ao cliente o pedido exatamente como o servidor o recebeu, e serve para diagnosticar o caminho. É raro, então o curso não o usa. Hoje, para diagnosticar, se usa o DevTools, o `curl -v` e os logs do servidor.
+>
+> Há também um motivo de segurança para ele ter caído em desuso. Como o `TRACE` devolve o pedido inteiro, um site malicioso podia usá-lo para ler cabeçalhos sensíveis, como cookies, que o JavaScript normalmente não consegue ler. Esse ataque se chama *Cross-Site Tracing*. Por isso a maioria dos servidores vem com o `TRACE` desativado, e a especificação manda o cliente não enviar cookies nem credenciais num `TRACE`. [RFC 9110, métodos seguros](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.1) · [MDN, TRACE](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods/TRACE)
 
 ## Método idempotente
 
