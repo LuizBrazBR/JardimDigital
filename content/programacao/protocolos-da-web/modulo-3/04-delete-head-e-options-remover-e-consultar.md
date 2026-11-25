@@ -108,7 +108,15 @@ Este é o outro uso do `OPTIONS`: quem o envia, nesse caso, é o próprio navega
 | `https://painel.exemplo.com/perfil` | `https` + `painel.exemplo.com` + 443 | Sim: só o caminho mudou. |
 | `https://api.exemplo.com/usuarios` | `https` + `api.exemplo.com` + 443 | Não: o nome do servidor mudou. |
 
-**Passo 2: por que o navegador se importa.** Imagine que você está logado no painel e abre, em outra aba, um site qualquer. O navegador não deixa o código desse site ler as respostas do painel usando o seu login, porque senão qualquer site poderia ler os seus dados. A regra padrão é: o código de uma página só lê respostas da **própria origem**.
+**Passo 2: por que o navegador se importa.** Uma página pode ter código JavaScript que faz um pedido e usa a resposta, por exemplo para mostrar seus dados na tela. Chamamos isso de "ler a resposta". Agora siga o caminho do [[glossario/cookie|cookie]]:
+
+1. Você faz login no painel, e o navegador guarda o cookie da sua sessão.
+2. O navegador anexa esse cookie **sozinho** em todo pedido para `painel.exemplo.com`, não importa qual página mandou o pedido.
+3. Você abre, em outra aba, um site malicioso. O código dele faz um pedido para `https://painel.exemplo.com/meus-dados`.
+4. O navegador anexa o seu cookie, e o painel responde com os **seus** dados, achando que é você.
+5. Aqui entra a regra: o navegador **não entrega essa resposta** ao código do site malicioso. Ele só entrega a respostas de um servidor ao código que veio da **mesma origem** desse servidor.
+
+Então o código que veio de `painel.exemplo.com` lê respostas de `painel.exemplo.com` normalmente, e é assim que o painel funciona. O código de outra origem não lê. A regra trata de quem pode **ler a resposta**, não de abas conversando entre si, e o cache não faz parte dela.
 
 **Passo 3: o problema.** O painel (`painel.exemplo.com`) e a API (`api.exemplo.com`) são do mesmo dono, e o painel precisa conversar com a API. Mas, para o navegador, são origens diferentes, então ele barraria por padrão.
 
