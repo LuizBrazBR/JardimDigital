@@ -156,6 +156,17 @@ Access-Control-Allow-Headers: Authorization
 | `Access-Control-Allow-Methods` | Quais métodos a API aceita nessa checagem. |
 | `Access-Control-Allow-Headers` | Quais cabeçalhos a API aceita nessa checagem. Os nomes de cabeçalhos HTTP aceitam maiúsculas e minúsculas. |
 
+#### Nem todo pedido entre origens tem preflight
+
+O CORS vale para qualquer pedido entre origens diferentes. O preflight é uma etapa a mais, só para pedidos que poderiam causar estrago. O `OPTIONS` do preflight pergunta o mesmo que sempre perguntou, "o que você aceita?", e leva junto os cabeçalhos do CORS.
+
+| Tipo de pedido entre origens | O que o navegador faz |
+|---|---|
+| **Pedido simples**: `GET`, `HEAD` ou `POST`, só com cabeçalhos básicos e `Content-Type` igual a `text/plain`, `multipart/form-data` ou `application/x-www-form-urlencoded` | Envia direto, com o cabeçalho `Origin`. Quando a resposta chega, confere se a API liberou a origem. Se não liberou, o código da página não lê a resposta. |
+| **Qualquer outro**: `DELETE`, `PUT`, `PATCH`, cabeçalho como `Authorization` ou `Content-Type: application/json` | Envia antes um `OPTIONS` (o preflight). Só envia o pedido de verdade se a API aprovar. |
+
+Um `GET` simples vai direto porque só lê. Já o `DELETE` apaga, e por isso o navegador pergunta antes. [MDN, CORS](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Guides/CORS)
+
 Na consulta prévia, o navegador envia o nome `authorization`. O valor do token vai no pedido `DELETE` separado, depois que o navegador aprova a resposta da consulta. A API só processa a remoção ao receber esse segundo pedido e verifica a permissão do usuário. O `Allow` comum anuncia os métodos do recurso. O navegador verifica CORS pelos cabeçalhos `Access-Control-…`. A aula 5.5 volta ao assunto. [WHATWG Fetch, protocolo CORS](https://fetch.spec.whatwg.org/#cors-protocol)
 
 ## Treine
