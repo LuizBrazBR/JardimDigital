@@ -36,6 +36,17 @@ O [[glossario/codigo-de-status|status]] `204 No Content` indica que a remoção 
 
 Na [[programacao/protocolos-da-web/modulo-2/01-a-anatomia-de-uma-requisicao-http|aula 2.1]], os [[glossario/metadados|metadados]] eram as informações escritas do lado de fora da caixa. Aqui, os cabeçalhos dizem o formato, o tamanho e a data da versão do arquivo que um `GET` entregaria. Isso ajuda quando você quer conferir se o endereço responde ou decidir se vale baixar o arquivo.
 
+> [!abstract] O HEAD é um GET sem o corpo
+> **O `HEAD` pergunta ao servidor o que um `GET` naquele mesmo endereço responderia, e o servidor devolve só a linha de status e os cabeçalhos.** Você não escolhe outro método para ele imitar: ele espelha sempre o `GET`.
+
+Isso tem três consequências:
+
+| Pergunta | Resposta |
+|---|---|
+| Para que serve? | Para ver o que o `GET` entregaria (tipo, tamanho, data) antes de baixar, ou só para saber se o endereço existe e responde (`200`, `404`...). |
+| Ele testa `POST`, `PUT` ou `DELETE`? | Não. Ele só diz como o `GET` responderia ali. Para saber quais métodos o endereço aceita, o método é o `OPTIONS`, mais abaixo. |
+| Ele muda alguma coisa no servidor? | Não. Assim como o `GET`, ele só consulta. |
+
 ```http
 HEAD /arquivos/relatorio.txt HTTP/1.1
 Host: arquivos.exemplo.com
