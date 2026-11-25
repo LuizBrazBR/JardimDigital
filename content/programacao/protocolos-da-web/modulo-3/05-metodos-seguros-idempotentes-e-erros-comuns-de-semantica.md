@@ -27,9 +27,9 @@ Nenhum desses programas lê a documentação da sua API nem entende o que o pedi
 
 ### O que é "semântica" aqui
 
-O título fala em erros de **[[glossario/semantica|semântica]]**. A semântica de um método é o **significado** que o HTTP dá a ele, ou seja, o que o `GET`, o `PUT` e os outros prometem. Um erro de semântica é escolher um método cujo significado não combina com o que o pedido faz.
+O título fala em erros de **[[glossario/semantica|semântica]]**. Em palavras simples: **cada método foi feito para um trabalho**. O `GET` foi feito para ler, o `PUT` para substituir, o `DELETE` para remover. Um erro de semântica é **programar um método para fazer outra coisa**, diferente do trabalho para o qual ele foi feito. O exemplo clássico é um `GET` que apaga dados.
 
-Isso é diferente de um erro de escrita. Um `GET` que apaga dados está escrito corretamente, o servidor aceita e responde `200`. Nada quebra na hora. O problema só aparece quando outro programa confia na promessa do método e age em cima dela. É por isso que esses erros são difíceis de notar e perigosos.
+Isso é diferente de errar a escrita do pedido. Um `GET` que apaga dados está escrito certinho, o servidor aceita e responde `200`. Nada quebra na hora. O problema aparece depois: os outros programas (navegador, cache, crawler) acreditam que o `GET` só lê e agem em cima disso. É por isso que esses erros são difíceis de notar e perigosos.
 
 ## Método seguro
 
@@ -358,7 +358,7 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > - Todo seguro é idempotente. Nem todo idempotente é seguro.
 > - "Seguro" não é sobre ataques nem HTTPS. E "idempotente" é sobre o **estado final**, não sobre a resposta ser igual: um `DELETE` repetido pode dar `204` e depois `404`.
 > - O `POST`, em geral, não é idempotente. O `PATCH` depende da instrução.
-> - Programas que ninguém vê (navegador, cache, proxy, crawler, biblioteca HTTP) confiam nessas duas promessas. Quebrá-las é o erro de semântica.
+> - Programas que ninguém vê (navegador, cache, proxy, crawler, biblioteca HTTP) confiam nessas duas promessas. Usar um método para outro trabalho que não o dele é o erro de semântica.
 > - Os erros mais comuns: `GET` que altera dados, `POST` para tudo, `PUT` com corpo parcial, `PATCH` que age como `PUT`, e evitar o retry em `PUT` e `DELETE`.
 > - Só repita sozinho um pedido idempotente. Com `POST`, só se a API tiver um código de idempotência.
 

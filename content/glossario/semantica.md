@@ -3,9 +3,9 @@ title: Semântica
 ---
 
 > [!abstract] Definição
-> **O significado de algo.** No HTTP, a semântica de um método é o que o protocolo promete sobre ele: o `GET` promete só ler, o `PUT` promete substituir, o `DELETE` promete remover.
+> **O significado de algo.** No HTTP, é o trabalho para o qual cada método foi feito: o `GET` foi feito para ler, o `PUT` para substituir, o `DELETE` para remover.
 
-Um "erro de semântica" é escolher um método cujo significado não combina com o que o pedido faz, como um `GET` que apaga dados. Não é um erro de escrita: o pedido está bem formado e o servidor responde normalmente. O problema aparece quando outro programa, como um [[glossario/cache|cache]] ou um [[glossario/crawler|crawler]], confia na promessa do método. Ver a aula [[programacao/protocolos-da-web/modulo-3/05-metodos-seguros-idempotentes-e-erros-comuns-de-semantica|3.5 Métodos seguros, idempotentes e erros comuns de semântica]].
+Um "erro de semântica" é programar um método para fazer outra coisa, diferente do trabalho para o qual ele foi feito, como um `GET` que apaga dados. Não é um erro de escrita: o pedido está certo e o servidor responde normalmente. O problema aparece quando outro programa, como um [[glossario/cache|cache]] ou um [[glossario/crawler|crawler]], acredita que o método faz só o trabalho dele. Ver a aula [[programacao/protocolos-da-web/modulo-3/05-metodos-seguros-idempotentes-e-erros-comuns-de-semantica|3.5 Métodos seguros, idempotentes e erros comuns de semântica]].
 
 ## De onde vem a palavra
 
