@@ -122,6 +122,8 @@ Então o código que veio de `painel.exemplo.com` lê respostas de `painel.exemp
 
 **Passo 4: a solução, o CORS.** [[glossario/cors|CORS]] é o combinado em que o servidor da API avisa o navegador, por cabeçalhos na resposta: "aceito pedidos que vêm do painel". Se o aviso não vier, o navegador não entrega a resposta ao código da página.
 
+Repare que o CORS **não cria** a proibição, ele abre uma exceção nela. A proibição é a regra padrão do navegador, chamada política de mesma origem (*same-origin policy*), que vale mesmo sem CORS. O JavaScript de qualquer site roda normalmente; o que o navegador barra é ele **ler** a resposta de outra origem. Se o site malicioso pedir seus dados, o navegador até manda o seu cookie, mas o código dele não lê a resposta, a menos que a API a tenha liberado para ele. Por isso a API libera só o painel, e não todo mundo.
+
 **Passo 5: onde entra o OPTIONS.** Um `DELETE` apaga coisas. Esperar a API responder para só então descobrir que ela não aceitava seria tarde demais, porque o apagamento já teria acontecido. Por isso, antes de enviar um pedido assim, o navegador faz uma pergunta que não apaga nada: um `OPTIONS` dizendo "o painel vai mandar um `DELETE`, você aceita?". Essa pergunta é a [[glossario/preflight-cors|consulta prévia, chamada preflight]]. Só se a resposta for "aceito" o navegador envia o `DELETE` de verdade.
 
 > [!example] O porteiro do prédio
