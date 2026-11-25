@@ -158,7 +158,7 @@ Access-Control-Allow-Headers: Authorization
 
 #### Nem todo pedido entre origens tem preflight
 
-O CORS vale para qualquer pedido entre origens diferentes. O preflight é uma etapa a mais, só para pedidos que poderiam causar estrago. O `OPTIONS` do preflight pergunta o mesmo que sempre perguntou, "o que você aceita?", e leva junto os cabeçalhos do CORS.
+O CORS vale para qualquer pedido entre origens diferentes. O preflight é uma etapa a mais, só para pedidos que um formulário HTML comum não conseguiria mandar (a explicação está logo abaixo da tabela). O `OPTIONS` do preflight pergunta o mesmo que sempre perguntou, "o que você aceita?", e leva junto os cabeçalhos do CORS.
 
 | Tipo de pedido entre origens | O que o navegador faz |
 |---|---|
@@ -166,6 +166,39 @@ O CORS vale para qualquer pedido entre origens diferentes. O preflight é uma et
 | **Qualquer outro**: `DELETE`, `PUT`, `PATCH`, cabeçalho como `Authorization` ou `Content-Type: application/json` | Envia antes um `OPTIONS` (o preflight). Só envia o pedido de verdade se a API aprovar. |
 
 Um `GET` simples vai direto porque só lê. Já o `DELETE` apaga, e por isso o navegador pergunta antes. [MDN, CORS](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Guides/CORS)
+
+#### Qual é o critério: não é "sensível", é "um formulário já fazia isso?"
+
+Antes de o CORS existir, uma página já podia mandar pedidos a outro site usando um formulário HTML comum. Os servidores antigos aprenderam a conviver com isso. O navegador usa esse limite como critério: o que um formulário já conseguia mandar vai direto; o que é novidade ele pergunta antes.
+
+| O que o pedido tem | Um formulário consegue? | Preflight? |
+|---|---|---|
+| Método `GET` ou `POST` | Sim | Não |
+| Método `DELETE`, `PUT` ou `PATCH` | Não | **Sim** |
+| `Content-Type` com `text/plain`, `multipart/form-data` ou `application/x-www-form-urlencoded` | Sim | Não |
+| `Content-Type: application/json` | Não | **Sim** |
+| Cabeçalho `Authorization` ou qualquer cabeçalho inventado, como `X-Meu-Cabecalho` | Não | **Sim** |
+
+Repare que o critério não é o conteúdo ser perigoso. O JSON em si não é "sensível": quem dispara a pergunta é o **cabeçalho** `Content-Type: application/json`. E o `Authorization` não é especial por ter ligação com autorização: ele dispara o preflight pelo mesmo motivo de um cabeçalho inventado, que é não estar na lista de cabeçalhos básicos.
+
+**O caso mais comum no dia a dia.** Quase toda API moderna recebe JSON. Então quase todo `POST` do painel para a API, mesmo um simples, gera preflight. Para o `POST` sair, a API precisa responder ao `OPTIONS` listando o cabeçalho:
+
+```http
+OPTIONS /api/usuarios HTTP/1.1
+Host: api.exemplo.com
+Origin: https://painel.exemplo.com
+Access-Control-Request-Method: POST
+Access-Control-Request-Headers: content-type
+```
+
+```http
+HTTP/1.1 204 No Content
+Access-Control-Allow-Origin: https://painel.exemplo.com
+Access-Control-Allow-Methods: POST
+Access-Control-Allow-Headers: Content-Type
+```
+
+Se a API esquecer a linha `Access-Control-Allow-Headers: Content-Type`, o navegador não envia o `POST` e mostra um erro de CORS no console.
 
 Na consulta prévia, o navegador envia o nome `authorization`. O valor do token vai no pedido `DELETE` separado, depois que o navegador aprova a resposta da consulta. A API só processa a remoção ao receber esse segundo pedido e verifica a permissão do usuário. O `Allow` comum anuncia os métodos do recurso. O navegador verifica CORS pelos cabeçalhos `Access-Control-…`. A aula 5.5 volta ao assunto. [WHATWG Fetch, protocolo CORS](https://fetch.spec.whatwg.org/#cors-protocol)
 
