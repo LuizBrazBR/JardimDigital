@@ -209,7 +209,7 @@ O `-s -o NUL -w "%{http_code}"` do comando mostra só o status: o `-s` cala o cu
 
 ## Por que o GET não pode mudar dados
 
-A promessa de não mudar nada tem nome: o `GET` é um [[glossario/metodo-seguro|método seguro]]. "Seguro", aqui, não tem a ver com ataques nem com HTTPS. Quer dizer só "só lê". A aula 3.5 define o termo com precisão.
+A promessa de não mudar nada tem nome: o `GET` é um [[glossario/metodo-seguro|método seguro]]. "Seguro", aqui, não tem a ver com ataques nem com HTTPS. Quer dizer só "só lê". A [[programacao/protocolos-da-web/modulo-3/05-metodos-seguros-idempotentes-e-erros-comuns-de-semantica|aula 3.5]] define o termo com precisão.
 
 O resto da web conta com essa promessa, e vários programas mandam `GET` **sem nenhuma pessoa por trás**:
 

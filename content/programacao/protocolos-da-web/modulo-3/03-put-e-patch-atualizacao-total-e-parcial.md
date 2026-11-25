@@ -124,7 +124,7 @@ O HTTP define o `PUT` como idempotente porque cada envio pede para gravar a mesm
 Isso importa se a conexão cair antes de chegar a resposta. O cliente pode ficar sem saber se o primeiro pedido foi aplicado.
 
 > [!info]- A resposta pode mudar mesmo quando o efeito é igual
-> Um `PUT` pode retornar `201 Created` na primeira vez e `200 OK` na segunda, quando o recurso já existe. A versão final pedida é a mesma nos dois casos. A aula 3.5 volta a essa diferença.
+> Um `PUT` pode retornar `201 Created` na primeira vez e `200 OK` na segunda, quando o recurso já existe. A versão final pedida é a mesma nos dois casos. A [[programacao/protocolos-da-web/modulo-3/05-metodos-seguros-idempotentes-e-erros-comuns-de-semantica|aula 3.5]] volta a essa diferença.
 
 ## Treine
 
