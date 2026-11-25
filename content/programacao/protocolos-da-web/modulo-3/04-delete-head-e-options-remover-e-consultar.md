@@ -202,6 +202,26 @@ Se a API esquecer a linha `Access-Control-Allow-Headers: Content-Type`, o navega
 
 Na consulta prévia, o navegador envia o nome `authorization`. O valor do token vai no pedido `DELETE` separado, depois que o navegador aprova a resposta da consulta. A API só processa a remoção ao receber esse segundo pedido e verifica a permissão do usuário. O `Allow` comum anuncia os métodos do recurso. O navegador verifica CORS pelos cabeçalhos `Access-Control-…`. A aula 5.5 volta ao assunto. [WHATWG Fetch, protocolo CORS](https://fetch.spec.whatwg.org/#cors-protocol)
 
+## O que o servidor já faz sozinho e onde o programador atrapalha
+
+A norma diz que todo servidor de uso geral **deve** suportar `GET` e `HEAD`, e que os outros métodos são opcionais. [RFC 9110, métodos](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.1)
+
+| Método | O que acontece sem o programador fazer nada |
+|---|---|
+| `HEAD` | O servidor trata como um `GET` e corta o corpo. Quase nunca dá problema. |
+| `OPTIONS` | Servidores e frameworks conhecidos costumam responder com o `Allow`. Mas as permissões de CORS (`Access-Control-Allow-Origin`, `-Methods` e `-Headers`) só aparecem se o programador as **configurar**. |
+
+Como o `OPTIONS` é opcional pela norma, mas o navegador depende dele no preflight, é nele que o programador mais atrapalha sem querer. Quando algo dá errado, o sintoma é sempre o mesmo: um erro de CORS no console do navegador, enquanto o mesmo pedido funciona no `curl.exe`.
+
+| Erro comum | O que acontece |
+|---|---|
+| Não configurar o CORS | O `OPTIONS` responde, mas sem os cabeçalhos `Access-Control-...`, e o navegador barra o pedido. |
+| Exigir login em todas as rotas | O preflight não leva token, então a verificação responde `401` ao `OPTIONS` e o pedido de verdade nunca sai. |
+| Definir a rota só para certos métodos | Se a rota só aceita `POST`, o `OPTIONS` pode receber `404` ou `405`. |
+| Esquecer um cabeçalho na lista | Deixar `Authorization` ou `Content-Type` fora de `Access-Control-Allow-Headers` faz o pedido com esse cabeçalho falhar. |
+
+O `curl.exe`, o Node.js e o Postman não aplicam o CORS. Por isso um pedido pode funcionar neles e falhar no navegador.
+
 ## Treine
 
 Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
