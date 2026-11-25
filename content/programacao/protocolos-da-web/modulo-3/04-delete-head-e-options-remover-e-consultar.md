@@ -98,9 +98,28 @@ O cabeçalho [[glossario/allow|Allow]] anuncia os métodos que o servidor dispon
 
 ### Quando o navegador envia OPTIONS antes de outro pedido
 
-Para uma página aberta em `https://painel.exemplo.com`, a [[glossario/origem-web|origem]] reúne o esquema (`https`), o nome do servidor (`painel.exemplo.com`) e a [[glossario/porta|porta]] (443, a padrão do HTTPS). A API em `https://api.exemplo.com` tem outra origem porque o nome do servidor mudou. Trocar só o caminho dentro do mesmo site, como ir de `/login` para `/perfil`, conserva a origem.
+Este é o outro uso do `OPTIONS`: quem o envia, nesse caso, é o próprio navegador, sem você pedir. Para entender por quê, vamos por partes.
 
-[[glossario/cors|CORS]] é o mecanismo pelo qual um servidor sinaliza ao navegador quais outras origens podem ler suas respostas e, quando há uma checagem prévia, quais pedidos aceita dessa origem. Imagine que o painel quer enviar um `DELETE` à API. Antes de mandar o pedido de remoção, o navegador envia uma [[glossario/preflight-cors|consulta prévia, chamada preflight]].
+**Passo 1: o que é a origem.** A [[glossario/origem-web|origem]] de uma página é o endereço dela sem o caminho, formado por três peças: o esquema (`https`), o nome do servidor e a [[glossario/porta|porta]] (443 é a padrão do HTTPS, por isso não aparece escrita). Duas páginas só têm a mesma origem se as três peças forem iguais.
+
+| Endereço | Origem | Mesma origem do painel? |
+|---|---|---|
+| `https://painel.exemplo.com/login` | `https` + `painel.exemplo.com` + 443 | (é o próprio painel) |
+| `https://painel.exemplo.com/perfil` | `https` + `painel.exemplo.com` + 443 | Sim: só o caminho mudou. |
+| `https://api.exemplo.com/usuarios` | `https` + `api.exemplo.com` + 443 | Não: o nome do servidor mudou. |
+
+**Passo 2: por que o navegador se importa.** Imagine que você está logado no painel e abre, em outra aba, um site qualquer. O navegador não deixa o código desse site ler as respostas do painel usando o seu login, porque senão qualquer site poderia ler os seus dados. A regra padrão é: o código de uma página só lê respostas da **própria origem**.
+
+**Passo 3: o problema.** O painel (`painel.exemplo.com`) e a API (`api.exemplo.com`) são do mesmo dono, e o painel precisa conversar com a API. Mas, para o navegador, são origens diferentes, então ele barraria por padrão.
+
+**Passo 4: a solução, o CORS.** [[glossario/cors|CORS]] é o combinado em que o servidor da API avisa o navegador, por cabeçalhos na resposta: "aceito pedidos que vêm do painel". Se o aviso não vier, o navegador não entrega a resposta ao código da página.
+
+**Passo 5: onde entra o OPTIONS.** Um `DELETE` apaga coisas. Esperar a API responder para só então descobrir que ela não aceitava seria tarde demais, porque o apagamento já teria acontecido. Por isso, antes de enviar um pedido assim, o navegador faz uma pergunta que não apaga nada: um `OPTIONS` dizendo "o painel vai mandar um `DELETE`, você aceita?". Essa pergunta é a [[glossario/preflight-cors|consulta prévia, chamada preflight]]. Só se a resposta for "aceito" o navegador envia o `DELETE` de verdade.
+
+> [!example] O porteiro do prédio
+> Você mora num prédio (o painel) e quer mandar um entregador (o pedido) ao apartamento de um vizinho de outro prédio (a API). Antes de soltar o entregador, o porteiro (o navegador) liga para o outro prédio e pergunta: "vocês aceitam receber alguém do prédio painel, para fazer uma retirada?". Se disserem sim, ele libera. A comparação vai até aqui: quem decide e barra é o navegador, não a API. A API apenas responde à pergunta; ela não impede nada sozinha.
+
+Veja a pergunta e a resposta de verdade:
 
 ```http
 OPTIONS /api/usuarios/107 HTTP/1.1
