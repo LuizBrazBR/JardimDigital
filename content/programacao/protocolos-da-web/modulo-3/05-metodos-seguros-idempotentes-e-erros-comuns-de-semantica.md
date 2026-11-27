@@ -326,7 +326,16 @@ Tente responder antes de abrir a resposta, logo abaixo de cada pergunta.
 > Uma API publica um texto com `GET /api/posts/10/publicar`. O que há de errado? Escreva duas alternativas.
 >
 > > [!success]- Resposta
-> > Uma ação que muda dados está num método seguro. Um crawler ou um pré-carregamento pode publicar o texto sem ninguém pedir. Alternativas: `POST /api/posts/10/publicar`, tratando como uma ação, ou `PATCH /api/posts/10` com `{"publicado":true}`, se a API aceitar JSON Merge Patch. A segunda ainda é idempotente, porque grava sempre o mesmo valor.
+> > O erro: uma ação que muda dados está num método seguro. Um crawler ou um pré-carregamento do navegador faz `GET` sozinho e publicaria o texto sem ninguém pedir.
+> >
+> > Duas alternativas, e qual escolher depende do que "publicar" significa nessa API:
+> >
+> > | Se publicar é... | Use | Motivo |
+> > | --- | --- | --- |
+> > | só trocar um campo do post | `PATCH /api/posts/10` com `{"publicado":true}` | é uma atualização parcial: o post continua o mesmo e só o campo `publicado` muda (o PATCH é o "PUT parcial" da aula 3.3) |
+> > | uma ação com efeitos (avisar seguidores, mandar e-mail, agendar) | `POST /api/posts/10/publicar` | POST serve para comandos que não são só "grave este valor" |
+> >
+> > Diferença na repetição: o `PATCH` com `{"publicado":true}` é idempotente, porque 5 envios deixam o post no mesmo estado que 1. O `POST /publicar` pode não ser: se cada chamada manda um e-mail, 5 chamadas mandam 5 e-mails. O PATCH com JSON Merge Patch só vale se a API aceitar esse formato.
 
 > [!question] 4. O 404 do segundo DELETE
 > Você enviou `DELETE /api/favoritos/8` e recebeu `204`. Sem saber, o programa repetiu o pedido e recebeu `404`. A remoção falhou?
